@@ -1,0 +1,88 @@
+
+img.bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px; 
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+
+div.admin-bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px; 
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+  img.bg {
+    left: 50%;
+    margin-left: -512px;   /* 50% */
+  }
+
+  div.admin-bg {
+    left: 50%;
+    margin-left: -512px;   /* 50% */
+  }
+}
+
+.landing-page-text{
+    margin: auto;
+    padding: 180px 0px;
+    width: 85%;
+    text-align: center;
+
+
+}
+.landing-page-text h1{
+    color: #000;
+    text-shadow:
+        1px 1px 0 #ffff8f,
+      -1px -1px 0 #ffff8f,  
+       1px -1px 0 #ffff8f,
+       -1px 1px 0 #ffff8f,
+        1px 1px 0 #ffff8f;
+}
+
+.btn-primary{
+    background-color: #ffff8f;
+    border: solid 2px #000;
+    color:#000;
+}
+
+.btn-primary:hover{
+    background-color: #e07528;
+    border: solid 2px #e07528;
+    color:#fff;
+}
+
+.nav-link:hover{
+    color:#fff;
+}
+
+.navbar-dark .navbar-nav .nav-link{
+    color:#ffff8f;
+}
+
+.navbar-dark:hover .navbar-nav:hover .nav-link:hover{
+    color:#e07528;
+}
