@@ -12,8 +12,9 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "materialize-css": "^0.99.0",
+    "bootstrap": "^3.3.7",
     "react": "^16.0.0-alpha.13",
+    "react-bootstrap": "^0.32.0",
     "react-dom": "^16.0.0-alpha.13",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
