@@ -4,7 +4,7 @@ const Landing = () => {
   return (
     <div >
     
-    <img src="http://teachercatapult.com/wp-content/themes/jobroller/images/background.jpg" alt="bg" class="bg" /> 
+    <img src="http://teachercatapult.com/wp-content/themes/jobroller/images/background.jpg" alt="bg" className="bg" /> 
 
     <div className="landing-page-text">
       <h1>
