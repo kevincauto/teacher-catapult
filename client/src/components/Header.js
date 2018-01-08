@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Payments from './Payments';
-import { Button, Navbar, Nav, NavDropdown, MenuItem, NavItem } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, MenuItem, NavItem } from 'react-bootstrap';
 
 class Header extends Component {
   renderContent() {
@@ -13,18 +13,18 @@ class Header extends Component {
         return <li className="nav-item"><a className="nav-link" href="/auth/google">Login With Google</a></li>;
       default:
         return [
-        <NavItem eventKey={1} href="#">
+        <NavItem eventKey={1} key={1} href="#">
           <Payments>Post a Jobs</Payments>
         </NavItem>,
         
-        <NavItem eventKey={2}>
+        <NavItem eventKey={2} key={2} >
           
           Job Posts Left: {this.props.auth.credits}
           </NavItem>,
-        <NavItem eventKey={3}>
-          <Link to={this.props.auth ? '/surveys' : '/'}>Dashboard</Link>       
+        <NavItem eventKey={3} key={3} href={this.props.auth ? '/surveys' : '/'} >
+          Dashboard      
         </NavItem>,
-        <NavItem eventKey={4} href="/api/logout">
+        <NavItem eventKey={4} key={4} href="/api/logout">
           Logout</NavItem>
       ];
     }
@@ -38,10 +38,10 @@ class Header extends Component {
 <Navbar.Header>
   <Navbar.Brand>
   <Link
-           to={'/'}
-            >
-            <img style={{ height: '22px'}} src="http://teachercatapult.com/wp-content/uploads/2015/11/Teacher-Catapult-Logo-Gray-Yellow.png" alt="Teacher Catapult" />
-          </Link>
+    to={'/'}
+  >Teacher Catapult
+            {/* <img style={{ height: '22px'}} src="http://teachercatapult.com/wp-content/uploads/2015/11/Teacher-Catapult-Logo-Gray-Yellow.png" alt="Teacher Catapult" /> */}
+  </Link>
   </Navbar.Brand>
   <Navbar.Toggle />
 </Navbar.Header>
@@ -55,7 +55,7 @@ class Header extends Component {
       <MenuItem eventKey={3.2}>Another action</MenuItem>
       <MenuItem eventKey={3.3}>Something else here</MenuItem>
       <MenuItem divider />
-      <MenuItem eventKey={3.3}>Separated link</MenuItem>
+      <MenuItem eventKey={3.4}>Separated link</MenuItem>
     </NavDropdown>
   </Nav>
   <Nav pullRight>
