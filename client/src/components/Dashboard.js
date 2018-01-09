@@ -1,12 +1,14 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
 
 const Dashboard = () => {
     return (
         <div>
-            Dashboard
-            <Button bsStyle="primary">Add Survey</Button>
-            <button className="btn-primary btn">Add Survey 2</button>
+            <h2>Dashboard</h2>
+            <Link to="/surveys/new">
+            <button className="btn-primary btn">Add Survey</button>
+            </Link>
         </div>
     )
 }

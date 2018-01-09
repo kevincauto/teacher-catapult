@@ -72,5 +72,22 @@ div.admin-bg {
 
 .btn-primary:hover{
 
-    color:#ffff8f;
+    /* color:#ffff8f; */
+}
+
+.bg-danger {
+  background-color: #f2dede;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 10px 0px 20px;
+}
+
+input {
+  border-radius: 4px !important;
+  width: 100%;
+
+  border-width: 2px;
+  padding: 5px;
+  font-size: 16px;
+
 }
