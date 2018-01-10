@@ -17,10 +17,10 @@ class Header extends Component {
           <Payments>Post a Jobs</Payments>
         </NavItem>,
         
-        <NavItem eventKey={2} key={2} >
+        // <NavItem eventKey={2} key={2} >
           
-          Job Posts Left: {this.props.auth.credits}
-          </NavItem>,
+        //   Job Posts Left: {this.props.auth.credits}
+        //   </NavItem>,
         <NavItem eventKey={3} key={3} href={this.props.auth ? '/surveys' : '/'} >
           Dashboard      
         </NavItem>,
@@ -50,12 +50,12 @@ class Header extends Component {
     {/* <NavItem eventKey={2} href="#">
       Link
     </NavItem> */}
-    <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-      <MenuItem eventKey={3.1}>Action</MenuItem>
-      <MenuItem eventKey={3.2}>Another action</MenuItem>
-      <MenuItem eventKey={3.3}>Something else here</MenuItem>
-      <MenuItem divider />
-      <MenuItem eventKey={3.4}>Separated link</MenuItem>
+    <NavDropdown eventKey={3} title="Resources" id="basic-nav-dropdown">
+      <MenuItem eventKey={3.1}><Link to="/teaching-jobs-in-pa" >Teaching Jobs in PA</Link></MenuItem>
+      <MenuItem eventKey={3.2}>Interview Guide</MenuItem>
+      <MenuItem eventKey={3.3}><Link to="/teaching-articles">Helpful Resources!</Link></MenuItem>
+      {/* <MenuItem divider />
+      <MenuItem eventKey={3.4}>Separated link</MenuItem> */}
     </NavDropdown>
   </Nav>
   <Nav pullRight>

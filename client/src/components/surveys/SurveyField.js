@@ -5,10 +5,15 @@ import React from 'react';
 
 export default ({ input, label, meta: { error, touched } })=> {
     return (
-        <div>
+        <div className="input-group">
             <label>{label}</label><br />
-            <input {...input} />
+            <input className="form-control" {...input} />
             {touched && error? <p className="bg-danger">{error}</p> : ''}
         </div>
     );
 };
+
+<div className="input-group">
+<input type="text" className="form-control" placeholder="Search..." />
+
+</div>

@@ -7,6 +7,11 @@ import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
 import SurveyNew from './surveys/SurveyNew';
+import PAJobs from './PAJobs';
+import SubmitResume from './SubmitResume';
+import PASalary from './PASalary';
+import Articles from './Articles';
+import Footer from './Footer';
 
 
 class App extends Component {
@@ -19,11 +24,14 @@ class App extends Component {
         <div>
         <Header />
             <Route exact path="/" component={Landing} />
-            <div className="container">
+            <Route exact path="/teaching-jobs-in-pa" component={PAJobs} />
+            <Route exact path="/submit-your-resume" component={SubmitResume} />
+            <Route exact path="/teacher-salary-in-pa" component={PASalary} />
+            <Route exact path="/teaching-articles" component={Articles} />
             <Route exact path="/surveys" component={Dashboard} />
             <Route path="/surveys/new" component={SurveyNew} />
-            </div>
-          </div>
+        <Footer />
+        </div>
         </BrowserRouter>  
     );
   }
