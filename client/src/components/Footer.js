@@ -12,7 +12,7 @@ class Footer extends Component {
                 <p>© {new Date().getFullYear()} Teacher Catapult, All rights reserved</p>
             </div>
             <div className="col-md-4 footer-nav animated fadeInUp">
-                <h4>Menu —</h4>
+                <h4>Menu</h4>
                 <div className="col-md-6">
                     <ul className="pages">
                         <li><a href="#">Travel</a></li>

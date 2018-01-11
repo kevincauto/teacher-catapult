@@ -18,6 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "cheerio": "^1.0.0-rc.2",
     "concurrently": "^3.5.0",
     "cookie-session": "^2.0.0-beta.2",
     "express": "^4.15.3",
@@ -25,6 +26,7 @@
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-google-oauth20": "^1.0.0",
+    "request": "^2.83.0",
     "sendgrid": "^5.2.3",
     "stripe": "^4.23.1"
   }
