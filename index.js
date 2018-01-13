@@ -25,7 +25,8 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
 require('./routes/surveyRoutes')(app);
-require('./services/jobCrawler')(app);
+require('./routes/jobRoutes')(app);
+require('./cron_jobs/crawlJobs');
 
 if (process.env.NODE_ENV === 'production') {
   //Express will serve up production assets

@@ -5,12 +5,30 @@ class PAJobs extends Component {
   render() {
     return (
       <div className="container">
-        <img src="http://placehold.it/468x60/eee" />
+        <img src="http://placehold.it/468x60/eee" alt="half masthead ad" />
         <br />
         <br />
         <div className="content-container container">
           {/* <img src="http://teachercatapult.com/wp-content/themes/jobroller/images/background.jpg" alt="bg" className="bg" />  */}
 
+          <div itemscope itemtype="http://schema.org/Product">
+            <img
+              itemprop="image"
+              src="http://www.bettingsystemtruths.com/wp-content/uploads/2013/05/four_half-stars_0-1024x238.png"
+              alt="Product Name"
+              style={{ width: '60px' }}
+            />
+            <span itemprop="name">Product Name</span>
+            <div
+              itemprop="aggregateRating"
+              itemscope
+              itemtype="http://schema.org/AggregateRating"
+            >
+              <span itemprop="ratingValue">4.5</span>
+              out of <span itemprop="bestRating">5</span>
+              based on <span itemprop="ratingCount">301</span> user ratings.
+            </div>
+          </div>
           <div className="row">
             <div className="col-md-8 col-lg-9">
               <center>
@@ -54,8 +72,8 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
                       <strong>
                         <a
                           href="http://teachercatapult.com/jobs/rti-teacher-k-2/"
-                          rel="nofollow"
                           target="_blank"
+                          rel="noopener noreferrer nofollow"
                         >
                           RtI Teacher K-2
                         </a>
@@ -78,8 +96,8 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
                       <strong>
                         <a
                           href="http://www.allentownsd.org/content/current-job-vacancies"
-                          rel="nofollow"
                           target="_blank"
+                          rel="noopener noreferrer nofollow"
                         >
                           Autistic Support Teacher
                         </a>
@@ -102,8 +120,8 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
                       <strong>
                         <a
                           href="http://www.ambridge.k12.pa.us/index.php/employment-hr"
-                          rel="nofollow"
                           target="_blank"
+                          rel="noopener noreferrer nofollow"
                         >
                           Life Skills
                         </a>
@@ -126,8 +144,8 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
                       <strong>
                         <a
                           href="http://www.acschools.org/Page/541"
-                          rel="nofollow"
                           target="_blank"
+                          rel="noopener noreferrer nofollow"
                         >
                           Speech and Language Teacher
                         </a>
@@ -150,8 +168,8 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
                       <strong>
                         <a
                           href="https://bellefonte.tedk12.com/hire/index.aspx"
-                          rel="nofollow"
                           target="_blank"
+                          rel="noopener noreferrer nofollow"
                         >
                           Guidance Counselor
                         </a>
@@ -174,8 +192,8 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
                       <strong>
                         <a
                           href="https://bellefonte.tedk12.com/hire/index.aspx"
-                          rel="nofollow"
                           target="_blank"
+                          rel="noopener noreferrer nofollow"
                         >
                           Reading Specialist
                         </a>
@@ -198,8 +216,8 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
                       <strong>
                         <a
                           href="http://www.bbsd.com/Page/40"
-                          rel="nofollow"
                           target="_blank"
+                          rel="noopener noreferrer nofollow"
                         >
                           Business Teacher
                         </a>
@@ -222,8 +240,8 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
                       <strong>
                         <a
                           href="http://bloomsburgasd.schoolwires.com/Domain/42"
-                          rel="nofollow"
                           target="_blank"
+                          rel="noopener noreferrer nofollow"
                         >
                           Guidance Counselor
                         </a>
@@ -246,8 +264,8 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
                       <strong>
                         <a
                           href="http://www.bmsd.org/?page_id=217"
-                          rel="nofollow"
                           target="_blank"
+                          rel="noopener noreferrer nofollow"
                         >
                           Autistic Support Teacher
                         </a>
@@ -270,8 +288,8 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
                       <strong>
                         <a
                           href="http://www.bmsd.org/?page_id=217"
-                          rel="nofollow"
                           target="_blank"
+                          rel="noopener noreferrer nofollow"
                         >
                           Early Childhood Teacher
                         </a>
@@ -294,8 +312,8 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
                       <strong>
                         <a
                           href="https://bhasd.tedk12.com/hire/index.aspx"
-                          rel="nofollow"
                           target="_blank"
+                          rel="noopener noreferrer nofollow"
                         >
                           Autistic Support Teacher
                         </a>
@@ -342,7 +360,7 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
               <br />
 
               <h4>Ad</h4>
-              <img src="http://placehold.it/250x230/eee" />
+              <img src="http://placehold.it/250x230/eee" alt="sidebar ad" />
             </div>
           </div>
         </div>
