@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 class PAJobs extends Component {
   renderTable() {
     console.log(this.props.jobs);
-    let arr = this.props.jobs;
-    console.log(arr);
+    // let arr = this.props.jobs;
 
     // return arr.map(job => {
     //   return (
@@ -43,24 +42,6 @@ class PAJobs extends Component {
         <div className="content-container container">
           {/* <img src="http://teachercatapult.com/wp-content/themes/jobroller/images/background.jpg" alt="bg" className="bg" />  */}
 
-          <div itemscope itemtype="http://schema.org/Product">
-            <img
-              itemprop="image"
-              src="http://www.bettingsystemtruths.com/wp-content/uploads/2013/05/four_half-stars_0-1024x238.png"
-              alt="Product Name"
-              style={{ width: '60px' }}
-            />
-            <span itemprop="name">Product Name</span>
-            <div
-              itemprop="aggregateRating"
-              itemscope
-              itemtype="http://schema.org/AggregateRating"
-            >
-              <span itemprop="ratingValue">4.5</span>
-              out of <span itemprop="bestRating">5</span>
-              based on <span itemprop="ratingCount">301</span> user ratings.
-            </div>
-          </div>
           <div className="row">
             <div className="col-md-8 col-lg-9">
               <center>
@@ -105,20 +86,20 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
             <div className="col-md-4 col-lg-3">
               <h4>Sign-Up To Get Emails</h4>
               <p>New job postings are sent right to your inbox weekly.</p>
-              <p>
-                <div className="input-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Email Address..."
-                  />
-                  <span className="input-group-btn">
-                    <button className="btn btn-default" type="button">
-                      <span className="glyphicon glyphicon-envelope" />
-                    </button>
-                  </span>
-                </div>
-              </p>
+
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Email Address..."
+                />
+                <span className="input-group-btn">
+                  <button className="btn btn-default" type="button">
+                    <span className="glyphicon glyphicon-envelope" />
+                  </button>
+                </span>
+              </div>
+
               <br />
               <h4>Get Found By Employers!</h4>
               <Link to="/submit-your-resume">

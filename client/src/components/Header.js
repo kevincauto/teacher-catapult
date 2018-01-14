@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Payments from './Payments';
-import { Navbar, Nav, NavDropdown, MenuItem, NavItem } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, NavItem } from 'react-bootstrap';
 
 class Header extends Component {
   renderContent() {
@@ -59,13 +59,13 @@ class Header extends Component {
       Link
     </NavItem> */}
             <NavDropdown eventKey={3} title="Resources" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}>
+              <Navbar.Text>
                 <Link to="/teaching-jobs-in-pa">Teaching Jobs in PA</Link>
-              </MenuItem>
-              <MenuItem eventKey={3.2}>Interview Guide</MenuItem>
-              <MenuItem eventKey={3.3}>
+              </Navbar.Text>
+              <Navbar.Text>Interview Guide</Navbar.Text>
+              <Navbar.Text>
                 <Link to="/teaching-articles">Helpful Resources!</Link>
-              </MenuItem>
+              </Navbar.Text>
               {/* <MenuItem divider />
       <MenuItem eventKey={3.4}>Separated link</MenuItem> */}
             </NavDropdown>

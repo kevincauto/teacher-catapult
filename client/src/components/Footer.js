@@ -79,20 +79,19 @@ class Footer extends Component {
               <p>
                 A rover wearing a fuzzy suit doesn’t alarm the real penguins
               </p>
-              <p>
-                <div className="input-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search for..."
-                  />
-                  <span className="input-group-btn">
-                    <button className="btn btn-default" type="button">
-                      <span className="glyphicon glyphicon-envelope" />
-                    </button>
-                  </span>
-                </div>
-              </p>
+
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search for..."
+                />
+                <span className="input-group-btn">
+                  <button className="btn btn-default" type="button">
+                    <span className="glyphicon glyphicon-envelope" />
+                  </button>
+                </span>
+              </div>
             </div>
           </div>
         </div>

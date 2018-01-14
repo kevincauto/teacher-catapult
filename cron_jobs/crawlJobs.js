@@ -77,6 +77,7 @@ const makeARequest = district => {
           console.log({
             //job title, school district, county, city, state, date
             id: counter,
+            link: url,
             jobTitle: jobTypes[i].jobTitle,
             sd,
             county,
