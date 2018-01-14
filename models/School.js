@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const schooldistrictSchema = new Schema({
-  id: Number,
+const SchoolSchema = new Schema({
+  id: {
+    type: Number,
+    index: true
+  },
   link: String,
   sd: String,
   city: String,
@@ -12,4 +15,4 @@ const schooldistrictSchema = new Schema({
   customSearch: { type: Boolean, default: false }
 });
 
-mongoose.model('schooldistricts', schooldistrictSchema);
+module.exports = mongoose.model('School', SchoolSchema);

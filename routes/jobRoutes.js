@@ -3,13 +3,27 @@ const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
 const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
+const school_district_data = require('../cron_jobs/data/school_districts.json');
 
 const Survey = mongoose.model('surveys');
+var School = require('../models/School');
 
 module.exports = app => {
   app.get('/api/jobs/pa', (req, res) => {
-    res.send('Hello from the job API!');
+    console.log('fetching school districts');
+    School.find({}).exec(function(err, schools) {
+      if (err) {
+        res.send('error has occured');
+      } else {
+        console.log(schools);
+        res.json(schools);
+      }
+    });
   });
+
+  //   app.get('/api/jobs/pa', (req, res) => {
+  //     res.send(school_district_data);
+  //   });
 
   app.get('/api/surveys/thanks', (req, res) => {
     res.send('Thanks for voting!');

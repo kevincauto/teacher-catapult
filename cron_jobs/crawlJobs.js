@@ -1,19 +1,17 @@
 const express = require('express');
 const request = require('request');
+const rp = require('request-promise');
 const cheerio = require('cheerio');
 const fs = require('fs');
+const mongoose = require('mongoose');
+const School = require('../models/School');
+const Job = require('../models/Job');
 
-require('events').EventEmitter.defaultMaxListeners = 100;
+// var Job = require('../models/Job');
+
+// require('events').EventEmitter.defaultMaxListeners = 100;
 
 var schedule = require('node-schedule');
-
-//Run script 3 times a day at 2am, 10am and 3pm
-// var j = schedule.scheduleJob(' 0 0 2,10,15 ? * * *', function() {
-
-//run every minute
-var j = schedule.scheduleJob('0 * * * * *', function() {
-  //   makeARequest();
-});
 
 const url2 =
   'https://cdeworld.com/webinars/20887-The_Digital_Implant_Workflow:A_Team_Approach_for_Success';
@@ -34,15 +32,13 @@ if (mm < 10) {
   mm = '0' + mm;
 }
 
-today = mm + '/' + dd + '/' + yyyy;
+today = yyyy + '-' + mm + '-' + dd;
 
 const makeARequest = district => {
   let url = district.link;
   let { county, city, state, sd } = district;
+  console.log('#' + counter + ': ' + url);
   request(url, function(err, res, body) {
-    counter++;
-    console.log('#' + counter + ': ' + url);
-
     if (err) {
       console.log(err);
       return;
@@ -55,10 +51,8 @@ const makeARequest = district => {
     if (res.statusCode !== 200) {
       return;
     }
-
     const $ = cheerio.load(body);
     const allText = $('body').text();
-
     const jobTypes = require('./data/keywords');
 
     let keywords;
@@ -73,18 +67,77 @@ const makeARequest = district => {
         if (num !== -1) {
           finalData.push({
             //job title, school district, county, city, state, date
+            id: counter++,
             jobTitle: jobTypes[i].jobTitle,
             sd,
             county,
             city,
             state,
-            date: today
+            date: today,
+            paid: false
           });
-          console.log(finalData);
+          console.log({
+            //job title, school district, county, city, state, date
+            id: counter,
+            jobTitle: jobTypes[i].jobTitle,
+            sd,
+            county,
+            city,
+            state,
+            date: today,
+            paid: false
+          });
         }
       }
     }
   });
+
+  //   request(url, function(err, res, body) {
+  //     counter++;
+
+  //     if (err) {
+  //       console.log(err);
+  //       return;
+  //     }
+  //     if (res === undefined) {
+  //       console.log('no response');
+  //       return;
+  //     }
+  //     console.log(res.statusCode);
+  //     if (res.statusCode !== 200) {
+  //       return;
+  //     }
+
+  //     const $ = cheerio.load(body);
+  //     const allText = $('body').text();
+
+  //     const jobTypes = require('./data/keywords');
+
+  //     let keywords;
+
+  //     for (let i = 0; i < jobTypes.length; i++) {
+  //       keywords = jobTypes[i].keywords;
+
+  //       for (let j = 0; j < keywords.length; j++) {
+  //         let re = new RegExp(keywords[j], 'gi');
+  //         var num = allText.search(re);
+
+  //         if (num !== -1) {
+  //           finalData.push({
+  //             //job title, school district, county, city, state, date
+  //             id: counter,
+  //             jobTitle: jobTypes[i].jobTitle,
+  //             sd,
+  //             county,
+  //             city,
+  //             state,
+  //             date: today,
+  //             paid: false
+  //           });
+  //         }
+  //       }
+  //     }
+  //   });
 };
 
 // console.log($('body').text());
@@ -156,20 +209,34 @@ const makeARequest = district => {
 //   console.log('saved!');
 // });
 
-sdArr = require('./data/school_district_data');
-for (let i = 0; i < sdArr.length; i++) {
-  makeARequest(sdArr[i]);
+function myFunc() {
+  console.log('FINAL!!!!');
+  console.log(finalData);
+
+  for (var singleJob in finalData) {
+    new Job(finalData[singleJob]).save().catch(err => {
+      console.log(err.message);
+    });
+  }
 }
 
-module.exports = app => {
-  //We will already know:
-  //School District, County, City, State, Date
-  //Database will have a list:
-  //School Data:
-  //id, School District, County, City, State, HRLink, disableSearch: false, CustomSearch: true
-  //Search Data:
-  //Job Title : Associated array of keyterms to search for
-  //
-  //export
-  //   jobTitle;
-};
+var scraper = schedule.scheduleJob('8,14,29,36,44,56 * * * *', function() {
+  sdArr = require('./data/school_district_data');
+
+  School.find({}).exec(function(err, schools) {
+    if (err) {
+      console.log(err);
+    } else {
+      counter = 0;
+      finalData = [];
+      console.log('firing off the scraper!');
+      for (let i = 0; i < schools.length; i++) {
+        makeARequest(schools[i]);
+      }
+
+      setTimeout(myFunc, 3 * 60 * 1000);
+    }
+  });
+});
+
+module.exports = app => {};
