@@ -13,9 +13,6 @@ const Job = require('../models/Job');
 
 var schedule = require('node-schedule');
 
-const url2 =
-  'https://cdeworld.com/webinars/20887-The_Digital_Implant_Workflow:A_Team_Approach_for_Success';
-
 let counter = 0;
 let finalData = [];
 
@@ -69,6 +66,7 @@ const makeARequest = district => {
             //job title, school district, county, city, state, date
             id: counter++,
             jobTitle: jobTypes[i].jobTitle,
+            link: url,
             sd,
             county,
             city,
@@ -208,10 +206,18 @@ const makeARequest = district => {
 //   // success case, the file was saved
 //   console.log('saved!');
 // });
+function removeOldJobs() {
+  Job.remove({}, function(err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Successfully removed all old jobs');
+    }
+  });
+}
 
-function myFunc() {
-  console.log('FINAL!!!!');
-  console.log(finalData);
+function pushNewJobs() {
+  console.log('Adding Jobs to Database...');
 
   for (var singleJob in finalData) {
     new Job(finalData[singleJob]).save().catch(err => {
@@ -220,7 +226,7 @@ function myFunc() {
   }
 }
 
-var scraper = schedule.scheduleJob('8,14,29,36,44,56 * * * *', function() {
+var scraper = schedule.scheduleJob('8,17,29,36,41,56 * * * *', function() {
   sdArr = require('./data/school_district_data');
 
   School.find({}).exec(function(err, schools) {
@@ -233,8 +239,8 @@ var scraper = schedule.scheduleJob('8,14,29,36,44,56 * * * *', function() {
       for (let i = 0; i < schools.length; i++) {
         makeARequest(schools[i]);
       }
-
-      setTimeout(myFunc, 3 * 60 * 1000);
+      setTimeout(removeOldJobs, 3 * 55 * 1000);
+      setTimeout(pushNewJobs, 3 * 60 * 1000);
     }
   });
 });

@@ -13,26 +13,26 @@ import PASalary from './PASalary';
 import Articles from './Articles';
 import Footer from './Footer';
 
-
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
+    this.props.fetchJobs();
   }
   render() {
     return (
-        <BrowserRouter>
+      <BrowserRouter>
         <div>
-        <Header />
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/teaching-jobs-in-pa" component={PAJobs} />
-            <Route exact path="/submit-your-resume" component={SubmitResume} />
-            <Route exact path="/teacher-salary-in-pa" component={PASalary} />
-            <Route exact path="/teaching-articles" component={Articles} />
-            <Route exact path="/surveys" component={Dashboard} />
-            <Route path="/surveys/new" component={SurveyNew} />
-        <Footer />
+          <Header />
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/teaching-jobs-in-pa" component={PAJobs} />
+          <Route exact path="/submit-your-resume" component={SubmitResume} />
+          <Route exact path="/teacher-salary-in-pa" component={PASalary} />
+          <Route exact path="/teaching-articles" component={Articles} />
+          <Route exact path="/surveys" component={Dashboard} />
+          <Route path="/surveys/new" component={SurveyNew} />
+          <Footer />
         </div>
-        </BrowserRouter>  
+      </BrowserRouter>
     );
   }
 }

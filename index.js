@@ -6,8 +6,8 @@ const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 require('./models/User');
 require('./models/Survey');
-// require('./models/School');
-// require('./models/Job');
+require('./models/School');
+require('./models/Job');
 
 require('./services/passport');
 
