@@ -3,37 +3,49 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class PAJobs extends Component {
-  renderTable() {
-    console.log(this.props.jobs);
-    // let arr = this.props.jobs;
-
-    // return arr.map(job => {
-    //   return (
-    //     <tr key={job._id}>
-    //       <td>
-    //         <strong>
-    //           <a
-    //             href={job.link}
-    //             target="_blank"
-    //             rel="noopener noreferrer nofollow"
-    //           >
-    //             {job.jobTitle}
-    //           </a>
-    //         </strong>
-    //         <br />
-    //         {job.sd}
-    //         <span className="address">
-    //           <br />
-    //         </span>
-    //       </td>
-    //       <td>{`${job.city}, ${job.county}, ${job.state}`}</td>
-    //       <td>${job.date} </td>
-    //     </tr>
-    //   );
-    // });
+  renderTable(JSONArrJobs = []) {
+    return JSONArrJobs.map(job => {
+      console.log(job.date);
+      return (
+        <tr key={job._id}>
+          <td>
+            <strong>
+              <a
+                href={job.link}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+              >
+                {job.jobTitle}
+              </a>
+            </strong>
+            <br />
+            {job.sd}
+            <span className="address">
+              <br />
+            </span>
+          </td>
+          <td>{`${job.city}, ${job.county}, ${job.state}`}</td>
+          <td>{job.date} </td>
+        </tr>
+      );
+    });
   }
 
   render() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+      dd = '0' + dd;
+    }
+
+    if (mm < 10) {
+      mm = '0' + mm;
+    }
+
+    today = mm + '-' + dd + '-' + yyyy;
     return (
       <div className="container">
         <img src="http://placehold.it/468x60/eee" alt="half masthead ad" />
@@ -46,7 +58,7 @@ class PAJobs extends Component {
             <div className="col-md-8 col-lg-9">
               <center>
                 <h2>
-                  Teaching Jobs in PA<br /> Updated: Jan. 09, 2018
+                  Teaching Jobs in PA<br /> Updated: {today}
                 </h2>
               </center>
 
@@ -78,7 +90,7 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
                     <th>Date Posted/ Last Checked</th>
                   </tr>
                 </thead>
-                <tbody>{this.renderTable()}</tbody>
+                <tbody>{this.renderTable(this.props.jobs)}</tbody>
               </table>
             </div>
 
@@ -121,7 +133,11 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
 }
 
 function mapStateToProps({ jobs }) {
-  return { jobs };
+  if (jobs) {
+    return { jobs };
+  } else {
+    return {};
+  }
 }
 
 export default connect(mapStateToProps)(PAJobs);

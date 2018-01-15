@@ -12,6 +12,7 @@ import SubmitResume from './SubmitResume';
 import PASalary from './PASalary';
 import Articles from './Articles';
 import Footer from './Footer';
+import Interview from './Interview';
 
 class App extends Component {
   componentDidMount() {
@@ -27,6 +28,11 @@ class App extends Component {
           <Route exact path="/teaching-jobs-in-pa" component={PAJobs} />
           <Route exact path="/submit-your-resume" component={SubmitResume} />
           <Route exact path="/teacher-salary-in-pa" component={PASalary} />
+          <Route
+            exact
+            path="/teaching-articles/teacher-interview-questions/"
+            component={Interview}
+          />
           <Route exact path="/teaching-articles" component={Articles} />
           <Route exact path="/surveys" component={Dashboard} />
           <Route path="/surveys/new" component={SurveyNew} />

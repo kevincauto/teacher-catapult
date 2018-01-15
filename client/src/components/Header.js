@@ -62,7 +62,11 @@ class Header extends Component {
               <Navbar.Text>
                 <Link to="/teaching-jobs-in-pa">Teaching Jobs in PA</Link>
               </Navbar.Text>
-              <Navbar.Text>Interview Guide</Navbar.Text>
+              <Navbar.Text>
+                <Link to="/teaching-articles/teacher-interview-questions/">
+                  Interview Guide
+                </Link>
+              </Navbar.Text>
               <Navbar.Text>
                 <Link to="/teaching-articles">Helpful Resources!</Link>
               </Navbar.Text>
