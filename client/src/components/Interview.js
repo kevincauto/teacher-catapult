@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import RightSidebar from './RightSidebar';
 
 class Interview extends Component {
   constructor() {
@@ -165,7 +165,7 @@ class Interview extends Component {
               </div>
               <h2 className="text-center">88 Teacher Interview Questions</h2>
               <p>
-                <a name="88" />
+                <a name="88">&nbsp;</a>
                 <br />
                 Below you will find the complete list of 88 sample teacher
                 interview questions. These questions are quite common for high
@@ -401,7 +401,7 @@ class Interview extends Component {
               </ol>
               <br />
 
-              <a name="generator" />
+              <a name="generator">&nbsp;</a>
               <h2 className="text-center">
                 Random Teacher Interview Generator
               </h2>
@@ -547,37 +547,7 @@ class Interview extends Component {
               </div>
             </div>
 
-            {/* RIGHT SIDEBAR */}
-            <div className="col-md-4 col-lg-3">
-              <h4>Sign-Up To Get Emails</h4>
-              <p>New job postings are sent right to your inbox weekly.</p>
-
-              <div className="input-group">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Email Address..."
-                />
-                <span className="input-group-btn">
-                  <button className="btn btn-default" type="button">
-                    <span className="glyphicon glyphicon-envelope" />
-                  </button>
-                </span>
-              </div>
-
-              <br />
-              <h4>Get Found By Employers!</h4>
-              <Link to="/submit-your-resume">
-                <button className="btn btn-primary btn-block">
-                  <span className="white-link">Submit Your Resume</span>
-                </button>
-              </Link>
-              <br />
-
-              <h4>Ad</h4>
-              <img src="http://placehold.it/250x230/eee" alt="sidebar ad" />
-            </div>
-            {/* END RIGHT SIDEBAR */}
+            <RightSidebar />
           </div>
         </div>
       </div>

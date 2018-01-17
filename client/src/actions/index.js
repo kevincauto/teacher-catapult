@@ -21,6 +21,14 @@ export const submitSurvey = (values, history) => async dispatch => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
+//submit email
+export const submitEmail = email => async dispatch => {
+  const res = await axios.post('/api/mailchimp', email);
+  console.log(res);
+
+  dispatch({ type: FETCH_USER, payload: email });
+};
+
 //get jobs
 export const fetchJobs = () => async dispatch => {
   const res = await axios.get('/api/jobs/pa');

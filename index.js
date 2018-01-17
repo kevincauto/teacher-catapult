@@ -46,6 +46,7 @@ require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
 require('./routes/surveyRoutes')(app);
 require('./routes/jobRoutes')(app);
+require('./routes/emailRoutes')(app);
 require('./cron_jobs/crawlJobs');
 
 if (process.env.NODE_ENV === 'production') {

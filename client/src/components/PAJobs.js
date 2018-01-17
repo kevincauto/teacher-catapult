@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import RightSidebar from './RightSidebar';
 
 class PAJobs extends Component {
   renderTable(JSONArrJobs = []) {
@@ -94,37 +94,7 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
               </table>
             </div>
 
-            {/* RIGHT SIDEBAR */}
-            <div className="col-md-4 col-lg-3">
-              <h4>Sign-Up To Get Emails</h4>
-              <p>New job postings are sent right to your inbox weekly.</p>
-
-              <div className="input-group">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Email Address..."
-                />
-                <span className="input-group-btn">
-                  <button className="btn btn-default" type="button">
-                    <span className="glyphicon glyphicon-envelope" />
-                  </button>
-                </span>
-              </div>
-
-              <br />
-              <h4>Get Found By Employers!</h4>
-              <Link to="/submit-your-resume">
-                <button className="btn btn-primary btn-block">
-                  <span className="white-link">Submit Your Resume</span>
-                </button>
-              </Link>
-              <br />
-
-              <h4>Ad</h4>
-              <img src="http://placehold.it/250x230/eee" alt="sidebar ad" />
-            </div>
-            {/* END RIGHT SIDEBAR */}
+            <RightSidebar />
           </div>
         </div>
       </div>
