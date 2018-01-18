@@ -30,6 +30,7 @@
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "sendgrid": "^5.2.3",
-    "stripe": "^4.23.1"
+    "stripe": "^4.23.1",
+    "superagent": "^3.8.2"
   }
 }

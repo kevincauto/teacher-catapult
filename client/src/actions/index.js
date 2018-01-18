@@ -23,10 +23,9 @@ export const submitSurvey = (values, history) => async dispatch => {
 
 //submit email
 export const submitEmail = email => async dispatch => {
-  const res = await axios.post('/api/mailchimp', email);
-  console.log(res);
+  const res = await axios.post('/api/mailchimp', { email });
 
-  dispatch({ type: FETCH_USER, payload: email });
+  dispatch({ type: FETCH_USER, payload: res.data });
 };
 
 //get jobs

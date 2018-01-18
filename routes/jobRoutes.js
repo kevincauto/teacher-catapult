@@ -11,12 +11,10 @@ const Job = require('../models/Job');
 
 module.exports = app => {
   app.get('/api/jobs/pa', (req, res) => {
-    console.log('fetching jobs');
     Job.find({}).exec(function(err, jobs) {
       if (err) {
         res.send('error has occured');
       } else {
-        console.log(jobs);
         res.json(jobs);
       }
     });
