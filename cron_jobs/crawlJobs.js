@@ -6,14 +6,15 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const School = require('../models/School');
 const Job = require('../models/Job');
-
-// require('events').EventEmitter.defaultMaxListeners = 100;
+const waitUntil = require('wait-until');
+var emitter = require('emitter');
+require('events').EventEmitter.defaultMaxListeners = 200;
 
 var schedule = require('node-schedule');
-
 let counter = 0;
 let finalData = [];
-
+let list = [];
+let isDeleted = false;
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth() + 1; //January is 0!
@@ -36,14 +37,17 @@ const makeARequest = district => {
   request(url, function(err, res, body) {
     if (err) {
       console.log(err);
+      list.push('error');
       return;
     }
     if (res === undefined) {
       console.log('no response');
+      list.push('no response');
       return;
     }
     console.log(res.statusCode);
     if (res.statusCode !== 200) {
+      list.push('error');
       return;
     }
     const $ = cheerio.load(body);
@@ -85,9 +89,9 @@ const makeARequest = district => {
         }
       }
     }
+    list.push('OK');
   });
 };
-
 function removeOldJobs() {
   Job.remove({}, function(err) {
     if (err) {
@@ -95,20 +99,29 @@ function removeOldJobs() {
     } else {
       console.log('Successfully removed all old jobs');
     }
+    isDeleted = true;
   });
 }
 
 function pushNewJobs() {
-  console.log('Adding Jobs to Database...');
-
-  for (var singleJob in finalData) {
-    new Job(finalData[singleJob]).save().catch(err => {
-      console.log(err.message);
+  waitUntil()
+    .interval(3000)
+    .times(10)
+    .condition(function() {
+      return isDeleted;
+    })
+    .done(function(result) {
+      console.log('Adding Jobs to Database...');
+      for (var singleJob in finalData) {
+        new Job(finalData[singleJob]).save().catch(err => {
+          console.log(err.message);
+        });
+      }
+      isDeleted = false;
     });
-  }
 }
 
-var scraper = schedule.scheduleJob('57 * * * *', function() {
+var scraper = schedule.scheduleJob('3 * * * *', function() {
   sdArr = require('./data/school_district_data');
 
   School.find({}).exec(function(err, schools) {
@@ -121,8 +134,18 @@ var scraper = schedule.scheduleJob('57 * * * *', function() {
       for (let i = 0; i < schools.length; i++) {
         makeARequest(schools[i]);
       }
-      setTimeout(removeOldJobs, 3 * 55 * 1000);
-      setTimeout(pushNewJobs, 3 * 60 * 1000);
+      waitUntil()
+        .interval(3000)
+        .times(schools.length)
+        .condition(function() {
+          console.log(list.length);
+          console.log(schools.length);
+          return list.length === schools.length;
+        })
+        .done(function(result) {
+          removeOldJobs();
+          pushNewJobs();
+        });
     }
   });
 });

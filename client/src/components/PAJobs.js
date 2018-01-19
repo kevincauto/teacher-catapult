@@ -5,7 +5,6 @@ import RightSidebar from './RightSidebar';
 class PAJobs extends Component {
   renderTable(JSONArrJobs = []) {
     return JSONArrJobs.map(job => {
-      console.log(job.date);
       return (
         <tr key={job._id}>
           <td>
