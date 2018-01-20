@@ -1,25 +1,23 @@
 const express = require('express');
-const axios = require('axios');
 const request = require('request');
-const rp = require('request-promise');
 const cheerio = require('cheerio');
 const fs = require('fs');
 const mongoose = require('mongoose');
 const School = require('../models/School');
 const Job = require('../models/Job');
 const waitUntil = require('wait-until');
-const emitter = require('emitter');
+var emitter = require('emitter');
 require('events').EventEmitter.defaultMaxListeners = 200;
 
-const schedule = require('node-schedule');
+var schedule = require('node-schedule');
 let counter = 0;
 let finalData = [];
 let list = [];
 let isDeleted = false;
-let today = new Date();
-let dd = today.getDate();
-let mm = today.getMonth() + 1; //January is 0!
-let yyyy = today.getFullYear();
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
 
 if (dd < 10) {
   dd = '0' + dd;
@@ -31,15 +29,32 @@ if (mm < 10) {
 
 today = mm + '-' + dd + '-' + yyyy;
 
-const makeARequest = async district => {
+const makeARequest = district => {
   let url = district.link;
   let { county, city, state, sd } = district;
   console.log('#' + counter + ': ' + url);
-  try {
-    let res = await axios.get(url);
-    const $ = cheerio.load(res.data);
+  request(url, function(err, res, body) {
+    if (err) {
+      console.log(err);
+      list.push('error');
+      return;
+    }
+    if (res === undefined) {
+      console.log('no response');
+      list.push('no response');
+      return;
+    }
+    console.log(res.statusCode);
+    if (res.statusCode !== 200) {
+      list.push('error');
+      return;
+    }
+    const $ = cheerio.load(body);
     const allText = $('body').text();
     const jobTypes = require('./data/keywords');
+
+    let keywords;
+
     for (let i = 0; i < jobTypes.length; i++) {
       keywords = jobTypes[i].keywords;
 
@@ -74,10 +89,7 @@ const makeARequest = async district => {
       }
     }
     list.push('OK');
-  } catch (err) {
-    console.log(err);
-    list.push('error');
-  }
+  });
 };
 function removeOldJobs() {
   Job.remove({}, function(err) {
@@ -108,7 +120,7 @@ function pushNewJobs() {
     });
 }
 
-var scraper = schedule.scheduleJob('23 * * * *', function() {
+var scraper = schedule.scheduleJob('25 * * * *', function() {
   sdArr = require('./data/school_district_data');
 
   School.find({}).exec(function(err, schools) {
