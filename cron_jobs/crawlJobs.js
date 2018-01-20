@@ -1,4 +1,5 @@
 const express = require('express');
+const axios = require('axios');
 const request = require('request');
 const cheerio = require('cheerio');
 const fs = require('fs');
@@ -29,27 +30,13 @@ if (mm < 10) {
 
 today = mm + '-' + dd + '-' + yyyy;
 
-const makeARequest = district => {
-  let url = district.link;
-  let { county, city, state, sd } = district;
-  console.log('#' + counter + ': ' + url);
-  request(url, function(err, res, body) {
-    if (err) {
-      console.log(err);
-      list.push('error');
-      return;
-    }
-    if (res === undefined) {
-      console.log('no response');
-      list.push('no response');
-      return;
-    }
-    console.log(res.statusCode);
-    if (res.statusCode !== 200) {
-      list.push('error');
-      return;
-    }
-    const $ = cheerio.load(body);
+const makeARequest = async district => {
+  let { county, city, state, sd, link } = district;
+
+  try {
+    res = await axios.get(link);
+
+    const $ = cheerio.load(res.data);
     const allText = $('body').text();
     const jobTypes = require('./data/keywords');
 
@@ -66,7 +53,7 @@ const makeARequest = district => {
           finalData.push({
             id: counter++,
             jobTitle: jobTypes[i].jobTitle,
-            link: url,
+            link,
             sd,
             county,
             city,
@@ -76,7 +63,7 @@ const makeARequest = district => {
           });
           console.log({
             id: counter,
-            link: url,
+            link,
             jobTitle: jobTypes[i].jobTitle,
             sd,
             county,
@@ -88,39 +75,48 @@ const makeARequest = district => {
         }
       }
     }
-    list.push('OK');
-  });
-};
-function removeOldJobs() {
-  Job.remove({}, function(err) {
-    if (err) {
-      console.log(err);
+    list.push({ link, error: false });
+  } catch (err) {
+    console.log(link);
+    list.push({ link, error: true });
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+
+      console.log(error.response.status);
+    } else if (error.request) {
+      // The request was made but no response was received
+      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+      // http.ClientRequest in node.js
+      console.log(error.request);
     } else {
-      console.log('Successfully removed all old jobs');
+      // Something happened in setting up the request that triggered an Error
+      console.log('Error', error.message);
     }
-    isDeleted = true;
-  });
+  }
+};
+
+async function removeOldJobs() {
+  try {
+    await Job.remove({});
+    console.log('Successfully removed all old jobs');
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
 }
 
 function pushNewJobs() {
-  waitUntil()
-    .interval(3000)
-    .times(10)
-    .condition(function() {
-      return isDeleted;
-    })
-    .done(function(result) {
-      console.log('Adding Jobs to Database...');
-      for (var singleJob in finalData) {
-        new Job(finalData[singleJob]).save().catch(err => {
-          console.log(err.message);
-        });
-      }
-      isDeleted = false;
+  console.log('Adding Jobs to Database...');
+  for (var singleJob in finalData) {
+    new Job(finalData[singleJob]).save().catch(err => {
+      console.log(err.response);
     });
+  }
 }
 
-var scraper = schedule.scheduleJob('25 * * * *', function() {
+var scraper = schedule.scheduleJob('35 * * * *', function() {
   sdArr = require('./data/school_district_data');
 
   School.find({}).exec(function(err, schools) {
@@ -141,9 +137,12 @@ var scraper = schedule.scheduleJob('25 * * * *', function() {
           console.log(schools.length);
           return list.length === schools.length;
         })
-        .done(function(result) {
-          removeOldJobs();
-          pushNewJobs();
+        .done(async function(result) {
+          console.log(list);
+          let jobsAreRemoved = await removeOldJobs();
+          if (jobsAreRemoved) {
+            pushNewJobs();
+          }
         });
     }
   });
