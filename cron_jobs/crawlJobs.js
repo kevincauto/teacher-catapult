@@ -30,8 +30,94 @@ if (mm < 10) {
 
 today = mm + '-' + dd + '-' + yyyy;
 
+async function customSearch(id, link) {
+  try {
+    let res = await axios.get(link);
+    let $ = cheerio.load(res.data);
+    let jobs = $('.jobfirstrow a').text();
+    jobs = jobs.split('\n\t\t');
+    jobs = jobs.map(job => {
+      typeAndSubject = job.slice(0, -3).split('/');
+      return `${typeAndSubject[1]} ${typeAndSubject[0]}`.trim();
+    });
+    jobs.shift();
+    // console.log(jobs);
+
+    let sdAndCity = $('.school')
+      .text()
+      .replace(/([a-z])([A-Z])/g, '$1;$2')
+      //rare occations when like 'Morrisville SDMorrisville, PA'
+      .replace(/([A-Z]{2})([A-Z][a-z])/g, '$1;$2')
+      //zipcode followed by capital letter
+      .replace(/([0-9]{4})([A-Z])/g, '$1^$2')
+      .split(';');
+    let jobLinks = [];
+    $('.jobfirstrow a').each(function(index, element) {
+      let jobLink = $(element).attr('href');
+      if (jobLink !== '#') {
+        jobLinks.push('https://www.pareap.net' + jobLink);
+      }
+    });
+
+    //city //county //state //sd  //link
+    // console.log(sdAndCity);
+    let cities = sdAndCity.map(city => city.substr(0, city.indexOf(',')));
+    cities.shift();
+    let states = Array(cities.length).fill('PA');
+    let sds = sdAndCity.map(sd => sd.substr(sd.indexOf('^') + 1));
+    sds.pop();
+    // console.log(cities.length);
+    // console.log(states.length);
+    // console.log(sds.length);
+
+    // console.log(cities);
+    // console.log(states);
+    console.log('this is firing');
+    for (let i = 0; i < jobs.length; i++) {
+      finalData.push({
+        id: counter++,
+        jobTitle: jobs[i],
+        link: jobLinks[i],
+        sd: sds[i],
+        county: 'PAReap',
+        city: cities[i],
+        state: states[i],
+        date: today,
+        paid: false
+      });
+      console.log({
+        id: counter,
+        jobTitle: jobs[i],
+        link: jobLinks[i],
+        sd: sds[i],
+        county: 'PAReap',
+        city: cities[i],
+        state: states[i],
+        date: today,
+        paid: false
+      });
+    }
+    return false;
+  } catch (err) {
+    console.log(err);
+    return true;
+  }
+}
+
+customSearch(
+  3,
+  'https://www.pareap.net/jobsrch.php?srch=100&position=&HTML=report&num=2'
+);
+
 const makeARequest = async district => {
-  let { county, city, state, sd, link } = district;
+  let { id, county, city, state, sd, link, customSearch } = district;
+
+  if (customSearch) {
+    console.log(id, link);
+    let errorBoolean = doCustomSearch(id, county, city, state, sd, link);
+    list.push({ link, error: errorBoolean });
+    return;
+  }
 
   try {
     res = await axios.get(link);
@@ -116,7 +202,7 @@ function pushNewJobs() {
   }
 }
 
-var scraper = schedule.scheduleJob('35 * * * *', function() {
+var scraper = schedule.scheduleJob('23 * * * *', function() {
   sdArr = require('./data/school_district_data');
 
   School.find({}).exec(function(err, schools) {
