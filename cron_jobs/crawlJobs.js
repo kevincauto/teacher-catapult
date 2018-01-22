@@ -31,6 +31,8 @@ if (mm < 10) {
 today = mm + '-' + dd + '-' + yyyy;
 
 async function doCustomSearch(id, link) {
+  console.log('inside doCustomSearch()');
+  console.log(link);
   try {
     let res = await axios.get(link);
     let $ = cheerio.load(res.data);
@@ -119,67 +121,67 @@ const makeARequest = async district => {
     let errorBoolean = doCustomSearch(id, link);
     list.push({ link, error: errorBoolean });
     return;
-  }
+  } else {
+    try {
+      res = await axios.get(link);
 
-  try {
-    res = await axios.get(link);
+      const $ = cheerio.load(res.data);
+      const allText = $('body').text();
+      const jobTypes = require('./data/keywords');
 
-    const $ = cheerio.load(res.data);
-    const allText = $('body').text();
-    const jobTypes = require('./data/keywords');
+      let keywords;
 
-    let keywords;
+      for (let i = 0; i < jobTypes.length; i++) {
+        keywords = jobTypes[i].keywords;
 
-    for (let i = 0; i < jobTypes.length; i++) {
-      keywords = jobTypes[i].keywords;
+        for (let j = 0; j < keywords.length; j++) {
+          let re = new RegExp(keywords[j], 'gi');
+          var num = allText.search(re);
 
-      for (let j = 0; j < keywords.length; j++) {
-        let re = new RegExp(keywords[j], 'gi');
-        var num = allText.search(re);
-
-        if (num !== -1) {
-          finalData.push({
-            id: counter++,
-            jobTitle: jobTypes[i].jobTitle,
-            link,
-            sd,
-            county,
-            city,
-            state,
-            date: today,
-            paid: false
-          });
-          // console.log({
-          //   id: counter,
-          //   link,
-          //   jobTitle: jobTypes[i].jobTitle,
-          //   sd,
-          //   county,
-          //   city,
-          //   state,
-          //   date: today,
-          //   paid: false
-          // });
+          if (num !== -1) {
+            finalData.push({
+              id: counter++,
+              jobTitle: jobTypes[i].jobTitle,
+              link,
+              sd,
+              county,
+              city,
+              state,
+              date: today,
+              paid: false
+            });
+            // console.log({
+            //   id: counter,
+            //   link,
+            //   jobTitle: jobTypes[i].jobTitle,
+            //   sd,
+            //   county,
+            //   city,
+            //   state,
+            //   date: today,
+            //   paid: false
+            // });
+          }
         }
       }
-    }
-    list.push({ link, error: false });
-  } catch (err) {
-    console.log(link);
-    list.push({ link, error: true });
-    if (error.response) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx
+      list.push({ link, error: false });
+    } catch (err) {
+      console.log(link);
+      list.push({ link, error: true });
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
 
-      console.log(error.response.status);
-    } else if (error.request) {
-      // The request was made but no response was received
-      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-      // http.ClientRequest in node.js
-      console.log(error.request);
-    } else {
-      // Something happened in setting up the request that triggered an Error
-      console.log('Error', error.message);
+        console.log(error.response.status);
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+      }
     }
   }
 };
@@ -204,7 +206,7 @@ function pushNewJobs() {
   }
 }
 
-var scraper = schedule.scheduleJob('39 * * * *', function() {
+var scraper = schedule.scheduleJob('29 * * * *', function() {
   // sdArr = require('./data/school_district_data');
 
   School.find({}).exec(function(err, schools) {
