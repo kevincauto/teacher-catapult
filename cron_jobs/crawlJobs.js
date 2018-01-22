@@ -30,7 +30,7 @@ if (mm < 10) {
 
 today = mm + '-' + dd + '-' + yyyy;
 
-async function customSearch(id, link) {
+async function doCustomSearch(id, link) {
   try {
     let res = await axios.get(link);
     let $ = cheerio.load(res.data);
@@ -97,24 +97,26 @@ async function customSearch(id, link) {
         paid: false
       });
     }
+    list.push({ link, error: false });
     return false;
   } catch (err) {
     console.log(err);
+    list.push({ link, error: true });
     return true;
   }
 }
 
-customSearch(
-  3,
-  'https://www.pareap.net/jobsrch.php?srch=100&position=&HTML=report&num=2'
-);
+// doCustomSearch(
+//   3,
+//   'https://www.pareap.net/jobsrch.php?srch=100&position=&HTML=report&num=2'
+// );
 
 const makeARequest = async district => {
   let { id, county, city, state, sd, link, customSearch } = district;
 
   if (customSearch) {
     console.log(id, link);
-    let errorBoolean = doCustomSearch(id, county, city, state, sd, link);
+    let errorBoolean = doCustomSearch(id, link);
     list.push({ link, error: errorBoolean });
     return;
   }
@@ -147,17 +149,17 @@ const makeARequest = async district => {
             date: today,
             paid: false
           });
-          console.log({
-            id: counter,
-            link,
-            jobTitle: jobTypes[i].jobTitle,
-            sd,
-            county,
-            city,
-            state,
-            date: today,
-            paid: false
-          });
+          // console.log({
+          //   id: counter,
+          //   link,
+          //   jobTitle: jobTypes[i].jobTitle,
+          //   sd,
+          //   county,
+          //   city,
+          //   state,
+          //   date: today,
+          //   paid: false
+          // });
         }
       }
     }
@@ -202,8 +204,8 @@ function pushNewJobs() {
   }
 }
 
-var scraper = schedule.scheduleJob('23 * * * *', function() {
-  sdArr = require('./data/school_district_data');
+var scraper = schedule.scheduleJob('39 * * * *', function() {
+  // sdArr = require('./data/school_district_data');
 
   School.find({}).exec(function(err, schools) {
     if (err) {
