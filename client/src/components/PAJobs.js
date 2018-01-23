@@ -8,23 +8,30 @@ class PAJobs extends Component {
       return (
         <tr key={job._id}>
           <td>
-            <strong>
-              <a
-                href={job.link}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-              >
-                {job.jobTitle}
-              </a>
-            </strong>
-            <br />
-            {job.sd}
-            <span className="address">
-              <br />
-            </span>
+            <div className="row">
+              <div className="col-sm-8">
+                <strong>
+                  <a
+                    href={job.link}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                  >
+                    {job.jobTitle}
+                  </a>
+                </strong>
+                <br />
+                {job.sd}
+                <br />
+                {job.county}
+                <br />
+              </div>
+              <div className="col-sm-4">
+                {`${job.city}, ${job.state}`}
+                <br />
+                {job.date}
+              </div>
+            </div>
           </td>
-          <td>{`${job.city}, ${job.county}, ${job.state}`}</td>
-          <td>{job.date} </td>
         </tr>
       );
     });
@@ -84,9 +91,7 @@ Use the Search box to filter down the table. Try typing a keyword like "elementa
               <table className="table table-bordered table-striped table-hover">
                 <thead>
                   <tr>
-                    <th className="position">Job and District</th>
-                    <th>Location</th>
-                    <th>Date Posted/ Last Checked</th>
+                    <th className="position">Job Information</th>
                   </tr>
                 </thead>
                 <tbody>{this.renderTable(this.props.jobs)}</tbody>
