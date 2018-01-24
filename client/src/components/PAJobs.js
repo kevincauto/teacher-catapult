@@ -3,7 +3,47 @@ import { connect } from 'react-redux';
 import RightSidebar from './RightSidebar';
 
 class PAJobs extends Component {
+  constructor() {
+    super();
+    this.state = { filterText: '' };
+    this.handleFilterText = this.handleFilterText.bind(this);
+  }
+
+  handleFilterText(e) {
+    this.setState({ filterText: e.target.value });
+  }
+
   renderTable(JSONArrJobs = []) {
+    //filter using text inpu
+    JSONArrJobs = JSONArrJobs.filter(
+      ({ jobTitle = '', city = '', county = '', state = '' }) => {
+        if (
+          jobTitle
+            .toLowerCase()
+            .indexOf(this.state.filterText.toLowerCase()) !== -1
+        ) {
+          return true;
+        }
+        if (
+          city.toLowerCase().indexOf(this.state.filterText.toLowerCase()) !== -1
+        ) {
+          return true;
+        }
+        if (
+          county.toLowerCase().indexOf(this.state.filterText.toLowerCase()) !==
+          -1
+        ) {
+          return true;
+        }
+        if (
+          state.toLowerCase().indexOf(this.state.filterText.toLowerCase()) !==
+          -1
+        ) {
+          return true;
+        }
+        return false;
+      }
+    );
     return JSONArrJobs.map(job => {
       return (
         <tr key={job._id}>
@@ -68,17 +108,29 @@ class PAJobs extends Component {
                 </h2>
               </center>
 
-              {/* <p>Teaching jobs in PA are scattered across hundreds of school district websites across the internet. Teacher Catapult's small army of teachers and volunteers are proud to bring you hundreds of Pennsylvania teaching jobs updated every single day. We love teachers and we do our best to find as many teaching jobs in PA that we can. We target all areas of Pennsylvania as well as all teaching specialities and grade levels.</p>
+              <p>
+                Teaching jobs in PA are scattered across hundreds of school
+                district websites across the internet. Teacher Catapult's small
+                army of teachers and volunteers are proud to bring you hundreds
+                of Pennsylvania teaching jobs updated every single day. We love
+                teachers and we do our best to find as many teaching jobs in PA
+                that we can. We target all areas of Pennsylvania as well as all
+                teaching specialities and grade levels.
+              </p>
 
-<p>
-Use the Search box to filter down the table. Try typing a keyword like "elementary", "social studies", "allegheny county", or "bucks county" to find exactly what you are looking for.
-</p> */}
+              <p>
+                Use the Search box to filter down the table. Try typing a
+                keyword like "elementary", "social studies", "allegheny county",
+                or "bucks county" to find exactly what you are looking for.
+              </p>
 
               <div className="input-group">
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Search..."
+                  value={this.state.filterText}
+                  onChange={e => this.handleFilterText(e)}
                 />
                 <span className="input-group-btn">
                   <button className="btn btn-default" type="button">

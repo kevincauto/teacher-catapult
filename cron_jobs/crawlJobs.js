@@ -31,8 +31,6 @@ if (mm < 10) {
 today = mm + '-' + dd + '-' + yyyy;
 
 async function doCustomSearch(id, link) {
-  console.log('inside doCustomSearch()');
-  console.log(link);
   try {
     let res = await axios.get(link);
     let $ = cheerio.load(res.data);
@@ -43,7 +41,6 @@ async function doCustomSearch(id, link) {
       return `${typeAndSubject[1]} ${typeAndSubject[0]}`.trim();
     });
     jobs.shift();
-    // console.log(jobs);
 
     let sdAndCity = $('.school')
       .text()
@@ -81,7 +78,7 @@ async function doCustomSearch(id, link) {
         jobTitle: jobs[i],
         link: jobLinks[i],
         sd: sds[i],
-        county: 'PAReap',
+        county: 'PA Reap',
         city: cities[i],
         state: states[i],
         date: today,
@@ -92,7 +89,7 @@ async function doCustomSearch(id, link) {
         jobTitle: jobs[i],
         link: jobLinks[i],
         sd: sds[i],
-        county: 'PAReap',
+        county: 'PA Reap',
         city: cities[i],
         state: states[i],
         date: today,
@@ -118,7 +115,7 @@ const makeARequest = async district => {
 
   if (customSearch) {
     console.log(id, link);
-    let errorBoolean = doCustomSearch(id, link);
+    let errorBoolean = await doCustomSearch(id, link);
     list.push({ link, error: errorBoolean });
     return;
   } else {
@@ -206,7 +203,7 @@ function pushNewJobs() {
   }
 }
 
-var scraper = schedule.scheduleJob('29 * * * *', function() {
+var scraper = schedule.scheduleJob('52 * * * *', function() {
   // sdArr = require('./data/school_district_data');
 
   School.find({}).exec(function(err, schools) {

@@ -15,23 +15,6 @@ mongoose.connect(keys.mongoURI);
 
 const app = express();
 
-// School.create(
-//   {
-//     id: 0,
-//     link:
-//       'http://www.ahsd.org/index.php?option=com_content&view=article&id=120&Itemid=225',
-//     sd: 'Abington Heights SD',
-//     city: 'Clarks Summit',
-//     state: 'PA',
-//     county: 'Lackawanna County',
-//     disableSearch: false,
-//     customSearch: false
-//   },
-//   function(err, doc) {
-//     // At this point the jobs collection is created.
-//   }
-// );
-
 app.use(bodyParser.json());
 app.use(
   cookieSession({

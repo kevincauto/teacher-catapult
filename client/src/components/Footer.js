@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import EmailTextbox from './EmailTextbox';
 
 class Footer extends Component {
   render() {
@@ -61,16 +62,7 @@ class Footer extends Component {
               <p>Job opennings sent right to your inbox.</p>
 
               <div className="input-group">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Search for..."
-                />
-                <span className="input-group-btn">
-                  <button className="btn btn-default" type="button">
-                    <span className="glyphicon glyphicon-envelope" />
-                  </button>
-                </span>
+                <EmailTextbox />
               </div>
             </div>
           </div>
