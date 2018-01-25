@@ -20,7 +20,7 @@ class Header extends Component {
       default:
         return [
           <NavItem eventKey={1} key={1} href="#">
-            <Payments>Post a Jobs</Payments>
+            <Payments>Payment</Payments>
           </NavItem>,
 
           // <NavItem eventKey={2} key={2} >
@@ -34,6 +34,9 @@ class Header extends Component {
           >
             Dashboard
           </NavItem>,
+          <Navbar.Text>
+            <Link to="/job-post">Post a Job</Link>
+          </Navbar.Text>,
           <NavItem eventKey={4} key={4} href="/api/logout">
             Logout
           </NavItem>

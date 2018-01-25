@@ -13,6 +13,7 @@ import PASalary from './PASalary';
 import Articles from './Articles';
 import Footer from './Footer';
 import Interview from './Interview';
+import NewJobPost from './job_posts/NewJobPost';
 
 class App extends Component {
   componentDidMount() {
@@ -33,6 +34,7 @@ class App extends Component {
             path="/teaching-articles/teacher-interview-questions/"
             component={Interview}
           />
+          <Route exact path="/job-post" component={NewJobPost} />
           <Route exact path="/teaching-articles" component={Articles} />
           <Route exact path="/surveys" component={Dashboard} />
           <Route path="/surveys/new" component={SurveyNew} />
