@@ -34,9 +34,7 @@ class Header extends Component {
           >
             Dashboard
           </NavItem>,
-          <Navbar.Text>
-            <Link to="/job-post">Post a Job</Link>
-          </Navbar.Text>,
+
           <NavItem eventKey={4} key={4} href="/api/logout">
             Logout
           </NavItem>
@@ -77,6 +75,9 @@ class Header extends Component {
       <MenuItem eventKey={3.4}>Separated link</MenuItem> */}
             </NavDropdown>
           </Nav>
+          <Navbar.Text key={5}>
+            <Link to="/job-post">Post a Job</Link>
+          </Navbar.Text>
           <Nav pullRight>{this.renderContent()}</Nav>
         </Navbar.Collapse>
       </Navbar>
