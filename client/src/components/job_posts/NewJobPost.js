@@ -14,7 +14,9 @@ class NewJobPost extends Component {
       sd: '',
       city: '',
       state: '',
-      county: ''
+      county: '',
+      description: '',
+      contact: ''
     };
     this.handleClickNext = this.handleClickNext.bind(this);
     this.handleClickBack = this.handleClickBack.bind(this);

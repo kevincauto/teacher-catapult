@@ -1,28 +1,88 @@
 import React, { Component } from 'react';
 
-class JobPostForm extends Component {
-  constructor() {
-    super();
+// const FIELDS = [
+//   { variable: 'jobTitle', placeholder: 'Job Title' },
+//   { variable: 'sd', placeholder: 'School District' },
+//   { variable: 'city', placeholder: 'City' },
+//   { variable: 'state', placeholder: 'State' },
+//   { variable: 'county', placeholder: 'County' },
+//   { variable: 'description', placeholder: 'Description' },
+//   { variable: 'contact', placeholder: 'Contact' }
+// ];
 
+class JobPostForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      jobTitle: props.data.jobTitle || '',
+      sd: props.data.sd || '',
+      city: props.data.city || '',
+      state: props.data.state || '',
+      county: props.data.county || '',
+      description: props.data.description || '',
+      contact: props.data.contact || ''
+    };
     this.handleClickNext = this.handleClickNext.bind(this);
     this.handleFieldChange = this.handleFieldChange.bind(this);
   }
 
-  componentDidUpdate() {
-    console.log(this.props.data);
-  }
+  componentDidUpdate() {}
   handleClickNext() {
     this.props.onClickNext();
   }
 
-  handleFieldChange(value, field) {
-    this.props.onFieldChange(value, field);
+  async handleFieldChange(value, field) {
+    await this.props.onFieldChange(value, field);
+
+    let {
+      jobTitle,
+      sd,
+      city,
+      state,
+      county,
+      description,
+      contact
+    } = this.props.data;
+
+    this.setState({
+      jobTitle,
+      sd,
+      city,
+      state,
+      county,
+      description,
+      contact
+    });
   }
 
   renderForm() {
+    // return FIELDS.map(field => {
+    //   return (
+    //     <div className="input-group input-group-lg">
+    //       <span className="input-group-addon" id="sizing-addon1">
+    //         <span
+    //           className="glyphicon glyphicon-briefcase"
+    //           aria-hidden="true"
+    //         />
+    //       </span>
+    //       <input
+    //         type="text"
+    //         className="form-control"
+    //         placeholder="Job Title"
+    //         aria-describedby="sizing-addon1"
+    //         name={field}
+    //         value={this.state[field]}
+    //         onChange={e =>
+    //           this.handleFieldChange(e.target.value, e.target.name)
+    //         }
+    //       />
+    //     </div>
+    //   );
+    // });
+
     return (
       <div className="well well-lg">
-        <div className="input-group input-group-lg">
+        <div className="input-group input-group-lg job-form">
           <span className="input-group-addon" id="sizing-addon1">
             <span
               className="glyphicon glyphicon-briefcase"
@@ -35,14 +95,14 @@ class JobPostForm extends Component {
             placeholder="Job Title"
             aria-describedby="sizing-addon1"
             name={'jobTitle'}
-            value={this.props.data[this.name]}
+            value={this.state.jobTitle}
             onChange={e =>
               this.handleFieldChange(e.target.value, e.target.name)
             }
           />
         </div>
 
-        <div className="input-group input-group-lg">
+        <div className="input-group input-group-lg job-form">
           <span className="input-group-addon" id="sizing-addon1">
             <span className="glyphicon glyphicon-apple" aria-hidden="true" />
           </span>
@@ -52,15 +112,18 @@ class JobPostForm extends Component {
             placeholder="School District"
             aria-describedby="sizing-addon1"
             name={'sd'}
-            value={this.props.data[this.name]}
+            value={this.state.sd}
             onChange={e =>
               this.handleFieldChange(e.target.value, e.target.name)
             }
           />
         </div>
-        <div className="input-group input-group-lg">
+        <div className="input-group input-group-lg job-form">
           <span className="input-group-addon" id="sizing-addon1">
-            <span className="glyphicon glyphicon-globe" aria-hidden="true" />
+            <span
+              className="glyphicon glyphicon-map-marker"
+              aria-hidden="true"
+            />
           </span>
           <input
             type="text"
@@ -68,13 +131,13 @@ class JobPostForm extends Component {
             placeholder="City"
             aria-describedby="sizing-addon1"
             name={'city'}
-            value={this.props.data[this.name]}
+            value={this.state.city}
             onChange={e =>
               this.handleFieldChange(e.target.value, e.target.name)
             }
           />
         </div>
-        <div className="input-group input-group-lg">
+        <div className="input-group input-group-lg job-form">
           <span className="input-group-addon" id="sizing-addon1">
             <span className="glyphicon glyphicon-globe" aria-hidden="true" />
           </span>
@@ -84,15 +147,15 @@ class JobPostForm extends Component {
             placeholder="State"
             aria-describedby="sizing-addon1"
             name={'state'}
-            value={this.props.data[this.name]}
+            value={this.state.state}
             onChange={e =>
               this.handleFieldChange(e.target.value, e.target.name)
             }
           />
         </div>
-        <div className="input-group input-group-lg">
+        <div className="input-group input-group-lg job-form">
           <span className="input-group-addon" id="sizing-addon1">
-            <span className="glyphicon glyphicon-globe" aria-hidden="true" />
+            <span className="glyphicon glyphicon-pushpin" aria-hidden="true" />
           </span>
           <input
             type="text"
@@ -100,7 +163,38 @@ class JobPostForm extends Component {
             placeholder="County"
             aria-describedby="sizing-addon1"
             name={'county'}
-            value={this.props.data[this.name]}
+            value={this.state.county}
+            onChange={e =>
+              this.handleFieldChange(e.target.value, e.target.name)
+            }
+          />
+        </div>
+
+        <div className="job-form">
+          <textarea
+            placeholder={'Job description...'}
+            className="form-control input-group-lg job-form"
+            rows="10"
+            style={{ fontSize: '18px' }}
+            name={'description'}
+            value={this.state.description}
+            onChange={e =>
+              this.handleFieldChange(e.target.value, e.target.name)
+            }
+          />
+        </div>
+
+        <div className="input-group input-group-lg job-form">
+          <span className="input-group-addon" id="sizing-addon1">
+            <span className="glyphicon glyphicon-envelope" aria-hidden="true" />
+          </span>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Contact Information"
+            aria-describedby="sizing-addon1"
+            name={'contact'}
+            value={this.state.contact}
             onChange={e =>
               this.handleFieldChange(e.target.value, e.target.name)
             }

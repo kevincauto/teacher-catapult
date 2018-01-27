@@ -17,6 +17,8 @@ class JobPostReview extends Component {
           <div>City: {this.props.data.city}</div>
           <div>State: {this.props.data.state}</div>
           <div>County: {this.props.data.county}</div>
+          <div>Description: {this.props.data.description}</div>
+          <div>Contact: {this.props.data.contact}</div>
           <button
             className="btn btn-warning"
             onClick={() => this.handleClickBack()}
