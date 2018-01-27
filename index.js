@@ -8,6 +8,7 @@ require('./models/User');
 require('./models/Survey');
 require('./models/School');
 require('./models/Job');
+require('./models/PaidJob');
 
 require('./services/passport');
 

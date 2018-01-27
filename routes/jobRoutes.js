@@ -8,10 +8,21 @@ const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 const Survey = mongoose.model('surveys');
 var School = require('../models/School');
 const Job = require('../models/Job');
+const PaidJob = require('../models/PaidJob');
 
 module.exports = app => {
   app.get('/api/jobs/pa', (req, res) => {
     Job.find({}).exec(function(err, jobs) {
+      if (err) {
+        res.send('error has occured');
+      } else {
+        res.json(jobs);
+      }
+    });
+  });
+
+  app.get('/api/paid-jobs/pa', (req, res) => {
+    PaidJob.find({}).exec(function(err, jobs) {
       if (err) {
         res.send('error has occured');
       } else {

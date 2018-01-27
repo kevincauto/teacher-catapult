@@ -19,8 +19,7 @@ class JobPostForm extends Component {
       city: props.data.city || '',
       state: props.data.state || '',
       county: props.data.county || '',
-      description: props.data.description || '',
-      contact: props.data.contact || ''
+      description: props.data.description || ''
     };
     this.handleClickNext = this.handleClickNext.bind(this);
     this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -34,15 +33,7 @@ class JobPostForm extends Component {
   async handleFieldChange(value, field) {
     await this.props.onFieldChange(value, field);
 
-    let {
-      jobTitle,
-      sd,
-      city,
-      state,
-      county,
-      description,
-      contact
-    } = this.props.data;
+    let { jobTitle, sd, city, state, county, description } = this.props.data;
 
     this.setState({
       jobTitle,
@@ -50,8 +41,7 @@ class JobPostForm extends Component {
       city,
       state,
       county,
-      description,
-      contact
+      description
     });
   }
 
@@ -172,7 +162,9 @@ class JobPostForm extends Component {
 
         <div className="job-form">
           <textarea
-            placeholder={'Job description...'}
+            placeholder={
+              'Job description, how to apply, and how to contact you...'
+            }
             className="form-control input-group-lg job-form"
             rows="10"
             style={{ fontSize: '18px' }}
@@ -184,7 +176,7 @@ class JobPostForm extends Component {
           />
         </div>
 
-        <div className="input-group input-group-lg job-form">
+        {/* <div className="input-group input-group-lg job-form">
           <span className="input-group-addon" id="sizing-addon1">
             <span className="glyphicon glyphicon-envelope" aria-hidden="true" />
           </span>
@@ -199,7 +191,7 @@ class JobPostForm extends Component {
               this.handleFieldChange(e.target.value, e.target.name)
             }
           />
-        </div>
+        </div> */}
 
         <button
           className="btn btn-primary"
@@ -218,7 +210,7 @@ class JobPostForm extends Component {
   render() {
     return (
       <div className="col-md-8 col-lg-9">
-        <h1>Please Complete the Form.</h1>
+        <h1>Please Complete the Job Post.</h1>
         {this.renderForm()}
       </div>
     );

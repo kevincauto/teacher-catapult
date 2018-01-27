@@ -18,7 +18,7 @@ class JobPostReview extends Component {
           <div>State: {this.props.data.state}</div>
           <div>County: {this.props.data.county}</div>
           <div>Description: {this.props.data.description}</div>
-          <div>Contact: {this.props.data.contact}</div>
+          {/* <div>Contact: {this.props.data.contact}</div> */}
           <button
             className="btn btn-warning"
             onClick={() => this.handleClickBack()}
@@ -44,3 +44,9 @@ class JobPostReview extends Component {
 }
 
 export default JobPostReview;
+
+// This is roughly how I envision it to work:
+// You fetch the list of all jobs to be displayed on your jobs list
+// This route might be /jobs, and it renders a component that takes the list of jobs and displays them in a table
+// A user clicks on a link to a job, which pushes them to a /job/:job-id-or-slug route
+// The /job/:id route mounts a component that that takes the job-id-or-slug and retrieves the job information to display

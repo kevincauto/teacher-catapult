@@ -10,7 +10,7 @@ class NewJobPost extends Component {
     super();
     this.state = {
       showTheForm: true,
-      jobTitle: 'test text',
+      jobTitle: '',
       sd: '',
       city: '',
       state: '',
