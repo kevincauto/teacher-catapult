@@ -71,7 +71,7 @@ class JobPostForm extends Component {
     // });
 
     return (
-      <div className="well well-lg">
+      <div className="well well-lg clearfix">
         <div className="input-group input-group-lg job-form">
           <span className="input-group-addon" id="sizing-addon1">
             <span
@@ -159,15 +159,17 @@ class JobPostForm extends Component {
             }
           />
         </div>
-
+        <h2>Job Info:</h2>
+        <p>
+          Be sure to include a job description, how to apply, and how applicants
+          should contact you.
+        </p>
         <div className="job-form">
           <textarea
-            placeholder={
-              'Job description, how to apply, and how to contact you...'
-            }
+            placeholder={'Job description...'}
             className="form-control input-group-lg job-form"
             rows="10"
-            style={{ fontSize: '18px' }}
+            style={{ fontSize: '18px', whiteSpace: 'pre-wrap' }}
             name={'description'}
             value={this.state.description}
             onChange={e =>
@@ -194,7 +196,7 @@ class JobPostForm extends Component {
         </div> */}
 
         <button
-          className="btn btn-primary"
+          className="btn btn-primary pull-right btn-lg"
           onClick={() => this.handleClickNext()}
         >
           Next{' '}
@@ -210,7 +212,7 @@ class JobPostForm extends Component {
   render() {
     return (
       <div className="col-md-8 col-lg-9">
-        <h1>Please Complete the Job Post.</h1>
+        <h1>Please complete the job post information.</h1>
         {this.renderForm()}
       </div>
     );

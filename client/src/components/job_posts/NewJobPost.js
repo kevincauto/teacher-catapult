@@ -44,9 +44,9 @@ class NewJobPost extends Component {
     this.setState({ showTheForm: true });
   }
 
-  handleClickComplete() {
+  async handleClickComplete() {
     let { jobTitle, sd, city, state, county, description } = this.state;
-    this.props.submitJobPost({
+    await this.props.submitJobPost({
       jobTitle,
       sd,
       city,
