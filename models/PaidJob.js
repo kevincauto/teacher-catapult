@@ -12,7 +12,9 @@ const PaidJobSchema = new Schema({
   city: String,
   county: String,
   state: String,
+  description: String,
   date: String,
+  active: { type: Boolean, default: true },
   paid: { type: Boolean, default: true }
 });
 

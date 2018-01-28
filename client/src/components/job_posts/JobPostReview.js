@@ -29,7 +29,20 @@ class JobPostReview extends Component {
             />{' '}
             Back
           </button>
-
+          <button
+            className="btn btn-success pull-right"
+            onClick={() => this.handleClickComplete()}
+          >
+            Purchase 1 Job Post for $19.99{' '}
+            <span className="glyphicon glyphicon-ok" aria-hidden="true" />
+          </button>
+          <button
+            className="btn btn-success pull-right"
+            onClick={() => this.handleClickComplete()}
+          >
+            Purchase 5 Job Posts for $49.99{' '}
+            <span className="glyphicon glyphicon-ok" aria-hidden="true" />
+          </button>
           <button
             className="btn btn-success pull-right"
             onClick={() => this.handleClickComplete()}

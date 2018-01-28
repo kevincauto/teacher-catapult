@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import JobPostForm from './JobPostForm';
 import JobPostReview from './JobPostReview.js';
 import RightSidebar from '../RightSidebar';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
 class NewJobPost extends Component {
   constructor() {
@@ -15,8 +17,7 @@ class NewJobPost extends Component {
       city: '',
       state: '',
       county: '',
-      description: '',
-      contact: ''
+      description: ''
     };
     this.handleClickNext = this.handleClickNext.bind(this);
     this.handleClickBack = this.handleClickBack.bind(this);
@@ -31,7 +32,7 @@ class NewJobPost extends Component {
   }
 
   handleClickNext() {
-    let formValidated = false;
+    // let formValidated = false;
     //validate form
 
     // if (formValidated) {
@@ -44,7 +45,15 @@ class NewJobPost extends Component {
   }
 
   handleClickComplete() {
-    console.log('This is Complete!!!');
+    let { jobTitle, sd, city, state, county, description } = this.state;
+    this.props.submitJobPost({
+      jobTitle,
+      sd,
+      city,
+      state,
+      county,
+      description
+    });
   }
 
   handleFieldChange(value, field) {
@@ -84,4 +93,4 @@ class NewJobPost extends Component {
   }
 }
 
-export default NewJobPost;
+export default connect(null, actions)(NewJobPost);

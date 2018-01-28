@@ -20,6 +20,12 @@ export const submitSurvey = (values, history) => async dispatch => {
   history.push('/surveys');
   dispatch({ type: FETCH_USER, payload: res.data });
 };
+//submit paid job post
+export const submitJobPost = values => async dispatch => {
+  const res = await axios.post('/api/paid-jobs/pa', values);
+
+  dispatch({ type: FETCH_USER, payload: res.data });
+};
 
 //submit email
 export const submitEmail = email => async dispatch => {
