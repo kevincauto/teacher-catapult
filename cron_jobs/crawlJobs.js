@@ -13,7 +13,6 @@ require('events').EventEmitter.defaultMaxListeners = 200;
 var schedule = require('node-schedule');
 let counter = 0;
 let finalData = [];
-let list = [];
 let isDeleted = false;
 var today = new Date();
 var dd = today.getDate();
@@ -204,8 +203,7 @@ function pushNewJobs() {
 }
 
 var scraper = schedule.scheduleJob('6 * * * *', function() {
-  // sdArr = require('./data/school_district_data');
-
+  let list = [];
   School.find({}).exec(function(err, schools) {
     if (err) {
       console.log(err);

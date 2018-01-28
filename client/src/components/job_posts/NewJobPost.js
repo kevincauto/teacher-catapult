@@ -13,6 +13,7 @@ class NewJobPost extends Component {
     super();
     this.state = {
       showTheForm: true,
+      redirect: false,
       jobTitle: '',
       sd: '',
       city: '',
@@ -55,7 +56,9 @@ class NewJobPost extends Component {
       county,
       description
     });
-    <Redirect to="/" />;
+    this.setState({
+      redirect: true
+    });
   }
 
   handleFieldChange(value, field) {
@@ -84,6 +87,10 @@ class NewJobPost extends Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/teaching-jobs-in-pa" />;
+    }
+
     return (
       <div className="container content-container">
         <div className="row">

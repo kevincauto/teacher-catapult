@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class JobPostReview extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleClickBack() {
     this.props.onClickBack();
   }

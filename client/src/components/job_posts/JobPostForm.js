@@ -63,7 +63,7 @@ class JobPostForm extends Component {
             placeholder="Job Title"
             aria-describedby="sizing-addon1"
             name={'jobTitle'}
-            value={this.state.jobTitle}
+            value={jobTitle}
             onChange={e =>
               this.handleFieldChange(e.target.value, e.target.name)
             }
@@ -80,7 +80,7 @@ class JobPostForm extends Component {
             placeholder="School District"
             aria-describedby="sizing-addon1"
             name={'sd'}
-            value={this.state.sd}
+            value={sd}
             onChange={e =>
               this.handleFieldChange(e.target.value, e.target.name)
             }
@@ -99,7 +99,7 @@ class JobPostForm extends Component {
             placeholder="City"
             aria-describedby="sizing-addon1"
             name={'city'}
-            value={this.state.city}
+            value={city}
             onChange={e =>
               this.handleFieldChange(e.target.value, e.target.name)
             }
@@ -115,7 +115,7 @@ class JobPostForm extends Component {
             placeholder="State"
             aria-describedby="sizing-addon1"
             name={'state'}
-            value={this.state.state}
+            value={state}
             onChange={e =>
               this.handleFieldChange(e.target.value, e.target.name)
             }
@@ -131,7 +131,7 @@ class JobPostForm extends Component {
             placeholder="County"
             aria-describedby="sizing-addon1"
             name={'county'}
-            value={this.state.county}
+            value={county}
             onChange={e =>
               this.handleFieldChange(e.target.value, e.target.name)
             }
