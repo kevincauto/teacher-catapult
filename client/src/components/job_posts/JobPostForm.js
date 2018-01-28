@@ -50,6 +50,7 @@ class JobPostForm extends Component {
 
     return (
       <div className="well well-lg clearfix">
+        <h2>Please complete the information below.</h2>
         <div className="input-group input-group-lg job-form">
           <span className="input-group-addon" id="sizing-addon1">
             <span
@@ -176,7 +177,7 @@ class JobPostForm extends Component {
   render() {
     return (
       <div className="col-md-8 col-lg-9">
-        <h1>Please complete the job post information.</h1>
+        <h1>Add a Job Post</h1>
         {this.renderForm()}
       </div>
     );

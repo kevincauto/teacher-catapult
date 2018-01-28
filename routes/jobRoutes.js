@@ -44,9 +44,14 @@ module.exports = app => {
       console.log('Posting to /api/paid-jobs/pa');
       let link = util.stringToSlug(jobTitle);
 
-      //check if there are any other jobs with that link
+      //check if there are any other jobs with that slug
+      let notUnique = await PaidJob.findOne({ link: link });
 
-      //if so give it a unique slug and check again
+      //add a unique number string (based on date) to end of slug
+      if (notUnique) {
+        let code = await new Date().getTime();
+        link = link + '-' + code;
+      }
 
       const paidjob = new PaidJob({
         jobTitle,
