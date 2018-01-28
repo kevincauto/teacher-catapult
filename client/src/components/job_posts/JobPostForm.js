@@ -46,29 +46,7 @@ class JobPostForm extends Component {
   }
 
   renderForm() {
-    // return FIELDS.map(field => {
-    //   return (
-    //     <div className="input-group input-group-lg">
-    //       <span className="input-group-addon" id="sizing-addon1">
-    //         <span
-    //           className="glyphicon glyphicon-briefcase"
-    //           aria-hidden="true"
-    //         />
-    //       </span>
-    //       <input
-    //         type="text"
-    //         className="form-control"
-    //         placeholder="Job Title"
-    //         aria-describedby="sizing-addon1"
-    //         name={field}
-    //         value={this.state[field]}
-    //         onChange={e =>
-    //           this.handleFieldChange(e.target.value, e.target.name)
-    //         }
-    //       />
-    //     </div>
-    //   );
-    // });
+    let { jobTitle, sd, city, state, county, description } = this.state;
 
     return (
       <div className="well well-lg clearfix">
@@ -178,26 +156,12 @@ class JobPostForm extends Component {
           />
         </div>
 
-        {/* <div className="input-group input-group-lg job-form">
-          <span className="input-group-addon" id="sizing-addon1">
-            <span className="glyphicon glyphicon-envelope" aria-hidden="true" />
-          </span>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Contact Information"
-            aria-describedby="sizing-addon1"
-            name={'contact'}
-            value={this.state.contact}
-            onChange={e =>
-              this.handleFieldChange(e.target.value, e.target.name)
-            }
-          />
-        </div> */}
-
         <button
           className="btn btn-primary pull-right btn-lg"
           onClick={() => this.handleClickNext()}
+          disabled={
+            !(jobTitle && sd && city && state && description.length > 20)
+          }
         >
           Next{' '}
           <span
