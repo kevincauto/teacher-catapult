@@ -6,6 +6,7 @@ import JobPostReview from './JobPostReview.js';
 import RightSidebar from '../RightSidebar';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import { Redirect } from 'react-router-dom';
 
 class NewJobPost extends Component {
   constructor() {
@@ -54,6 +55,7 @@ class NewJobPost extends Component {
       county,
       description
     });
+    <Redirect to="/" />;
   }
 
   handleFieldChange(value, field) {

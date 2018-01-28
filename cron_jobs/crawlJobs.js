@@ -203,7 +203,7 @@ function pushNewJobs() {
   }
 }
 
-var scraper = schedule.scheduleJob('52 * * * *', function() {
+var scraper = schedule.scheduleJob('6 * * * *', function() {
   // sdArr = require('./data/school_district_data');
 
   School.find({}).exec(function(err, schools) {
@@ -222,7 +222,7 @@ var scraper = schedule.scheduleJob('52 * * * *', function() {
         .condition(function() {
           console.log(list.length);
           console.log(schools.length);
-          return list.length === schools.length;
+          return list.length >= schools.length;
         })
         .done(async function(result) {
           console.log(list);
