@@ -71,7 +71,7 @@ class EmailTextbox extends Component {
   render() {
     return (
       <div className="">
-        <div className="input-group">
+        <div className="input-group input-group-lg">
           <input
             type="text"
             className="form-control"

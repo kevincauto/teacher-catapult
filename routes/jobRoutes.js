@@ -6,7 +6,7 @@ const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 
 // const school_district_data = require('../cron_jobs/data/school_districts.json');
 
-const Survey = mongoose.model('surveys');
+// const Survey = mongoose.model('surveys');
 // const Paid = mongoose.model('paidjobs');
 var School = require('../models/School');
 const Job = require('../models/Job');
@@ -42,7 +42,7 @@ module.exports = app => {
       const { jobTitle, sd, city, state, county, description } = req.body;
       //slugify jobTitle
       console.log('Posting to /api/paid-jobs/pa');
-      let link = util.stringToSlug(jobTitle);
+      let link = '/jobs/' + util.stringToSlug(jobTitle);
 
       //check if there are any other jobs with that slug
       let notUnique = await PaidJob.findOne({ link: link });
@@ -52,6 +52,18 @@ module.exports = app => {
         let code = await new Date().getTime();
         link = link + '-' + code;
       }
+
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1; //January is 0!
+      var yyyy = today.getFullYear();
+      if (dd < 10) {
+        dd = '0' + dd;
+      }
+      if (mm < 10) {
+        mm = '0' + mm;
+      }
+      today = mm + '-' + dd + '-' + yyyy;
 
       const paidjob = new PaidJob({
         jobTitle,
@@ -63,7 +75,7 @@ module.exports = app => {
         description,
         paid: true,
         active: true,
-        date: Date.now()
+        date: today
       });
 
       try {

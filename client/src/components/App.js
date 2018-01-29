@@ -14,11 +14,13 @@ import Articles from './Articles';
 import Footer from './Footer';
 import Interview from './Interview';
 import NewJobPost from './job_posts/NewJobPost';
+import DynamicJobPostPage from './job_posts/DynamicJobPostPage';
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
     this.props.fetchJobs();
+    this.props.fetchPaidJobs();
   }
   render() {
     return (
@@ -38,6 +40,7 @@ class App extends Component {
           <Route exact path="/teaching-articles" component={Articles} />
           <Route exact path="/surveys" component={Dashboard} />
           <Route path="/surveys/new" component={SurveyNew} />
+          <Route path="/jobs/:id" component={DynamicJobPostPage} />
           <Footer />
         </div>
       </BrowserRouter>

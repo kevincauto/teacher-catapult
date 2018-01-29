@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PaymentOneJobPost from '../PaymentOneJobPost';
+import PaymentFiveJobPosts from '../PaymentFiveJobPosts';
 
 class JobPostReview extends Component {
   handleClickBack() {
@@ -30,30 +32,10 @@ class JobPostReview extends Component {
                 : 's'}.
             </h2>
             <br />
-            <button
-              className="btn btn-primary"
-              onClick={() => this.handleClickComplete()}
-            >
-              {/* <span
-                className="glyphicon glyphicon-pushpin"
-                aria-hidden="true"
-              /> */}
-              {'  '}
-              Purchase 1 Job Post for $19.99
-            </button>
+            <PaymentOneJobPost />
             <br />
             <br />
-            <button
-              className="btn btn-primary"
-              onClick={() => this.handleClickComplete()}
-            >
-              {/* <span
-                className="glyphicon glyphicon-pushpin"
-                aria-hidden="true"
-              /> */}
-              {'  '}
-              Purchase 5 Job Posts for $49.99
-            </button>
+            <PaymentFiveJobPosts />
           </div>
           <button
             className="btn btn-warning btn-lg"
@@ -67,10 +49,11 @@ class JobPostReview extends Component {
           </button>
           <button
             className={
-              this.props.auth > 0
-                ? 'btn btn-success pull-right btn-lg disabled'
-                : 'btn btn-success pull-right btn-lg'
+              this.props.auth.credits > 0
+                ? 'btn btn-success pull-right btn-lg'
+                : 'btn btn-success pull-right btn-lg disabled'
             }
+            disabled={this.props.auth.credits > 0 ? false : true}
             onClick={() => this.handleClickComplete()}
           >
             Complete &amp; Post{' '}

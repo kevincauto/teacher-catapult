@@ -13,8 +13,10 @@ class PAJobs extends Component {
     this.setState({ filterText: e.target.value });
   }
 
-  renderTable(JSONArrJobs = []) {
+  renderTable(JSONArrJobs = [], ArrPaidJobs = []) {
+    console.log(ArrPaidJobs);
     //filter using text inpu
+    JSONArrJobs = ArrPaidJobs.concat(JSONArrJobs);
     JSONArrJobs = JSONArrJobs.filter(
       ({ jobTitle = '', city = '', county = '', state = '' }) => {
         if (
@@ -44,12 +46,12 @@ class PAJobs extends Component {
         return false;
       }
     );
-    return JSONArrJobs.map(job => {
+    return JSONArrJobs.map((job, i) => {
       return (
-        <tr key={job._id}>
+        <tr key={job._id + i}>
           <td>
             <div className="row">
-              <div className="col-sm-8">
+              <div className="col-sm-6">
                 <strong>
                   <a
                     href={job.link}
@@ -62,14 +64,12 @@ class PAJobs extends Component {
                 <br />
                 {job.sd}
                 <br />
-                {job.county}
-                <br />
               </div>
               <div className="col-sm-4">
-                {`${job.city}, ${job.state}`}
-                <br />
-                {job.date}
+                {`${job.city}, ${job.state}`} <br />
+                {job.county} <br />
               </div>
+              <div className="col-sm-2 ">{job.date}</div>
             </div>
           </td>
         </tr>
@@ -124,7 +124,7 @@ class PAJobs extends Component {
                 or "bucks county" to find exactly what you are looking for.
               </p>
 
-              <div className="input-group">
+              <div className="input-group input-group-lg">
                 <input
                   type="text"
                   className="form-control"
@@ -146,7 +146,9 @@ class PAJobs extends Component {
                     <th className="position">Job Information</th>
                   </tr>
                 </thead>
-                <tbody>{this.renderTable(this.props.jobs)}</tbody>
+                <tbody>
+                  {this.renderTable(this.props.jobs, this.props.paidjobs)}
+                </tbody>
               </table>
             </div>
 
@@ -158,9 +160,9 @@ class PAJobs extends Component {
   }
 }
 
-function mapStateToProps({ jobs }) {
-  if (jobs) {
-    return { jobs };
+function mapStateToProps({ jobs, paidjobs }) {
+  if (jobs && paidjobs) {
+    return { jobs, paidjobs };
   } else {
     return {};
   }

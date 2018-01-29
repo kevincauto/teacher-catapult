@@ -23,10 +23,9 @@ class Header extends Component {
             <Payments>Payment</Payments>
           </NavItem>,
 
-          // <NavItem eventKey={2} key={2} >
-
-          //   Job Posts Left: {this.props.auth.credits}
-          //   </NavItem>,
+          <NavItem eventKey={2} key={2}>
+            Job Posts Left: {this.props.auth.credits}
+          </NavItem>,
           <NavItem
             eventKey={3}
             key={3}
