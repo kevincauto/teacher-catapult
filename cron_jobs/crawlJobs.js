@@ -7,27 +7,15 @@ const mongoose = require('mongoose');
 const School = require('../models/School');
 const Job = require('../models/Job');
 const waitUntil = require('wait-until');
+var schedule = require('node-schedule');
 var emitter = require('emitter');
+const { getDate } = require('../utils/helper');
 require('events').EventEmitter.defaultMaxListeners = 200;
 
-var schedule = require('node-schedule');
 let counter = 0;
 let finalData = [];
-let isDeleted = false;
+let list = [];
 var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth() + 1; //January is 0!
-var yyyy = today.getFullYear();
-
-if (dd < 10) {
-  dd = '0' + dd;
-}
-
-if (mm < 10) {
-  mm = '0' + mm;
-}
-
-today = mm + '-' + dd + '-' + yyyy;
 
 async function doCustomSearch(id, link) {
   try {
@@ -202,8 +190,9 @@ function pushNewJobs() {
   }
 }
 
-var scraper = schedule.scheduleJob('6 * * * *', function() {
-  let list = [];
+var scraper = schedule.scheduleJob('4 * * * *', function() {
+  list = [];
+  today = getDate();
   School.find({}).exec(function(err, schools) {
     if (err) {
       console.log(err);

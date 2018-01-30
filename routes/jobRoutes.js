@@ -3,6 +3,7 @@ const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
 const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
+const { getDate } = require('../utils/helper');
 
 // const school_district_data = require('../cron_jobs/data/school_districts.json');
 
@@ -40,8 +41,8 @@ module.exports = app => {
     requireCredits,
     async (req, res) => {
       const { jobTitle, sd, city, state, county, description } = req.body;
+      var today = getDate();
       //slugify jobTitle
-      console.log('Posting to /api/paid-jobs/pa');
       let link = '/jobs/' + util.stringToSlug(jobTitle);
 
       //check if there are any other jobs with that slug
@@ -52,18 +53,6 @@ module.exports = app => {
         let code = await new Date().getTime();
         link = link + '-' + code;
       }
-
-      var today = new Date();
-      var dd = today.getDate();
-      var mm = today.getMonth() + 1; //January is 0!
-      var yyyy = today.getFullYear();
-      if (dd < 10) {
-        dd = '0' + dd;
-      }
-      if (mm < 10) {
-        mm = '0' + mm;
-      }
-      today = mm + '-' + dd + '-' + yyyy;
 
       const paidjob = new PaidJob({
         jobTitle,

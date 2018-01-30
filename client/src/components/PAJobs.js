@@ -14,9 +14,8 @@ class PAJobs extends Component {
   }
 
   renderTable(JSONArrJobs = [], ArrPaidJobs = []) {
-    console.log(ArrPaidJobs);
     //filter using text inpu
-    JSONArrJobs = ArrPaidJobs.concat(JSONArrJobs);
+    JSONArrJobs = ArrPaidJobs.reverse().concat(JSONArrJobs);
     JSONArrJobs = JSONArrJobs.filter(
       ({ jobTitle = '', city = '', county = '', state = '' }) => {
         if (

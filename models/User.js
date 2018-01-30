@@ -6,6 +6,14 @@ const userSchema = new Schema({
   credits: {
     type: Number,
     default: 0
+  },
+  admin: {
+    type: Boolean,
+    default: false
+  },
+  sd: {
+    type: Boolean,
+    default: false
   }
 });
 
