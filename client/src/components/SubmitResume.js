@@ -5,16 +5,6 @@ import { Link } from 'react-router-dom';
 import SimpleReactFileUpload from './SimpleReactFileUpload';
 import _ from 'lodash';
 
-// const FIELDS = [
-//   { variable: 'jobTitle', placeholder: 'Job Title' },
-//   { variable: 'sd', placeholder: 'School District' },
-//   { variable: 'city', placeholder: 'City' },
-//   { variable: 'state', placeholder: 'State' },
-//   { variable: 'county', placeholder: 'County' },
-//   { variable: 'description', placeholder: 'Description' },
-//   { variable: 'contact', placeholder: 'Contact' }
-// ];
-
 class SubmitResume extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +13,6 @@ class SubmitResume extends Component {
       last: '',
       email: '',
       specialty: [],
-      started: '',
       zipcode: '',
       relocate: true,
       resume: {},
@@ -32,8 +21,7 @@ class SubmitResume extends Component {
       certYear: '2018',
       agree: false
     };
-    // this.handleClickNext = this.handleClickNext.bind(this);
-    // this.handleFieldChange = this.handleFieldChange.bind(this);
+
     this.handleFileUpload = this.handleFileUpload.bind(this);
     this.handleFieldChange = this.handleFieldChange.bind(this);
     this.renderYearsDropdown = this.renderYearsDropdown.bind(this);
@@ -41,23 +29,6 @@ class SubmitResume extends Component {
     this.handleAgreeToTerms = this.handleAgreeToTerms.bind(this);
   }
 
-  //   componentDidUpdate() {}
-  //   handleClickNext() {
-  //     this.props.onClickNext();
-  //   }
-
-  //   async handleFieldChange(value, field) {
-  //     await this.props.onFieldChange(value, fieldName);
-
-  //     let { jobTitle, sd, city, state, county, description } = this.props.data;
-
-  //     this.setState({
-  //       [fieldName]: fieldName
-  //     });
-  //   }
-  componentDidUpdate() {
-    console.log(this.state);
-  }
   handleAgreeToTerms(value) {
     //value returns a string rather than a Boolean
     value = value === 'true' ? true : false;
@@ -89,6 +60,8 @@ class SubmitResume extends Component {
     let y = new Date();
     y = y.getFullYear();
     let allYears = [];
+    //User can select year options up to 75 years in the past
+    //And up to 5 years into the future.
     for (let i = y - 75; i <= y + 5; i++) {
       allYears.push(i);
     }

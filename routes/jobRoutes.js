@@ -12,7 +12,7 @@ const { getDate } = require('../utils/helper');
 var School = require('../models/School');
 const Job = require('../models/Job');
 const PaidJob = require('../models/PaidJob');
-const util = require('../utils/stringToSlug');
+const { stringToSlug } = require('../utils/helper');
 
 module.exports = app => {
   app.get('/api/jobs/pa', (req, res) => {
@@ -43,7 +43,7 @@ module.exports = app => {
       const { jobTitle, sd, city, state, county, description } = req.body;
       var today = getDate();
       //slugify jobTitle
-      let link = '/jobs/' + util.stringToSlug(jobTitle);
+      let link = '/jobs/' + stringToSlug(jobTitle);
 
       //check if there are any other jobs with that slug
       let notUnique = await PaidJob.findOne({ link: link });

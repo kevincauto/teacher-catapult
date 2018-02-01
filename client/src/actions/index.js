@@ -33,6 +33,13 @@ export const submitSurvey = (values, history) => async dispatch => {
   history.push('/surveys');
   dispatch({ type: FETCH_USER, payload: res.data });
 };
+
+export const submitResume = values => async dispatch => {
+  const res = await axios.post('/api/user-resume', values);
+
+  dispatch({ type: FETCH_USER, payload: res.data });
+};
+
 //submit paid job post
 export const submitJobPost = values => async dispatch => {
   const res = await axios.post('/api/paid-jobs/pa', values);
