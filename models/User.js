@@ -11,10 +11,28 @@ const userSchema = new Schema({
     type: Boolean,
     default: false
   },
-  sd: {
+  recruiter: {
     type: Boolean,
     default: false
-  }
+  },
+  first: String,
+  last: String,
+  certifications: [String],
+  startDate: String,
+  zipcode: String,
+  relocate: {
+    type: Boolean,
+    default: false
+  },
+  substitute: {
+    type: Boolean,
+    default: false
+  },
+  agree: {
+    type: Boolean,
+    default: false
+  },
+  resume: { data: Buffer, contentType: String }
 });
 
 mongoose.model('users', userSchema);

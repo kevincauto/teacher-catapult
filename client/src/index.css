@@ -614,3 +614,13 @@ pre {
   border: 0px solid #ccc;
   border-radius: 4px;
 }
+
+.big-checkbox {
+  width: 30px;
+  height: 30px;
+}
+
+.flex {
+  display: flex;
+  font-size: 18px;
+}
