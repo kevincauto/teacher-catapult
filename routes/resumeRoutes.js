@@ -7,6 +7,7 @@ const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 var School = require('../models/School');
 const Job = require('../models/Job');
 const PaidJob = require('../models/PaidJob');
+// const User = require('../models/User');
 
 module.exports = app => {
   // app.get('/api/jobs/pa', (req, res) => {
@@ -48,32 +49,25 @@ module.exports = app => {
         agree
       } = req.body;
 
-      console.log('api/user-resume is firing!');
-      console.log(`first: ${first}, agree: ${agree}`);
+      let startDate = `${certMonth}-${certYear}`;
+      try {
+        req.user.first = first;
+        req.user.last = last;
+        req.user.email = email;
+        req.user.certifiation = certification;
+        req.user.startDate = startDate;
+        req.user.zipcode = zipcode;
+        req.user.relocate = relocate;
+        req.user.substitue = substitute;
+        req.user.resume = resume;
+        req.user.agree = agree;
 
-      // const paidjob = new {
-      //   jobTitle,
-      //   link,
-      //   sd,
-      //   city,
-      //   state,
-      //   county,
-      //   description,
-      //   paid: true,
-      //   active: true,
-      //   date: today
-      // }();
-
-      // try {
-      //   await paidjob.save();
-      //   req.user.credits -= 1;
-      //   const user = await req.user.save();
-
-      //   await res.send(user);
-      // } catch (err) {
-      //   res.status(422).send(err);
-      // }
-      // res.redirect('/');
+        const user = await req.user.save();
+        console.log(user);
+      } catch (err) {
+        res.status(422).send(err);
+      }
+      res.redirect('/');
     }
   );
 };

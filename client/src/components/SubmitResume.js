@@ -4,11 +4,15 @@ import RightSidebar from './RightSidebar';
 import { Link } from 'react-router-dom';
 import SimpleReactFileUpload from './SimpleReactFileUpload';
 import _ from 'lodash';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+import { Redirect } from 'react-router-dom';
 
 class SubmitResume extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      redirect: false,
       first: '',
       last: '',
       email: '',
@@ -17,7 +21,7 @@ class SubmitResume extends Component {
       relocate: true,
       resume: {},
       substitute: false,
-      certMonth: '',
+      certMonth: '01',
       certYear: '2018',
       agree: false
     };
@@ -27,8 +31,12 @@ class SubmitResume extends Component {
     this.renderYearsDropdown = this.renderYearsDropdown.bind(this);
     this.handleSpecialtyChecked = this.handleSpecialtyChecked.bind(this);
     this.handleAgreeToTerms = this.handleAgreeToTerms.bind(this);
+    this.handleSubmitResume = this.handleSubmitResume.bind(this);
   }
-
+  handleSubmitResume() {
+    this.props.submitResume(this.state);
+    this.setState({ redirect: true });
+  }
   handleAgreeToTerms(value) {
     //value returns a string rather than a Boolean
     value = value === 'true' ? true : false;
@@ -81,6 +89,7 @@ class SubmitResume extends Component {
       zipcode,
       relocate,
       substitute,
+      resume,
       agree
     } = this.state;
 
@@ -241,19 +250,17 @@ class SubmitResume extends Component {
               name="agree"
               defaultChecked={false}
               onChange={e => this.handleAgreeToTerms(e.target.value)}
-              value={this.state.agree}
+              value={agree}
             />
             I agree with the <Link to="/">terms</Link>.
           </label>
         </div>
         <button
-          className="btn btn-primary pull-right btn-lg"
-          //   onClick={() => this.handleClickNext()}
-          //   disabled={
-          //     !(jobTitle && sd && city && state && description.length > 20)
-          //   }
+          className="btn btn-success pull-right btn-lg"
+          onClick={() => this.handleSubmitResume()}
+          disabled={!(email && agree && resume)}
         >
-          Next{' '}
+          Submit{' '}
           <span
             className="glyphicon glyphicon-arrow-right"
             aria-hidden="true"
@@ -264,6 +271,9 @@ class SubmitResume extends Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/teaching-jobs-in-pa" />;
+    }
     return (
       <div className="content-container container ">
         <div className="row">
@@ -278,4 +288,4 @@ class SubmitResume extends Component {
   }
 }
 
-export default SubmitResume;
+export default connect(null, actions)(SubmitResume);
