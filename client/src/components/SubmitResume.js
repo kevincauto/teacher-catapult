@@ -38,7 +38,7 @@ class SubmitResume extends Component {
   }
   handleSubmitResume() {
     console.log(this.state.resume);
-    this.props.submitResume(this.state.resume);
+    this.props.submitResume(this.state);
     // this.setState({ redirect: true });
   }
   handleAgreeToTerms(value) {

@@ -31,25 +31,23 @@ module.exports = app => {
   // });
 
   app.post('/api/user-resume', requireLogin, async (req, res) => {
-    // const {
-    //   first,
-    //   last,
-    //   email,
-    //   certification,
-    //   certMonth,
-    //   certYear,
-    //   zipcode,
-    //   relocate,
-    //   substitute,
-    //   resume,
-    //   agree
-    // } = req.body;
+    const {
+      first,
+      last,
+      email,
+      certification,
+      certMonth,
+      certYear,
+      zipcode,
+      relocate,
+      substitute,
+      resume,
+      agree
+    } = req.body;
     await console.log(req);
-    await console.log(req.file);
-    await console.log(req.files);
-    await console.log(req.files[0]);
+    await console.log(req.body);
 
-    // let startDate = `${certMonth}-${certYear}`;
+    let startDate = `${certMonth}-${certYear}`;
     try {
       req.user.first = first;
       req.user.last = last;
@@ -63,7 +61,7 @@ module.exports = app => {
       req.user.agree = agree;
 
       const user = await req.user.save();
-      console.log(user);
+      res.send('success');
     } catch (err) {
       res.status(422).send(err);
     }
