@@ -3,7 +3,7 @@ const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
 const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
-
+var formidable = require('formidable');
 var School = require('../models/School');
 const Job = require('../models/Job');
 const PaidJob = require('../models/PaidJob');
@@ -30,7 +30,8 @@ module.exports = app => {
   //   });
   // });
 
-  app.post('/api/user-resume', requireLogin, async (req, res) => {
+  // app.post('/api/user-resume', requireLogin, async (req, res) => {
+  app.post('/api/user-resume', async (req, res) => {    
     const {
       first,
       last,
@@ -44,27 +45,56 @@ module.exports = app => {
       resume,
       agree
     } = req.body;
-    await console.log(req);
-    await console.log(req.body);
 
-    let startDate = `${certMonth}-${certYear}`;
-    try {
-      req.user.first = first;
-      req.user.last = last;
-      req.user.email = email;
-      req.user.certifiation = certification;
-      req.user.startDate = startDate;
-      req.user.zipcode = zipcode;
-      req.user.relocate = relocate;
-      req.user.substitue = substitute;
-      req.user.resume = resume;
-      req.user.agree = agree;
+    var form = new formidable.IncomingForm();
 
-      const user = await req.user.save();
-      res.send('success');
-    } catch (err) {
-      res.status(422).send(err);
-    }
-    res.redirect('/');
+    console.log('Loading files ...')
+    form.parse(req,async function(err, fields, files) {
+      console.log({
+        fields: fields,
+        files: files
+      })
+
+      let startDate = `${certMonth}-${certYear}`;
+      try {
+        req.user.first = fields.first;
+        req.user.last = fields.last;
+        req.user.email = fields.email;
+        req.user.certifiation = fields.certification;
+        req.user.startDate = fields.startDate;
+        req.user.zipcode = fields.zipcode;
+        req.user.relocate = fields.relocate;
+        req.user.substitue = fields.substitute;
+        req.user.resume = files.file;
+        req.user.agree = fields.agree;
+
+        const user = await req.user.save();
+        res.send('success');
+      } catch (err) {
+        console.log(err)
+        res.status(422).send(err);
+      }
+      // res.redirect('/');
+    })
+    // await console.log(req.body);
+    // let startDate = `${certMonth}-${certYear}`;
+    // try {
+    //   req.user.first = first;
+    //   req.user.last = last;
+    //   req.user.email = email;
+    //   req.user.certifiation = certification;
+    //   req.user.startDate = startDate;
+    //   req.user.zipcode = zipcode;
+    //   req.user.relocate = relocate;
+    //   req.user.substitue = substitute;
+    //   req.user.resume = resume;
+    //   req.user.agree = agree;
+
+    //   const user = await req.user.save();
+    //   res.send('success');
+    // } catch (err) {
+    //   res.status(422).send(err);
+    // }
+    // res.redirect('/');
   });
 };

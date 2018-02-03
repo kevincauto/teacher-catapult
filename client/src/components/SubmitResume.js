@@ -48,7 +48,8 @@ class SubmitResume extends Component {
     this.setState({ agree: value });
   }
   handleFileUpload(file) {
-    this.setState({ resume: file });
+    console.log('file', file[0])
+    this.setState({ resume: file[0] });
   }
 
   handleFieldChange(value, name) {

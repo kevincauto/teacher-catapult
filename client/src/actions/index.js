@@ -35,8 +35,20 @@ export const submitSurvey = (values, history) => async dispatch => {
 };
 
 export const submitResume = values => async dispatch => {
-  const res = await axios.post('/api/user-resume', values);
-
+  var keys
+  var formData = new FormData()
+  for (keys in values ) {
+    if (keys === 'resume') {
+      formData.append('file', values[keys])
+    } else {
+      formData.append(keys, values[keys])
+    }
+  }
+  // const res = await axios.post('/api/user-resume', values);
+  const res = await axios.post('/api/user-resume', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  console.log('upload ended')
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 

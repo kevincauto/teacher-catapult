@@ -18,7 +18,7 @@ mongoose.connect(keys.mongoURI);
 
 const app = express();
 
-app.use(fileUpload());
+// app.use(fileUpload());
 
 app.use(bodyParser.json());
 app.use(
