@@ -33,9 +33,13 @@ class SubmitResume extends Component {
     this.handleAgreeToTerms = this.handleAgreeToTerms.bind(this);
     this.handleSubmitResume = this.handleSubmitResume.bind(this);
   }
+  componentDidUpdate() {
+    console.log(this.state);
+  }
   handleSubmitResume() {
-    this.props.submitResume(this.state);
-    this.setState({ redirect: true });
+    console.log(this.state.resume);
+    this.props.submitResume(this.state.resume);
+    // this.setState({ redirect: true });
   }
   handleAgreeToTerms(value) {
     //value returns a string rather than a Boolean
@@ -258,7 +262,7 @@ class SubmitResume extends Component {
         <button
           className="btn btn-success pull-right btn-lg"
           onClick={() => this.handleSubmitResume()}
-          disabled={!(email && agree && resume)}
+          // disabled={!(email && agree && resume)}
         >
           Submit{' '}
           <span

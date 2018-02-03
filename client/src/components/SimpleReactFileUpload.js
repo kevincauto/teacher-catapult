@@ -20,7 +20,7 @@ class SimpleReactFileUpload extends React.Component {
   //   });
   // }
   async onChange(e) {
-    await this.setState({ file: e.target.files[0] });
+    await this.setState({ file: e.target.files });
     this.props.onUpload(this.state.file);
   }
   fileUpload(file) {
@@ -37,7 +37,7 @@ class SimpleReactFileUpload extends React.Component {
     return (
       <div>
         <h3>File Upload</h3>
-        <input type="file" onChange={this.onChange} />
+        <input name="resume" type="file" onChange={this.onChange} />
       </div>
     );
   }

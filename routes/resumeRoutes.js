@@ -30,44 +30,43 @@ module.exports = app => {
   //   });
   // });
 
-  app.post(
-    '/api/user-resume',
-    requireLogin,
+  app.post('/api/user-resume', requireLogin, async (req, res) => {
+    // const {
+    //   first,
+    //   last,
+    //   email,
+    //   certification,
+    //   certMonth,
+    //   certYear,
+    //   zipcode,
+    //   relocate,
+    //   substitute,
+    //   resume,
+    //   agree
+    // } = req.body;
+    await console.log(req);
+    await console.log(req.file);
+    await console.log(req.files);
+    await console.log(req.files[0]);
 
-    async (req, res) => {
-      const {
-        first,
-        last,
-        email,
-        certification,
-        certMonth,
-        certYear,
-        zipcode,
-        relocate,
-        substitute,
-        resume,
-        agree
-      } = req.body;
+    // let startDate = `${certMonth}-${certYear}`;
+    try {
+      req.user.first = first;
+      req.user.last = last;
+      req.user.email = email;
+      req.user.certifiation = certification;
+      req.user.startDate = startDate;
+      req.user.zipcode = zipcode;
+      req.user.relocate = relocate;
+      req.user.substitue = substitute;
+      req.user.resume = resume;
+      req.user.agree = agree;
 
-      let startDate = `${certMonth}-${certYear}`;
-      try {
-        req.user.first = first;
-        req.user.last = last;
-        req.user.email = email;
-        req.user.certifiation = certification;
-        req.user.startDate = startDate;
-        req.user.zipcode = zipcode;
-        req.user.relocate = relocate;
-        req.user.substitue = substitute;
-        req.user.resume = resume;
-        req.user.agree = agree;
-
-        const user = await req.user.save();
-        console.log(user);
-      } catch (err) {
-        res.status(422).send(err);
-      }
-      res.redirect('/');
+      const user = await req.user.save();
+      console.log(user);
+    } catch (err) {
+      res.status(422).send(err);
     }
-  );
+    res.redirect('/');
+  });
 };
