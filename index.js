@@ -38,6 +38,7 @@ require('./routes/jobRoutes')(app);
 require('./routes/emailRoutes')(app);
 require('./routes/resumeRoutes')(app);
 require('./cron_jobs/crawlJobs');
+require('./cron_jobs/extract');
 
 if (process.env.NODE_ENV === 'production') {
   //Express will serve up production assets

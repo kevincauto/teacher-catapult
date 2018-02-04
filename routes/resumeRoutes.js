@@ -84,6 +84,7 @@ module.exports = app => {
         req.user.zipcode = fields.zipcode;
         req.user.relocate = fields.relocate;
         req.user.substitute = fields.substitute;
+        req.user.lastUpdated = Date.now();
 
         // req.user.resume = files.file;
         req.user.agree = fields.agree;
