@@ -17,6 +17,7 @@ const userSchema = new Schema({
   },
   first: String,
   last: String,
+  email: String,
   certifications: [String],
   startDate: String,
   zipcode: String,
@@ -32,7 +33,7 @@ const userSchema = new Schema({
     type: Boolean,
     default: false
   },
-  resume: { data: Buffer, contentType: String }
+  resume: String
 });
 
 mongoose.model('users', userSchema);

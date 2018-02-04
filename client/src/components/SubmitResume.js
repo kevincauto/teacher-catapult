@@ -16,7 +16,7 @@ class SubmitResume extends Component {
       first: '',
       last: '',
       email: '',
-      specialty: [],
+      certifications: [],
       zipcode: '',
       relocate: true,
       resume: {},
@@ -37,7 +37,7 @@ class SubmitResume extends Component {
     console.log(this.state);
   }
   handleSubmitResume() {
-    console.log(this.state.resume);
+    console.log(this.state);
     this.props.submitResume(this.state);
     // this.setState({ redirect: true });
   }
@@ -48,7 +48,7 @@ class SubmitResume extends Component {
     this.setState({ agree: value });
   }
   handleFileUpload(file) {
-    console.log('file', file[0])
+    console.log('file', file[0]);
     this.setState({ resume: file[0] });
   }
 
@@ -57,7 +57,7 @@ class SubmitResume extends Component {
   }
 
   handleSpecialtyChecked(specialty) {
-    let arrSpecialties = _.clone(this.state.specialty);
+    let arrSpecialties = _.clone(this.state.certifications);
 
     let indexOfDuplicate = arrSpecialties.indexOf(specialty);
     if (indexOfDuplicate !== -1) {
@@ -66,7 +66,7 @@ class SubmitResume extends Component {
       arrSpecialties.push(specialty);
     }
 
-    this.setState({ specialty: arrSpecialties });
+    this.setState({ certifications: arrSpecialties });
   }
 
   renderYearsDropdown() {
