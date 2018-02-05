@@ -2,6 +2,7 @@ import axios from 'axios';
 import { FETCH_USER } from './types';
 import { FETCH_JOBS } from './types';
 import { FETCH_PAID_JOBS } from './types';
+import { FETCH_LEADS } from './types';
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
@@ -35,20 +36,20 @@ export const submitSurvey = (values, history) => async dispatch => {
 };
 
 export const submitResume = values => async dispatch => {
-  var keys
-  var formData = new FormData()
-  for (keys in values ) {
+  var keys;
+  var formData = new FormData();
+  for (keys in values) {
     if (keys === 'resume') {
-      formData.append('file', values[keys])
+      formData.append('file', values[keys]);
     } else {
-      formData.append(keys, values[keys])
+      formData.append(keys, values[keys]);
     }
   }
   // const res = await axios.post('/api/user-resume', values);
   const res = await axios.post('/api/user-resume', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
+    headers: { 'Content-Type': 'multipart/form-data' }
   });
-  console.log('upload ended')
+  console.log('upload ended');
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
@@ -78,4 +79,10 @@ export const fetchPaidJobs = () => async dispatch => {
   const res = await axios.get('/api/paid-jobs/pa');
 
   dispatch({ type: FETCH_PAID_JOBS, payload: res.data });
+};
+
+export const fetchLeads = () => async dispatch => {
+  const res = await axios.get('/api/leads');
+
+  dispatch({ type: FETCH_LEADS, payload: res.data });
 };

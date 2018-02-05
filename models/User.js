@@ -15,6 +15,10 @@ const userSchema = new Schema({
     type: Boolean,
     default: false
   },
+  leadPermission: {
+    type: Boolean,
+    default: false
+  },
   first: String,
   last: String,
   email: String,

@@ -8,7 +8,7 @@ const leadSchema = new Schema({
   certifications: [String],
   startDate: String,
   zipcode: String,
-  state: String
+  state: String,
   relocate: {
     type: Boolean,
     default: false
@@ -21,4 +21,4 @@ const leadSchema = new Schema({
   lastUpdated: Date
 });
 
-mongoose.model('users', userSchema);
+module.exports = mongoose.model('Lead', leadSchema);

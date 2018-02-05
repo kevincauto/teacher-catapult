@@ -28,7 +28,7 @@ class SubmitResume extends Component {
 
     this.handleFileUpload = this.handleFileUpload.bind(this);
     this.handleFieldChange = this.handleFieldChange.bind(this);
-    this.renderYearsDropdown = this.renderYearsDropdown.bind(this);
+    this.renderYearDropdown = this.renderYearDropdown.bind(this);
     this.handleSpecialtyChecked = this.handleSpecialtyChecked.bind(this);
     this.handleAgreeToTerms = this.handleAgreeToTerms.bind(this);
     this.handleSubmitResume = this.handleSubmitResume.bind(this);
@@ -69,7 +69,7 @@ class SubmitResume extends Component {
     this.setState({ certifications: arrSpecialties });
   }
 
-  renderYearsDropdown() {
+  renderYearDropdown() {
     let y = new Date();
     y = y.getFullYear();
     let allYears = [];
@@ -89,12 +89,9 @@ class SubmitResume extends Component {
       first,
       last,
       email,
-      specialty,
-      start,
       zipcode,
       relocate,
       substitute,
-      resume,
       agree
     } = this.state;
 
@@ -192,7 +189,7 @@ class SubmitResume extends Component {
               this.handleFieldChange(e.target.value, e.target.name)
             }
           >
-            {this.renderYearsDropdown()}
+            {this.renderYearDropdown()}
           </select>
         </div>
         <h3>Where are you located?</h3>

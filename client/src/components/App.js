@@ -15,12 +15,14 @@ import Footer from './Footer';
 import Interview from './Interview';
 import NewJobPost from './job_posts/NewJobPost';
 import DynamicJobPostPage from './job_posts/DynamicJobPostPage';
+import RecruiterDashboard from './RecruiterDashboard';
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
     this.props.fetchJobs();
     this.props.fetchPaidJobs();
+    this.props.fetchLeads();
   }
   render() {
     return (
@@ -41,6 +43,7 @@ class App extends Component {
           <Route exact path="/surveys" component={Dashboard} />
           <Route path="/surveys/new" component={SurveyNew} />
           <Route path="/jobs/:id" component={DynamicJobPostPage} />
+          <Route path="recruiter/dashboard" component={RecruiterDashboard} />
           <Footer />
         </div>
       </BrowserRouter>

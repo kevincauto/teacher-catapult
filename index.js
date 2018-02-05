@@ -11,6 +11,7 @@ require('./models/Survey');
 require('./models/School');
 require('./models/Job');
 require('./models/PaidJob');
+require('./models/Lead');
 
 require('./services/passport');
 
@@ -37,8 +38,8 @@ require('./routes/surveyRoutes')(app);
 require('./routes/jobRoutes')(app);
 require('./routes/emailRoutes')(app);
 require('./routes/resumeRoutes')(app);
+require('./routes/leadRoutes')(app);
 require('./cron_jobs/crawlJobs');
-require('./cron_jobs/extract');
 
 if (process.env.NODE_ENV === 'production') {
   //Express will serve up production assets

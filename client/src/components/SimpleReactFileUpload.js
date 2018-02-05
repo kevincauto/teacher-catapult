@@ -1,5 +1,4 @@
 import React from 'react';
-import axios, { post } from 'axios';
 
 class SimpleReactFileUpload extends React.Component {
   constructor(props) {
@@ -26,11 +25,11 @@ class SimpleReactFileUpload extends React.Component {
   fileUpload(file) {
     const formData = new FormData();
     formData.append('file', file);
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data'
-      }
-    };
+    // const config = {
+    //   headers: {
+    //     'content-type': 'multipart/form-data'
+    //   }
+    // };
   }
 
   render() {
