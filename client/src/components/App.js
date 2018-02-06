@@ -43,7 +43,7 @@ class App extends Component {
           <Route exact path="/surveys" component={Dashboard} />
           <Route path="/surveys/new" component={SurveyNew} />
           <Route path="/jobs/:id" component={DynamicJobPostPage} />
-          <Route path="recruiter/dashboard" component={RecruiterDashboard} />
+          <Route path="/recruiter/dashboard" component={RecruiterDashboard} />
           <Footer />
         </div>
       </BrowserRouter>

@@ -18,7 +18,7 @@ const leadSchema = new Schema({
     default: true
   },
   resume: String,
-  lastUpdated: Date
+  lastUpdated: String
 });
 
 module.exports = mongoose.model('Lead', leadSchema);
