@@ -86,3 +86,7 @@ export const fetchLeads = () => async dispatch => {
 
   dispatch({ type: FETCH_LEADS, payload: res.data });
 };
+
+export const fetchUserLeads = () => async dispatch => {
+  const res = await axios.get('/api/user-leads');
+};

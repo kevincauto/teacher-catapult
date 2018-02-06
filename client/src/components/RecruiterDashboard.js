@@ -98,8 +98,9 @@ class RecruiterDashboard extends Component {
     );
   }
 
-  renderTable(leads = []) {
+  renderTable(leads = [], userleads = []) {
     //filter using text input
+    console.log(userleads);
     leads = leads.filter(lead => {
       let first = lead.first.toLowerCase();
       if (first.indexOf(this.state.filterText.toLowerCase() !== -1)) {

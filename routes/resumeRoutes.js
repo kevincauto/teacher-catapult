@@ -61,19 +61,15 @@ module.exports = app => {
 
       let fileBuffer;
       let json;
-      console.log('fire 1');
+
       await fs.readFile(files.file.path, async function(err, data) {
         fileBuffer = data;
         console.log(fileBuffer);
         json = JSON.stringify(fileBuffer);
-        // console.log(json);
         req.user.resume = json;
-        console.log('fire1.1');
         await req.user.save();
-        console.log('fire1.2');
-        // console.log(req.user);
       });
-      console.log('fire 2');
+
       let startDate = `${fields.certMonth}-${fields.certYear}`;
       try {
         req.user.first = fields.first;
@@ -88,11 +84,7 @@ module.exports = app => {
 
         // req.user.resume = files.file;
         req.user.agree = fields.agree;
-        console.log('fire3');
         const user = await req.user.save();
-        console.log('fire4');
-        console.log(fields.certifications);
-
         res.send('success');
       } catch (err) {
         console.log(err);

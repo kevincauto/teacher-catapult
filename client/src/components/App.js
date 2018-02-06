@@ -23,6 +23,7 @@ class App extends Component {
     this.props.fetchJobs();
     this.props.fetchPaidJobs();
     this.props.fetchLeads();
+    this.props.fetchUserLeads();
   }
   render() {
     return (
