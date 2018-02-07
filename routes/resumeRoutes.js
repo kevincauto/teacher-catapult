@@ -3,49 +3,15 @@ const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
 const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
-var formidable = require('formidable');
-var School = require('../models/School');
+const formidable = require('formidable');
+const zipcodes = require('zipcodes');
+
 const Job = require('../models/Job');
 const PaidJob = require('../models/PaidJob');
 // const User = require('../models/User');
 
 module.exports = app => {
-  // app.get('/api/jobs/pa', (req, res) => {
-  //   Job.find({}).exec(function(err, jobs) {
-  //     if (err) {
-  //       res.send('error has occured');
-  //     } else {
-  //       res.json(jobs);
-  //     }
-  //   });
-  // });
-
-  // app.get('/api/paid-jobs/pa', (req, res) => {
-  //   PaidJob.find({}).exec(function(err, jobs) {
-  //     if (err) {
-  //       res.send('error has occured');
-  //     } else {
-  //       res.json(jobs);
-  //     }
-  //   });
-  // });
-
-  // app.post('/api/user-resume', requireLogin, async (req, res) => {
   app.post('/api/user-resume', async (req, res) => {
-    // const {
-    //   first,
-    //   last,
-    //   email,
-    //   certification,
-    //   certMonth,
-    //   certYear,
-    //   zipcode,
-    //   relocate,
-    //   substitute,
-    //   resume,
-    //   agree
-    // } = req.body;
-
     var form = new formidable.IncomingForm();
 
     console.log('Loading files ...');
@@ -64,19 +30,24 @@ module.exports = app => {
 
       await fs.readFile(files.file.path, async function(err, data) {
         fileBuffer = data;
-        console.log(fileBuffer);
         json = JSON.stringify(fileBuffer);
         req.user.resume = json;
         await req.user.save();
       });
 
+      let certifications = fields.certifications.split(',');
+      console.log(certifications);
+      let zipcodeObj = zipcodes.lookup(fields.zipcode);
+      let { city, state } = zipcodeObj;
       let startDate = `${fields.certMonth}-${fields.certYear}`;
       try {
         req.user.first = fields.first;
         req.user.last = fields.last;
         req.user.email = fields.email;
-        req.user.certifications = fields.certifications;
+        req.user.certifications = certifications;
         req.user.startDate = startDate;
+        req.user.city = city || '';
+        req.user.state = state || 'PA';
         req.user.zipcode = fields.zipcode;
         req.user.relocate = fields.relocate;
         req.user.substitute = fields.substitute;
@@ -85,6 +56,7 @@ module.exports = app => {
         // req.user.resume = files.file;
         req.user.agree = fields.agree;
         const user = await req.user.save();
+        console.log(user.city);
         res.send('success');
       } catch (err) {
         console.log(err);
