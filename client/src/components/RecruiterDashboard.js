@@ -61,18 +61,39 @@ class RecruiterDashboard extends Component {
   constructor() {
     super();
     this.state = {
-      filterText: '',
-      filterCertification: ''
+      filterCertification: '',
+      zipcode: '',
+      showZipcodeWarning: false
     };
-
-    this.handleFilterText = this.handleFilterText.bind(this);
   }
   componentDidUpdate() {
     console.log(this.state);
   }
 
-  handleFilterText(e) {
-    this.setState({ filterText: e.target.value });
+  handleZipcodeChange(e) {
+    let value = e.target.value;
+    if (value.length > 5 || !/^\d+$/.test(value)) {
+      this.setState({ showZipcodeWarning: true });
+    } else {
+      this.setState({ showZipcodeWarning: false });
+    }
+
+    this.setState({ zipcode: e.target.value });
+  }
+  renderWarning() {
+    if (this.state.showZipcodeWarning === true) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          <span
+            className="glyphicon glyphicon-exclamation-sign"
+            aria-hidden="true"
+          />
+          <span class="sr-only">Error:</span>
+          &nbsp;Please enter a valid zipcode
+        </div>
+      );
+    }
+    return;
   }
 
   handleFilterCertification(e) {
@@ -103,10 +124,8 @@ class RecruiterDashboard extends Component {
   }
 
   renderTable(leads = [], userleads = []) {
-    //filter using text input
-    console.log(userleads);
-
     leads = leads.filter(lead => {
+      //make certifications a string with commas
       let certifications = lead.certifications
         .reduce((prev, curr) => {
           if (prev === '') {
@@ -116,11 +135,11 @@ class RecruiterDashboard extends Component {
         }, '')
         .toLowerCase();
 
-      let first = lead.first.toLowerCase();
+      //
+
       if (
-        first.indexOf(this.state.filterText.toLowerCase() !== -1) &&
         certifications.indexOf(this.state.filterCertification.toLowerCase()) !==
-          -1
+        -1
       ) {
         return true;
       }
@@ -171,6 +190,27 @@ class RecruiterDashboard extends Component {
           </td>
         </tr>
       );
+    });
+    userleads = userleads.filter(lead => {
+      //make certifications a string with commas
+      let certifications = lead.certifications
+        .reduce((prev, curr) => {
+          if (prev === '') {
+            return curr;
+          }
+          return prev + ', ' + curr;
+        }, '')
+        .toLowerCase();
+
+      //
+      let first = lead.first.toLowerCase();
+      if (
+        certifications.indexOf(this.state.filterCertification.toLowerCase()) !==
+        -1
+      ) {
+        return true;
+      }
+      return false;
     });
 
     userleads = userleads.map((lead, i) => {
@@ -237,27 +277,32 @@ class RecruiterDashboard extends Component {
               <center>
                 <h2>Your Dashboard {today}</h2>
               </center>
-              <h3>Search for teachers...</h3>
+              <h3>
+                Search for teachers by certification, close to your zipcode.
+              </h3>
               <div className="row">
                 <div className="col-sm-6">
-                  <div className="input-group input-group-lg">
+                  {this.renderCertificationDropdown()}
+                </div>
+                <div className="col-sm-6">
+                  <div className="input-group input-group-lg job-form">
+                    <span className="input-group-addon" id="sizing-addon1">
+                      <span
+                        className="glyphicon glyphicon-globe"
+                        aria-hidden="true"
+                      />
+                    </span>
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Search..."
-                      value={this.state.filterText}
-                      onChange={e => this.handleFilterText(e)}
+                      placeholder="Zipcode"
+                      aria-describedby="sizing-addon1"
+                      name={'zipcode'}
+                      value={this.state.zipcode}
+                      onChange={e => this.handleZipcodeChange(e)}
                     />
-                    <span className="input-group-btn">
-                      <button className="btn btn-default" type="button">
-                        <span className="glyphicon glyphicon-search" />
-                      </button>
-                    </span>
                   </div>
-                </div>
-
-                <div className="col-sm-6">
-                  {this.renderCertificationDropdown()}
+                  {this.renderWarning()}
                 </div>
               </div>
               <br />
