@@ -85,7 +85,7 @@ class RecruiterDashboard extends Component {
           name="certification"
           onChange={e => this.handleFieldChange(e.target.value, e.target.name)}
         >
-          <option placeholder="Certification">Select a Certification</option>
+          <option placeholder="Certification">Any Certification</option>
           {CERTIFICATIONS.map(cert => {
             return (
               <option key={cert} value={cert}>
@@ -101,6 +101,7 @@ class RecruiterDashboard extends Component {
   renderTable(leads = [], userleads = []) {
     //filter using text input
     console.log(userleads);
+
     leads = leads.filter(lead => {
       let first = lead.first.toLowerCase();
       if (first.indexOf(this.state.filterText.toLowerCase() !== -1)) {
@@ -109,7 +110,7 @@ class RecruiterDashboard extends Component {
       return false;
     });
 
-    return leads.map((lead, i) => {
+    leads = leads.map((lead, i) => {
       let {
         first,
         last,
@@ -129,12 +130,13 @@ class RecruiterDashboard extends Component {
         }
         return prev + ', ' + curr;
       }, '');
+
       return (
         <tr key={i}>
           <td>
             <div className="row">
               <div className="col-sm-4">
-                {lastUpdated}
+                Last Updated: {lastUpdated}
                 <br />
                 <strong>
                   {first} {last}
@@ -153,6 +155,54 @@ class RecruiterDashboard extends Component {
         </tr>
       );
     });
+
+    userleads = userleads.map((lead, i) => {
+      let {
+        first,
+        last,
+        certifications,
+        lastUpdated,
+        email,
+        relocate,
+        resume,
+        startDate,
+        zipcode
+      } = lead;
+
+      certifications = certifications.reduce((prev, curr) => {
+        if (prev === '') {
+          return curr;
+        }
+        return prev + ', ' + curr;
+      }, '');
+
+      return (
+        <tr key={i + 'ul'}>
+          <td>
+            <div className="row">
+              <div className="col-sm-4">
+                Last Updated: {lastUpdated}
+                <br />
+                <strong>
+                  {first} {last}
+                </strong>
+                <br />
+                {email}
+                <br />
+              </div>
+              <div className="col-sm-5">
+                {zipcode} <br />
+                Approx Exp: {startDate} <br />
+              </div>
+              <div className="col-sm-3 ">{certifications}</div>
+            </div>
+          </td>
+        </tr>
+      );
+    });
+
+    userleads.push(leads);
+    return userleads;
   }
 
   render() {
@@ -173,9 +223,6 @@ class RecruiterDashboard extends Component {
               <h3>Search for teachers...</h3>
               <div className="row">
                 <div className="col-sm-6">
-                  {this.renderCertificationDropdown()}
-                </div>
-                <div className="col-sm-6">
                   <div className="input-group input-group-lg">
                     <input
                       type="text"
@@ -190,6 +237,10 @@ class RecruiterDashboard extends Component {
                       </button>
                     </span>
                   </div>
+                </div>
+
+                <div className="col-sm-6">
+                  {this.renderCertificationDropdown()}
                 </div>
               </div>
               <br />

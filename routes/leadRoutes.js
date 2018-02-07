@@ -34,7 +34,7 @@ module.exports = app => {
           return false;
         });
 
-        userleads = userleads.map(obj => {
+        userleads = userleads.map(obj2 => {
           let {
             first,
             last,
@@ -46,7 +46,7 @@ module.exports = app => {
             substitute,
             lastUpdated,
             resume
-          } = obj;
+          } = obj2;
 
           lastUpdated = convertToFormattedDate(lastUpdated);
 
