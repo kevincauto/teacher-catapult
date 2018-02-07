@@ -8,6 +8,7 @@ const leadSchema = new Schema({
   certifications: [String],
   startDate: String,
   zipcode: String,
+  city: String,
   state: String,
   relocate: {
     type: Boolean,

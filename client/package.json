@@ -22,7 +22,8 @@
     "react-stripe-checkout": "^2.4.0",
     "redux": "^3.7.1",
     "redux-form": "^7.2.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "zipcodes": "^6.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

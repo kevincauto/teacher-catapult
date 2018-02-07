@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RightSidebar from './RightSidebar';
 import getTodaysDate from '../utils/getTodaysDate';
 import CheckBoxes from './SubmitResumeCheckBoxes';
+import RecruiterSidebar from './RecruiterSidebar';
 
 const CERTIFICATIONS = [
   'Agriculture',
@@ -156,6 +156,7 @@ class RecruiterDashboard extends Component {
         relocate,
         resume,
         startDate,
+        city,
         state,
         zipcode
       } = lead;
@@ -182,8 +183,8 @@ class RecruiterDashboard extends Component {
                 <br />
               </div>
               <div className="col-sm-5">
-                {`${state}, ${zipcode}`} <br />
-                Approx Exp: {startDate} <br />
+                {`${city}, ${state}`} <br />
+                Cert Date: {startDate} <br />
               </div>
               <div className="col-sm-3 ">{certifications}</div>
             </div>
@@ -223,35 +224,36 @@ class RecruiterDashboard extends Component {
         relocate,
         resume,
         startDate,
+        city,
+        state,
         zipcode
       } = lead;
 
-      certifications = certifications.reduce((prev, curr) => {
-        if (prev === '') {
-          return curr;
-        }
-        return prev + ', ' + curr;
-      }, '');
+      certifications = certifications.join(', ');
 
       return (
         <tr key={i + 'ul'}>
           <td>
             <div className="row">
               <div className="col-sm-4">
-                Last Updated: {lastUpdated}
-                <br />
                 <strong>
                   {first} {last}
                 </strong>
+                <br />
+                Last Updated: {lastUpdated}
                 <br />
                 {email}
                 <br />
               </div>
               <div className="col-sm-5">
-                {zipcode} <br />
-                Approx Exp: {startDate} <br />
+                {`${city}, ${state}`} <br />
+                Cert Date: {startDate} <br />
               </div>
-              <div className="col-sm-3 ">{certifications}</div>
+              <div className="col-sm-3 ">
+                <strong>Certifications:</strong>
+                <br />
+                {certifications}
+              </div>
             </div>
           </td>
         </tr>
@@ -319,7 +321,7 @@ class RecruiterDashboard extends Component {
               </table>
             </div>
 
-            <RightSidebar />
+            <RecruiterSidebar />
           </div>
         </div>
       </div>
