@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const requireRecruiter = require('../middlewares/requireRecruiter');
 const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
-const { getDate } = require('../utils/helper');
+const { getDate, convertToFormattedDate } = require('../utils/helper');
 
 const User = require('../models/User');
 const Lead = require('../models/Lead');
@@ -25,7 +25,46 @@ module.exports = app => {
       if (err) {
         res.send('error has occured');
       } else {
-        console.log(userleads);
+        //filter down to just teachers who agreed to share resume.
+        userleads = userleads.filter(obj => {
+          const { recruiter, agree } = obj;
+          if (!recruiter && agree) {
+            return true;
+          }
+          return false;
+        });
+
+        userleads = userleads.map(obj => {
+          let {
+            first,
+            last,
+            email,
+            certifications,
+            startDate,
+            zipcode,
+            relocate,
+            substitute,
+            lastUpdated,
+            resume
+          } = obj;
+
+          lastUpdated = convertToFormattedDate(lastUpdated);
+
+          console.log(lastUpdated);
+          return {
+            first,
+            last,
+            email,
+            certifications,
+            startDate,
+            zipcode,
+            relocate,
+            substitute,
+            lastUpdated,
+            resume
+          };
+        });
+
         res.json(userleads);
       }
     });

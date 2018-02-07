@@ -200,7 +200,9 @@ class RecruiterDashboard extends Component {
                     <th className="position">Teacher Candidates</th>
                   </tr>
                 </thead>
-                <tbody>{this.renderTable(this.props.leads)}</tbody>
+                <tbody>
+                  {this.renderTable(this.props.leads, this.props.userleads)}
+                </tbody>
               </table>
             </div>
 
@@ -212,10 +214,13 @@ class RecruiterDashboard extends Component {
   }
 }
 
-function mapStateToProps({ leads }) {
-  if (leads) {
-    return { leads };
+function mapStateToProps({ leads, userleads }) {
+  console.log(leads);
+  console.log(userleads);
+  if (leads && userleads) {
+    return { leads, userleads };
   } else {
+    console.log('else');
     return {};
   }
 }

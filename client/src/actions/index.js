@@ -3,6 +3,7 @@ import { FETCH_USER } from './types';
 import { FETCH_JOBS } from './types';
 import { FETCH_PAID_JOBS } from './types';
 import { FETCH_LEADS } from './types';
+import { FETCH_USER_LEADS } from './types';
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
@@ -89,4 +90,6 @@ export const fetchLeads = () => async dispatch => {
 
 export const fetchUserLeads = () => async dispatch => {
   const res = await axios.get('/api/user-leads');
+
+  dispatch({ type: FETCH_USER_LEADS, payload: res.data });
 };
