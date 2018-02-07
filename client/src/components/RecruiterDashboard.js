@@ -75,6 +75,10 @@ class RecruiterDashboard extends Component {
     this.setState({ filterText: e.target.value });
   }
 
+  handleFilterCertification(e) {
+    this.setState({ filterCertification: e.target.value });
+  }
+
   renderCertificationDropdown() {
     return (
       <div className="input-group-lg">
@@ -83,7 +87,7 @@ class RecruiterDashboard extends Component {
           placeholder="Certification"
           value={this.state.certification}
           name="certification"
-          onChange={e => this.handleFieldChange(e.target.value, e.target.name)}
+          onChange={e => this.handleFilterCertification(e)}
         >
           <option placeholder="Certification">Any Certification</option>
           {CERTIFICATIONS.map(cert => {
@@ -103,8 +107,21 @@ class RecruiterDashboard extends Component {
     console.log(userleads);
 
     leads = leads.filter(lead => {
+      let certifications = lead.certifications
+        .reduce((prev, curr) => {
+          if (prev === '') {
+            return curr;
+          }
+          return prev + ', ' + curr;
+        }, '')
+        .toLowerCase();
+
       let first = lead.first.toLowerCase();
-      if (first.indexOf(this.state.filterText.toLowerCase() !== -1)) {
+      if (
+        first.indexOf(this.state.filterText.toLowerCase() !== -1) &&
+        certifications.indexOf(this.state.filterCertification.toLowerCase()) !==
+          -1
+      ) {
         return true;
       }
       return false;
