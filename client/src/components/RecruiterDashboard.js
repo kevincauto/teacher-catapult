@@ -173,11 +173,11 @@ class RecruiterDashboard extends Component {
           <td>
             <div className="row">
               <div className="col-sm-4">
-                Last Updated: {lastUpdated}
-                <br />
                 <strong>
                   {first} {last}
                 </strong>
+                <br />
+                Last Updated: {lastUpdated}
                 <br />
                 {email}
                 <br />
@@ -186,7 +186,11 @@ class RecruiterDashboard extends Component {
                 {`${city}, ${state}`} <br />
                 Cert Date: {startDate} <br />
               </div>
-              <div className="col-sm-3 ">{certifications}</div>
+              <div className="col-sm-3 ">
+                <strong>Certifications:</strong>
+                <br />
+                {certifications}
+              </div>
             </div>
           </td>
         </tr>
@@ -194,6 +198,8 @@ class RecruiterDashboard extends Component {
     });
     userleads = userleads.filter(lead => {
       //make certifications a string with commas
+      let str = JSON.parse(lead.resume);
+      console.log(str);
       let certifications = lead.certifications
         .reduce((prev, curr) => {
           if (prev === '') {
@@ -330,12 +336,9 @@ class RecruiterDashboard extends Component {
 }
 
 function mapStateToProps({ leads, userleads }) {
-  console.log(leads);
-  console.log(userleads);
   if (leads && userleads) {
     return { leads, userleads };
   } else {
-    console.log('else');
     return {};
   }
 }

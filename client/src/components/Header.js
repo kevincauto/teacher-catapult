@@ -19,9 +19,9 @@ class Header extends Component {
         );
       default:
         return [
-          <NavItem eventKey={1} key={1} href="#">
-            <Payments>Payment</Payments>
-          </NavItem>,
+          // <NavItem eventKey={1} key={1} href="#">
+          //   <Payments>Payment</Payments>
+          // </NavItem>,
 
           <NavItem eventKey={2} key={2}>
             Job Posts Left: {this.props.auth.credits}
@@ -29,7 +29,7 @@ class Header extends Component {
           <NavItem
             eventKey={3}
             key={3}
-            href={this.props.auth ? '/surveys' : '/'}
+            href={this.props.auth ? '/recruiter/dashboard' : '/'}
           >
             Dashboard
           </NavItem>,

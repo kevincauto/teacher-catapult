@@ -254,7 +254,10 @@ class SubmitResume extends Component {
               onChange={e => this.handleAgreeToTerms(e.target.value)}
               value={agree}
             />
-            I agree with the <Link to="/">terms</Link>.
+            I agree with the{' '}
+            <Link target="_blank" to="/terms-conditions">
+              terms
+            </Link>.
           </label>
         </div>
         <button
