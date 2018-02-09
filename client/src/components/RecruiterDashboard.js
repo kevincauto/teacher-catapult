@@ -65,9 +65,18 @@ class RecruiterDashboard extends Component {
       zipcode: '',
       showZipcodeWarning: false
     };
+
+    this.handleZipcodeSearch = this.handleZipcodeSearch.bind(this);
   }
   componentDidUpdate() {
     console.log(this.state);
+  }
+  handleZipcodeSearch() {
+    if (/^\d{5}$/.test(this.state.zipcode)) {
+      //commence zipcode search
+    } else {
+      this.setState({ showZipcodeWarning: true });
+    }
   }
 
   handleZipcodeChange(e) {
@@ -294,12 +303,13 @@ class RecruiterDashboard extends Component {
                 </div>
                 <div className="col-sm-6">
                   <div className="input-group input-group-lg job-form">
-                    <span className="input-group-addon" id="sizing-addon1">
+                    {/* <span className="input-group-addon" id="sizing-addon1">
                       <span
                         className="glyphicon glyphicon-globe"
                         aria-hidden="true"
                       />
-                    </span>
+                    </span> */}
+
                     <input
                       type="text"
                       className="form-control"
@@ -309,7 +319,17 @@ class RecruiterDashboard extends Component {
                       value={this.state.zipcode}
                       onChange={e => this.handleZipcodeChange(e)}
                     />
+                    <span className="input-group-btn">
+                      <button
+                        onClick={this.handleZipcodeSearch}
+                        className="btn btn-default"
+                        type="button"
+                      >
+                        <span className="glyphicon glyphicon-search" />
+                      </button>
+                    </span>
                   </div>
+
                   {this.renderWarning()}
                 </div>
               </div>
