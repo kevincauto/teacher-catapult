@@ -1,10 +1,12 @@
 const axios = require('axios');
-const $ = require('cheerio');
+const cheerio = require('cheerio');
+const { getDate } = require('../utils/helper');
 
 module.exports = {
-  pareapSearch: async (link, counter, finalData, resultsLog, today) => {
+  pareapSearch: async (id, link) => {
     try {
       let res = await axios.get(link);
+
       let $ = cheerio.load(res.data);
 
       let jobs = $('.jobfirstrow a').text();
@@ -40,20 +42,12 @@ module.exports = {
       let sds = sdAndCity.map(sd => sd.substr(sd.indexOf('^') + 1));
       sds.pop();
 
+      let today = getDate();
+      let allReapJobs = [];
+
       for (let i = 0; i < jobs.length; i++) {
-        finalData.push({
-          id: counter++,
-          jobTitle: jobs[i],
-          link: jobLinks[i],
-          sd: sds[i],
-          county: 'PA Reap',
-          city: cities[i],
-          state: states[i],
-          date: today,
-          paid: false
-        });
-        console.log({
-          id: counter,
+        allReapJobs.push({
+          id: id + 'reap' + i,
           jobTitle: jobs[i],
           link: jobLinks[i],
           sd: sds[i],
@@ -64,12 +58,12 @@ module.exports = {
           paid: false
         });
       }
-      resultsLog.push({ link, error: false });
-      return false;
+
+      return { jobs: allReapJobs, error: false };
     } catch (err) {
       console.log(err);
-      resultsLog.push({ link, error: true });
-      return true;
+
+      return { jobs: allReapJobs, error: true };
     }
     return;
   },

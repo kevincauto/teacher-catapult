@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const JobSchema = new Schema({
   id: {
-    type: Number,
+    type: String,
     index: true
   },
   jobTitle: String,
