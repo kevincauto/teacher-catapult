@@ -16,15 +16,16 @@ module.exports = app => {
       if (err) {
         res.send('error has occured');
       } else {
-        leads.map(lead => {
-          let zip = lead.zipcode;
-          if (!/^\d{5}$/.test(zip)) {
-            //default zipcode is Harrisburg
-            lead.zipcode = '17130';
-          }
-          lead.city = zipcodes.lookup(lead.zipcode).city;
-          lead.state = zipcodes.lookup(lead.zipcode).state;
-        });
+        // leads.map(lead => {
+        //   let zip = lead.zipcode;
+        //   if (!/^\d{5}$/.test(zip)) {
+        //     //default zipcode is Harrisburg
+        //     lead.zipcode = '17130';
+        //   }
+        //   lead.city = zipcodes.lookup(lead.zipcode).city;
+        //   lead.state = zipcodes.lookup(lead.zipcode).state;
+        // });
+        console.log(leads);
         res.json(leads);
       }
     });

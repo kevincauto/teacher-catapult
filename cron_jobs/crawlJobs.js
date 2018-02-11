@@ -4,23 +4,33 @@ const request = require('request');
 const cheerio = require('cheerio');
 const fs = require('fs');
 const mongoose = require('mongoose');
+
+const waitUntil = require('wait-until');
+const schedule = require('node-schedule');
+const emitter = require('emitter');
+
 const School = require('../models/School');
 const Job = require('../models/Job');
-const waitUntil = require('wait-until');
-var schedule = require('node-schedule');
-var emitter = require('emitter');
-const { getDate } = require('../utils/helper');
+
 require('events').EventEmitter.defaultMaxListeners = 200;
 
+const { getDate } = require('../utils/helper');
+const { pareapSearch } = require('./customSearches');
+
+//global variables
 let counter = 0;
 let finalData = [];
-let list = [];
-var today = new Date();
+let resultsLog = [];
+let today;
 
 async function doCustomSearch(id, link) {
+  // if (/pareap.net/.test(link)) {
+  //   return pareapSearch(link, counter, finalData, resultsLog, today);
+  // }
   try {
     let res = await axios.get(link);
     let $ = cheerio.load(res.data);
+
     let jobs = $('.jobfirstrow a').text();
     jobs = jobs.split('\n\t\t');
     jobs = jobs.map(job => {
@@ -37,6 +47,7 @@ async function doCustomSearch(id, link) {
       //zipcode followed by capital letter
       .replace(/([0-9]{4})([A-Z])/g, '$1^$2')
       .split(';');
+
     let jobLinks = [];
     $('.jobfirstrow a').each(function(index, element) {
       let jobLink = $(element).attr('href');
@@ -45,20 +56,14 @@ async function doCustomSearch(id, link) {
       }
     });
 
-    //city //county //state //sd  //link
-    // console.log(sdAndCity);
     let cities = sdAndCity.map(city => city.substr(0, city.indexOf(',')));
     cities.shift();
+
     let states = Array(cities.length).fill('PA');
+
     let sds = sdAndCity.map(sd => sd.substr(sd.indexOf('^') + 1));
     sds.pop();
-    // console.log(cities.length);
-    // console.log(states.length);
-    // console.log(sds.length);
 
-    // console.log(cities);
-    // console.log(states);
-    console.log('this is firing');
     for (let i = 0; i < jobs.length; i++) {
       finalData.push({
         id: counter++,
@@ -83,19 +88,14 @@ async function doCustomSearch(id, link) {
         paid: false
       });
     }
-    list.push({ link, error: false });
+    resultsLog.push({ link, error: false });
     return false;
   } catch (err) {
     console.log(err);
-    list.push({ link, error: true });
+    resultsLog.push({ link, error: true });
     return true;
   }
 }
-
-// doCustomSearch(
-//   3,
-//   'https://www.pareap.net/jobsrch.php?srch=100&position=&HTML=report&num=2'
-// );
 
 const makeARequest = async district => {
   let { id, county, city, state, sd, link, customSearch } = district;
@@ -103,7 +103,7 @@ const makeARequest = async district => {
   if (customSearch) {
     console.log(id, link);
     let errorBoolean = await doCustomSearch(id, link);
-    list.push({ link, error: errorBoolean });
+    resultsLog.push({ link, error: errorBoolean });
     return;
   } else {
     try {
@@ -148,10 +148,10 @@ const makeARequest = async district => {
           }
         }
       }
-      list.push({ link, error: false });
+      resultsLog.push({ link, error: false });
     } catch (err) {
       console.log(link);
-      list.push({ link, error: true });
+      resultsLog.push({ link, error: true });
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
@@ -190,16 +190,16 @@ function pushNewJobs() {
   }
 }
 
-var scraper = schedule.scheduleJob('4 * * * *', function() {
-  list = [];
+const scraper = schedule.scheduleJob('51 * * * *', function() {
+  resultsLog = [];
   today = getDate();
+  counter = 0;
+  finalData = [];
+
   School.find({}).exec(function(err, schools) {
     if (err) {
       console.log(err);
     } else {
-      counter = 0;
-      finalData = [];
-      console.log('firing off the scraper!');
       for (let i = 0; i < schools.length; i++) {
         makeARequest(schools[i]);
       }
@@ -207,15 +207,16 @@ var scraper = schedule.scheduleJob('4 * * * *', function() {
         .interval(3000)
         .times(schools.length)
         .condition(function() {
-          console.log(list.length);
+          console.log(resultsLog.length);
           console.log(schools.length);
-          return list.length >= schools.length;
+          return resultsLog.length >= schools.length;
         })
         .done(async function(result) {
-          console.log(list);
+          console.log(resultsLog);
           let jobsAreRemoved = await removeOldJobs();
           if (jobsAreRemoved) {
             pushNewJobs();
+            console.log(finalData);
           }
         });
     }
