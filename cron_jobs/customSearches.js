@@ -6,7 +6,6 @@ module.exports = {
   pareapSearch: async (id, link) => {
     try {
       let res = await axios.get(link);
-
       let $ = cheerio.load(res.data);
 
       let jobs = $('.jobfirstrow a').text();
