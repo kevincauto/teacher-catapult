@@ -2,6 +2,9 @@ const express = require('express');
 const fs = require('fs');
 const mongoose = require('mongoose');
 
+// var Nightmare = require('nightmare'),
+//   nightmare = Nightmare()
+
 const waitUntil = require('wait-until');
 const schedule = require('node-schedule');
 const emitter = require('emitter');
@@ -16,6 +19,106 @@ const { standardSearch } = require('./standardSearch');
 
 let allJobPosts = [];
 let resultsLog = [];
+
+const Nightmare = require('nightmare');
+const nightmare = Nightmare({ show: false });
+const jquery = require('jquery');
+
+var outside = 'outside!';
+
+nightmare
+  .goto('https://www.paeducator.net/')
+  .wait(3000)
+  .click('input#ctl00_MainContent_ctl00_btnSearch')
+  .wait(3000)
+  .click('input#ctl00_appMainContentTopPH_rdSort_2')
+  .wait(3000)
+  .evaluate(() => {
+    let jobArr = [];
+
+    for (let i = 0; i < 9; i += 2) {
+      let p = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPosition`;
+      let c = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPosition`;
+      let d = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPosition`;
+      let s = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPosition`;
+    }
+    let str = '#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl0_lblPosition';
+    let position = document.querySelector(str).innerHTML;
+    let county = document.querySelector(
+      '#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl0_lblCounty'
+    ).innerHTML;
+    let date = document.querySelector(
+      '#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl0_lblDatePosted'
+    ).innerHTML;
+    let sd = document.querySelector(
+      '#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl0_lblPositionType'
+    ).innerHTML;
+    jobArr.push({
+      id: 'paed',
+      jobTitle: position,
+      county,
+      date,
+      sd,
+      city: '',
+      state: 'PA',
+      link: 'https://www.paeducator.net',
+      paid: 'false'
+    });
+    return jobArr;
+  })
+  // .click('span#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(4)')
+  // .wait(3000)
+
+  // .click('span#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(5)')
+  // .wait(3000)
+  // .click('span#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(6)')
+  // .wait(3000)
+  // .click('span#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(7)')
+  // .wait(3000)
+  // .click('span#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(9)')
+  // .wait(3000)
+  // .click('span#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(10)')
+  // .wait(3000)
+  .end()
+  .then(function(result) {
+    console.log(outside);
+    console.log(result);
+  })
+  .catch(function(error) {
+    console.error('Error:', error);
+  });
+
+// nightmare.goto('http://' + city + '.craigslist.org/search/cpg?is_paid=yes&postedToday=1')
+// 	// visits the city specified by the user and gets all computer gigs posted that day
+// 	.wait(2000)
+// 	// wait 2 seconds so page is guaranteed to be fully loaded
+// 	.evaluate(function(){
+// 		var gigs = [];
+// 		// create an array to hold all gigs gathered by following code
+// 		$('.hdrlnk').each(function(){
+// 			item = {}
+// 			item["title"] = $(this).text()
+// 			item["link"] = $(this).attr("href")
+// 			gigs.push(item)
+// 		})
+// 		// create a gig object with title and link, then push to the 'gigs' array
+// 		return gigs
+// 		// pass the gigs array forward so it can be looped through later on
+// 	})
+// 	.end()
+// 	.then(function(result){
+// 		console.log("To: nelsonkhan@gmail.com")
+// 		console.log("From: nelsonkhan@gmail.com")
+// 		console.log("Subject: Today's Gigs")
+// 		console.log("\n")
+// 		// set headers for email
+// 		for(gig in result) {
+// 			console.log(result[gig].title)
+// 			console.log(result[gig].link)
+// 			console.log("\n")
+// 		}
+// 		// print each gig to the console in a neat format
+// 	})
 
 async function doCustomSearch(id, link) {
   //use the pareapSearch function for any pareap.net url
