@@ -36,34 +36,29 @@ nightmare
   .evaluate(() => {
     let jobArr = [];
 
-    for (let i = 0; i < 9; i += 2) {
-      let p = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPosition`;
-      let c = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPosition`;
-      let d = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPosition`;
-      let s = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPosition`;
+    for (let i = 0; i <= 18; i += 2) {
+      console.log(i);
+      var p = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPosition`;
+      let c = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblCounty`;
+      let d = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblDatePosted`;
+      let s = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPositionType`;
+      let position = document.querySelector(p).innerHTML;
+      let county = document.querySelector(c).innerHTML;
+      let date = document.querySelector(d).innerHTML;
+      let sd = document.querySelector(s).innerHTML;
+      jobArr.push({
+        id: 'paed',
+        jobTitle: position,
+        county,
+        date,
+        sd,
+        city: '',
+        state: 'PA',
+        link: 'https://www.paeducator.net',
+        paid: 'false'
+      });
     }
-    let str = '#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl0_lblPosition';
-    let position = document.querySelector(str).innerHTML;
-    let county = document.querySelector(
-      '#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl0_lblCounty'
-    ).innerHTML;
-    let date = document.querySelector(
-      '#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl0_lblDatePosted'
-    ).innerHTML;
-    let sd = document.querySelector(
-      '#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl0_lblPositionType'
-    ).innerHTML;
-    jobArr.push({
-      id: 'paed',
-      jobTitle: position,
-      county,
-      date,
-      sd,
-      city: '',
-      state: 'PA',
-      link: 'https://www.paeducator.net',
-      paid: 'false'
-    });
+
     return jobArr;
   })
   // .click('span#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(4)')
