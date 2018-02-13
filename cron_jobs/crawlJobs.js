@@ -24,96 +24,66 @@ const Nightmare = require('nightmare');
 const nightmare = Nightmare({ show: false });
 const jquery = require('jquery');
 
-var outside = 'outside!';
+var jobArr = [];
 
-nightmare
-  .goto('https://www.paeducator.net/')
-  .wait(3000)
-  .click('input#ctl00_MainContent_ctl00_btnSearch')
-  .wait(3000)
-  .click('input#ctl00_appMainContentTopPH_rdSort_2')
-  .wait(3000)
-  .evaluate(() => {
-    let jobArr = [];
+let startPage2 = false;
 
-    for (let i = 0; i <= 18; i += 2) {
-      console.log(i);
-      var p = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPosition`;
-      let c = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblCounty`;
-      let d = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblDatePosted`;
-      let s = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPositionType`;
-      let position = document.querySelector(p).innerHTML;
-      let county = document.querySelector(c).innerHTML;
-      let date = document.querySelector(d).innerHTML;
-      let sd = document.querySelector(s).innerHTML;
-      jobArr.push({
-        id: 'paed',
-        jobTitle: position,
-        county,
-        date,
-        sd,
-        city: '',
-        state: 'PA',
-        link: 'https://www.paeducator.net',
-        paid: 'false'
-      });
-    }
+var strings = [
+  'input#ctl00_appMainContentTopPH_rdSort_2',
+  '#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(4)',
+  '#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(5)',
+  '#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(6)'
+];
+strings
+  .reduce(function(accumulator, string) {
+    return accumulator.then(function(results) {
+      return nightmare
+        .goto('https://www.paeducator.net/')
+        .wait('body')
+        .click('input#ctl00_MainContent_ctl00_btnSearch')
+        .wait(3000)
+        .click('input#ctl00_appMainContentTopPH_rdSort_2')
+        .wait(3000)
+        .click(string)
+        .wait(3000)
+        .evaluate(() => {
+          let arr = [];
 
-    return jobArr;
-  })
-  // .click('span#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(4)')
-  // .wait(3000)
+          for (let i = 0; i <= 18; i += 2) {
+            var p = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPosition`;
+            let c = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblCounty`;
+            let d = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblDatePosted`;
+            let s = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPositionType`;
+            let position = document.querySelector(p).innerHTML;
+            let county = document.querySelector(c).innerHTML;
+            let date = document.querySelector(d).innerHTML;
+            let sd = document.querySelector(s).innerHTML;
+            arr.push({
+              id: 'paed',
+              jobTitle: position,
+              county,
+              date,
+              sd,
+              city: '',
+              state: 'PA',
+              link: 'https://www.paeducator.net',
+              paid: 'false'
+            });
+          }
 
-  // .click('span#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(5)')
-  // .wait(3000)
-  // .click('span#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(6)')
-  // .wait(3000)
-  // .click('span#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(7)')
-  // .wait(3000)
-  // .click('span#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(9)')
-  // .wait(3000)
-  // .click('span#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(10)')
-  // .wait(3000)
-  .end()
-  .then(function(result) {
-    console.log(outside);
-    console.log(result);
-  })
-  .catch(function(error) {
-    console.error('Error:', error);
+          return arr;
+        })
+        .then(function(results) {
+          results.map(job => {
+            jobArr.push(job);
+          });
+          return results;
+        });
+    });
+  }, Promise.resolve([]))
+  .then(function(results) {
+    console.dir(jobArr);
   });
-
-// nightmare.goto('http://' + city + '.craigslist.org/search/cpg?is_paid=yes&postedToday=1')
-// 	// visits the city specified by the user and gets all computer gigs posted that day
-// 	.wait(2000)
-// 	// wait 2 seconds so page is guaranteed to be fully loaded
-// 	.evaluate(function(){
-// 		var gigs = [];
-// 		// create an array to hold all gigs gathered by following code
-// 		$('.hdrlnk').each(function(){
-// 			item = {}
-// 			item["title"] = $(this).text()
-// 			item["link"] = $(this).attr("href")
-// 			gigs.push(item)
-// 		})
-// 		// create a gig object with title and link, then push to the 'gigs' array
-// 		return gigs
-// 		// pass the gigs array forward so it can be looped through later on
-// 	})
-// 	.end()
-// 	.then(function(result){
-// 		console.log("To: nelsonkhan@gmail.com")
-// 		console.log("From: nelsonkhan@gmail.com")
-// 		console.log("Subject: Today's Gigs")
-// 		console.log("\n")
-// 		// set headers for email
-// 		for(gig in result) {
-// 			console.log(result[gig].title)
-// 			console.log(result[gig].link)
-// 			console.log("\n")
-// 		}
-// 		// print each gig to the console in a neat format
-// 	})
 
 async function doCustomSearch(id, link) {
   //use the pareapSearch function for any pareap.net url
@@ -174,6 +144,7 @@ const scheduledJobCrawler = schedule.scheduleJob('26 * * * *', function() {
       for (let i = 0; i < schools.length; i++) {
         searchForJobs(schools[i]);
       }
+      //call the educator scraper here.
       waitUntil()
         .interval(3000)
         .times(schools.length)
