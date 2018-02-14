@@ -2,8 +2,8 @@ const express = require('express');
 const fs = require('fs');
 const mongoose = require('mongoose');
 
-// var Nightmare = require('nightmare'),
-//   nightmare = Nightmare()
+var Nightmare = require('nightmare'),
+  nightmare = Nightmare();
 
 const waitUntil = require('wait-until');
 const schedule = require('node-schedule');
@@ -16,74 +16,76 @@ require('events').EventEmitter.defaultMaxListeners = 200;
 
 const { pareapSearch } = require('./customSearches');
 const { standardSearch } = require('./standardSearch');
+// const { paEducatorSearch } = require('./paEducatorSearch');
 
 let allJobPosts = [];
 let resultsLog = [];
 
-const Nightmare = require('nightmare');
-const nightmare = Nightmare({ show: false });
-const jquery = require('jquery');
+function paEducatorSearch() {
+  var jobArr = [];
+  let done = false;
 
-var jobArr = [];
+  var strings = [
+    'input#ctl00_appMainContentTopPH_rdSort_2',
+    '#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(4)',
+    '#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(5)',
+    '#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(6)',
+    '#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(7)'
+  ];
+  strings
+    .reduce(function(accumulator, string) {
+      return accumulator.then(function(results) {
+        return nightmare
+          .goto('https://www.paeducator.net/')
+          .wait('body')
+          .click('input#ctl00_MainContent_ctl00_btnSearch')
+          .wait(5000)
+          .click('input#ctl00_appMainContentTopPH_rdSort_2')
+          .wait(3000)
+          .click(string)
+          .wait(3000)
+          .evaluate(() => {
+            let arr = [];
+            let counter = 0;
 
-let startPage2 = false;
+            for (let i = 0; i <= 18; i += 2) {
+              var p = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPosition`;
+              let c = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblCounty`;
+              let d = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblDatePosted`;
+              let s = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPositionType`;
+              let position = document.querySelector(p).innerHTML;
+              let county = document.querySelector(c).innerHTML;
+              let date = document.querySelector(d).innerHTML;
+              let sd = document.querySelector(s).innerHTML;
+              counter++;
+              arr.push({
+                id: 'paed' + counter,
+                jobTitle: position,
+                county,
+                date,
+                sd,
+                city: '',
+                state: 'PA',
+                link: 'https://www.paeducator.net',
+                paid: 'false'
+              });
+            }
 
-var strings = [
-  'input#ctl00_appMainContentTopPH_rdSort_2',
-  '#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(4)',
-  '#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(5)',
-  '#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(6)'
-];
-strings
-  .reduce(function(accumulator, string) {
-    return accumulator.then(function(results) {
-      return nightmare
-        .goto('https://www.paeducator.net/')
-        .wait('body')
-        .click('input#ctl00_MainContent_ctl00_btnSearch')
-        .wait(3000)
-        .click('input#ctl00_appMainContentTopPH_rdSort_2')
-        .wait(3000)
-        .click(string)
-        .wait(3000)
-        .evaluate(() => {
-          let arr = [];
-
-          for (let i = 0; i <= 18; i += 2) {
-            var p = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPosition`;
-            let c = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblCounty`;
-            let d = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblDatePosted`;
-            let s = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPositionType`;
-            let position = document.querySelector(p).innerHTML;
-            let county = document.querySelector(c).innerHTML;
-            let date = document.querySelector(d).innerHTML;
-            let sd = document.querySelector(s).innerHTML;
-            arr.push({
-              id: 'paed',
-              jobTitle: position,
-              county,
-              date,
-              sd,
-              city: '',
-              state: 'PA',
-              link: 'https://www.paeducator.net',
-              paid: 'false'
+            return arr;
+          })
+          .then(function(results) {
+            console.log('in');
+            results.map(job => {
+              allJobPosts.push(job);
             });
-          }
-
-          return arr;
-        })
-        .then(function(results) {
-          results.map(job => {
-            jobArr.push(job);
+            return results;
           });
-          return results;
-        });
+      });
+    }, Promise.resolve([]))
+    .then(function(results) {
+      done = true;
     });
-  }, Promise.resolve([]))
-  .then(function(results) {
-    console.dir(jobArr);
-  });
+}
 
 async function doCustomSearch(id, link) {
   //use the pareapSearch function for any pareap.net url
@@ -133,18 +135,18 @@ function saveNewJobs() {
   }
 }
 
-const scheduledJobCrawler = schedule.scheduleJob('26 * * * *', function() {
+const scheduledJobCrawler = schedule.scheduleJob('41 * * * *', function() {
   resultsLog = [];
   allJobPosts = [];
 
-  School.find({}).exec(function(err, schools) {
+  School.find({}).exec(async function(err, schools) {
     if (err) {
       console.log(err);
     } else {
+      paEducatorSearch();
       for (let i = 0; i < schools.length; i++) {
         searchForJobs(schools[i]);
       }
-      //call the educator scraper here.
       waitUntil()
         .interval(3000)
         .times(schools.length)

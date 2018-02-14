@@ -2,6 +2,9 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const { getDate } = require('../utils/helper');
 
+//each function should return an object with properties
+//{jobs: Array, error: Boolean}
+
 module.exports = {
   pareapSearch: async (id, link) => {
     try {
