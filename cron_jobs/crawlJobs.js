@@ -54,17 +54,17 @@ function paEducatorSearch() {
               let d = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblDatePosted`;
               let s = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPositionType`;
               let position = document.querySelector(p).innerHTML;
-              let county = document.querySelector(c).innerHTML;
+              let city = document.querySelector(c).innerHTML;
               let date = document.querySelector(d).innerHTML;
               let sd = document.querySelector(s).innerHTML;
               counter++;
               arr.push({
                 id: 'paed' + counter,
                 jobTitle: position,
-                county,
+                county: '',
                 date,
                 sd,
-                city: '',
+                city,
                 state: 'PA',
                 link: 'https://www.paeducator.net',
                 paid: 'false'
@@ -135,7 +135,7 @@ function saveNewJobs() {
   }
 }
 
-const scheduledJobCrawler = schedule.scheduleJob('41 * * * *', function() {
+const scheduledJobCrawler = schedule.scheduleJob('50 * * * *', function() {
   resultsLog = [];
   allJobPosts = [];
 

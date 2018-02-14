@@ -40,17 +40,17 @@ module.exports = {
                 let d = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblDatePosted`;
                 let s = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPositionType`;
                 let position = document.querySelector(p).innerHTML;
-                let county = document.querySelector(c).innerHTML;
+                let city = document.querySelector(c).innerHTML;
                 let date = document.querySelector(d).innerHTML;
                 let sd = document.querySelector(s).innerHTML;
                 counter++;
                 arr.push({
                   id: 'paed' + counter,
                   jobTitle: position,
-                  county,
+                  county: '',
                   date,
                   sd,
-                  city: '',
+                  city,
                   state: 'PA',
                   link: 'https://www.paeducator.net',
                   paid: 'false'
