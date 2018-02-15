@@ -25,7 +25,7 @@ module.exports = app => {
         //   lead.city = zipcodes.lookup(lead.zipcode).city;
         //   lead.state = zipcodes.lookup(lead.zipcode).state;
         // });
-        console.log(leads);
+        // console.log(leads);
         res.json(leads);
       }
     });
