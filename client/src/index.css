@@ -656,12 +656,20 @@ pre {
 }
 .popup_inner {
   position: absolute;
-  left: 25%;
-  right: 25%;
-  top: 25%;
-  bottom: 25%;
+  left: 20%;
+  right: 20%;
+  top: 20%;
+  bottom: 20%;
   margin: auto;
   background: white;
-  padding: 10px;
+  padding: 20px;
   border-radius: 4px;
+}
+.google-button {
+  width: 100%;
+  max-width: 240px;
+}
+
+a:hover {
+  text-decoration: none;
 }

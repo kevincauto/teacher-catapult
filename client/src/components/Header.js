@@ -6,10 +6,10 @@ import { Navbar, Nav, NavDropdown, NavItem } from 'react-bootstrap';
 
 class Header extends Component {
   state = {
-    showPopup: false
+    showLoginPopup: false
   };
-  togglePopup() {
-    this.setState({ showPopup: !this.state.showPopup });
+  toggleLoginPopup() {
+    this.setState({ showLoginPopup: !this.state.showLoginPopup });
   }
   renderContent() {
     switch (this.props.auth) {
@@ -17,8 +17,8 @@ class Header extends Component {
         return;
       case false:
         return (
-          <li className="nav-item" onClick={() => this.togglePopup()}>
-            Login
+          <li className="nav-item" onClick={() => this.toggleLoginPopup()}>
+            <a>Login</a>
             {/* <a className="nav-link" href="/auth/google">
               Login With Google
             </a> */}
@@ -58,8 +58,8 @@ class Header extends Component {
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
-        {this.state.showPopup ? (
-          <Popup closePopup={() => this.togglePopup()} />
+        {this.state.showLoginPopup ? (
+          <LoginPopup closeLoginPopup={() => this.toggleLoginPopup()} />
         ) : null}
         <Navbar.Collapse>
           <Nav>
@@ -92,26 +92,24 @@ class Header extends Component {
   }
 }
 
-class Popup extends Component {
+class LoginPopup extends Component {
   render() {
     return (
       <div className="popup">
         <div className="popup_inner">
-          <p className="pull-right" onClick={this.props.closePopup}>
+          <p className="pull-right" onClick={this.props.closeLoginPopup}>
             [X]
           </p>
-          <h1>Login</h1>
-          <p>Are you a teacher or employer?</p>
-          <p>Teacher</p>
-          <p>Employer</p>
-          <button onClick={this.props.closePopup}>close me</button>
-          <img
-            src="https://northmead.patterson.k12.ca.us/UserFiles/Servers/Server_18037253/Templates/login-google.png"
-            width="200"
-          />
-          <a href="#" target="_blank">
-            Sign in using email
+          <h2>Login: Are you a teacher or employer?</h2>
+          <h3>Teacher / Job Seekers:</h3>
+          <a href="/auth/google">
+            <img
+              src="https://northmead.patterson.k12.ca.us/UserFiles/Servers/Server_18037253/Templates/login-google.png"
+              className="google-button"
+            />
           </a>
+          <h3>Employers / School Districts:</h3>
+          <Link to="/">Login or Sign-up Here.</Link>
         </div>
       </div>
     );
