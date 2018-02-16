@@ -133,6 +133,7 @@ class RecruiterDashboard extends Component {
   }
 
   renderTable(leads = [], userleads = []) {
+    console.log(leads);
     leads = leads.filter(lead => {
       //make certifications a string with commas
       let certifications = lead.certifications
