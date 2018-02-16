@@ -17,7 +17,7 @@ class PAJobs extends Component {
     //filter using text inpu
     JSONArrJobs = ArrPaidJobs.reverse().concat(JSONArrJobs);
     JSONArrJobs = JSONArrJobs.filter(
-      ({ jobTitle = '', city = '', county = '', state = '' }) => {
+      ({ jobTitle = '', city = '', county = '', state = '', sd = '' }) => {
         if (
           jobTitle
             .toLowerCase()
@@ -33,6 +33,11 @@ class PAJobs extends Component {
         if (
           county.toLowerCase().indexOf(this.state.filterText.toLowerCase()) !==
           -1
+        ) {
+          return true;
+        }
+        if (
+          sd.toLowerCase().indexOf(this.state.filterText.toLowerCase()) !== -1
         ) {
           return true;
         }
