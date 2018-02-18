@@ -17,7 +17,7 @@ class RightSidebar extends Component {
         <div className="sidebar-border">
           <h4>Get Found By Employers!</h4>
           <Link to="/submit-your-resume">
-            <button className="btn btn-primary btn-block btn-lg">
+            <button className="btn btn-primary btn-block">
               <span className="white-link">Submit Your Resume</span>
             </button>
           </Link>

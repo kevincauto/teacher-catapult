@@ -11,9 +11,7 @@ class RecruiterSidebar extends Component {
             users a week!
           </h4>
           <Link to="/job-post">
-            <button className="btn btn-primary btn-block btn-lg">
-              Submit a Job!
-            </button>
+            <button className="btn btn-primary btn-block">Submit a Job!</button>
           </Link>
         </div>
         <h4>Ad</h4>
