@@ -109,7 +109,7 @@ class LoginPopup extends Component {
             />
           </a>
           <h3>Employers / School Districts:</h3>
-          <Link to="/">Login or Sign-up Here.</Link>
+          <Link to="/auth/username">Login or Sign-up Here.</Link>
         </div>
       </div>
     );

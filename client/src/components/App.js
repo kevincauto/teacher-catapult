@@ -17,6 +17,7 @@ import NewJobPost from './job_posts/NewJobPost';
 import DynamicJobPostPage from './job_posts/DynamicJobPostPage';
 import RecruiterDashboard from './RecruiterDashboard';
 import TermsConditions from './TermsConditions';
+import RecruiterSignInSignUp from './RecruiterSignInSignUp';
 
 class App extends Component {
   componentDidMount() {
@@ -46,6 +47,7 @@ class App extends Component {
           <Route path="/surveys/new" component={SurveyNew} />
           <Route path="/jobs/:id" component={DynamicJobPostPage} />
           <Route path="/recruiter/dashboard" component={RecruiterDashboard} />
+          <Route path="/recruiter/sign-in" component={RecruiterSignInSignUp} />
           <Route path="/terms-conditions" component={TermsConditions} />
           <Footer />
         </div>

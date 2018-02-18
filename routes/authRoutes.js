@@ -24,4 +24,20 @@ module.exports = app => {
   app.get('/api/current_user', (req, res) => {
     res.send(req.user);
   });
+
+  // app.get(
+  //   '/auth/username',
+  //   passport.authenticate('local', { failureRedirect: '/' }),
+  //   function(req, res) {
+  //     res.send(req.user);
+
+  //     res.redirect('/');
+  //   }
+  // );
 };
+
+// app.post('/login',
+//   passport.authenticate('local', { failureRedirect: '/login' }),
+//   function(req, res) {
+//     res.redirect('/');
+//   });
