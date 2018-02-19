@@ -111,8 +111,7 @@ class RecruiterDashboard extends Component {
 
   renderCertificationDropdown() {
     return (
-      // input-group-lg
-      <div className="">
+      <div className="input-group-lg">
         <select
           className="form-control"
           placeholder="Certification"
@@ -297,7 +296,7 @@ class RecruiterDashboard extends Component {
           <div className="row">
             <div className="col-md-8 col-lg-9">
               <center>
-                <h2>Your Dashboard {today}</h2>
+                <h2>Admin Panel {today}</h2>
               </center>
               <h3>
                 Search for teachers by certification, close to your zipcode.
@@ -307,7 +306,7 @@ class RecruiterDashboard extends Component {
                   {this.renderCertificationDropdown()}
                 </div>
                 <div className="col-sm-6">
-                  <div className="input-group job-form">
+                  <div className="input-group input-group-lg job-form">
                     {/* <span className="input-group-addon" id="sizing-addon1">
                       <span
                         className="glyphicon glyphicon-globe"
