@@ -195,6 +195,9 @@ class RecruiterDashboard extends Component {
               <div className="col-sm-5">
                 {`${city}, ${state}`} <br />
                 Cert Date: {startDate} <br />
+                <a href={resume} target="_blank" rel="nofollow">
+                  Download/View Resume
+                </a>
               </div>
               <div className="col-sm-3 ">
                 <strong>Certifications:</strong>
