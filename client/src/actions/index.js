@@ -93,3 +93,18 @@ export const fetchUserLeads = () => async dispatch => {
 
   dispatch({ type: FETCH_USER_LEADS, payload: res.data });
 };
+
+//Do I need a second argument in post?
+export const selectTeacher = email => async dispatch => {
+  console.log('inside selectTeacher() Action');
+  const res = await axios.get('/api/teacher-user');
+
+  dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const selectRecruiter = email => async dispatch => {
+  console.log('inside selectRecruiter() Action');
+  const res = await axios.get('/api/recruiter-user');
+
+  dispatch({ type: FETCH_USER, payload: res.data });
+};

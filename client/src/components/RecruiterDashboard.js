@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { saveAs } from 'file-saver';
 import getTodaysDate from '../utils/getTodaysDate';
 import CheckBoxes from './SubmitResumeCheckBoxes';
 import RecruiterSidebar from './RecruiterSidebar';
@@ -212,8 +213,8 @@ class RecruiterDashboard extends Component {
     });
     userleads = userleads.filter(lead => {
       //make certifications a string with commas
-      let str = JSON.parse(lead.resume);
-      console.log(str);
+      // let str = JSON.parse(lead.resume);
+
       let certifications = lead.certifications
         .reduce((prev, curr) => {
           if (prev === '') {
@@ -242,7 +243,7 @@ class RecruiterDashboard extends Component {
         lastUpdated,
         email,
         relocate,
-        resume,
+        // resume,
         startDate,
         city,
         state,

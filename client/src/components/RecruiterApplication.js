@@ -5,6 +5,7 @@ import getTodaysDate from '../utils/getTodaysDate';
 import CheckBoxes from './SubmitResumeCheckBoxes';
 import RecruiterSidebar from './RecruiterSidebar';
 import { Link } from 'react-router-dom';
+
 class RecruiterSignInSignUp extends Component {
   constructor() {
     super();

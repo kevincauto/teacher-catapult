@@ -5,23 +5,19 @@ import Payments from './Payments';
 import { Navbar, Nav, NavDropdown, NavItem } from 'react-bootstrap';
 
 class Header extends Component {
-  state = {
-    showLoginPopup: false
-  };
-  toggleLoginPopup() {
-    this.setState({ showLoginPopup: !this.state.showLoginPopup });
-  }
   renderContent() {
     switch (this.props.auth) {
       case null:
         return;
       case false:
         return (
-          <li className="nav-item" onClick={() => this.toggleLoginPopup()}>
-            <a>Login</a>
-            {/* <a className="nav-link" href="/auth/google">
+          <li
+            className="nav-item"
+            // onClick={() => this.openTeacherRecruiterPopup()}
+          >
+            <a className="nav-link" href="/auth/google">
               Login With Google
-            </a> */}
+            </a>
           </li>
         );
       default:
@@ -58,9 +54,7 @@ class Header extends Component {
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
-        {this.state.showLoginPopup ? (
-          <LoginPopup closeLoginPopup={() => this.toggleLoginPopup()} />
-        ) : null}
+
         <Navbar.Collapse>
           <Nav>
             {/* <NavItem eventKey={2} href="#">
@@ -88,30 +82,6 @@ class Header extends Component {
           <Nav pullRight>{this.renderContent()}</Nav>
         </Navbar.Collapse>
       </Navbar>
-    );
-  }
-}
-
-class LoginPopup extends Component {
-  render() {
-    return (
-      <div className="popup">
-        <div className="popup_inner">
-          <p className="pull-right" onClick={this.props.closeLoginPopup}>
-            [X]
-          </p>
-          <h2>Login: Are you a teacher or employer?</h2>
-          <h3>Teacher / Job Seekers:</h3>
-          <a href="/auth/google">
-            <img
-              src="https://northmead.patterson.k12.ca.us/UserFiles/Servers/Server_18037253/Templates/login-google.png"
-              className="google-button"
-            />
-          </a>
-          <h3>Employers / School Districts:</h3>
-          <Link to="/auth/username">Login or Sign-up Here.</Link>
-        </div>
-      </div>
     );
   }
 }

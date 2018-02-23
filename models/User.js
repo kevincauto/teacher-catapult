@@ -3,6 +3,7 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
   googleId: String,
+  gmail: String,
   credits: {
     type: Number,
     default: 0
@@ -12,6 +13,10 @@ const userSchema = new Schema({
     default: false
   },
   recruiter: {
+    type: Boolean,
+    default: false
+  },
+  teacher: {
     type: Boolean,
     default: false
   },
