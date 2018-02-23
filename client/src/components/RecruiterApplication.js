@@ -10,7 +10,9 @@ class RecruiterSignInSignUp extends Component {
   constructor() {
     super();
     this.state = {
-      username: '',
+      sd: '',
+      jobTitle: '',
+      phone: '',
       password: '',
       redirect: false,
       first: '',
@@ -90,7 +92,42 @@ class RecruiterSignInSignUp extends Component {
     } = this.state;
     return (
       <div className="well well-lg clearfix">
-        <h2>Please complete the information below.</h2>
+        <h2>
+          Employers and School District Hiring Officers - Please Fill Out the
+          Form Below.
+        </h2>
+        <div className="input-group input-group-lg job-form">
+          <span className="input-group-addon" id="sizing-addon1">
+            <span className="glyphicon glyphicon-apple" aria-hidden="true" />
+          </span>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Job Title"
+            aria-describedby="sizing-addon1"
+            name={'jobTitle'}
+            value={this.state.jobTitle}
+            onChange={e =>
+              this.handleFieldChange(e.target.value, e.target.name)
+            }
+          />
+        </div>
+        <div className="input-group input-group-lg job-form">
+          <span className="input-group-addon" id="sizing-addon1">
+            @
+          </span>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="School District"
+            aria-describedby="sizing-addon1"
+            name={'sd'}
+            value={this.state.sd}
+            onChange={e =>
+              this.handleFieldChange(e.target.value, e.target.name)
+            }
+          />
+        </div>
         <div className="input-group input-group-lg job-form">
           <span className="input-group-addon" id="sizing-addon1">
             <span
@@ -101,10 +138,10 @@ class RecruiterSignInSignUp extends Component {
           <input
             type="text"
             className="form-control"
-            placeholder="Username"
+            placeholder="first name"
             aria-describedby="sizing-addon1"
-            name={'username'}
-            value={username}
+            name={'first'}
+            value={this.state.first}
             onChange={e =>
               this.handleFieldChange(e.target.value, e.target.name)
             }
@@ -121,12 +158,13 @@ class RecruiterSignInSignUp extends Component {
             placeholder="Last Name"
             aria-describedby="sizing-addon1"
             name={'last'}
-            value={last}
+            value={this.state.last}
             onChange={e =>
               this.handleFieldChange(e.target.value, e.target.name)
             }
           />
         </div>
+
         <div className="input-group input-group-lg job-form">
           <span className="input-group-addon" id="sizing-addon1">
             @
@@ -134,7 +172,7 @@ class RecruiterSignInSignUp extends Component {
           <input
             type="text"
             className="form-control"
-            placeholder="Email Address"
+            placeholder="Work Email"
             aria-describedby="sizing-addon1"
             name={'email'}
             value={email}
@@ -143,98 +181,25 @@ class RecruiterSignInSignUp extends Component {
             }
           />
         </div>
-        <h3>What is your teaching certification?</h3>
-        <CheckBoxes
-          onSpecialtyChecked={specialty =>
-            this.handleSpecialtyChecked(specialty)
-          }
-        />
-        <h3>When did or when will you get your teaching certification?</h3>
-        <div className="input-group input-group-lg job-form flex">
-          <select
-            className="form-control"
-            placeholder="Month"
-            value={this.state.certMonth}
-            name="certMonth"
-            onChange={e =>
-              this.handleFieldChange(e.target.value, e.target.name)
-            }
-          >
-            <option value="01">January</option>
-            <option value="02">February</option>
-            <option value="03">March</option>
-            <option value="04">April</option>
-            <option value="05">May</option>
-            <option value="06">June</option>
-            <option value="07">July</option>
-            <option value="08">August</option>
-            <option value="09">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-          </select>
-          <select
-            className="form-control"
-            placeholder="Year"
-            value={this.state.certYear}
-            name="certYear"
-            onChange={e =>
-              this.handleFieldChange(e.target.value, e.target.name)
-            }
-          />
-        </div>
-        <h3>Where are you located?</h3>
+
         <div className="input-group input-group-lg job-form">
           <span className="input-group-addon" id="sizing-addon1">
-            <span className="glyphicon glyphicon-globe" aria-hidden="true" />
+            @
           </span>
           <input
             type="text"
             className="form-control"
-            placeholder="Zipcode"
+            placeholder="Phone Number (and Ext.)"
             aria-describedby="sizing-addon1"
-            name={'zipcode'}
-            value={zipcode}
+            name={'phone'}
+            value={this.state.phone}
             onChange={e =>
               this.handleFieldChange(e.target.value, e.target.name)
             }
           />
         </div>
-        <h3>Would you consider relocating for a job?</h3>
-        <div className="input-group input-group-lg job-form">
-          <select
-            className="form-control"
-            placeholder="Month"
-            name="relocate"
-            value={relocate}
-            onChange={e =>
-              this.handleFieldChange(e.target.value, e.target.name)
-            }
-          >
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
-        </div>
-        <h3>Would you like to be considered for substitute jobs?</h3>
-        <div className="input-group input-group-lg job-form">
-          <select
-            className="form-control"
-            placeholder="Month"
-            name="substitute"
-            value={substitute}
-            onChange={e =>
-              this.handleFieldChange(e.target.value, e.target.name)
-            }
-          >
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
-        </div>
 
-        <h4>
-          Check the box if you agree to the terms and grant permission for us to
-          share your information.
-        </h4>
+        <h4>Check the box if you agree to the terms.</h4>
         <div className="checkbox">
           <label>
             <input
@@ -253,7 +218,7 @@ class RecruiterSignInSignUp extends Component {
         <button
           className="btn btn-success pull-right btn-lg"
           onClick={() => this.handleSubmitResume()}
-          // disabled={!(email && agree && resume)}
+          disabled={!(email && agree)}
         >
           Submit{' '}
           <span
