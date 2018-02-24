@@ -27,6 +27,7 @@ class RecruiterApplication extends Component {
     console.log(this.state);
   }
   handleSubmitApplication() {
+    console.log('handleSubmitApplication in RecruiterApplicatin Component');
     this.props.submitRecruiterApplication(this.state);
     // this.setState({ redirect: true });
   }

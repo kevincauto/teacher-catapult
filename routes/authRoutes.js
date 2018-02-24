@@ -1,5 +1,6 @@
 const passport = require('passport');
 const requireLogin = require('../middlewares/requireLogin');
+const { getDate } = require('../utils/helper');
 
 module.exports = app => {
   app.get(
@@ -42,9 +43,25 @@ module.exports = app => {
   });
 
   app.get('/api/recruiter-user', requireLogin, async (req, res) => {
+    const user = await req.user.save();
+    res.send(user);
+  });
+
+  app.post('/api/recruiter-application', requireLogin, async (req, res) => {
     console.log('I SELECTED RECRUITER!!');
-    req.user.recruiter = true;
-    req.user.teacher = false;
+    const today = getDate();
+    const { jobTitle, sd, first, last, email, phone } = req.body;
+    console.log(req.body);
+    // req.user.recruiter = true;
+    // req.user.teacher = false;
+    req.user.jobTitle = jobTitle;
+    req.user.sd = sd;
+    req.user.first = first;
+    req.user.last = last;
+    req.user.email = email;
+    req.user.phone = phone;
+    req.user.lastUpdated = today;
+
     const user = await req.user.save();
     res.send(user);
   });

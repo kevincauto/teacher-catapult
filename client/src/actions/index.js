@@ -107,7 +107,8 @@ export const selectRecruiter = email => async dispatch => {
 };
 
 export const submitRecruiterApplication = values => async dispatch => {
-  const res = await axios.get('api/recruiter-application');
+  console.log('action submitRecruiterApplication');
+  const res = await axios.post('/api/recruiter-application', values);
 
   dispatch({ type: FETCH_USER, payload: res.data });
 };
