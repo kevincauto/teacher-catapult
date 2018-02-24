@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as actions from '../actions';
 import _ from 'lodash';
 import getTodaysDate from '../utils/getTodaysDate';
 import CheckBoxes from './SubmitResumeCheckBoxes';
 import RecruiterSidebar from './RecruiterSidebar';
 import { Link } from 'react-router-dom';
 
-class RecruiterSignInSignUp extends Component {
+class RecruiterApplication extends Component {
   constructor() {
     super();
     this.state = {
@@ -18,22 +19,15 @@ class RecruiterSignInSignUp extends Component {
       first: '',
       last: '',
       email: '',
-      certifications: [],
-      zipcode: '',
-      relocate: true,
-      resume: {},
-      substitute: false,
-      certMonth: '01',
-      certYear: '2018',
-      agree: false
+      agree: false,
+      date: getTodaysDate()
     };
   }
   componentDidUpdate() {
     console.log(this.state);
   }
-  handleSubmitResume() {
-    console.log(this.state);
-    this.props.submitResume(this.state);
+  handleSubmitApplication() {
+    this.props.submitRecruiterApplication(this.state);
     // this.setState({ redirect: true });
   }
   handleAgreeToTerms(value) {
@@ -80,22 +74,9 @@ class RecruiterSignInSignUp extends Component {
   }
 
   renderForm() {
-    let {
-      first,
-      last,
-      email,
-      zipcode,
-      relocate,
-      substitute,
-      agree,
-      username
-    } = this.state;
+    let { first, last, jobTitle, sd, agree, email, phone } = this.state;
     return (
       <div className="well well-lg clearfix">
-        <h2>
-          Employers and School District Hiring Officers - Please Fill Out the
-          Form Below.
-        </h2>
         <div className="input-group input-group-lg job-form">
           <span className="input-group-addon" id="sizing-addon1">
             <span className="glyphicon glyphicon-apple" aria-hidden="true" />
@@ -138,7 +119,7 @@ class RecruiterSignInSignUp extends Component {
           <input
             type="text"
             className="form-control"
-            placeholder="first name"
+            placeholder="First Name"
             aria-describedby="sizing-addon1"
             name={'first'}
             value={this.state.first}
@@ -189,7 +170,7 @@ class RecruiterSignInSignUp extends Component {
           <input
             type="text"
             className="form-control"
-            placeholder="Phone Number (and Ext.)"
+            placeholder="Phone Number (and Extension)"
             aria-describedby="sizing-addon1"
             name={'phone'}
             value={this.state.phone}
@@ -217,8 +198,10 @@ class RecruiterSignInSignUp extends Component {
         </div>
         <button
           className="btn btn-success pull-right btn-lg"
-          onClick={() => this.handleSubmitResume()}
-          disabled={!(email && agree)}
+          onClick={() => this.handleSubmitApplication()}
+          disabled={
+            !(jobTitle && sd && first && last && email && phone && agree)
+          }
         >
           Submit{' '}
           <span
@@ -236,7 +219,11 @@ class RecruiterSignInSignUp extends Component {
       <div className="content-container container ">
         <div className="row">
           <div className="col-md-8 col-lg-9">
-            <h1>Sign-in or Sign-up!</h1>
+            <h1>
+              {' '}
+              Employers and School District Hiring Officers - Please Fill Out
+              the Form Below.
+            </h1>
             {this.renderForm()}
           </div>
           <RecruiterSidebar />
@@ -246,4 +233,4 @@ class RecruiterSignInSignUp extends Component {
   }
 }
 
-export default RecruiterSignInSignUp;
+export default connect(null, actions)(RecruiterApplication);

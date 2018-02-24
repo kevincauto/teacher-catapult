@@ -46,11 +46,11 @@ export const submitResume = values => async dispatch => {
       formData.append(keys, values[keys]);
     }
   }
-  // const res = await axios.post('/api/user-resume', values);
+
   const res = await axios.post('/api/user-resume', formData, {
     headers: { 'Content-Type': 'multipart/form-data' }
   });
-  console.log('upload ended');
+
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
@@ -94,17 +94,20 @@ export const fetchUserLeads = () => async dispatch => {
   dispatch({ type: FETCH_USER_LEADS, payload: res.data });
 };
 
-//Do I need a second argument in post?
 export const selectTeacher = email => async dispatch => {
-  console.log('inside selectTeacher() Action');
   const res = await axios.get('/api/teacher-user');
 
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
 export const selectRecruiter = email => async dispatch => {
-  console.log('inside selectRecruiter() Action');
   const res = await axios.get('/api/recruiter-user');
+
+  dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const submitRecruiterApplication = values => async dispatch => {
+  const res = await axios.get('api/recruiter-application');
 
   dispatch({ type: FETCH_USER, payload: res.data });
 };
