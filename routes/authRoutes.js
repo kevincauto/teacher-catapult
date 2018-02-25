@@ -20,7 +20,7 @@ module.exports = app => {
       if (req.user.teacher) {
         res.redirect('/teaching-jobs-in-pa');
       }
-      //else we need to send a signal to prompt the user to pick a role.
+      //if user has not designated a role, they will be prompted.
       res.redirect('/select-role');
     }
   );
@@ -35,7 +35,6 @@ module.exports = app => {
   });
 
   app.get('/api/teacher-user', requireLogin, async (req, res) => {
-    console.log('I SELECTED TEACHER!!');
     req.user.teacher = true;
     req.user.recruiter = false;
     const user = await req.user.save();
@@ -48,12 +47,10 @@ module.exports = app => {
   });
 
   app.post('/api/recruiter-application', requireLogin, async (req, res) => {
-    console.log('I SELECTED RECRUITER!!');
     const today = getDate();
     const { jobTitle, sd, first, last, email, phone } = req.body;
-    console.log(req.body);
-    // req.user.recruiter = true;
-    // req.user.teacher = false;
+    req.user.recruiter = true;
+    req.user.teacher = false;
     req.user.jobTitle = jobTitle;
     req.user.sd = sd;
     req.user.first = first;

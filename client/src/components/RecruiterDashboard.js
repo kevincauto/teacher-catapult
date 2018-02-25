@@ -70,7 +70,7 @@ class RecruiterDashboard extends Component {
     this.handleZipcodeSearch = this.handleZipcodeSearch.bind(this);
   }
   componentDidUpdate() {
-    console.log(this.state);
+    console.log(this.props.auth);
   }
   handleZipcodeSearch() {
     if (/^\d{5}$/.test(this.state.zipcode)) {
@@ -285,85 +285,133 @@ class RecruiterDashboard extends Component {
     return userleads;
   }
 
-  render() {
+  renderWithLeadPermission() {
     let today = getTodaysDate();
     return (
-      <div className="container">
-        <img src="http://placehold.it/468x60/eee" alt="half masthead ad" />
-        <br />
-        <br />
-        <div className="content-container container">
-          {/* <img src="http://teachercatapult.com/wp-content/themes/jobroller/images/background.jpg" alt="bg" className="bg" />  */}
-
-          <div className="row">
-            <div className="col-md-8 col-lg-9">
-              <center>
-                <h2>Your Dashboard {today}</h2>
-              </center>
-              <h3>
-                Search for teachers by certification, close to your zipcode.
-              </h3>
-              <div className="row">
-                <div className="col-sm-6">
-                  {this.renderCertificationDropdown()}
-                </div>
-                <div className="col-sm-6">
-                  <div className="input-group job-form">
-                    {/* <span className="input-group-addon" id="sizing-addon1">
-                      <span
-                        className="glyphicon glyphicon-globe"
-                        aria-hidden="true"
-                      />
-                    </span> */}
-
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Zipcode"
-                      aria-describedby="sizing-addon1"
-                      name={'zipcode'}
-                      value={this.state.zipcode}
-                      onChange={e => this.handleZipcodeChange(e)}
-                    />
-                    <span className="input-group-btn">
-                      <button
-                        onClick={this.handleZipcodeSearch}
-                        className="btn btn-default"
-                        type="button"
-                      >
-                        <span className="glyphicon glyphicon-search" />
-                      </button>
-                    </span>
-                  </div>
-
-                  {this.renderWarning()}
-                </div>
-              </div>
-              <br />
-
-              <table className="table table-bordered table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th className="position">Teacher Candidates</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.renderTable(this.props.leads, this.props.userleads)}
-                </tbody>
-              </table>
+      <div className="col-md-8 col-lg-9">
+        <center>
+          <h2>Your Dashboard {today}</h2>
+        </center>
+        <h3>Search for teachers by certification, close to your zipcode.</h3>
+        <div className="row">
+          <div className="col-sm-6">{this.renderCertificationDropdown()}</div>
+          <div className="col-sm-6">
+            <div className="input-group job-form">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Zipcode"
+                aria-describedby="sizing-addon1"
+                name={'zipcode'}
+                value={this.state.zipcode}
+                onChange={e => this.handleZipcodeChange(e)}
+              />
+              <span className="input-group-btn">
+                <button
+                  onClick={this.handleZipcodeSearch}
+                  className="btn btn-default"
+                  type="button"
+                >
+                  <span className="glyphicon glyphicon-search" />
+                </button>
+              </span>
             </div>
 
-            <RecruiterSidebar />
+            {this.renderWarning()}
           </div>
         </div>
+        <br />
+
+        <table className="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th className="position">Teacher Candidates</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.renderTable(this.props.leads, this.props.userleads)}
+          </tbody>
+        </table>
       </div>
     );
   }
+
+  render() {
+    let today = getTodaysDate();
+    if (this.props.auth == null) {
+      return (
+        <div className="container">
+          <img
+            src="http://placehold.it/468x60/eee"
+            className="masthead"
+            alt="half masthead ad"
+          />
+          <br />
+          <br />
+          <div className="content-container container">
+            <div className="row">
+              <div className="col-md-8 col-lg-9">
+                <h2>Loading...</h2>
+              </div>
+              <RecruiterSidebar />
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (!this.props.auth.leadPermission) {
+      return (
+        <div className="container">
+          <img
+            src="http://placehold.it/468x60/eee"
+            className="masthead"
+            alt="half masthead ad"
+          />
+          <br />
+          <br />
+          <div className="content-container container">
+            <div className="row">
+              <div className="col-md-8 col-lg-9">
+                <h1>Welcome!</h1>
+                <h2>Your Dashboard {today}</h2>
+                You currently do not have permission to access teacher resume
+                data. We will contact you shortly after registering. In the
+                meantime, you have the ability to post jobs{' '}
+                <a href="/job-post">HERE</a>.
+              </div>
+              <RecruiterSidebar />
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (this.props.auth.leadPermission) {
+      return (
+        <div className="container">
+          <img
+            src="http://placehold.it/468x60/eee"
+            className="masthead"
+            alt="half masthead ad"
+          />
+          <br />
+          <br />
+          <div className="content-container container">
+            <div className="row">
+              {this.renderWithLeadPermission()}
+              <RecruiterSidebar />
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
 }
 
-function mapStateToProps({ leads, userleads }) {
-  if (leads && userleads) {
-    return { leads, userleads };
+function mapStateToProps({ leads, userleads, auth }) {
+  if (leads && userleads && auth) {
+    return { leads, userleads, auth };
   } else {
     return {};
   }

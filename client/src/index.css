@@ -83,6 +83,10 @@ div.admin-bg {
   padding-top: 10px;
   padding-right: 20px;
   padding-left: 20px;
+
+  -webkit-box-shadow: 1px 43px 81px -11px rgba(107, 107, 107, 1);
+  -moz-box-shadow: 1px 43px 81px -11px rgba(107, 107, 107, 1);
+  box-shadow: 1px 43px 81px -11px rgba(107, 107, 107, 1);
 }
 
 h2 {
@@ -672,4 +676,16 @@ pre {
 
 a:hover {
   text-decoration: none;
+}
+
+.masthead {
+  -webkit-box-shadow: 1px 9px 50px -9px rgba(107, 107, 107, 1);
+  -moz-box-shadow: 1px 9px 50px -9px rgba(107, 107, 107, 1);
+  box-shadow: 1px 9px 50px -9px rgba(107, 107, 107, 1);
+}
+
+.navbar {
+  -webkit-box-shadow: 1px 9px 50px -9px rgba(107, 107, 107, 1);
+  -moz-box-shadow: 1px 9px 50px -9px rgba(107, 107, 107, 1);
+  box-shadow: 1px 9px 50px -9px rgba(107, 107, 107, 1);
 }

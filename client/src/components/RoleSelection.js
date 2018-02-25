@@ -7,14 +7,22 @@ class RoleSelection extends Component {
   render() {
     return (
       <div className="container content-container">
-        <h2>Are you a teacher or employer?</h2>
+        <div className="col-md-6">
+          <h2>Are you a teacher or employer?</h2>
 
-        <button onClick={this.props.selectTeacher} className="btn-primary btn">
-          Teacher/Job Seeker
-        </button>
-        <Link to="/recruiter/application">
-          <button className="btn-primary btn">Employer/School District</button>
-        </Link>
+          <button
+            onClick={this.props.selectTeacher}
+            className="btn-primary btn"
+          >
+            Teacher/Job Seeker
+          </button>
+
+          <Link to="/recruiter/application">
+            <button className="btn-primary btn pull-right">
+              Employer/School District
+            </button>
+          </Link>
+        </div>
       </div>
     );
   }
