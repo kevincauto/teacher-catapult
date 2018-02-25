@@ -5,7 +5,7 @@ import _ from 'lodash';
 import getTodaysDate from '../utils/getTodaysDate';
 import CheckBoxes from './SubmitResumeCheckBoxes';
 import RecruiterSidebar from './RecruiterSidebar';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class RecruiterApplication extends Component {
   constructor() {
@@ -14,7 +14,6 @@ class RecruiterApplication extends Component {
       sd: '',
       jobTitle: '',
       phone: '',
-      password: '',
       redirect: false,
       first: '',
       last: '',
@@ -23,22 +22,20 @@ class RecruiterApplication extends Component {
       date: getTodaysDate()
     };
   }
-  componentDidUpdate() {
-    console.log(this.state);
-  }
+
   handleSubmitApplication() {
-    console.log('handleSubmitApplication in RecruiterApplicatin Component');
     this.props.submitRecruiterApplication(this.state);
-    // this.setState({ redirect: true });
+    this.setState({ redirect: true });
   }
+
   handleAgreeToTerms(value) {
     //value returns a string rather than a Boolean
     value = value === 'true' ? true : false;
     value = !value;
     this.setState({ agree: value });
   }
+
   handleFileUpload(file) {
-    console.log('file', file[0]);
     this.setState({ resume: file[0] });
   }
 
@@ -48,8 +45,8 @@ class RecruiterApplication extends Component {
 
   handleSpecialtyChecked(specialty) {
     let arrSpecialties = _.clone(this.state.certifications);
-
     let indexOfDuplicate = arrSpecialties.indexOf(specialty);
+
     if (indexOfDuplicate !== -1) {
       arrSpecialties.splice(indexOfDuplicate, 1);
     } else {
@@ -58,6 +55,7 @@ class RecruiterApplication extends Component {
 
     this.setState({ certifications: arrSpecialties });
   }
+
   renderWarning() {
     if (this.state.showZipcodeWarning === true) {
       return (
@@ -215,7 +213,9 @@ class RecruiterApplication extends Component {
   }
 
   render() {
-    let today = getTodaysDate();
+    if (this.state.redirect) {
+      return <Redirect to="/recruiter/dashboard" />;
+    }
     return (
       <div className="content-container container ">
         <div className="row">

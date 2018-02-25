@@ -63,22 +63,6 @@ module.exports = app => {
     req.user.lastUpdated = today;
 
     const user = await req.user.save();
-    res.send(user);
+    res.redirect('/recruiter/dashboard');
   });
-
-  // app.get(
-  //   '/auth/username',
-  //   passport.authenticate('local', { failureRedirect: '/' }),
-  //   function(req, res) {
-  //     res.send(req.user);
-
-  //     res.redirect('/');
-  //   }
-  // );
 };
-
-// app.post('/login',
-//   passport.authenticate('local', { failureRedirect: '/login' }),
-//   function(req, res) {
-//     res.redirect('/');
-//   });
