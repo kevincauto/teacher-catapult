@@ -1,6 +1,7 @@
 const passport = require('passport');
 const requireLogin = require('../middlewares/requireLogin');
 const { getDate } = require('../utils/helper');
+const keys = require('../config/keys');
 
 module.exports = app => {
   app.get(
@@ -61,5 +62,40 @@ module.exports = app => {
 
     const user = await req.user.save();
     res.redirect('/recruiter/dashboard');
+
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+      service: 'AOL',
+      auth: {
+        user: keys.aolEmail,
+        pass: keys.aolPassword
+      }
+    });
+
+    const emailBody = `
+    Job Title: ${jobTitle}
+    Company/SD: ${sd}
+    First: ${first}
+    Last: ${last}
+    Email: ${email}
+    Phone: ${phone}
+    Updated: ${today}
+`;
+
+    var mailOptions = {
+      from: keys.aolEmail,
+      to: 'kevincauto@aol.com',
+      subject: 'Recruiter Sign-Up',
+      text: emailBody
+    };
+
+    transporter.sendMail(mailOptions, function(error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
   });
 };

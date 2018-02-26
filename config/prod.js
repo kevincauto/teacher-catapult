@@ -9,5 +9,7 @@ module.exports = {
   sendGridKey: process.env.SEND_GRID_KEY,
   redirectDomain: process.env.REDIRECT_DOMAIN,
   mailchimpListUniqueId: process.env.MAILCHIMP_LIST_ID,
-  mailchimpApiKey: process.env.MAILCHIMP_API_KEY
+  mailchimpApiKey: process.env.MAILCHIMP_API_KEY,
+  aolEmail: process.env.AOL_EMAIL,
+  aolPassword: process.env.AOL_PASSWORD
 };
