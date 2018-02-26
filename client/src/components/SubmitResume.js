@@ -12,6 +12,7 @@ class SubmitResume extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loginWarning: false,
       redirect: false,
       first: '',
       last: '',
@@ -279,6 +280,34 @@ class SubmitResume extends Component {
     if (this.state.redirect) {
       return <Redirect to="/teaching-jobs-in-pa" />;
     }
+    if (this.props.auth == null) {
+      return (
+        <div className="content-container container ">
+          <div className="row">
+            <div className="col-md-8 col-lg-9">
+              <h1>Loading...</h1>
+            </div>
+            <RightSidebar />
+          </div>
+        </div>
+      );
+    }
+
+    if (!this.props.auth) {
+      return (
+        <div className="content-container container ">
+          <div className="row">
+            <div className="col-md-8 col-lg-9">
+              <h1>Please Login First.</h1>
+              <a href="/auth/google" target="_blank">
+                <button className="btn btn-primary">Login</button>
+              </a>
+            </div>
+            <RightSidebar />
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="content-container container ">
         <div className="row">
@@ -292,5 +321,8 @@ class SubmitResume extends Component {
     );
   }
 }
+function mapStateToProps({ auth }) {
+  return { auth };
+}
 
-export default connect(null, actions)(SubmitResume);
+export default connect(mapStateToProps, actions)(SubmitResume);
