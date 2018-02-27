@@ -7,7 +7,7 @@ class RoleSelection extends Component {
   render() {
     return (
       <div className="container content-container">
-        <div className="col-md-6">
+        <div className="col-md-6 extended">
           <h2>Are you a teacher or employer?</h2>
 
           <button

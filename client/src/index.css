@@ -689,3 +689,7 @@ a:hover {
   -moz-box-shadow: 1px 9px 50px -9px rgba(107, 107, 107, 1);
   box-shadow: 1px 9px 50px -9px rgba(107, 107, 107, 1);
 }
+
+.extended {
+  min-height: 500px;
+}
