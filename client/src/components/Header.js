@@ -74,9 +74,9 @@ class Header extends Component {
                   Interview Guide
                 </Link>
               </Navbar.Text>
-              <Navbar.Text>
+              {/* <Navbar.Text>
                 <Link to="/teaching-articles">Helpful Resources!</Link>
-              </Navbar.Text>
+              </Navbar.Text> */}
               {/* <MenuItem divider />
       <MenuItem eventKey={3.4}>Separated link</MenuItem> */}
             </NavDropdown>
