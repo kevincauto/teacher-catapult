@@ -25,13 +25,18 @@ class Header extends Component {
           // <NavItem eventKey={1} key={1} href="#">
           //   <Payments>Payment</Payments>
           // </NavItem>,
-          <NavItem eventKey={2} key={2}>
-            Job Posts Left: {this.props.auth.credits}
+          <NavItem eventKey={2} key={2} href={'/job-post'}>
+            Post a Job
+            {/* Job Posts Left: {this.props.auth.credits} */}
           </NavItem>,
           <NavItem
             eventKey={3}
             key={3}
-            href={this.props.auth ? '/recruiter/dashboard' : '/'}
+            href={
+              this.props.auth.recruiter
+                ? '/recruiter/dashboard'
+                : '/teaching-jobs-in-pa'
+            }
           >
             Dashboard
           </NavItem>,
@@ -76,9 +81,9 @@ class Header extends Component {
       <MenuItem eventKey={3.4}>Separated link</MenuItem> */}
             </NavDropdown>
           </Nav>
-          <Navbar.Text key={5}>
+          {/* <Navbar.Text key={5}>
             <Link to="/job-post">Post a Job</Link>
-          </Navbar.Text>
+          </Navbar.Text> */}
           <Nav pullRight>{this.renderContent()}</Nav>
         </Navbar.Collapse>
       </Navbar>
