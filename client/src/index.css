@@ -693,3 +693,8 @@ a:hover {
 .extended {
   min-height: 500px;
 }
+
+.role-image {
+  width: 100%;
+  padding: 0 0 10px;
+}
