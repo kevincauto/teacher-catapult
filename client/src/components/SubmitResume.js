@@ -26,21 +26,13 @@ class SubmitResume extends Component {
       certYear: '2018',
       agree: false
     };
-
-    this.handleFileUpload = this.handleFileUpload.bind(this);
-    this.handleFieldChange = this.handleFieldChange.bind(this);
-    this.renderYearDropdown = this.renderYearDropdown.bind(this);
-    this.handleSpecialtyChecked = this.handleSpecialtyChecked.bind(this);
-    this.handleAgreeToTerms = this.handleAgreeToTerms.bind(this);
-    this.handleSubmitResume = this.handleSubmitResume.bind(this);
   }
   componentDidUpdate() {
     console.log(this.state);
   }
   handleSubmitResume() {
-    console.log(this.state);
     this.props.submitResume(this.state);
-    // this.setState({ redirect: true });
+    this.setState({ redirect: true });
   }
   handleAgreeToTerms(value) {
     //value returns a string rather than a Boolean
@@ -52,11 +44,9 @@ class SubmitResume extends Component {
     console.log('file', file[0]);
     this.setState({ resume: file[0] });
   }
-
   handleFieldChange(value, name) {
     this.setState({ [name]: value });
   }
-
   handleSpecialtyChecked(specialty) {
     let arrSpecialties = _.clone(this.state.certifications);
 
@@ -93,12 +83,14 @@ class SubmitResume extends Component {
       zipcode,
       relocate,
       substitute,
-      agree
+      agree,
+      resume
     } = this.state;
 
     return (
       <div className="well well-lg clearfix">
         <h2>Please complete the information below.</h2>
+        <span className="pull-right required-red">&nbsp;</span>
         <div className="input-group input-group-lg job-form">
           <span className="input-group-addon" id="sizing-addon1">
             <span
@@ -108,7 +100,7 @@ class SubmitResume extends Component {
           </span>
           <input
             type="text"
-            className="form-control"
+            className="form-control "
             placeholder="First Name"
             aria-describedby="sizing-addon1"
             name={'first'}
@@ -118,7 +110,7 @@ class SubmitResume extends Component {
             }
           />
         </div>
-
+        <span className="pull-right required-red">&nbsp;</span>
         <div className="input-group input-group-lg job-form">
           <span className="input-group-addon" id="sizing-addon1">
             <span className="glyphicon glyphicon-apple" aria-hidden="true" />
@@ -135,6 +127,7 @@ class SubmitResume extends Component {
             }
           />
         </div>
+        <span className="pull-right required-red">*</span>
         <div className="input-group input-group-lg job-form">
           <span className="input-group-addon" id="sizing-addon1">
             @
@@ -151,13 +144,23 @@ class SubmitResume extends Component {
             }
           />
         </div>
-        <h3>What is your teaching certification?</h3>
+        <h3>
+          What is your teaching certification?
+          {/* <span className="required-red">
+            *
+          </span> */}
+        </h3>
         <CheckBoxes
           onSpecialtyChecked={specialty =>
             this.handleSpecialtyChecked(specialty)
           }
         />
-        <h3>When did or when will you get your teaching certification?</h3>
+        <h3>
+          When did or when will you get your teaching certification?
+          {/* <span className="required-red">
+            *
+          </span> */}
+        </h3>
         <div className="input-group input-group-lg job-form flex">
           <select
             className="form-control"
@@ -193,7 +196,11 @@ class SubmitResume extends Component {
             {this.renderYearDropdown()}
           </select>
         </div>
-        <h3>Where are you located?</h3>
+        <h3>
+          Where are you located?
+          {/* <span className="required-red">*</span> */}
+        </h3>
+
         <div className="input-group input-group-lg job-form">
           <span className="input-group-addon" id="sizing-addon1">
             <span className="glyphicon glyphicon-globe" aria-hidden="true" />
@@ -210,7 +217,12 @@ class SubmitResume extends Component {
             }
           />
         </div>
-        <h3>Would you consider relocating for a job?</h3>
+        <h3>
+          Would you consider relocating for a job?
+          {/* <span className="required-red">
+            *
+          </span> */}
+        </h3>
         <div className="input-group input-group-lg job-form">
           <select
             className="form-control"
@@ -225,7 +237,13 @@ class SubmitResume extends Component {
             <option value="false">No</option>
           </select>
         </div>
-        <h3>Would you like to be considered for substitute jobs?</h3>
+        <h3>
+          Would you like to be considered for substitute jobs?
+          {/* <span className="required-red">
+            *
+          </span> */}
+        </h3>
+
         <div className="input-group input-group-lg job-form">
           <select
             className="form-control"
@@ -242,10 +260,12 @@ class SubmitResume extends Component {
         </div>
 
         <SimpleReactFileUpload onUpload={file => this.handleFileUpload(file)} />
+
         <h4>
           Check the box if you agree to the terms and grant permission for us to
-          share your information.
+          share your information.<span className="required-red">*</span>
         </h4>
+
         <div className="checkbox">
           <label>
             <input
@@ -261,25 +281,37 @@ class SubmitResume extends Component {
             </Link>.
           </label>
         </div>
-        <button
-          className="btn btn-success pull-right btn-lg"
-          onClick={() => this.handleSubmitResume()}
-          // disabled={!(email && agree && resume)}
-        >
-          Submit{' '}
-          <span
-            className="glyphicon glyphicon-arrow-right"
-            aria-hidden="true"
-          />
-        </button>
+        <div>
+          <button
+            className="btn btn-success pull-right btn-lg"
+            onClick={() => this.handleSubmitResume()}
+            disabled={!(email && agree && resume)}
+          >
+            Submit{' '}
+            <span
+              className="glyphicon glyphicon-arrow-right"
+              aria-hidden="true"
+            />
+          </button>
+        </div>
+        <br />
+        <div>
+          <p>
+            <span className="clear-fix required-message">
+              <span className="required-red">*</span>required fields
+            </span>
+          </p>
+        </div>
       </div>
     );
   }
 
   render() {
+    //redirect after submission
     if (this.state.redirect) {
       return <Redirect to="/teaching-jobs-in-pa" />;
     }
+    //loading auth data
     if (this.props.auth == null) {
       return (
         <div className="content-container container ">
@@ -292,7 +324,7 @@ class SubmitResume extends Component {
         </div>
       );
     }
-
+    //not logged in
     if (!this.props.auth) {
       return (
         <div className="content-container container ">
@@ -308,6 +340,7 @@ class SubmitResume extends Component {
         </div>
       );
     }
+    //allow them to fill out the form if they are signed in.
     return (
       <div className="content-container container ">
         <div className="row">

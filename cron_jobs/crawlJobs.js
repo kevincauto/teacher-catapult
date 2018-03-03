@@ -3,7 +3,7 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 
 var Nightmare = require('nightmare'),
-  nightmare = Nightmare();
+  nightmare = Nightmare({ show: true });
 
 const waitUntil = require('wait-until');
 const schedule = require('node-schedule');
@@ -135,7 +135,7 @@ function saveNewJobs() {
   }
 }
 
-const scheduledJobCrawler = schedule.scheduleJob('50 * * * *', function() {
+const scheduledJobCrawler = schedule.scheduleJob('53 * * * *', function() {
   resultsLog = [];
   allJobPosts = [];
 
