@@ -98,11 +98,7 @@ class PAJobs extends Component {
     today = mm + '-' + dd + '-' + yyyy;
     return (
       <div className="container">
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1j20ebms4PlFz3Jaq_YgYQlXkPXqmxctQ2aznht4Qs2Va0Dmm_w"
-          alt="bg"
-          className="bg"
-        />
+        <img src="../../img/mountain-background.jpeg" alt="bg" className="bg" />
         <img
           src="http://placehold.it/468x60/eee"
           className="masthead"

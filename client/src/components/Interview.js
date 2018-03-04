@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RightSidebar from './RightSidebar';
 
 class Interview extends Component {
+  //mountain-background.jpeg
   constructor() {
     super();
     this.state = {
@@ -140,12 +141,20 @@ class Interview extends Component {
   render() {
     return (
       <div className="container">
-        <img src="http://placehold.it/468x60/eee" alt="half masthead ad" />
+        <img
+          src="http://placehold.it/468x60/eee"
+          className="masthead"
+          alt="half masthead ad"
+        />
         <br />
         <br />
 
         <div className="content-container container">
-          {/* <img src="http://teachercatapult.com/wp-content/themes/jobroller/images/background.jpg" alt="bg" className="bg" />  */}
+          <img
+            src="../../img/mountain-background.jpeg"
+            alt="bg"
+            className="bg"
+          />
 
           <div className="row">
             <div className="col-md-8 col-lg-9">

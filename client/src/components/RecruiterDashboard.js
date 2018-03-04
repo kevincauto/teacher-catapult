@@ -342,6 +342,11 @@ class RecruiterDashboard extends Component {
       return (
         <div className="container">
           <img
+            src="../../img/mountain-background.jpeg"
+            alt="bg"
+            className="bg"
+          />
+          <img
             src="http://placehold.it/468x60/eee"
             className="masthead"
             alt="half masthead ad"
@@ -363,6 +368,11 @@ class RecruiterDashboard extends Component {
     if (!this.props.auth.leadPermission) {
       return (
         <div className="container">
+          <img
+            src="../../img/mountain-background.jpeg"
+            alt="bg"
+            className="bg"
+          />
           <img
             src="http://placehold.it/468x60/eee"
             className="masthead"
@@ -390,6 +400,11 @@ class RecruiterDashboard extends Component {
     if (this.props.auth.leadPermission) {
       return (
         <div className="container">
+          <img
+            src="../../img/mountain-background.jpeg"
+            alt="bg"
+            className="bg"
+          />
           <img
             src="http://placehold.it/468x60/eee"
             className="masthead"

@@ -12,7 +12,7 @@ img.bg {
   top: 0;
   left: 0;
   z-index: -1;
-  opacity: 0.85;
+  /* opacity: 0.85; */
 }
 
 div.admin-bg {
@@ -45,10 +45,22 @@ div.admin-bg {
 }
 
 .landing-page-text {
-  margin: auto;
-  padding: 220px 0px;
-  width: 85%;
+  margin: -20px auto 0px;
+  padding: 200px 20px 30%;
+  display: block;
   text-align: center;
+  /* background-color: rgba(247, 191, 7, 0.253); */
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(221, 181, 0, 0.4),
+    rgba(233, 77, 4, 0.4)
+  );
+}
+
+@media only screen and (min-width: 900px) {
+  .landing-page-text {
+    padding: 300px 20px 30%;
+  }
 }
 /* .landing-page-text h1{
     color: #000;
@@ -682,6 +694,8 @@ a:hover {
   -webkit-box-shadow: 1px 9px 50px -9px rgba(107, 107, 107, 1);
   -moz-box-shadow: 1px 9px 50px -9px rgba(107, 107, 107, 1);
   box-shadow: 1px 9px 50px -9px rgba(107, 107, 107, 1);
+  width: 100%;
+  max-width: 468px;
 }
 
 .navbar {
