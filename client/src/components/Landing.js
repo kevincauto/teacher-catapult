@@ -11,7 +11,7 @@ const Landing = () => {
       />
 
       <div className="landing-page-text">
-        <h1>
+        <h1 className="primary-header">
           Launch Your Pennsylvania<br />
           Teaching Career!
         </h1>

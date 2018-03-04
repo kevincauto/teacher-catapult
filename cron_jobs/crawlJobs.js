@@ -3,7 +3,8 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 
 var Nightmare = require('nightmare'),
-  nightmare = Nightmare({ show: true });
+  nightmare = Nightmare();
+//To actually view browser: { show: true }
 
 const waitUntil = require('wait-until');
 const schedule = require('node-schedule');

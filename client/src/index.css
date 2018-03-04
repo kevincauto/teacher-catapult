@@ -61,6 +61,9 @@ div.admin-bg {
   .landing-page-text {
     padding: 300px 20px 30%;
   }
+  .primary-header {
+    font-size: 50px;
+  }
 }
 /* .landing-page-text h1{
     color: #000;

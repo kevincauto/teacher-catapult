@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import RightSidebar from './RightSidebar';
 
 class Interview extends Component {
-  //mountain-background.jpeg
   constructor() {
     super();
     this.state = {
@@ -444,12 +443,12 @@ class Interview extends Component {
               </div>
               <br />
               <div className="well well-lg">
-                <strong>Hint:</strong> Have a 30-second to 2-minute
-                summaryspeech about yourself prepared beforehand. Think about
-                this as a commercial about yourself. Consider what makes you a
-                great candidate and what makes you different from other teachers
-                out there. Let your interviewers know what sets you apart from
-                the rest of the pack.
+                <strong>Hint:</strong> Have a 30-second to 2-minute summary
+                about yourself prepared beforehand. Think about this as a
+                commercial about yourself. Consider what makes you a great
+                candidate and what makes you different from other teachers out
+                there. Let your interviewers know what sets you apart from the
+                rest of the pack.
               </div>
               <h3>Question #2:</h3>
               <div>
