@@ -9,6 +9,11 @@ class TermsConditions extends Component {
         <br />
         <br />
         <div className="content-container container">
+          <img
+            src="../../img/mountain-background.jpeg"
+            alt="bg"
+            className="bg"
+          />
           <div className="row">
             <div className="col-md-8 col-lg-9">
               <center>

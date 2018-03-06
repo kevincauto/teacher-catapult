@@ -7,6 +7,7 @@ class RoleSelection extends Component {
   render() {
     return (
       <div className="container content-container">
+        <img src="../../img/mountain-background.jpeg" alt="bg" className="bg" />
         <h2>Are you a teacher or employer?</h2>
         <div className="extended">
           <div className="row">

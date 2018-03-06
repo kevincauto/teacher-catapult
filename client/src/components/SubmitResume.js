@@ -315,6 +315,11 @@ class SubmitResume extends Component {
     if (this.props.auth == null) {
       return (
         <div className="content-container container ">
+          <img
+            src="../../img/mountain-background.jpeg"
+            alt="bg"
+            className="bg"
+          />
           <div className="row">
             <div className="col-md-8 col-lg-9">
               <h1>Loading...</h1>
@@ -328,6 +333,11 @@ class SubmitResume extends Component {
     if (!this.props.auth) {
       return (
         <div className="content-container container ">
+          <img
+            src="../../img/mountain-background.jpeg"
+            alt="bg"
+            className="bg"
+          />
           <div className="row">
             <div className="col-md-8 col-lg-9">
               <h1>Please Login First.</h1>
@@ -343,6 +353,7 @@ class SubmitResume extends Component {
     //allow them to fill out the form if they are signed in.
     return (
       <div className="content-container container ">
+        <img src="../../img/mountain-background.jpeg" alt="bg" className="bg" />
         <div className="row">
           <div className="col-md-8 col-lg-9">
             <h1>Allow Employers to Find You!</h1>
