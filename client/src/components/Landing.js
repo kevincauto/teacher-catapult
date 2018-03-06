@@ -15,10 +15,10 @@ const Landing = () => {
           Launch Your Pennsylvania<br />
           Teaching Career!
         </h1>
-        <Link to="/teaching-jobs-in-pa" className="btn btn-primary">
+        <Link to="/teaching-jobs-in-pa" className="btn btn-primary btn-landing">
           View Jobs
         </Link>&nbsp;
-        <Link to="/submit-your-resume" className="btn btn-primary">
+        <Link to="/submit-your-resume" className="btn btn-primary btn-landing">
           Submit Your Resume
         </Link>
         {/* &nbsp; 
