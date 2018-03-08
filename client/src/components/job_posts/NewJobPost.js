@@ -28,6 +28,7 @@ class NewJobPost extends Component {
 
   componentDidUpdate() {
     console.log(this.state);
+    console.log(this.props.auth);
   }
   handleFormUpdate() {
     this.setState();
@@ -66,6 +67,15 @@ class NewJobPost extends Component {
   }
 
   renderContent() {
+    if (!this.props.auth) {
+      return (
+        <div className="col-md-8 col-lg-9">
+          <h1>
+            You must <a href="/auth/google">login</a> to post a job.
+          </h1>
+        </div>
+      );
+    }
     if (this.state.showTheForm === true) {
       return (
         <JobPostForm
@@ -102,4 +112,8 @@ class NewJobPost extends Component {
   }
 }
 
-export default connect(null, actions)(NewJobPost);
+function mapStateToProps({ auth }) {
+  return { auth };
+}
+
+export default connect(mapStateToProps, actions)(NewJobPost);

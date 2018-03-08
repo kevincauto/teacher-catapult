@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Payments from './Payments';
+
 import { Navbar, Nav, NavDropdown, NavItem } from 'react-bootstrap';
 
 class Header extends Component {
@@ -22,9 +22,6 @@ class Header extends Component {
         );
       default:
         return [
-          // <NavItem eventKey={1} key={1} href="#">
-          //   <Payments>Payment</Payments>
-          // </NavItem>,
           <NavItem eventKey={2} key={2} href={'/job-post'}>
             Post a Job
             {/* Job Posts Left: {this.props.auth.credits} */}
