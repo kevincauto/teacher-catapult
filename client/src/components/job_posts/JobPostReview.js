@@ -14,6 +14,7 @@ class JobPostReview extends Component {
   render() {
     return (
       <div className="col-md-8 col-lg-9">
+        <img src="../../img/mountain-background.jpeg" alt="bg" className="bg" />
         <h1>Review your job post information.</h1>
         <div className="well well-lg">
           <div>Job Title: {this.props.data.jobTitle}</div>

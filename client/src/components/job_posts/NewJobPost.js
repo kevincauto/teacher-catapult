@@ -103,6 +103,7 @@ class NewJobPost extends Component {
 
     return (
       <div className="container content-container">
+        <img src="../../img/mountain-background.jpeg" alt="bg" className="bg" />
         <div className="row">
           {this.renderContent()}
           <RightSidebar />
