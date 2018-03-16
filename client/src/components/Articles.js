@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RightSidebar from './RightSidebar';
 
 class Articles extends Component {
   render() {
