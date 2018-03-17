@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RightSidebar from './RightSidebar';
+import Collapsible from 'react-collapsible';
 
 class Interview extends Component {
   constructor() {
@@ -442,109 +443,125 @@ class Interview extends Component {
                 <strong>{this.state.q1}</strong>
               </div>
               <br />
-              <div className="well well-lg">
-                <strong>Hint:</strong> Have a 30-second to 2-minute summary
-                about yourself prepared beforehand. Think about this as a
-                commercial about yourself. Consider what makes you a great
-                candidate and what makes you different from other teachers out
-                there. Let your interviewers know what sets you apart from the
-                rest of the pack.
+              <Collapsible trigger="Click here for a hint." transitionTime={100}>
+                <div className="well well-lg">
+                  <strong>Hint:</strong> Have a 30-second to 2-minute summary
+                  about yourself prepared beforehand. Think about this as a
+                  commercial about yourself. Consider what makes you a great
+                  candidate and what makes you different from other teachers out
+                  there. Let your interviewers know what sets you apart from the
+                  rest of the pack.
               </div>
+              </Collapsible>
               <h3>Question #2:</h3>
               <div>
                 <strong>{this.state.q2}</strong> <br />
               </div>
               <br />
-              <div className="well well-lg">
-                <strong>Hint:</strong> The answer to this question will be
-                personal to you. Try to work in phrases like "I'm passionate
-                about helpingstudents/children and I find teaching an incredibly
-                rewarding experience." AVOID saying things like "I'm in it for
-                the paycheck and love my summers off."
+              <Collapsible trigger="Click here for a hint." transitionTime={100}>
+                <div className="well well-lg">
+                  <strong>Hint:</strong> The answer to this question will be
+                  personal to you. Try to work in phrases like "I'm passionate
+                  about helping students/children and I find teaching an incredibly
+                  rewarding experience." AVOID saying things like "I'm in it for
+                  the paycheck and love my summers off."
               </div>
+              </Collapsible>
               <h3>Question #3:</h3>
               <div>
                 <strong>{this.state.q3}</strong>
               </div>
               <br />
-              <div className="well well-lg">
-                <strong>Hint:</strong> Again, the answer to this will be
-                personal to you, but keep in mind that you may run into
-                questions that you may not be prepared for. Sometimes you will
-                get questions that are meant to "throw you off" a bit. Some are
-                easier than others to improvise with an answer. Just stay calm
-                and answer this question as best as possible. This may be
-                testing to see how you react to unexpected things.
+              <Collapsible trigger="Click here for a hint." transitionTime={100}>
+                <div className="well well-lg">
+                  <strong>Hint:</strong> Again, the answer to this will be
+                  personal to you, but keep in mind that you may run into
+                  questions that you may not be prepared for. Sometimes you will
+                  get questions that are meant to "throw you off" a bit. Some are
+                  easier than others to improvise with an answer. Just stay calm
+                  and answer this question as best as possible. This may be
+                  testing to see how you react to unexpected things.
               </div>
+              </Collapsible>
               <h3>Question #4:</h3>
               <div>
                 <strong>{this.state.q4}</strong>
               </div>
               <br />
-              <div className="well well-lg">
-                <strong>Hint:</strong> It is common to get a question about
-                classroom management and behavior. You should have an anecdotal
-                account of how you turned a bad situation into a positive one.
-                Explain that teachers should always have a backup plan and that
-                they should expect the unexpected. Also, make sure you note that
-                classroom management begins with your own preparation and lesson
-                plan. An engaging lesson, means engaged students and engaged
-                student leaves them no time to misbehave.
+              <Collapsible trigger="Click here for a hint." transitionTime={100}>
+                <div className="well well-lg">
+                  <strong>Hint:</strong> It is common to get a question about
+                  classroom management and behavior. You should have an anecdotal
+                  account of how you turned a bad situation into a positive one.
+                  Explain that teachers should always have a backup plan and that
+                  they should expect the unexpected. Also, make sure you note that
+                  classroom management begins with your own preparation and lesson
+                  plan. An engaging lesson, means engaged students and engaged
+                  student leaves them no time to misbehave.
               </div>
+              </Collapsible>
               <h3>Question #5:</h3>
               <div>
                 <strong>{this.state.q5}</strong>
               </div>
               <br />
-              <div className="well well-lg">
-                <strong>Hint:</strong> This question refers to your teaching
-                style. Think back to your teaching experiences or student
-                teaching experiences. Think about what works best for you and
-                what an ideal lesson would look like. In a perfect world, you
-                want to be able to describe lesson that is fun, creative,
-                connects to the real world, adheres to standards, includes a
-                check for learning, and utilizes technology.
+              <Collapsible trigger="Click here for a hint." transitionTime={100}>
+                <div className="well well-lg">
+                  <strong>Hint:</strong> This question refers to your teaching
+                  style. Think back to your teaching experiences or student
+                  teaching experiences. Think about what works best for you and
+                  what an ideal lesson would look like. In a perfect world, you
+                  want to be able to describe lesson that is fun, creative,
+                  connects to the real world, adheres to standards, includes a
+                  check for learning, and utilizes technology.
               </div>
+              </Collapsible>
               <h3>Question #6:</h3>
               <div>
                 <strong>{this.state.q6}</strong>
               </div>
               <br />
-              <div className="well well-lg">
-                <strong>Hint:</strong> Let your interviewers know that
-                differentiating instruction is important and that you implement
-                strategies on a regular basis. All students
-                don".$single_quote."t learn in the same way, so it is important
-                to present ideas in more than one way. It is also important to
-                engage both gifted and struggling students. Think up a list of
-                ways you differentiate instruction and be prepared to share
-                actual examples.
+              <Collapsible trigger="Click here for a hint." transitionTime={100}>
+                <div className="well well-lg">
+                  <strong>Hint:</strong> Let your interviewers know that
+                  differentiating instruction is important and that you implement
+                  strategies on a regular basis. All students
+                  don".$single_quote."t learn in the same way, so it is important
+                  to present ideas in more than one way. It is also important to
+                  engage both gifted and struggling students. Think up a list of
+                  ways you differentiate instruction and be prepared to share
+                  actual examples.
               </div>
+              </Collapsible>
               <h3>Question #7:</h3>
               <div>
                 <strong>{this.state.q7}</strong>
               </div>
               <br />
-              <div className="well well-lg">
-                <strong>Hint:</strong> Communication is a key part of education,
-                whether it be with a student, co-worker, administrator, or
-                parent. Be sure that you are regular communication with the
-                people around you. Have a specific describable plan to keep
-                parents "in the loop". Good communication with parents can be an
-                incredible force to get a child to behave and learn in the
-                classroom.
+              <Collapsible trigger="Click here for a hint." transitionTime={100}>
+                <div className="well well-lg">
+                  <strong>Hint:</strong> Communication is a key part of education,
+                  whether it be with a student, co-worker, administrator, or
+                  parent. Be sure that you are regular communication with the
+                  people around you. Have a specific describable plan to keep
+                  parents "in the loop". Good communication with parents can be an
+                  incredible force to get a child to behave and learn in the
+                  classroom.
               </div>
+              </Collapsible>
               <h3>Question #8:</h3>
               <div>
                 <strong>{this.state.q8}</strong>
               </div>
               <br />
-              <div className="well well-lg">
-                <strong>Hint:</strong> Always have a couple questions prepared
-                to ask at the end of the interview. Possible questions: "What is
-                it that YOU love about working here?" or "What originally
-                attracted you to work at this school?"
+              <Collapsible trigger="Click here for a hint." transitionTime={100}>
+                <div className="well well-lg">
+                  <strong>Hint:</strong> Always have a couple questions prepared
+                  to ask at the end of the interview. Possible questions: "What is
+                  it that YOU love about working here?" or "What originally
+                  attracted you to work at this school?"
               </div>
+              </Collapsible>
               <div className="text-center">
                 <button
                   className="btn btn-primary"
@@ -553,6 +570,7 @@ class Interview extends Component {
                   Generate a Random Set of Interview Questions!
                 </button>
               </div>
+
             </div>
 
             <RightSidebar />
