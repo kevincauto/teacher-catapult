@@ -443,7 +443,7 @@ class Interview extends Component {
                 <strong>{this.state.q1}</strong>
               </div>
               <br />
-              <Collapsible trigger="Click here for a hint." transitionTime={100}>
+              <Collapsible className="clickable" trigger="Click here for a hint." transitionTime={100}>
                 <div className="well well-lg">
                   <strong>Hint:</strong> Have a 30-second to 2-minute summary
                   about yourself prepared beforehand. Think about this as a
@@ -458,7 +458,7 @@ class Interview extends Component {
                 <strong>{this.state.q2}</strong> <br />
               </div>
               <br />
-              <Collapsible trigger="Click here for a hint." transitionTime={100}>
+              <Collapsible className="clickable" trigger="Click here for a hint." transitionTime={100}>
                 <div className="well well-lg">
                   <strong>Hint:</strong> The answer to this question will be
                   personal to you. Try to work in phrases like "I'm passionate
@@ -472,7 +472,7 @@ class Interview extends Component {
                 <strong>{this.state.q3}</strong>
               </div>
               <br />
-              <Collapsible trigger="Click here for a hint." transitionTime={100}>
+              <Collapsible className="clickable" trigger="Click here for a hint." transitionTime={100}>
                 <div className="well well-lg">
                   <strong>Hint:</strong> Again, the answer to this will be
                   personal to you, but keep in mind that you may run into
@@ -488,7 +488,7 @@ class Interview extends Component {
                 <strong>{this.state.q4}</strong>
               </div>
               <br />
-              <Collapsible trigger="Click here for a hint." transitionTime={100}>
+              <Collapsible className="clickable" trigger="Click here for a hint." transitionTime={100}>
                 <div className="well well-lg">
                   <strong>Hint:</strong> It is common to get a question about
                   classroom management and behavior. You should have an anecdotal
@@ -505,7 +505,7 @@ class Interview extends Component {
                 <strong>{this.state.q5}</strong>
               </div>
               <br />
-              <Collapsible trigger="Click here for a hint." transitionTime={100}>
+              <Collapsible className="clickable" trigger="Click here for a hint." transitionTime={100}>
                 <div className="well well-lg">
                   <strong>Hint:</strong> This question refers to your teaching
                   style. Think back to your teaching experiences or student
@@ -521,7 +521,7 @@ class Interview extends Component {
                 <strong>{this.state.q6}</strong>
               </div>
               <br />
-              <Collapsible trigger="Click here for a hint." transitionTime={100}>
+              <Collapsible className="clickable" trigger="Click here for a hint." transitionTime={100}>
                 <div className="well well-lg">
                   <strong>Hint:</strong> Let your interviewers know that
                   differentiating instruction is important and that you implement
@@ -538,7 +538,7 @@ class Interview extends Component {
                 <strong>{this.state.q7}</strong>
               </div>
               <br />
-              <Collapsible trigger="Click here for a hint." transitionTime={100}>
+              <Collapsible className="clickable" trigger="Click here for a hint." transitionTime={100}>
                 <div className="well well-lg">
                   <strong>Hint:</strong> Communication is a key part of education,
                   whether it be with a student, co-worker, administrator, or
@@ -554,7 +554,7 @@ class Interview extends Component {
                 <strong>{this.state.q8}</strong>
               </div>
               <br />
-              <Collapsible trigger="Click here for a hint." transitionTime={100}>
+              <Collapsible className="clickable" trigger="Click here for a hint." transitionTime={100}>
                 <div className="well well-lg">
                   <strong>Hint:</strong> Always have a couple questions prepared
                   to ask at the end of the interview. Possible questions: "What is

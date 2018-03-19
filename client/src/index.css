@@ -728,3 +728,8 @@ a:hover {
 .required-message {
   color: rgb(158, 11, 11);
 }
+
+.clickable{
+  cursor: pointer;
+}
+
