@@ -17,13 +17,13 @@ class JobPostReview extends Component {
         <img src="../../img/mountain-background.jpeg" alt="bg" className="bg" />
         <h1>Review your job post information.</h1>
         <div className="well well-lg">
-          <div>Job Title: {this.props.data.jobTitle}</div>
-          <div>School District: {this.props.data.sd}</div>
-          <div>City: {this.props.data.city}</div>
-          <div>State: {this.props.data.state}</div>
-          <div>County: {this.props.data.county}</div>
-          <div>
-            Description: <pre>{this.props.data.description}</pre>
+          <div><strong>Job Title:</strong> {this.props.data.jobTitle}</div>
+          <div><strong>School District:</strong> {this.props.data.sd}</div>
+          <div><strong>City:</strong> {this.props.data.city}</div>
+          <div><strong>State:</strong> {this.props.data.state}</div>
+          <div><strong>County:</strong> {this.props.data.county}</div>
+          <div className="newline">
+            <strong>Description:</strong> <p className="description">{this.props.data.description}</p>
           </div>
           <div className="well row">
             <h2>

@@ -733,3 +733,11 @@ a:hover {
   cursor: pointer;
 }
 
+.newline{
+  white-space: pre-line;
+}
+
+.description{
+  padding: 0px 10px;
+}
+
