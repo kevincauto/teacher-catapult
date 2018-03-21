@@ -34,8 +34,8 @@ function paEducatorSearch() {
     '#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(7)'
   ];
   strings
-    .reduce(function(accumulator, string) {
-      return accumulator.then(function(results) {
+    .reduce(function (accumulator, string) {
+      return accumulator.then(function (results) {
         return nightmare
           .goto('https://www.paeducator.net/')
           .wait('body')
@@ -57,6 +57,7 @@ function paEducatorSearch() {
               let position = document.querySelector(p).innerHTML;
               let city = document.querySelector(c).innerHTML;
               let date = document.querySelector(d).innerHTML;
+              date = date.replace(/\//g, '-');
               let sd = document.querySelector(s).innerHTML;
               counter++;
               arr.push({
@@ -74,7 +75,7 @@ function paEducatorSearch() {
 
             return arr;
           })
-          .then(function(results) {
+          .then(function (results) {
             console.log('in');
             results.map(job => {
               allJobPosts.push(job);
@@ -83,7 +84,7 @@ function paEducatorSearch() {
           });
       });
     }, Promise.resolve([]))
-    .then(function(results) {
+    .then(function (results) {
       done = true;
     });
 }
@@ -136,11 +137,11 @@ function saveNewJobs() {
   }
 }
 
-const scheduledJobCrawler = schedule.scheduleJob('53 * * * *', function() {
+const scheduledJobCrawler = schedule.scheduleJob('53 * * * *', function () {
   resultsLog = [];
   allJobPosts = [];
 
-  School.find({}).exec(async function(err, schools) {
+  School.find({}).exec(async function (err, schools) {
     if (err) {
       console.log(err);
     } else {
@@ -151,11 +152,11 @@ const scheduledJobCrawler = schedule.scheduleJob('53 * * * *', function() {
       waitUntil()
         .interval(3000)
         .times(schools.length)
-        .condition(function() {
+        .condition(function () {
           console.log(`${resultsLog.length}/${schools.length}`);
           return resultsLog.length >= schools.length;
         })
-        .done(async function(result) {
+        .done(async function (result) {
           console.log(resultsLog);
           let jobsAreRemoved = await removeOldJobs();
           if (jobsAreRemoved) {
@@ -167,4 +168,4 @@ const scheduledJobCrawler = schedule.scheduleJob('53 * * * *', function() {
   });
 });
 
-module.exports = app => {};
+module.exports = app => { };
