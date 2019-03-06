@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RightSidebar from './RightSidebar';
+import RightSidebar from '../RightSidebar';
+import './pa-job-board.css';
 
 class PAJobBoard extends Component {
   constructor() {
