@@ -70,7 +70,7 @@ class RecruiterDashboard extends Component {
     this.handleZipcodeSearch = this.handleZipcodeSearch.bind(this);
   }
   componentDidUpdate() {
-    console.log(this.props.auth);
+
   }
   handleZipcodeSearch() {
     if (/^\d{5}$/.test(this.state.zipcode)) {

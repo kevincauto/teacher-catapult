@@ -14,14 +14,14 @@ class RightSidebar extends Component {
           <EmailTextbox />
           <br />
         </div>
-        <div className="sidebar-border">
+        {/* <div className="sidebar-border">
           <h4>Get Found By Employers!</h4>
           <Link to="/submit-your-resume">
             <button className="btn btn-primary btn-block">
               <span className="white-link">Submit Your Resume</span>
             </button>
           </Link>
-        </div>
+        </div> */}
 
         <div className="">
           <h4>Ad</h4>

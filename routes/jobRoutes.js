@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const requireAdmin = require('../middlewares/requireLogin');
 const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
 const Mailer = require('../services/Mailer');
@@ -15,8 +16,9 @@ const PaidJob = require('../models/PaidJob');
 const { stringToSlug } = require('../utils/helper');
 
 module.exports = app => {
+  //returns all jobs
   app.get('/api/jobs/pa', (req, res) => {
-    Job.find({}).exec(function(err, jobs) {
+    Job.find({}).exec(function (err, jobs) {
       if (err) {
         res.send('error has occured');
       } else {
@@ -25,8 +27,9 @@ module.exports = app => {
     });
   });
 
+  //returns all paid jobs (looks to be a seperate database right now.)
   app.get('/api/paid-jobs/pa', (req, res) => {
-    PaidJob.find({}).exec(function(err, jobs) {
+    PaidJob.find({}).exec(function (err, jobs) {
       if (err) {
         res.send('error has occured');
       } else {
@@ -35,6 +38,7 @@ module.exports = app => {
     });
   });
 
+  //save a paid job to database
   app.post(
     '/api/paid-jobs/pa',
     requireLogin,
@@ -77,6 +81,72 @@ module.exports = app => {
         res.status(422).send(err);
       }
       res.redirect('/');
+    }
+  );
+
+  //save job
+  app.post(
+    '/api/jobs/pa',
+    requireLogin,
+    //requireAdmin,
+    async (req, res) => {
+      // console.log('jobROutes here.')
+      const { jobId, jobTitle, schoolId, jobUrl, date } = req.body.jobInfo;
+
+      const existingJob = await Job.findOne({ jobId });
+      const sdInfo = await School.findOne({ id: schoolId });
+      const { sd, city, state, county } = sdInfo;
+
+      //replace current job
+      if (existingJob) {
+        //delete old job
+        await existingJob.remove();
+      }
+
+      const job = new Job({
+        jobId,
+        schoolId,
+        jobTitle,
+        jobUrl,
+        date,
+        sd,
+        city,
+        county,
+        state,
+        paid: false,
+      });
+
+      // console.log(job);
+
+      try {
+        await job.save();
+        const jobs = await Job.find({});
+        jobs.sort((a, b) => b.jobId - a.jobId)
+        res.json(jobs);
+      } catch (err) {
+        res.status(422).send(err);
+      }
+    }
+  );
+
+  app.delete(
+    '/api/jobs/pa',
+    requireLogin,
+    //requireAdmin,
+    async (req, res) => {
+
+      const { id } = req.body;
+      try {
+        await Job.deleteOne({ jobId: id }, function (err) {
+          if (err) return handleError(err);
+          // deleted at most one tank document
+        });
+        const jobs = await Job.find({});
+        jobs.sort((a, b) => b.jobId - a.jobId)
+        res.json(jobs);
+      } catch (err) {
+        res.status(422).send(err);
+      }
     }
   );
 };

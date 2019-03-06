@@ -11,14 +11,14 @@ class Header extends Component {
         return;
       case false:
         return (
-          <li
-            className="nav-item"
-            // onClick={() => this.openTeacherRecruiterPopup()}
-          >
-            <a className="nav-link" href="/auth/google">
-              Login With Google
-            </a>
-          </li>
+          // <li
+          //   className="nav-item"
+          // >
+          //   <a className="nav-link" href="/auth/google">
+          //     Login With Google
+          //   </a>
+          // </li>
+          null
         );
       default:
         return [

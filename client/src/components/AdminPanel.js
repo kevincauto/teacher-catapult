@@ -68,9 +68,7 @@ class RecruiterDashboard extends Component {
 
     this.handleZipcodeSearch = this.handleZipcodeSearch.bind(this);
   }
-  componentDidUpdate() {
-    console.log(this.state);
-  }
+
   handleZipcodeSearch() {
     if (/^\d{5}$/.test(this.state.zipcode)) {
       //commence zipcode search
@@ -133,7 +131,7 @@ class RecruiterDashboard extends Component {
   }
 
   renderTable(leads = [], userleads = []) {
-    console.log(leads);
+    // console.log(leads);
     leads = leads.filter(lead => {
       //make certifications a string with commas
       let certifications = lead.certifications
@@ -212,7 +210,7 @@ class RecruiterDashboard extends Component {
     userleads = userleads.filter(lead => {
       //make certifications a string with commas
       let str = JSON.parse(lead.resume);
-      console.log(str);
+
       let certifications = lead.certifications
         .reduce((prev, curr) => {
           if (prev === '') {

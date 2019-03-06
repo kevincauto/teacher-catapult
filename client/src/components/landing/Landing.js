@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './landing.css';
 
 const Landing = () => {
   return (
-    <div>
-      <img
+    <div className="landing-page">
+      {/* <img
         src="http://teachercatapult.com/wp-content/themes/jobroller/images/background.jpg"
         alt="bg"
         className="bg"
-      />
+      /> */}
 
       <div className="landing-page-text">
         <h1 className="primary-header">

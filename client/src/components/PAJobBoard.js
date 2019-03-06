@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RightSidebar from './RightSidebar';
 
-class PAJobs extends Component {
+class PAJobBoard extends Component {
   constructor() {
     super();
     this.state = { filterText: '' };
@@ -82,20 +82,6 @@ class PAJobs extends Component {
   }
 
   render() {
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0!
-    var yyyy = today.getFullYear();
-
-    if (dd < 10) {
-      dd = '0' + dd;
-    }
-
-    if (mm < 10) {
-      mm = '0' + mm;
-    }
-
-    today = mm + '-' + dd + '-' + yyyy;
     return (
       <div className="container">
         <img src="../../img/mountain-background.jpeg" alt="bg" className="bg" />
@@ -113,22 +99,23 @@ class PAJobs extends Component {
             <div className="col-md-8 col-lg-9">
               <center>
                 <h2>
-                  Teaching Jobs in PA<br /> Updated: {today}
+                  Teaching Jobs in PA<br />
                 </h2>
+                <h3>Our job board is more accurate than ever!</h3>
               </center>
 
               <p>
                 Teaching jobs in PA are scattered across hundreds of school
                 district websites across the internet. Teacher Catapult's small
                 army of teachers and volunteers are proud to bring you hundreds
-                of Pennsylvania teaching jobs updated every single day. We love
+                of Pennsylvania teaching jobs. We love
                 teachers and we do our best to find as many teaching jobs in PA
                 that we can. We target all areas of Pennsylvania as well as all
                 teaching specialities and grade levels.
               </p>
 
               <p>
-                Use the Search box to filter down the table. Try typing a
+                Use the <strong>Text Filter</strong> box to narrow down the table. Try typing a
                 keyword like "elementary", "social studies", "allegheny county",
                 or "bucks county" to find exactly what you are looking for.
               </p>
@@ -137,7 +124,7 @@ class PAJobs extends Component {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Search..."
+                  placeholder="Filter results..."
                   value={this.state.filterText}
                   onChange={e => this.handleFilterText(e)}
                 />
@@ -177,4 +164,4 @@ function mapStateToProps({ jobs, paidjobs }) {
   }
 }
 
-export default connect(mapStateToProps)(PAJobs);
+export default connect(mapStateToProps)(PAJobBoard);

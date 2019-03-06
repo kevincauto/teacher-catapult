@@ -2,12 +2,13 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const JobSchema = new Schema({
-  id: {
+  jobId: {
     type: String,
     index: true
   },
+  schoolId: String,
   jobTitle: String,
-  link: String,
+  jobUrl: String,
   sd: String,
   city: String,
   county: String,

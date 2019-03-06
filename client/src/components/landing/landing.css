@@ -1,0 +1,18 @@
+.landing-page{
+  background: url(http://teachercatapult.com/wp-content/themes/jobroller/images/background.jpg) center no-repeat;
+  background-size: cover;
+}
+
+body{
+  /* background-color: #3c3d41; */
+  background-color: white;
+}
+
+.landing-page-text{
+  font-size: 38px;
+  font-weight: normal;
+  line-height: 55px;
+  padding: 300px 0;
+  margin: 0px;
+  text-shadow: 0 0 3px #fff;
+}

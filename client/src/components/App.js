@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import Header from './Header';
-import Landing from './Landing';
+import Landing from './landing/Landing';
 import Dashboard from './Dashboard';
 import SurveyNew from './surveys/SurveyNew';
-import PAJobs from './PAJobs';
+import PAJobBoard from './PAJobBoard';
 import SubmitResume from './SubmitResume';
 import PASalary from './PASalary';
 import Articles from './Articles';
@@ -19,11 +19,13 @@ import RecruiterDashboard from './RecruiterDashboard';
 import TermsConditions from './TermsConditions';
 import RecruiterApplication from './RecruiterApplication';
 import RoleSelection from './RoleSelection';
+import AdminJobControlPanel from './admin_job_control_panel/AdminJobControlPanel';
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
     this.props.fetchJobs();
+    this.props.fetchSchools();
     this.props.fetchPaidJobs();
     this.props.fetchLeads();
     this.props.fetchUserLeads();
@@ -34,7 +36,8 @@ class App extends Component {
         <div>
           <Header />
           <Route exact path="/" component={Landing} />
-          <Route exact path="/teaching-jobs-in-pa" component={PAJobs} />
+          <Route exact path="/job-control-panel" component={AdminJobControlPanel} />
+          <Route exact path="/teaching-jobs-in-pa" component={PAJobBoard} />
           <Route exact path="/submit-your-resume" component={SubmitResume} />
           <Route exact path="/teacher-salary-in-pa" component={PASalary} />
           <Route

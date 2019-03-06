@@ -15,7 +15,7 @@ module.exports = app => {
     var form = new formidable.IncomingForm();
 
     console.log('Loading files ...');
-    form.parse(req, async function(err, fields, files) {
+    form.parse(req, async function (err, fields, files) {
       // console.log({
       //   fields: fields,
       //   files: files
@@ -28,7 +28,7 @@ module.exports = app => {
       let fileBuffer;
       let json;
 
-      await fs.readFile(files.file.path, async function(err, data) {
+      await fs.readFile(files.file.path, async function (err, data) {
         fileBuffer = data;
         json = JSON.stringify(fileBuffer);
         req.user.resume = json;
@@ -36,7 +36,6 @@ module.exports = app => {
       });
 
       let certifications = fields.certifications.split(',');
-      console.log(certifications);
       let zipcodeObj = zipcodes.lookup(fields.zipcode);
       let { city, state } = zipcodeObj;
       let startDate = `${fields.certMonth}-${fields.certYear}`;

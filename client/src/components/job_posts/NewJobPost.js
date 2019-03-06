@@ -27,8 +27,8 @@ class NewJobPost extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state);
-    console.log(this.props.auth);
+    // console.log(this.state);
+    // console.log(this.props.auth);
   }
   handleFormUpdate() {
     this.setState();

@@ -46,20 +46,14 @@ div.admin-bg {
 
 .landing-page-text {
   margin: -20px auto 0px;
-  padding: 200px 20px 30%;
+  /* padding: 200px 20px 30%; */
   display: block;
   text-align: center;
-  /* background-color: rgba(247, 191, 7, 0.253); */
-  background-image: linear-gradient(
-    to right bottom,
-    rgba(221, 181, 0, 0.4),
-    rgba(233, 77, 4, 0.4)
-  );
 }
 
 @media only screen and (min-width: 900px) {
   .landing-page-text {
-    padding: 300px 20px 30%;
+    /* padding: 300px 20px 30%; */
   }
   .primary-header {
     font-size: 50px;
@@ -138,7 +132,9 @@ table {
 .navbar-inverse .navbar-brand {
   color: #fff;
 }
-
+.navbar{
+  margin-bottom: -20px;
+}
 .white-link {
   color: #fff;
   text-decoration: none;

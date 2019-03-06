@@ -4,6 +4,7 @@ import { FETCH_JOBS } from './types';
 import { FETCH_PAID_JOBS } from './types';
 import { FETCH_LEADS } from './types';
 import { FETCH_USER_LEADS } from './types';
+import { FETCH_SCHOOLS } from './types';
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
@@ -58,7 +59,24 @@ export const submitResume = values => async dispatch => {
 export const submitJobPost = values => async dispatch => {
   const res = await axios.post('/api/paid-jobs/pa', values);
 
-  dispatch({ type: FETCH_USER, payload: res.data });
+  dispatch({ type: FETCH_PAID_JOBS, payload: res.data });
+};
+
+//save non-paid job
+export const saveJobPost = jobInfo => async dispatch => {
+  const res = await axios.post('/api/jobs/pa', { jobInfo });
+  if (res === 'error') { return }
+  dispatch({ type: FETCH_JOBS, payload: res.data });
+};
+
+//delete jobs
+export const deleteJobPost = id => async dispatch => {
+  console.log('delete action');
+  const res = await axios.delete('/api/jobs/pa', { data: { id } });
+  console.log('res');
+  console.log(res);
+  if (res === 'error') { return }
+  dispatch({ type: FETCH_JOBS, payload: res.data });
 };
 
 //submit email address to newsletter
@@ -66,6 +84,22 @@ export const submitEmail = email => async dispatch => {
   const res = await axios.post('/api/mailchimp', { email });
 
   dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+//get schools
+export const fetchSchools = () => async dispatch => {
+  const res = await axios.get('/api/schools');
+
+  dispatch({ type: FETCH_SCHOOLS, payload: res.data });
+};
+
+//save school URL
+export const saveSDUrl = (id, url) => async dispatch => {
+  console.log('in actions');
+  const res = await axios.post('/api/schools', { id, url });
+  console.log('res');
+  console.log(res);
+  dispatch({ type: FETCH_SCHOOLS, payload: res.data });
 };
 
 //get non-paid jobs
@@ -107,7 +141,6 @@ export const selectRecruiter = email => async dispatch => {
 };
 
 export const submitRecruiterApplication = values => async dispatch => {
-  console.log('action submitRecruiterApplication');
   const res = await axios.post('/api/recruiter-application', values);
 
   dispatch({ type: FETCH_USER, payload: res.data });
