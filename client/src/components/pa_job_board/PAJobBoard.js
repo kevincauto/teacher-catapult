@@ -60,7 +60,7 @@ class PAJobBoard extends Component {
               <div className="col-sm-6">
                 <strong>
                   <a
-                    href={job.link}
+                    href={job.jobUrl}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                   >

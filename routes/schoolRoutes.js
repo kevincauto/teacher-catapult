@@ -9,7 +9,6 @@ const School = require('../models/School');
 module.exports = app => {
   //returns all schools
   app.get('/api/schools', (req, res) => {
-    console.log('schoolRoutes.js has been called (backend)')
     School.find({}).exec(function (err, schools) {
       if (err) {
         res.send('error has occured');
