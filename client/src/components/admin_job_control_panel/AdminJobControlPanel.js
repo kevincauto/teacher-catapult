@@ -4,20 +4,6 @@ import './admin-job-control-panel.css';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
-// const jobs = [{
-//   schoolId: 0,
-//   jobId: 1234,
-//   jobTitle: 'English Teacher',
-//   date: 'February 18, 2019',
-//   jobUrl: 'https://google.com',
-// }, {
-//   schoolId: 0,
-//   jobId: 1235,
-//   jobTitle: 'Math Teacher',
-//   date: 'February 18, 2019',
-//   jobUrl: 'https://google.com',
-// }];
-
 class AdminJobControlPanel extends Component {
   state = {
     addingNewJobSDId: null,
@@ -33,10 +19,6 @@ class AdminJobControlPanel extends Component {
     date: '',
   }
 
-  componentDidUpdate = () => {
-    // console.log(this.props.schools);
-  }
-
   handleEditSDUrl(id, sdUrl) {
     this.setState({
       editingSDUrlId: id,
@@ -47,7 +29,6 @@ class AdminJobControlPanel extends Component {
 
   changeSDUrl = (e) => {
     this.setState({ sdUrl: e.target.value });
-    console.log(this.state.sdUrl);
   };
 
   handleEditJob = (id, jobName, jobUrl, date) => {
@@ -147,7 +128,10 @@ class AdminJobControlPanel extends Component {
   render() {
     const jobs = this.props.jobs || [];
     const schools = this.props.schools || [];
+    const auth = this.props.auth || { admin: false };
+
     return (
+      auth.admin &&
       <div className='job-control-panel'>
         {schools.map((schoolDistrict) => (
           <div className='job-control-panel_school-district' key={schoolDistrict.sd}>
@@ -203,16 +187,16 @@ class AdminJobControlPanel extends Component {
           </div>
         ))
         }
-      </div>
+      </div> || <h2><br />You do not have permission to access this page.<br /></h2>
 
     )
   }
 }
 
 function mapStateToProps(state) {
-  const { jobs, schools } = state;
-  if (jobs && schools) {
-    return { jobs, schools };
+  const { jobs, schools, auth } = state;
+  if (jobs && schools && auth) {
+    return { jobs, schools, auth };
   } else {
     return {};
   }

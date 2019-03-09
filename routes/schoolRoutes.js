@@ -25,12 +25,10 @@ module.exports = app => {
     requireLogin,
     //requireAdmin,
     async (req, res) => {
-      console.log('in schoolRoutes');
       try {
         const { id, url } = req.body;
         const existingSchool = await School.findOne({ id });
-        console.log('existingSchool');
-        console.log(existingSchool);
+
 
         if (existingSchool) {
           existingSchool.link = url;
