@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RightSidebar from '../RightSidebar';
+import EmailTextbox from '../EmailTextbox';
 import './pa-job-board.css';
 
 class PAJobBoard extends Component {
@@ -147,6 +148,12 @@ class PAJobBoard extends Component {
                   {this.renderTable(this.props.jobs, this.props.paidjobs)}
                 </tbody>
               </table>
+              <div className="sidebar-border full-screen-only">
+                <h4>Sign-Up To Get Emails</h4>
+                <p>New job postings are sent right to your inbox weekly.</p>
+                <EmailTextbox />
+                <br />
+              </div>
             </div>
 
             <RightSidebar />

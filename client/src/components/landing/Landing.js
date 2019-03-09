@@ -17,11 +17,11 @@ const Landing = () => {
           Teaching Career!
         </h1>
         <Link to="/teaching-jobs-in-pa" className="btn btn-primary btn-landing">
-          View Jobs
+          View Our Job Board
         </Link>&nbsp;
-        <Link to="/submit-your-resume" className="btn btn-primary btn-landing">
+        {/* <Link to="/submit-your-resume" className="btn btn-primary btn-landing">
           Submit Your Resume
-        </Link>
+        </Link> */}
         {/* &nbsp; 
       <Link to="/teaching-jobs-in-pa" className="btn btn-primary">For School Districts</Link> */}
       </div>
