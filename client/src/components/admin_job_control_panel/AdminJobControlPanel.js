@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { schoolDistricts } from '../data/school_district_data';
-import './admin-job-control-panel.css';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
+import { generateEmail } from './generateEmail';
+import './admin-job-control-panel.css';
 
 class AdminJobControlPanel extends Component {
   state = {
@@ -17,6 +18,8 @@ class AdminJobControlPanel extends Component {
     jobName: '',
     jobUrl: '',
     date: '',
+
+    emailTemplate: '',
   }
 
   handleEditSDUrl(id, sdUrl) {
@@ -125,13 +128,19 @@ class AdminJobControlPanel extends Component {
     })
   }
 
+  generateEmail = jobs => {
+    const emailTemplate = generateEmail(jobs);
+    this.setState({
+      emailTemplate,
+    })
+  }
+
   render() {
     const jobs = this.props.jobs || [];
     const schools = this.props.schools || [];
     const auth = this.props.auth || { admin: false };
-
     return (
-      auth.admin &&
+      // auth.admin &&
       <div className='job-control-panel'>
         {schools.map((schoolDistrict) => (
           <div className='job-control-panel_school-district' key={schoolDistrict.sd}>
@@ -187,16 +196,25 @@ class AdminJobControlPanel extends Component {
           </div>
         ))
         }
-      </div> || <h2><br />You do not have permission to access this page.<br /></h2>
+        {/* <div>
+          <div>
+            <button onClick={() => this.generateEmail(jobs)}>Generate HTML Email</button>
+          </div>
+
+          <div>
+            <textarea value={this.state.emailTemplate} />
+          </div>
+        </div> */}
+      </div>
 
     )
   }
 }
 
 function mapStateToProps(state) {
-  const { jobs, schools, auth } = state;
-  if (jobs && schools && auth) {
-    return { jobs, schools, auth };
+  const { jobs, schools } = state;
+  if (jobs && schools) {
+    return { jobs, schools };
   } else {
     return {};
   }
