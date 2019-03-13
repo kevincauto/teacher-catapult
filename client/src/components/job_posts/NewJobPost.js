@@ -26,10 +26,6 @@ class NewJobPost extends Component {
     this.handleClickComplete = this.handleClickComplete.bind(this);
   }
 
-  componentDidUpdate() {
-    // console.log(this.state);
-    // console.log(this.props.auth);
-  }
   handleFormUpdate() {
     this.setState();
   }

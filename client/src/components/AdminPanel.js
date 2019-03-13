@@ -131,7 +131,6 @@ class RecruiterDashboard extends Component {
   }
 
   renderTable(leads = [], userleads = []) {
-    // console.log(leads);
     leads = leads.filter(lead => {
       //make certifications a string with commas
       let certifications = lead.certifications
@@ -142,8 +141,6 @@ class RecruiterDashboard extends Component {
           return prev + ', ' + curr;
         }, '')
         .toLowerCase();
-
-      //
 
       if (
         certifications.indexOf(this.state.filterCertification.toLowerCase()) !==

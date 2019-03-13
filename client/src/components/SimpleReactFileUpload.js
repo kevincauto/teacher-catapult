@@ -9,9 +9,7 @@ class SimpleReactFileUpload extends React.Component {
 
     this.onChange = this.onChange.bind(this);
   }
-  // componentDidUpdate() {
-  //   console.log(this.state);
-  // }
+
   // onFormSubmit(e) {
   //   e.preventDefault(); // Stop form submit
   //   this.fileUpload(this.state.file).then(response => {

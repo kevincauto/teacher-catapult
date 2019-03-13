@@ -18,9 +18,7 @@ class EmailTextbox extends Component {
     this.handleEmailSubmisstion = this.handleEmailSubmisstion.bind(this);
     this.renderEmailMessage = this.renderEmailMessage.bind(this);
   }
-  componentDidUpdate() {
-    console.log(this.state);
-  }
+
   handleChange(e) {
     this.setState({ email: e.target.value });
   }

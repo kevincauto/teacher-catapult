@@ -71,10 +71,7 @@ export const saveJobPost = jobInfo => async dispatch => {
 
 //delete jobs
 export const deleteJobPost = id => async dispatch => {
-  console.log('delete action');
   const res = await axios.delete('/api/jobs/pa', { data: { id } });
-  console.log('res');
-  console.log(res);
   if (res === 'error') { return }
   dispatch({ type: FETCH_JOBS, payload: res.data });
 };
@@ -95,10 +92,8 @@ export const fetchSchools = () => async dispatch => {
 
 //save school URL
 export const saveSDUrl = (id, url) => async dispatch => {
-  console.log('in actions');
   const res = await axios.post('/api/schools', { id, url });
-  console.log('res');
-  console.log(res);
+
   dispatch({ type: FETCH_SCHOOLS, payload: res.data });
 };
 

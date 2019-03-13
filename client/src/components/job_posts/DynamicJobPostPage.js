@@ -14,7 +14,6 @@ class DynamicJobPostPage extends Component {
         ({ link }) => (link === `/jobs/${slug}` ? true : false)
       );
       let { jobTitle, sd, city, state, county, description, date } = result[0];
-      console.log(result);
 
       display = (
         <div>

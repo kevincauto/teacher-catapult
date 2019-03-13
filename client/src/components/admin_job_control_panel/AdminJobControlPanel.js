@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { schoolDistricts } from '../data/school_district_data';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import { generateEmail } from './generateEmail';
@@ -35,6 +34,8 @@ class AdminJobControlPanel extends Component {
   };
 
   handleEditJob = (id, jobName, jobUrl, date) => {
+    const today = this.getTodaysDate()
+
     this.setState({
       addingNewJob: false,
       addingNewJobSDId: null,
@@ -43,7 +44,7 @@ class AdminJobControlPanel extends Component {
       jobEditId: id,
       jobName,
       jobUrl,
-      date,
+      date: today,
     });
   }
 
@@ -63,9 +64,7 @@ class AdminJobControlPanel extends Component {
     this.props.deleteJobPost(id);
   }
 
-  handleAddNewJob = (id, link = '') => {
-    this.resetState();
-    console.log(id);
+  getTodaysDate = () => {
     let today = new Date();
     const jobId = today.getTime();
 
@@ -79,7 +78,20 @@ class AdminJobControlPanel extends Component {
     if (mm < 10) {
       mm = '0' + mm;
     }
-    today = mm + '/' + dd + '/' + yyyy;
+    return mm + '/' + dd + '/' + yyyy;
+  }
+
+  getTimeStampId = () => {
+    let today = new Date();
+    return today.getTime();
+  }
+
+  handleAddNewJob = (id, link = '') => {
+    this.resetState();
+
+    const today = this.getTodaysDate();
+    const jobId = this.getTimeStampId();
+
     this.setState({
       addingNewJob: true,
       addingNewJobSDId: id,
@@ -92,7 +104,6 @@ class AdminJobControlPanel extends Component {
   }
 
   handleSaveJob = async (schoolId) => {
-    console.log('Save this job to the dataBase')
     const { jobEditId, jobName, jobUrl, date } = this.state;
     const jobInfo = {
       jobId: jobEditId,
@@ -101,7 +112,6 @@ class AdminJobControlPanel extends Component {
       jobUrl,
       date,
     }
-    console.log(schoolId);
     await this.props.saveJobPost(jobInfo);
     this.resetState();
   }
@@ -140,7 +150,7 @@ class AdminJobControlPanel extends Component {
     const schools = this.props.schools || [];
     const auth = this.props.auth || { admin: false };
     return (
-      // auth.admin &&
+      auth.admin &&
       <div className='job-control-panel'>
         {schools.map((schoolDistrict) => (
           <div className='job-control-panel_school-district' key={schoolDistrict.sd}>
@@ -193,10 +203,12 @@ class AdminJobControlPanel extends Component {
                 </div>
               )
             }
+
           </div>
         ))
+
         }
-        {/* <div>
+        <div>
           <div>
             <button onClick={() => this.generateEmail(jobs)}>Generate HTML Email</button>
           </div>
@@ -204,17 +216,17 @@ class AdminJobControlPanel extends Component {
           <div>
             <textarea value={this.state.emailTemplate} />
           </div>
-        </div> */}
-      </div>
+        </div>
+      </div > || <h2><br />You do not have permission to access this page.<br /></h2>
 
     )
   }
 }
 
 function mapStateToProps(state) {
-  const { jobs, schools } = state;
-  if (jobs && schools) {
-    return { jobs, schools };
+  const { jobs, schools, auth } = state;
+  if (jobs && schools && auth) {
+    return { jobs, schools, auth };
   } else {
     return {};
   }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import EmailTextbox from './EmailTextbox';
+import SquareAd from './advertisements/SquareAd';
 
 class RightSidebar extends Component {
   render() {
@@ -25,6 +26,7 @@ class RightSidebar extends Component {
 
         <div className="">
           <h4>Ad</h4>
+          <SquareAd />
           <img src="http://placehold.it/250x230/eee" alt="sidebar ad" />
         </div>
       </div>

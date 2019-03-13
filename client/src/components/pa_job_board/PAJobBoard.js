@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RightSidebar from '../RightSidebar';
 import EmailTextbox from '../EmailTextbox';
+import SmallBanner from '../advertisements/SmallBanner';
 import './pa-job-board.css';
 
 class PAJobBoard extends Component {
@@ -87,13 +88,16 @@ class PAJobBoard extends Component {
     return (
       <div className="container">
         <img src="../../img/mountain-background.jpeg" alt="bg" className="bg" />
-        <img
+        <div className='masthead'>
+          <SmallBanner />
+        </div>
+
+        {/* <img
           src="http://placehold.it/468x60/eee"
           className="masthead"
           alt="half masthead ad"
-        />
-        <br />
-        <br />
+        /> */}
+
         <div className="content-container container">
           {/* <img src="http://teachercatapult.com/wp-content/themes/jobroller/images/background.jpg" alt="bg" className="bg" />  */}
 
