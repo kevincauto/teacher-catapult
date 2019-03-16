@@ -9,13 +9,14 @@ export default class SquareAd extends Component {
     return (
       <ins className='adsbygoogle'
         style={{
-          display: 'inline-block',
-          width: '250px',
-          height: '250px',
+          display: 'block',
+          // width: '250px',
+          // height: '250px',
         }}
         data-ad-client='ca-pub-6779320317509195'
-        data-ad-slot='2944783474'
+        data-ad-slot='6232746278'
         data-ad-format='auto'
+        data-full-width-responsive='true'
       />
     );
   }

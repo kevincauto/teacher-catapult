@@ -23,6 +23,7 @@ let allJobPosts = [];
 let resultsLog = [];
 
 function paEducatorSearch() {
+  console.log('paEducatorSearchIsRunning');
   var jobArr = [];
   let done = false;
 
@@ -76,10 +77,11 @@ function paEducatorSearch() {
             return arr;
           })
           .then(function (results) {
-            console.log('in');
             results.map(job => {
               allJobPosts.push(job);
             });
+            console.log('results');
+            console.log(results);
             return results;
           });
       });
@@ -118,54 +120,59 @@ const searchForJobs = async district => {
 };
 
 async function removeOldJobs() {
-  try {
-    await Job.remove({});
-    console.log('Successfully removed all old jobs');
-    return true;
-  } catch (err) {
-    console.log(err);
-    return false;
-  }
+  console.log('trying to remove jobs');
+  // try {
+  //   await Job.remove({});
+  //   console.log('Successfully removed all old jobs');
+  //   return true;
+  // } catch (err) {
+  //   console.log(err);
+  //   return false;
+  // }
 }
 
 function saveNewJobs() {
-  console.log('Adding Jobs to Database...');
-  for (var singleJob in allJobPosts) {
-    new Job(allJobPosts[singleJob]).save().catch(err => {
-      console.log(err.response);
-    });
-  }
+  console.log('trying to save jobs');
+  // console.log('Adding Jobs to Database...');
+  // for (var singleJob in allJobPosts) {
+  //   new Job(allJobPosts[singleJob]).save().catch(err => {
+  //     console.log(err.response);
+  //   });
+  // }
 }
 
-const scheduledJobCrawler = schedule.scheduleJob('53 * * * *', function () {
+const scheduledJobCrawler = schedule.scheduleJob('25 * * * *', function () {
   resultsLog = [];
   allJobPosts = [];
+  paEducatorSearch();
 
-  School.find({}).exec(async function (err, schools) {
-    if (err) {
-      console.log(err);
-    } else {
-      paEducatorSearch();
-      for (let i = 0; i < schools.length; i++) {
-        searchForJobs(schools[i]);
-      }
-      waitUntil()
-        .interval(3000)
-        .times(schools.length)
-        .condition(function () {
-          console.log(`${resultsLog.length}/${schools.length}`);
-          return resultsLog.length >= schools.length;
-        })
-        .done(async function (result) {
-          console.log(resultsLog);
-          let jobsAreRemoved = await removeOldJobs();
-          if (jobsAreRemoved) {
-            saveNewJobs();
-            console.log(allJobPosts);
-          }
-        });
-    }
-  });
+  // School.find({}).exec(async function (err, schools) {
+
+  // if (err) {
+  //   console.log(err);
+  // } else {
+  //   paEducatorSearch();
+  //   for (let i = 0; i < schools.length; i++) {
+  //     searchForJobs(schools[i]);
+  //   }
+  //   waitUntil()
+  //     .interval(3000)
+  //     .times(schools.length)
+  //     .condition(function () {
+  //       console.log(`${resultsLog.length}/${schools.length}`);
+  //       return resultsLog.length >= schools.length;
+  //     })
+  //     .done(async function (result) {
+  //       console.log(resultsLog);
+  //       let jobsAreRemoved = await removeOldJobs();
+  //       if (jobsAreRemoved) {
+  //         saveNewJobs();
+  //         console.log(allJobPosts);
+  //       }
+  //     });
+  // }
+
+  // });
 });
 
 module.exports = app => { };

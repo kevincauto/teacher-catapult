@@ -19,8 +19,8 @@ module.exports = {
       '#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(7)'
     ];
     await strings
-      .reduce(function(accumulator, string) {
-        return accumulator.then(function(results) {
+      .reduce(function (accumulator, string) {
+        return accumulator.then(function (results) {
           return nightmare
             .goto('https://www.paeducator.net/')
             .wait('body')
@@ -59,7 +59,7 @@ module.exports = {
 
               return arr;
             })
-            .then(function(results) {
+            .then(function (results) {
               console.log('in');
               results.map(job => {
                 jobArr.push(job);
@@ -68,17 +68,18 @@ module.exports = {
             });
         });
       }, Promise.resolve([]))
-      .then(function(results) {
+      .then(function (results) {
         done = true;
       });
 
     waitUntil()
       .interval(3000)
       .times(100)
-      .condition(function() {
+      .condition(function () {
         return done === true;
       })
-      .done(async function(result) {
+      .done(async function (result) {
+        console.log({ jobs: jobArr, error: false })
         return { jobs: jobArr, error: false };
       });
   }

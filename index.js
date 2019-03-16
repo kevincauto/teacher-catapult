@@ -40,7 +40,7 @@ require('./routes/emailRoutes')(app);
 require('./routes/resumeRoutes')(app);
 require('./routes/schoolRoutes')(app);
 require('./routes/leadRoutes')(app);
-// require('./cron_jobs/crawlJobs');
+require('./cron_jobs/crawlJobs');
 // require('./scripts/index.js');
 
 if (process.env.NODE_ENV === 'production') {
