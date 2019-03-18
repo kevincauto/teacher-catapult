@@ -17,7 +17,7 @@ class PAJobBoard extends Component {
   }
 
   renderTable(JSONArrJobs = [], ArrPaidJobs = []) {
-    //filter using text inpu
+    //filter using text input
     JSONArrJobs = ArrPaidJobs.reverse().concat(JSONArrJobs);
     JSONArrJobs = JSONArrJobs.filter(
       ({ jobTitle = '', city = '', county = '', state = '', sd = '' }) => {
@@ -87,7 +87,9 @@ class PAJobBoard extends Component {
   render() {
     return (
       <div className="container">
-        <img src="../../img/mountain-background.jpeg" alt="bg" className="bg" />
+        {/* <img src="../../img/mountain-background.jpeg" alt="bg" className="bg" /> */}
+        <img src="http://teachercatapult.com/wp-content/themes/jobroller/images/background.jpg" alt="bg" className="bg" />
+        {/* url(http://teachercatapult.com/wp-content/themes/jobroller/images/background.jpg) center no-repeat */}
         <div className='masthead'>
           <SmallBanner />
         </div>

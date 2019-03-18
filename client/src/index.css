@@ -9,7 +9,7 @@ img.bg {
 
   /* Set up positioning */
   position: fixed;
-  top: 0;
+  top: -21px;
   left: 0;
   z-index: -1;
   /* opacity: 0.85; */
@@ -26,7 +26,7 @@ div.admin-bg {
 
   /* Set up positioning */
   position: fixed;
-  top: 0;
+  top: 10;
   left: 0;
   z-index: -1;
 }
@@ -107,7 +107,7 @@ h2 {
 }
 
 body {
-  background-color: #dbd9d9;
+  background-color: #c7b3a5;
 }
 
 .navbar-inverse {
@@ -693,13 +693,13 @@ a:hover {
   text-decoration: none;
 }
 
-.masthead {
+/* .masthead {
   -webkit-box-shadow: 1px 9px 50px -9px rgba(107, 107, 107, 1);
   -moz-box-shadow: 1px 9px 50px -9px rgba(107, 107, 107, 1);
   box-shadow: 1px 9px 50px -9px rgba(107, 107, 107, 1);
   width: 100%;
   max-width: 468px;
-}
+} */
 
 .navbar {
   -webkit-box-shadow: 1px 9px 50px -9px rgba(107, 107, 107, 1);

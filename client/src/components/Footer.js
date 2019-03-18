@@ -33,9 +33,9 @@ class Footer extends Component {
                     Interview Guide
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/teaching-articles">Helpful Articles</Link>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="col-md-2 footer-social animated fadeInDown">

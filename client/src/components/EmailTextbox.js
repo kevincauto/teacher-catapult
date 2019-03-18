@@ -47,7 +47,7 @@ class EmailTextbox extends Component {
         <div className="alert alert-success" role="alert">
           <span className="glyphicon glyphicon-ok-circle" aria-hidden="true" />
           <span className="sr-only">Success: </span>
-          &nbsp;Email address successfully sent.
+          &nbsp;Email address successfully submitted.
         </div>
       );
     } else if (this.state.renderEmailFailureMessage) {

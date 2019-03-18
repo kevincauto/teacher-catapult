@@ -59,10 +59,10 @@ class Header extends Component {
 
         <Navbar.Collapse>
           <Nav>
-            {/* <NavItem eventKey={2} href="#">
-      Link
-    </NavItem> */}
-            <NavDropdown eventKey={3} title="Resources" id="basic-nav-dropdown">
+            <NavItem eventKey={2} href="/teaching-jobs-in-pa">
+              Teaching Jobs in PA
+            </NavItem>
+            {/* <NavDropdown eventKey={3} title="Resources" id="basic-nav-dropdown">
               <Navbar.Text>
                 <Link to="/teaching-jobs-in-pa">Teaching Jobs in PA</Link>
               </Navbar.Text>
@@ -71,12 +71,13 @@ class Header extends Component {
                   Interview Guide
                 </Link>
               </Navbar.Text>
-              {/* <Navbar.Text>
+              <Navbar.Text>
                 <Link to="/teaching-articles">Helpful Resources!</Link>
-              </Navbar.Text> */}
-              {/* <MenuItem divider />
-      <MenuItem eventKey={3.4}>Separated link</MenuItem> */}
-            </NavDropdown>
+              </Navbar.Text>
+              <MenuItem divider />
+              <MenuItem eventKey={3.4}>Separated link</MenuItem>
+            </NavDropdown> */}
+
           </Nav>
           {/* <Navbar.Text key={5}>
             <Link to="/job-post">Post a Job</Link>
