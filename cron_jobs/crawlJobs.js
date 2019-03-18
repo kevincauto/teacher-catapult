@@ -19,10 +19,7 @@ const { pareapSearch } = require('./customSearches');
 const { standardSearch } = require('./standardSearch');
 // const { paEducatorSearch } = require('./paEducatorSearch');
 
-let allJobPosts = [];
-let resultsLog = [];
-
-function paEducatorSearch() {
+async function paEducatorSearch() {
   console.log('paEducatorSearchIsRunning');
   var jobArr = [];
   let done = false;
@@ -34,7 +31,7 @@ function paEducatorSearch() {
     '#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(6)',
     '#ctl00_appMainContentTopPH_dpJobResultsTop2 > a:nth-child(7)'
   ];
-  strings
+  await strings
     .reduce(function (accumulator, string) {
       return accumulator.then(function (results) {
         return nightmare
@@ -56,20 +53,24 @@ function paEducatorSearch() {
               let d = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblDatePosted`;
               let s = `#ctl00_appMainContentTopPH_lvJobSearchResults_ctrl${i}_lblPositionType`;
               let position = document.querySelector(p).innerHTML;
-              let city = document.querySelector(c).innerHTML;
+              let county = document.querySelector(c).innerHTML;
               let date = document.querySelector(d).innerHTML;
-              date = date.replace(/\//g, '-');
               let sd = document.querySelector(s).innerHTML;
+
+              let today = new Date();
+              const id = today.getTime();
+
               counter++;
               arr.push({
-                id: 'paed' + counter,
+                jobId: 'paed' + id + counter,
+                schoolId: 'paed',
                 jobTitle: position,
-                county: '',
-                date,
+                jobUrl: 'https://www.paeducator.net/Applicant/SearchResults.aspx?',
                 sd,
-                city,
+                city: county,
+                county,
                 state: 'PA',
-                link: 'https://www.paeducator.net',
+                date,
                 paid: 'false'
               });
             }
@@ -77,18 +78,14 @@ function paEducatorSearch() {
             return arr;
           })
           .then(function (results) {
-            results.map(job => {
-              allJobPosts.push(job);
-            });
-            console.log('results');
-            console.log(results);
-            return results;
+            results.map(job => { jobArr.push(job); });
           });
       });
     }, Promise.resolve([]))
     .then(function (results) {
       done = true;
     });
+  return jobArr;
 }
 
 async function doCustomSearch(id, link) {
@@ -119,60 +116,19 @@ const searchForJobs = async district => {
   return;
 };
 
-async function removeOldJobs() {
-  console.log('trying to remove jobs');
-  // try {
-  //   await Job.remove({});
-  //   console.log('Successfully removed all old jobs');
-  //   return true;
-  // } catch (err) {
-  //   console.log(err);
-  //   return false;
-  // }
-}
+const scheduledJobCrawler = schedule.scheduleJob('0 */4 * * *', async function () {
 
-function saveNewJobs() {
-  console.log('trying to save jobs');
-  // console.log('Adding Jobs to Database...');
-  // for (var singleJob in allJobPosts) {
-  //   new Job(allJobPosts[singleJob]).save().catch(err => {
-  //     console.log(err.response);
-  //   });
-  // }
-}
+  const paEdJobs = await paEducatorSearch();
 
-const scheduledJobCrawler = schedule.scheduleJob('25 * * * *', function () {
-  resultsLog = [];
-  allJobPosts = [];
-  paEducatorSearch();
+  //assure that a reasonable number of jobs returned.
+  if (paEdJobs.length > 20) {
+    await Job.find({ schoolId: 'paed' }).remove(() => { console.log('paed jobs removed.') });
+    await paEdJobs.forEach(job => {
+      new Job(job).save(
+        (err) => { if (err) { console.error(error) } })
+    })
+  }
 
-  // School.find({}).exec(async function (err, schools) {
-
-  // if (err) {
-  //   console.log(err);
-  // } else {
-  //   paEducatorSearch();
-  //   for (let i = 0; i < schools.length; i++) {
-  //     searchForJobs(schools[i]);
-  //   }
-  //   waitUntil()
-  //     .interval(3000)
-  //     .times(schools.length)
-  //     .condition(function () {
-  //       console.log(`${resultsLog.length}/${schools.length}`);
-  //       return resultsLog.length >= schools.length;
-  //     })
-  //     .done(async function (result) {
-  //       console.log(resultsLog);
-  //       let jobsAreRemoved = await removeOldJobs();
-  //       if (jobsAreRemoved) {
-  //         saveNewJobs();
-  //         console.log(allJobPosts);
-  //       }
-  //     });
-  // }
-
-  // });
 });
 
 module.exports = app => { };
