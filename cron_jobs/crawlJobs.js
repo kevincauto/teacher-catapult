@@ -117,9 +117,10 @@ const searchForJobs = async district => {
 };
 
 const scheduledJobCrawler = schedule.scheduleJob('0 */4 * * *', async function () {
+  // every 4 hours: '0 */4 * * *'
+  // every hour on this minute: '20 * * * *'
 
   const paEdJobs = await paEducatorSearch();
-
   //assure that a reasonable number of jobs returned.
   if (paEdJobs.length > 20) {
     await Job.find({ schoolId: 'paed' }).remove(() => { console.log('paed jobs removed.') });
@@ -129,6 +130,15 @@ const scheduledJobCrawler = schedule.scheduleJob('0 */4 * * *', async function (
     })
   }
 
+  const paReapJobs = await pareapSearch();
+
+  if (paReapJobs.length > 20) {
+    await Job.find({ schoolId: 'pareap' }).remove(() => { console.log('pareap jobs removed.') });
+    await paReapJobs.forEach(job => {
+      new Job(job).save(
+        (err) => { if (err) { console.error(error) } })
+    })
+  }
 });
 
 module.exports = app => { };

@@ -6,8 +6,10 @@ const { getDate } = require('../utils/helper');
 //{jobs: Array, error: Boolean}
 
 module.exports = {
-  pareapSearch: async (id, link) => {
+  pareapSearch: async (link = 'https://www.pareap.net/jobsrch.php?srch=100&position=') => {
     try {
+      console.log('paReapSearch');
+      process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
       let res = await axios.get(link);
       let $ = cheerio.load(res.data);
 
@@ -29,7 +31,7 @@ module.exports = {
         .split(';');
 
       let jobLinks = [];
-      $('.jobfirstrow a').each(function(index, element) {
+      $('.jobfirstrow a').each(function (index, element) {
         let jobLink = $(element).attr('href');
         if (jobLink !== '#') {
           jobLinks.push('https://www.pareap.net' + jobLink);
@@ -44,30 +46,44 @@ module.exports = {
       let sds = sdAndCity.map(sd => sd.substr(sd.indexOf('^') + 1));
       sds.pop();
 
-      let today = getDate();
+      let today = new Date();
+      let dd = today.getDate();
+      let mm = today.getMonth() + 1; //January is 0!
+
+      const yyyy = today.getFullYear();
+      if (dd < 10) {
+        dd = '0' + dd;
+      }
+      if (mm < 10) {
+        mm = '0' + mm;
+      }
+      const date = mm + '/' + dd + '/' + yyyy;
       let allReapJobs = [];
+      const timeStamp = today.getTime();
 
       for (let i = 0; i < jobs.length; i++) {
         allReapJobs.push({
-          id: id + 'reap' + i,
+          jobId: 'pareap' + timeStamp + i,
+          schoolId: 'pareap',
           jobTitle: jobs[i],
-          link: jobLinks[i],
+          jobUrl: jobLinks[i],
           sd: sds[i],
-          county: 'PA Reap',
+          county: '',
           city: cities[i],
           state: states[i],
-          date: today,
+          date,
           paid: false
         });
       }
 
-      return { jobs: allReapJobs, error: false };
+      return allReapJobs;
+
     } catch (err) {
       console.log(err);
 
-      return { jobs: allReapJobs, error: true };
+      return null;
     }
     return;
   },
-  anotherSearch: () => {}
+  anotherSearch: () => { }
 };
