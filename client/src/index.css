@@ -9,7 +9,7 @@ img.bg {
 
   /* Set up positioning */
   position: fixed;
-  top: -21px;
+  top: 0px;
   left: 0;
   z-index: -1;
   /* opacity: 0.85; */
