@@ -12,6 +12,7 @@ export default class SmallBanner extends Component {
           display: 'inline-block',
           width: '468px',
           height: '60px',
+          textAlign: 'left',
         }}
         data-ad-client='ca-pub-6779320317509195'
         data-ad-slot='9052117475'

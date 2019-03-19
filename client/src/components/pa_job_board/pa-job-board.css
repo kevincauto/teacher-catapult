@@ -10,5 +10,20 @@
 } 
 
 body{
-  background-color: #bfe0ff;
+  background-color: #d8d5c7;
+}
+
+.filter-input {
+  width: 100%;
+  font-size: 20px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.description-paragraph{
+  padding: 20px 0px;
 }

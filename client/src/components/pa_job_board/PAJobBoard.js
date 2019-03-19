@@ -109,18 +109,10 @@ class PAJobBoard extends Component {
                 <h2>
                   Teaching Jobs in PA<br />
                 </h2>
-                <h3>Our job board is more accurate than ever!</h3>
+                <h3>Hundreds of Jobs for Pennsylvania Teachers!</h3>
               </center>
 
-              <p>
-                Teaching jobs in PA are scattered across hundreds of school
-                district websites across the internet. Teacher Catapult's small
-                army of teachers and volunteers are proud to bring you hundreds
-                of Pennsylvania teaching jobs. We love
-                teachers and we do our best to find as many teaching jobs in PA
-                that we can. We target all areas of Pennsylvania as well as all
-                teaching specialities and grade levels.
-              </p>
+
 
               <p>
                 Use the <strong>Text Filter</strong> box to narrow down the table. Try typing a
@@ -128,20 +120,20 @@ class PAJobBoard extends Component {
                 or "bucks county" to find exactly what you are looking for.
               </p>
 
-              <div className="input-group input-group-lg">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Filter results..."
-                  value={this.state.filterText}
-                  onChange={e => this.handleFilterText(e)}
-                />
-                <span className="input-group-btn">
+              {/* <div className="input-group input-group-lg"> */}
+              <input
+                type="text"
+                className="filter-input"
+                placeholder="Filter results..."
+                value={this.state.filterText}
+                onChange={e => this.handleFilterText(e)}
+              />
+              {/* <span className="input-group-btn">
                   <button className="btn btn-default" type="button">
                     <span className="glyphicon glyphicon-search" />
                   </button>
-                </span>
-              </div>
+                </span> */}
+              {/* </div> */}
               <br />
 
               <table className="table table-bordered table-striped table-hover">
@@ -159,7 +151,17 @@ class PAJobBoard extends Component {
                 <p>New job postings are sent right to your inbox weekly.</p>
                 <EmailTextbox />
                 <br />
+                <br />
               </div>
+              <p className="description-paragraph">
+                Teaching jobs in PA are scattered across hundreds of school
+                district websites across the internet. Teacher Catapult's small
+                army of teachers and volunteers are proud to bring you hundreds
+                of Pennsylvania teaching jobs. We love
+                teachers and we do our best to find as many teaching jobs in PA
+                that we can. We target all areas of Pennsylvania as well as all
+                teaching specialities and grade levels.
+              </p>
             </div>
 
             <RightSidebar />

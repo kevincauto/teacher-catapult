@@ -26,7 +26,10 @@ class RightSidebar extends Component {
 
         <div className="">
           <h4>Ad</h4>
-          <SquareAd />
+          <div className="square-ad">
+            <SquareAd />
+          </div>
+
           {/* <img src="http://placehold.it/250x230/eee" alt="sidebar ad" /> */}
         </div>
       </div>

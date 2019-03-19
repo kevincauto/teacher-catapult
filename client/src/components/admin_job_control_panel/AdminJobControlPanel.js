@@ -158,7 +158,7 @@ class AdminJobControlPanel extends Component {
             {this.state.editingSDUrlId === schoolDistrict.id
               ?
               <div className='job-control-panel_school-district-link'>
-                <input type="text" name="name" onChange={this.changeSDUrl} value={this.state.sdUrl} />
+                <input className='job-control-panel__text-input' type="text" name="name" onChange={this.changeSDUrl} value={this.state.sdUrl} />
                 <button className='myButton' onClick={this.handleSaveSD}>Save</button>
                 <button className='myButton' onClick={this.resetState}>Cancel</button>
               </div>
@@ -172,12 +172,12 @@ class AdminJobControlPanel extends Component {
             {schoolDistrict.id === this.state.addingNewJobSDId && (
               <div className='job-control-panel_single-job'>
                 <div>Job:
-                <input type="text" name="name" value={this.state.jobName} onChange={this.changeJobName} />
+                <input className='job-control-panel__text-input' type="text" name="name" value={this.state.jobName} onChange={this.changeJobName} />
                   <button className='myButton' onClick={() => this.handleSaveJob(schoolDistrict.id)}>Save</button>
                   <button className='myButton' onClick={this.resetState}>Cancel</button>
                 </div>
-                <div>Url: <input type="text" name="name" onChange={this.changeJobUrl} value={this.state.jobUrl} /> </div>
-                <div>Date: <input type="text" name="name" onChange={this.changeDate} value={this.state.date} /> </div>
+                <div>Url: <input className='job-control-panel__text-input' type="text" name="name" onChange={this.changeJobUrl} value={this.state.jobUrl} /> </div>
+                <div>Date: <input className='job-control-panel__text-input' type="text" name="name" onChange={this.changeDate} value={this.state.date} /> </div>
               </div>
             )}
             {jobs
@@ -186,12 +186,12 @@ class AdminJobControlPanel extends Component {
                 ?
                 <div className='job-control-panel_single-job' key={job.jobId}>
                   <div>Job:
-                    <input type="text" name="name" value={this.state.jobName} onChange={this.changeJobName} />
+                    <input className='job-control-panel__text-input' type="text" name="name" value={this.state.jobName} onChange={this.changeJobName} />
                     <button className='myButton' onClick={() => this.handleSaveJob(schoolDistrict.id)}>Save</button>
                     <button className='myButton' onClick={this.resetState}>Cancel</button>
                   </div>
-                  <div>Url: <input type="text" name="name" onChange={this.changeJobUrl} value={this.state.jobUrl} /> </div>
-                  <div>Date: <input type="text" name="name" onChange={this.changeDate} value={this.state.date} /> </div>
+                  <div>Url: <input className='job-control-panel__text-input' type="text" name="name" onChange={this.changeJobUrl} value={this.state.jobUrl} /> </div>
+                  <div>Date: <input className='job-control-panel__text-input' type="text" name="name" onChange={this.changeDate} value={this.state.date} /> </div>
                 </div>
                 :
                 <div className='job-control-panel_single-job' key={job.jobId}>

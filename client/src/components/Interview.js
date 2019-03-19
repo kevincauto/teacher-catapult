@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RightSidebar from './RightSidebar';
 import Collapsible from 'react-collapsible';
+// import ad
 
 class Interview extends Component {
   constructor() {
@@ -141,11 +142,9 @@ class Interview extends Component {
   render() {
     return (
       <div className="container">
-        <img
-          src="http://placehold.it/468x60/eee"
-          className="masthead"
-          alt="half masthead ad"
-        />
+        <div className="masthead">
+
+        </div>
         <br />
         <br />
 
