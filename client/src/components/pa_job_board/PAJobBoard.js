@@ -16,9 +16,25 @@ class PAJobBoard extends Component {
     this.setState({ filterText: e.target.value });
   }
 
+  sortByjobName = (arrOfJobs) => {
+    return arrOfJobs.sort((a, b) => {
+      const textA = a.jobTitle.trim().toUpperCase();
+      const textB = b.jobTitle.trim().toUpperCase();
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    })
+  }
+
+  putPaedJobsLast = (arrOfJobs) => {
+    const paedJobs = arrOfJobs.filter(job => job.schoolId === 'paed');
+    const otherJobs = arrOfJobs.filter(job => job.schoolId !== 'paed')
+    return otherJobs.concat(paedJobs);
+  }
+
   renderTable(JSONArrJobs = [], ArrPaidJobs = []) {
     //filter using text input
-    JSONArrJobs = ArrPaidJobs.reverse().concat(JSONArrJobs);
+    JSONArrJobs = this.putPaedJobsLast(this.sortByjobName(JSONArrJobs));
+
+    // JSONArrJobs = ArrPaidJobs.reverse().concat(JSONArrJobs);
     JSONArrJobs = JSONArrJobs.filter(
       ({ jobTitle = '', city = '', county = '', state = '', sd = '' }) => {
         if (
@@ -87,22 +103,12 @@ class PAJobBoard extends Component {
   render() {
     return (
       <div className="container">
-        {/* <img src="../../img/mountain-background.jpeg" alt="bg" className="bg" /> */}
-        <img src="http://teachercatapult.com/wp-content/themes/jobroller/images/background.jpg" alt="bg" className="bg" />
-        {/* url(http://teachercatapult.com/wp-content/themes/jobroller/images/background.jpg) center no-repeat */}
+        <img src="../../img/background.jpg" alt="bg" className="bg" />
         <div className='masthead'>
           <SmallBanner />
         </div>
 
-        {/* <img
-          src="http://placehold.it/468x60/eee"
-          className="masthead"
-          alt="half masthead ad"
-        /> */}
-
         <div className="content-container container">
-          {/* <img src="http://teachercatapult.com/wp-content/themes/jobroller/images/background.jpg" alt="bg" className="bg" />  */}
-
           <div className="row">
             <div className="col-md-8 col-lg-9">
               <center>
@@ -111,16 +117,12 @@ class PAJobBoard extends Component {
                 </h2>
                 <h3>Hundreds of Jobs for Pennsylvania Teachers!</h3>
               </center>
-
-
-
               <p>
                 Use the <strong>Text Filter</strong> box to narrow down the table. Try typing a
                 keyword like "elementary", "social studies", "allegheny county",
                 or "bucks county" to find exactly what you are looking for.
               </p>
 
-              {/* <div className="input-group input-group-lg"> */}
               <input
                 type="text"
                 className="filter-input"
@@ -128,12 +130,6 @@ class PAJobBoard extends Component {
                 value={this.state.filterText}
                 onChange={e => this.handleFilterText(e)}
               />
-              {/* <span className="input-group-btn">
-                  <button className="btn btn-default" type="button">
-                    <span className="glyphicon glyphicon-search" />
-                  </button>
-                </span> */}
-              {/* </div> */}
               <br />
 
               <table className="table table-bordered table-striped table-hover">
