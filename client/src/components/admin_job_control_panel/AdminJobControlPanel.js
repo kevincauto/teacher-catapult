@@ -65,8 +65,8 @@ class AdminJobControlPanel extends Component {
   }
 
   getTodaysDate = () => {
-    let today = new Date();
-    const jobId = today.getTime();
+    const usaTime = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
+    let today = new Date(usaTime);
 
     let dd = today.getDate();
     let mm = today.getMonth() + 1; //January is 0!
