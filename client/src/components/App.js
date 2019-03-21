@@ -21,14 +21,20 @@ import RecruiterApplication from './RecruiterApplication';
 import RoleSelection from './RoleSelection';
 import AdminJobControlPanel from './admin_job_control_panel/AdminJobControlPanel';
 
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-17803402-1');
+ReactGA.pageview('/');
+ReactGA.pageview('/teaching-jobs-in-pa');
+ReactGA.pageview('/teaching-articles/teacher-interview-questions/');
+
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
     this.props.fetchJobs();
     this.props.fetchSchools();
     this.props.fetchPaidJobs();
-    this.props.fetchLeads();
-    this.props.fetchUserLeads();
+    // this.props.fetchLeads();
+    // this.props.fetchUserLeads();
   }
   render() {
     return (
