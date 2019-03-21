@@ -10,8 +10,8 @@ export default class SquareAd extends Component {
       <ins className='adsbygoogle'
         style={{
           display: 'block',
-          // width: '250px',
-          // height: '250px',
+          width: '250px',
+          height: '250px',
         }}
         data-ad-client='ca-pub-6779320317509195'
         data-ad-slot='6232746278'
