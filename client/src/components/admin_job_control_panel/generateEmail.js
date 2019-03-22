@@ -1,51 +1,53 @@
 const findJobs = (jobs, keywordArr) => {
-  const sdArr = jobs
-    .filter(job => keywordArr
-      .some(keyword => job.jobTitle.toLowerCase().includes(keyword))
-    ).map(job => job.sd)
+    let sdArr = jobs
+        .filter(job => keywordArr
+            .some(keyword => job.jobTitle.toLowerCase().includes(keyword))
+        ).map(job => job.sd.trim())
 
-  return sdArr.length > 0 ? sdArr.join(', ') : null;
+    sdArr = [...new Set(sdArr)]
+
+    return sdArr.length > 0 ? sdArr.join(', ') : null;
 }
 
 export const generateEmail = (jobs) => {
-  const agricultureJobs = findJobs(jobs, ['agriculture']);
-  const artJobs = findJobs(jobs, ['art']);
-  const autisticJobs = findJobs(jobs, ['autistic']);
-  const behaviorSpecJobs = findJobs(jobs, ['behavior']);
-  const businessJobs = findJobs(jobs, ['business']);
-  const chineseJobs = findJobs(jobs, ['chinese']);
-  const compSciJobs = findJobs(jobs, ['computer science']);
-  const earlyChildJobs = findJobs(jobs, ['early childhood']);
-  const elemJobs = findJobs(jobs, ['elementary teach', 'first grade teach', 'second grade teach', 'third grade teach', 'fourth grade teach', 'fifth grade teach', '1st grade teach', '2nd grade teach', '3rd grade teach', '4th grade teach', '5th grade teach', 'grade 1 teach', 'grade 2 teach', 'grade 3 teach', 'grade 4 teach', 'grade 5 teach', 'Elementary - various buildings', 'Elementary Summer School-Teachers', 'elementary substitute teacher', 'Grade 5 Elementary']);
-  const emoSupJobs = findJobs(jobs, ['emotional support']);
-  const engJobs = findJobs(jobs, ['english']);
-  const eslJobs = findJobs(jobs, ['esl']);
-  const famConJobs = findJobs(jobs, ['consumer science']);
-  const foreignLangJobs = findJobs(jobs, ['foreign lang']);
-  const frenchJobs = findJobs(jobs, ['french']);
-  const germanJobs = findJobs(jobs, ['german']);
-  const giftedJobs = findJobs(jobs, ['gifted']);
-  const guidanceJobs = findJobs(jobs, ['guidance']);
-  const healthJobs = findJobs(jobs, ['health']);
-  const latinJobs = findJobs(jobs, ['latin']);
-  const langArtsJobs = findJobs(jobs, ['language arts']);
-  const learnSupJobs = findJobs(jobs, ['learning support']);
-  const librarianJobs = findJobs(jobs, ['librarian']);
-  const lifeSkillsJobs = findJobs(jobs, ['life skills']);
-  const mathJobs = findJobs(jobs, ['math']);
-  const musicJobs = findJobs(jobs, ['choral teach', 'band teach', 'chorus teach', 'vocal']);
-  const occTheraJobs = findJobs(jobs, ['occupational therapy']);
-  const physEdJobs = findJobs(jobs, ['physical education', 'phys ed']);
-  const psychJobs = findJobs(jobs, ['psychologist']);
-  const readingJobs = findJobs(jobs, ['reading specialist']);
-  const scienceJobs = findJobs(jobs, ['science teach', 'biology', 'physics teach', 'chemistry']);
-  const socialStudiesJobs = findJobs(jobs, ['social studies', 'history']);
-  const spanishJobs = findJobs(jobs, ['spanish']);
-  const specEdJobs = findJobs(jobs, ['special ed']);
-  const speechJobs = findJobs(jobs, ['speech and language', 'speech & language']);
-  const techJobs = findJobs(jobs, ['technology teacher', 'technology instructor', 'technology ed']);
+    const agricultureJobs = findJobs(jobs, ['agriculture']);
+    const artJobs = findJobs(jobs, ['art']);
+    const autisticJobs = findJobs(jobs, ['autistic']);
+    const behaviorSpecJobs = findJobs(jobs, ['behavior']);
+    const businessJobs = findJobs(jobs, ['business']);
+    const chineseJobs = findJobs(jobs, ['chinese']);
+    const compSciJobs = findJobs(jobs, ['computer science']);
+    const earlyChildJobs = findJobs(jobs, ['early childhood']);
+    const elemJobs = findJobs(jobs, ['elementary teach', 'first grade teach', 'second grade teach', 'third grade teach', 'fourth grade teach', 'fifth grade teach', '1st grade teach', '2nd grade teach', '3rd grade teach', '4th grade teach', '5th grade teach', 'grade 1 teach', 'grade 2 teach', 'grade 3 teach', 'grade 4 teach', 'grade 5 teach', 'Elementary - various buildings', 'Elementary Summer School-Teachers', 'elementary substitute teacher', 'Grade 5 Elementary']);
+    const emoSupJobs = findJobs(jobs, ['emotional support']);
+    const engJobs = findJobs(jobs, ['english']);
+    const eslJobs = findJobs(jobs, ['esl']);
+    const famConJobs = findJobs(jobs, ['consumer science']);
+    const foreignLangJobs = findJobs(jobs, ['foreign lang']);
+    const frenchJobs = findJobs(jobs, ['french']);
+    const germanJobs = findJobs(jobs, ['german']);
+    const giftedJobs = findJobs(jobs, ['gifted']);
+    const guidanceJobs = findJobs(jobs, ['guidance']);
+    const healthJobs = findJobs(jobs, ['health']);
+    const latinJobs = findJobs(jobs, ['latin']);
+    const langArtsJobs = findJobs(jobs, ['language arts']);
+    const learnSupJobs = findJobs(jobs, ['learning support']);
+    const librarianJobs = findJobs(jobs, ['librarian']);
+    const lifeSkillsJobs = findJobs(jobs, ['life skills']);
+    const mathJobs = findJobs(jobs, ['math']);
+    const musicJobs = findJobs(jobs, ['choral teach', 'band teach', 'chorus teach', 'vocal']);
+    const occTheraJobs = findJobs(jobs, ['occupational therapy']);
+    const physEdJobs = findJobs(jobs, ['physical education', 'phys ed']);
+    const psychJobs = findJobs(jobs, ['psychologist']);
+    const readingJobs = findJobs(jobs, ['reading specialist']);
+    const scienceJobs = findJobs(jobs, ['science teach', 'biology', 'physics teach', 'chemistry']);
+    const socialStudiesJobs = findJobs(jobs, ['social studies', 'history']);
+    const spanishJobs = findJobs(jobs, ['spanish']);
+    const specEdJobs = findJobs(jobs, ['special ed']);
+    const speechJobs = findJobs(jobs, ['speech and language', 'speech & language']);
+    const techJobs = findJobs(jobs, ['technology teacher', 'technology instructor', 'technology ed']);
 
-  const emailTemplate = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    const emailTemplate = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 	<head>
@@ -645,329 +647,329 @@ export const generateEmail = (jobs) => {
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
                         ${agricultureJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                                                                 style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                                                                     target="_blank">Agriculture Teacher Job(s):</a></strong></span></span></p>
                                                                                                 <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                                                                 style="font-family:arial,helvetica,sans-serif; line-height:18px">${agricultureJobs}</span></span></p>`
-      :
-      ``
-    }  
+            :
+            ``
+        }  
                                                                     ${artJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Art Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${artJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${autisticJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Autistic Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${autisticJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${behaviorSpecJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Behavior Specialist Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${behaviorSpecJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${businessJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Business Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${businessJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${chineseJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Chinese Language Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${chineseJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${compSciJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Computer Science Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${compSciJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${earlyChildJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Early Childhood Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${earlyChildJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${elemJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Elementary Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${elemJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${emoSupJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Emotional Support Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${emoSupJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${engJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">English Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${engJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${eslJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">ESL Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${eslJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${famConJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Family and Consumer Science Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${famConJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${foreignLangJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Foreign Language Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${foreignLangJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${frenchJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">French Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${frenchJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${germanJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">German Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${germanJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${giftedJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Gifted Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${giftedJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${guidanceJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Guidance Counselor Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${guidanceJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${healthJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Health Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${healthJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${latinJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Latin Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${latinJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${langArtsJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Language Arts Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${langArtsJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${learnSupJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Learning Support Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${learnSupJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${librarianJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Librarian Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${librarianJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${lifeSkillsJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Life Skills Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${lifeSkillsJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${mathJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Math Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${mathJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${musicJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Music Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${musicJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${occTheraJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Occupational Therapist Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${occTheraJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${physEdJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Physical Education Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${physEdJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${psychJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Psychologist Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${psychJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${readingJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Reading Specialist Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${readingJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${scienceJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Science Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${scienceJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${socialStudiesJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Social Studies Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${socialStudiesJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${spanishJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Spanish Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${spanishJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${specEdJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Special Ed Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${specEdJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${speechJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Speech and Language Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${speechJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
                         ${techJobs ?
-      `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://teachercatapult.com/teaching-jobs-in-pa/"
                                                         target="_blank">Technology Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${techJobs}</span></span></p>`
-      :
-      ``
-    }
+            :
+            ``
+        }
 </td>
                     </tr>
                 </tbody></table>
@@ -1226,6 +1228,6 @@ export const generateEmail = (jobs) => {
     </body>
 </html>`
 
-  return emailTemplate;
+    return emailTemplate;
 }
 
