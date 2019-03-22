@@ -11,7 +11,7 @@ const findJobs = (jobs, keywordArr) => {
 
 export const generateEmail = (jobs) => {
     const agricultureJobs = findJobs(jobs, ['agriculture']);
-    const artJobs = findJobs(jobs, ['art']);
+    const artJobs = findJobs(jobs, ['art teacher']);
     const autisticJobs = findJobs(jobs, ['autistic']);
     const behaviorSpecJobs = findJobs(jobs, ['behavior']);
     const businessJobs = findJobs(jobs, ['business']);
@@ -20,7 +20,7 @@ export const generateEmail = (jobs) => {
     const earlyChildJobs = findJobs(jobs, ['early childhood']);
     const elemJobs = findJobs(jobs, ['elementary teach', 'first grade teach', 'second grade teach', 'third grade teach', 'fourth grade teach', 'fifth grade teach', '1st grade teach', '2nd grade teach', '3rd grade teach', '4th grade teach', '5th grade teach', 'grade 1 teach', 'grade 2 teach', 'grade 3 teach', 'grade 4 teach', 'grade 5 teach', 'Elementary - various buildings', 'Elementary Summer School-Teachers', 'elementary substitute teacher', 'Grade 5 Elementary']);
     const emoSupJobs = findJobs(jobs, ['emotional support']);
-    const engJobs = findJobs(jobs, ['english']);
+    const engJobs = findJobs(jobs, ['english teacher']);
     const eslJobs = findJobs(jobs, ['esl']);
     const famConJobs = findJobs(jobs, ['consumer science']);
     const foreignLangJobs = findJobs(jobs, ['foreign lang']);
