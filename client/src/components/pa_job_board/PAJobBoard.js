@@ -117,16 +117,16 @@ class PAJobBoard extends Component {
                 </h2>
                 <h3>Hundreds of Jobs for Pennsylvania Teachers!</h3>
               </center>
-              <p>
+              {/* <p>
                 Use the <strong>Text Filter</strong> box to narrow down the table. Try typing a
-                keyword like "elementary", "social studies", "allegheny county",
+                keyword like "social studies", "allegheny county", "elementary", ,
                 or "bucks county" to find exactly what you are looking for.
-              </p>
+              </p> */}
 
               <input
                 type="text"
                 className="filter-input"
-                placeholder="Filter results..."
+                placeholder="Search..."
                 value={this.state.filterText}
                 onChange={e => this.handleFilterText(e)}
               />
@@ -134,9 +134,18 @@ class PAJobBoard extends Component {
 
               <table className="table table-bordered table-striped table-hover">
                 <thead>
+
                   <tr>
-                    <th className="position">Job Information</th>
+                    <td>
+                      <div className='row'>
+                        <div className="table-header col-sm-6">Job Information</div>
+                        <div className="table-header vanishing-header col-sm-4">Location</div>
+                        <div className="table-header vanishing-header col-sm-2">Date</div>
+                      </div>
+                    </td>
+
                   </tr>
+
                 </thead>
                 <tbody>
                   {this.renderTable(this.props.jobs, this.props.paidjobs)}

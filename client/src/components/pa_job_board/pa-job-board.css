@@ -15,6 +15,22 @@ body{
   background-color: #d8d5c7;
 }
 
+.table-header {
+  font-weight: bold;
+}
+
+/* .table-header:hover {
+  color: #337ab7;
+  cursor: pointer;
+} */
+
+
+@media only screen and (max-width: 767px) {
+  .vanishing-header {
+    display: none;
+  }
+}
+
 .filter-input {
   width: 100%;
   font-size: 20px;

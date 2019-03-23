@@ -4,7 +4,7 @@ const findJobs = (jobs, keywordArr) => {
             .some(keyword => job.jobTitle.toLowerCase().includes(keyword))
         ).map(job => job.sd.trim())
 
-    sdArr = [...new Set(sdArr)];
+    sdArr = [...new Set(sdArr)].sort();
 
     return sdArr.length > 0 ? sdArr.join(', ') : null;
 }

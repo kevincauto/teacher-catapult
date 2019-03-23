@@ -22,21 +22,21 @@ class Header extends Component {
         );
       default:
         return [
-          <NavItem eventKey={2} key={2} href={'/job-post'}>
-            Post a Job
-            {/* Job Posts Left: {this.props.auth.credits} */}
-          </NavItem>,
-          <NavItem
-            eventKey={3}
-            key={3}
-            href={
-              this.props.auth.recruiter
-                ? '/recruiter/dashboard'
-                : '/teaching-jobs-in-pa'
-            }
-          >
-            Dashboard
-          </NavItem>,
+          // <NavItem eventKey={2} key={2} href={'/job-post'}>
+          //   Post a Job
+          //   {/* Job Posts Left: {this.props.auth.credits} */}
+          // </NavItem>,
+          // <NavItem
+          //   eventKey={3}
+          //   key={3}
+          //   href={
+          //     this.props.auth.recruiter
+          //       ? '/recruiter/dashboard'
+          //       : '/teaching-jobs-in-pa'
+          //   }
+          // >
+          //   Dashboard
+          // </NavItem>,
           <NavItem eventKey={4} key={4} href="/api/logout">
             Logout
           </NavItem>
