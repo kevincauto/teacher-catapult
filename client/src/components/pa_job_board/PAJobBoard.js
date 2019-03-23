@@ -6,13 +6,20 @@ import SmallBanner from '../advertisements/SmallBanner';
 import './pa-job-board.css';
 
 class PAJobBoard extends Component {
-  constructor() {
-    super();
-    this.state = { filterText: '' };
-    this.handleFilterText = this.handleFilterText.bind(this);
-  }
+  state = {
+    filterText: '',
 
-  handleFilterText(e) {
+    sortByJob: false,
+    jobReverseAlphabetical: false,
+
+    sortByLocation: false,
+    locationReverseAlphabetical: false,
+
+    sortByDate: false,
+    dateReverse: false
+  };
+
+  handleFilterText = (e) => {
     this.setState({ filterText: e.target.value });
   }
 
@@ -24,15 +31,85 @@ class PAJobBoard extends Component {
     })
   }
 
+  sortByCityName = (arrOfJobs) => {
+    return arrOfJobs.sort((a, b) => {
+      const textA = a.city.trim().toUpperCase();
+      const textB = b.city.trim().toUpperCase();
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    })
+  }
+
+  sortByDate = (arrOfJobs) => {
+    return arrOfJobs.sort((a, b) => {
+      const textA = a.date.trim().toUpperCase();
+      const textB = b.date.trim().toUpperCase();
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    })
+  }
   putPaedJobsLast = (arrOfJobs) => {
     const paedJobs = arrOfJobs.filter(job => job.schoolId === 'paed');
     const otherJobs = arrOfJobs.filter(job => job.schoolId !== 'paed')
     return otherJobs.concat(paedJobs);
   }
 
+  tableHeaderJobInfoClicked = (arrOfJobs) => {
+    const { jobReverseAlphabetical } = this.state;
+    this.sortByjobName(arrOfJobs)
+    console.log('jobReverseAlphabetical');
+    console.log(jobReverseAlphabetical);
+    const result = jobReverseAlphabetical ? arrOfJobs.reverse() : arrOfJobs;
+    this.setState({
+      sortByJob: false,
+      jobReverseAlphabetical: !jobReverseAlphabetical,
+      sortByLocation: false,
+      locationReverseAlphabetical: false,
+      sortByDate: false,
+      dateReverse: false
+    })
+    return result;
+  }
+  tableHeaderLocationClicked = (arrOfJobs) => {
+    const { locationReverseAlphabetical } = this.state;
+    this.sortByCityName(arrOfJobs)
+
+    const result = locationReverseAlphabetical ? arrOfJobs.reverse() : arrOfJobs;
+    this.setState({
+      sortByJob: false,
+      jobReverseAlphabetical: false,
+      sortByLocation: false,
+      locationReverseAlphabetical: !locationReverseAlphabetical,
+      sortByDate: false,
+      dateReverse: false
+    })
+    return result;
+  }
+  tableHeaderDateClicked = (arrOfJobs) => {
+    const { dateReverse } = this.state;
+    this.sortByDate(arrOfJobs)
+
+    const result = dateReverse ? arrOfJobs.reverse() : arrOfJobs;
+    this.setState({
+      sortByJob: false,
+      jobReverseAlphabetical: false,
+      sortByLocation: false,
+      locationReverseAlphabetical: false,
+      sortByDate: false,
+      dateReverse: !dateReverse,
+    })
+    return result;
+  }
+
   renderTable(JSONArrJobs = [], ArrPaidJobs = []) {
+    const { sortByJob, sortByLocation, sortByDate } = this.state;
+
     //filter using text input
-    JSONArrJobs = this.putPaedJobsLast(this.sortByjobName(JSONArrJobs));
+    // JSONArrJobs = this.putPaedJobsLast(this.sortByjobName(JSONArrJobs));
+    if (sortByJob) { JSONArrJobs = this.tableHeaderJobInfoClicked(JSONArrJobs) }
+    if (sortByLocation) { JSONArrJobs = this.tableHeaderLocationClicked(JSONArrJobs) }
+    if (sortByDate) { JSONArrJobs = this.tableHeaderDateClicked(JSONArrJobs) }
+    JSONArrJobs = this.putPaedJobsLast(JSONArrJobs);
+    console.log('JSONArrJobs[0]');
+    console.log(JSONArrJobs[0]);
 
     // JSONArrJobs = ArrPaidJobs.reverse().concat(JSONArrJobs);
     JSONArrJobs = JSONArrJobs.filter(
@@ -138,9 +215,9 @@ class PAJobBoard extends Component {
                   <tr>
                     <td>
                       <div className='row'>
-                        <div className="table-header col-sm-6">Job Information</div>
-                        <div className="table-header vanishing-header col-sm-4">Location</div>
-                        <div className="table-header vanishing-header col-sm-2">Date</div>
+                        <div className="table-header col-sm-6" onClick={() => this.setState({ sortByJob: true })}>Job Information</div>
+                        <div className="table-header vanishing-header col-sm-4" onClick={() => this.setState({ sortByLocation: true })}>Location</div>
+                        <div className="table-header vanishing-header col-sm-2" onClick={() => this.setState({ sortByDate: true })}>Date</div>
                       </div>
                     </td>
 

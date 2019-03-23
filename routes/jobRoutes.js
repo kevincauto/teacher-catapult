@@ -121,7 +121,7 @@ module.exports = app => {
       try {
         await job.save();
         const jobs = await Job.find({});
-        jobs.sort((a, b) => b.jobId - a.jobId)
+        jobs.sort((a, b) => b.jobTitle - a.jobTitle)
         res.json(jobs);
       } catch (err) {
         res.status(422).send(err);
@@ -142,7 +142,7 @@ module.exports = app => {
           // deleted at most one tank document
         });
         const jobs = await Job.find({});
-        jobs.sort((a, b) => b.jobId - a.jobId)
+        jobs.sort((a, b) => b.jobTitle - a.jobTitle)
         res.json(jobs);
       } catch (err) {
         res.status(422).send(err);

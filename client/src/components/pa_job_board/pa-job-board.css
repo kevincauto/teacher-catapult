@@ -19,10 +19,10 @@ body{
   font-weight: bold;
 }
 
-/* .table-header:hover {
+.table-header:hover {
   color: #337ab7;
   cursor: pointer;
-} */
+}
 
 
 @media only screen and (max-width: 767px) {
