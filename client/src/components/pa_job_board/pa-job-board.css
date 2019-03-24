@@ -24,6 +24,12 @@ body{
   cursor: pointer;
 }
 
+.searchAreaRadio {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-evenly;
+
+}
 
 @media only screen and (max-width: 767px) {
   .vanishing-header {

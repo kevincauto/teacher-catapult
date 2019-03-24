@@ -18,6 +18,9 @@ class PAJobBoard extends Component {
     sortByDate: false,
     dateReverse: false,
 
+    filterPhilly: false,
+    filterPgh: false,
+
     doInitialSort: true,
   };
 
@@ -101,9 +104,34 @@ class PAJobBoard extends Component {
     return result;
   }
 
-  renderTable(JSONArrJobs = [], ArrPaidJobs = []) {
-    const { sortByJob, sortByLocation, sortByDate, doInitialSort } = this.state;
+  filterPhillyJobs = (arrOfJobs) => arrOfJobs
+    .filter(job =>
+      job.county === 'Philadelphia County' ||
+      job.county === 'Bucks County' ||
+      job.county === 'Montgomery County' ||
+      job.county === 'Delaware County' ||
+      job.county === 'Lehigh County' ||
+      job.county === 'Berks County' ||
+      job.county === 'Lancaster County' ||
+      job.county === 'Northampton County'
+    )
 
+  filterPghJobs = (arrOfJobs) => arrOfJobs
+    .filter(job =>
+      job.county === 'Allegheny County' ||
+      job.county === 'Lawrence County' ||
+      job.county === 'Butler County' ||
+      job.county === 'Beaver County' ||
+      job.county === 'Armstrong County' ||
+      job.county === 'Indiana County' ||
+      job.county === 'Westmoreland County' ||
+      job.county === 'Greene County' ||
+      job.county === 'Somerset County' ||
+      job.county === 'Fayette County'
+    )
+
+  renderTable(JSONArrJobs = [], ArrPaidJobs = []) {
+    const { sortByJob, sortByLocation, sortByDate, doInitialSort, filterPhilly, filterPgh } = this.state;
     //filter using text input
     // JSONArrJobs = this.putPaedJobsLast(this.sortByjobName(JSONArrJobs));
     if (doInitialSort && JSONArrJobs.length > 0) {
@@ -113,6 +141,9 @@ class PAJobBoard extends Component {
     if (sortByJob) { JSONArrJobs = this.tableHeaderJobInfoClicked(JSONArrJobs) }
     if (sortByLocation) { JSONArrJobs = this.tableHeaderLocationClicked(JSONArrJobs) }
     if (sortByDate) { JSONArrJobs = this.tableHeaderDateClicked(JSONArrJobs) }
+    if (filterPhilly) { JSONArrJobs = this.filterPhillyJobs(JSONArrJobs) }
+    if (filterPgh) { JSONArrJobs = this.filterPghJobs(JSONArrJobs) }
+
     JSONArrJobs = this.putPaedJobsLast(JSONArrJobs);
     console.log('JSONArrJobs[0]');
     console.log(JSONArrJobs[0]);
@@ -184,6 +215,7 @@ class PAJobBoard extends Component {
   }
 
   render() {
+    const { filterPhilly, filterPgh } = this.state;
     return (
       <div className="container">
         <img src="../../img/background.jpg" alt="bg" className="bg" />
@@ -214,6 +246,11 @@ class PAJobBoard extends Component {
                 onChange={e => this.handleFilterText(e)}
               />
               <br />
+              <div className='searchAreaRadio'>
+                <span><input type="radio" name="searchArea" checked={!filterPhilly && !filterPgh} onChange={() => this.setState({ filterPhilly: false, filterPgh: false })} /> All PA </span>
+                <span><input type="radio" name="searchArea" checked={filterPhilly} onChange={() => this.setState({ filterPhilly: true, filterPgh: false })} /> Phila/S.Eastern </span>
+                <span><input type="radio" name="searchArea" checked={filterPgh} onChange={() => this.setState({ filterPhilly: false, filterPgh: true })} /> Pgh/S.Western </span>
+              </div>
 
               <table className="table table-bordered table-striped table-hover">
                 <thead>
