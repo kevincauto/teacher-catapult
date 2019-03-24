@@ -145,8 +145,6 @@ class PAJobBoard extends Component {
     if (filterPgh) { JSONArrJobs = this.filterPghJobs(JSONArrJobs) }
 
     JSONArrJobs = this.putPaedJobsLast(JSONArrJobs);
-    console.log('JSONArrJobs[0]');
-    console.log(JSONArrJobs[0]);
 
     // JSONArrJobs = ArrPaidJobs.reverse().concat(JSONArrJobs);
     JSONArrJobs = JSONArrJobs.filter(
