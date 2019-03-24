@@ -220,11 +220,11 @@ class PAJobBoard extends Component {
 
         <Helmet>
           <title>Teaching Jobs in Pennsylvania - Teacher Catapult</title>
-          <meta name="description" content="Looking for a teaching job in Pennsylvaina? Our job board has hundreds of jobs all in one place." />
+          <meta name="description" content="Looking for a teaching job in Pennsylvania? Our job board has hundreds of jobs all in one place." />
 
           <meta name="og:title" content="Teaching Jobs in Pennsylvania - Teacher Catapult" />
           <meta name="og:description"
-            content="Looking for a teaching job in Pennsylvaina? Our job board has hundreds of jobs all in one place." />
+            content="Looking for a teaching job in Pennsylvania? Our job board has hundreds of jobs all in one place." />
           <meta name="og:image" content="https://www.teachercatapult.com/img/tc-new-jobs.png" />
           <meta name="og:image:url" content="https://www.teachercatapult.com/img/tc-new-jobs.png" />
           <meta name="og:image:secure_url" content="https://www.teachercatapult.com/img/tc-new-jobs.png" />

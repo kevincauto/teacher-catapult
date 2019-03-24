@@ -150,7 +150,7 @@ class Interview extends Component {
 
           <meta name="og:title" content="Interview Simulator, 88 Teacher Interview Questions - Teacher Catapult" />
           <meta name="og:description"
-            content="Are you ready for your teacher interview?  Find out with our teacher interiew simulator." />
+            content="Are you ready for your teacher interview?  Find out with our teacher interview simulator." />
         </Helmet>
         <div className="masthead">
 
