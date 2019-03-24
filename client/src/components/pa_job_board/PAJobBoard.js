@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import RightSidebar from '../RightSidebar';
 import EmailTextbox from '../EmailTextbox';
 import SmallBanner from '../advertisements/SmallBanner';
+import { Helmet } from "react-helmet";
 import './pa-job-board.css';
 
 class PAJobBoard extends Component {
@@ -216,6 +217,20 @@ class PAJobBoard extends Component {
     const { filterPhilly, filterPgh } = this.state;
     return (
       <div className="container">
+
+        <Helmet>
+          <title>Teaching Jobs in Pennsylvania - Teacher Catapult</title>
+          <meta name="description" content="Looking for a teaching job in Pennsylvaina? Our job board has hundreds of jobs all in one place." />
+
+          <meta name="og:title" content="Teaching Jobs in Pennsylvania - Teacher Catapult" />
+          <meta name="og:description"
+            content="Looking for a teaching job in Pennsylvaina? Our job board has hundreds of jobs all in one place." />
+          <meta name="og:image" content="https://www.teachercatapult.com/img/tc-new-jobs.png" />
+          <meta name="og:image:url" content="https://www.teachercatapult.com/img/tc-new-jobs.png" />
+          <meta name="og:image:secure_url" content="https://www.teachercatapult.com/img/tc-new-jobs.png" />
+        </Helmet>
+
+
         <img src="../../img/background.jpg" alt="bg" className="bg" />
         <div className='masthead'>
           <SmallBanner />
