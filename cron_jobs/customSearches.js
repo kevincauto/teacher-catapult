@@ -19,6 +19,7 @@ module.exports = {
         typeAndSubject = job.slice(0, -3).split('/');
         return `${typeAndSubject[1]} ${typeAndSubject[0]}`.trim();
       });
+      jobs = jobs.map(job => job.replace('Classroom Teacher', 'Teacher'))
       jobs.shift();
 
       let sdAndCity = $('.school')
@@ -75,6 +76,10 @@ module.exports = {
           paid: false
         });
       }
+      //remove jobs that city is left blank
+      allReapJobs = allReapJobs.filter(job => job.city);
+      //Multiple jobs showing up as "Activities Teacher" when proper subject is not selected.
+      allReapJobs = allReapJobs.filter(job => job.jobTitle !== 'Activities Teacher')
 
       return allReapJobs;
 
