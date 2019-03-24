@@ -16,7 +16,9 @@ class PAJobBoard extends Component {
     locationReverseAlphabetical: false,
 
     sortByDate: false,
-    dateReverse: false
+    dateReverse: false,
+
+    doInitialSort: true,
   };
 
   handleFilterText = (e) => {
@@ -100,10 +102,14 @@ class PAJobBoard extends Component {
   }
 
   renderTable(JSONArrJobs = [], ArrPaidJobs = []) {
-    const { sortByJob, sortByLocation, sortByDate } = this.state;
+    const { sortByJob, sortByLocation, sortByDate, doInitialSort } = this.state;
 
     //filter using text input
     // JSONArrJobs = this.putPaedJobsLast(this.sortByjobName(JSONArrJobs));
+    if (doInitialSort && JSONArrJobs.length > 0) {
+      JSONArrJobs = this.sortByjobName(JSONArrJobs);
+      this.setState({ doInitialSort: false })
+    }
     if (sortByJob) { JSONArrJobs = this.tableHeaderJobInfoClicked(JSONArrJobs) }
     if (sortByLocation) { JSONArrJobs = this.tableHeaderLocationClicked(JSONArrJobs) }
     if (sortByDate) { JSONArrJobs = this.tableHeaderDateClicked(JSONArrJobs) }
