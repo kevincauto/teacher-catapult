@@ -35,7 +35,7 @@ export const generateEmail = (jobs) => {
     const librarianJobs = findJobs(jobs, ['librarian']);
     const lifeSkillsJobs = findJobs(jobs, ['life skills']);
     const mathJobs = findJobs(jobs, ['math']);
-    const musicJobs = findJobs(jobs, ['choral teach', 'band teach', 'chorus teach', 'vocal']);
+    const musicJobs = findJobs(jobs, ['music', 'choral teach', 'band teach', 'chorus teach', 'vocal']);
     const occTheraJobs = findJobs(jobs, ['occupational therapy']);
     const physEdJobs = findJobs(jobs, ['physical education', 'phys ed']);
     const psychJobs = findJobs(jobs, ['psychologist']);
