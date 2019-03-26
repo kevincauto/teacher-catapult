@@ -45,6 +45,7 @@
     "react-ga": "^2.5.7",
     "react-helmet": "^5.2.0",
     "request": "^2.88.0",
+    "reselect": "^4.0.0",
     "sendgrid": "^5.2.3",
     "stripe": "^4.23.1",
     "superagent": "^3.8.2",

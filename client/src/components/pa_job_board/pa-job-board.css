@@ -38,16 +38,77 @@ body{
 }
 
 .filter-input {
-  width: 100%;
   font-size: 20px;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 0px 0px 8px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  flex-grow: 3;
 }
 
 .description-paragraph{
   padding: 20px 0px;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #337ab7;
+  color: white;
+  font-size: 20px;
+  padding: 12px 20px;
+  margin: 0px 0px 8px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #1e67a7;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  display: flex;
+  justify-content: end;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 212px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  top: 54px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+.search-inputs{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
 }

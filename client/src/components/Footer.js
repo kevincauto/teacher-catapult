@@ -59,7 +59,7 @@ class Footer extends Component {
             </div>
             <div className="col-md-3 footer-ns animated fadeInRight">
               <h4>Newsletter</h4>
-              <p>Job opennings sent right to your inbox.</p>
+              <p>Job openings sent right to your inbox.</p>
 
               <div className="input-group">
                 <EmailTextbox />

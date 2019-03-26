@@ -4,11 +4,14 @@ import RightSidebar from '../RightSidebar';
 import EmailTextbox from '../EmailTextbox';
 import SmallBanner from '../advertisements/SmallBanner';
 import { Helmet } from "react-helmet";
+import { getPhillyJobs, getPghJobs } from '../../selectors/jobSelector';
 import './pa-job-board.css';
 
 class PAJobBoard extends Component {
   state = {
     filterText: '',
+    dropdownClass: 'dropdown-content',
+    dropdownText: 'Select PA Region',
 
     sortByJob: false,
     jobReverseAlphabetical: false,
@@ -23,6 +26,7 @@ class PAJobBoard extends Component {
     filterPgh: false,
 
     doInitialSort: true,
+    numberOfJobsDisplayed: null,
   };
 
   handleFilterText = (e) => {
@@ -105,35 +109,17 @@ class PAJobBoard extends Component {
     return result;
   }
 
-  filterPhillyJobs = (arrOfJobs) => arrOfJobs
-    .filter(job =>
-      job.county === 'Philadelphia County' ||
-      job.county === 'Bucks County' ||
-      job.county === 'Montgomery County' ||
-      job.county === 'Delaware County' ||
-      job.county === 'Lehigh County' ||
-      job.county === 'Berks County' ||
-      job.county === 'Lancaster County' ||
-      job.county === 'Northampton County'
-    )
-
-  filterPghJobs = (arrOfJobs) => arrOfJobs
-    .filter(job =>
-      job.county === 'Allegheny County' ||
-      job.county === 'Lawrence County' ||
-      job.county === 'Butler County' ||
-      job.county === 'Beaver County' ||
-      job.county === 'Armstrong County' ||
-      job.county === 'Indiana County' ||
-      job.county === 'Westmoreland County' ||
-      job.county === 'Greene County' ||
-      job.county === 'Somerset County' ||
-      job.county === 'Fayette County'
-    )
+  dropDownClicked = () => {
+    this.setState({ dropdownClass: 'dropdown-content show' })
+  }
 
   renderTable(JSONArrJobs = [], ArrPaidJobs = []) {
     const { sortByJob, sortByLocation, sortByDate, doInitialSort, filterPhilly, filterPgh } = this.state;
+    const { phillyJobs, pghJobs } = this.props;
+
     //filter using text input
+    if (filterPhilly) { JSONArrJobs = phillyJobs }
+    if (filterPgh) { JSONArrJobs = pghJobs }
     // JSONArrJobs = this.putPaedJobsLast(this.sortByjobName(JSONArrJobs));
     if (doInitialSort && JSONArrJobs.length > 0) {
       JSONArrJobs = this.sortByjobName(JSONArrJobs);
@@ -142,8 +128,6 @@ class PAJobBoard extends Component {
     if (sortByJob) { JSONArrJobs = this.tableHeaderJobInfoClicked(JSONArrJobs) }
     if (sortByLocation) { JSONArrJobs = this.tableHeaderLocationClicked(JSONArrJobs) }
     if (sortByDate) { JSONArrJobs = this.tableHeaderDateClicked(JSONArrJobs) }
-    if (filterPhilly) { JSONArrJobs = this.filterPhillyJobs(JSONArrJobs) }
-    if (filterPgh) { JSONArrJobs = this.filterPghJobs(JSONArrJobs) }
 
     JSONArrJobs = this.putPaedJobsLast(JSONArrJobs);
 
@@ -214,7 +198,7 @@ class PAJobBoard extends Component {
   }
 
   render() {
-    const { filterPhilly, filterPgh } = this.state;
+    const { filterText, filterPhilly, filterPgh, dropdownClass, dropdownText } = this.state;
     return (
       <div className="container">
 
@@ -250,19 +234,23 @@ class PAJobBoard extends Component {
                 keyword like "social studies", "allegheny county", "elementary", ,
                 or "bucks county" to find exactly what you are looking for.
               </p> */}
-
-              <input
-                type="text"
-                className="filter-input"
-                placeholder="Search..."
-                value={this.state.filterText}
-                onChange={e => this.handleFilterText(e)}
-              />
-              <br />
-              <div className='searchAreaRadio'>
-                <span><input type="radio" name="searchArea" checked={!filterPhilly && !filterPgh} onChange={() => this.setState({ filterPhilly: false, filterPgh: false })} /> All PA </span>
-                <span><input type="radio" name="searchArea" checked={filterPhilly} onChange={() => this.setState({ filterPhilly: true, filterPgh: false })} /> Phila/S.Eastern </span>
-                <span><input type="radio" name="searchArea" checked={filterPgh} onChange={() => this.setState({ filterPhilly: false, filterPgh: true })} /> Pgh/S.Western </span>
+              <div className="search-inputs">
+                <input
+                  type="text"
+                  className="filter-input"
+                  placeholder="Search..."
+                  value={filterText}
+                  onChange={e => this.handleFilterText(e)}
+                />
+                <br />
+                <div className="dropdown">
+                  <button onClick={() => this.dropDownClicked()} className="dropbtn">{dropdownText} ⋁</button>
+                  <div className={dropdownClass}>
+                    <a onClick={() => this.setState({ dropdownText: 'All of Pennsylvania', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false })}>All Pennsylvania</a>
+                    <a onClick={() => this.setState({ dropdownText: 'Philadelphia Area', dropdownClass: 'dropdown-content', filterPhilly: true, filterPgh: false })}>Philadelphia Area</a>
+                    <a onClick={() => this.setState({ dropdownText: 'Pittsburgh/S.Western', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: true })}>Pittsburgh/S.Western PA</a>
+                  </div>
+                </div>
               </div>
 
               <table className="table table-bordered table-striped table-hover">
@@ -310,9 +298,15 @@ class PAJobBoard extends Component {
   }
 }
 
-function mapStateToProps({ jobs, paidjobs }) {
-  if (jobs && paidjobs) {
-    return { jobs, paidjobs };
+function mapStateToProps(state) {
+  const { jobs, paidjobs } = state
+  if (jobs) {
+    return {
+      jobs,
+      paidjobs,
+      phillyJobs: getPhillyJobs(state),
+      pghJobs: getPghJobs(state),
+    };
   } else {
     return {};
   }
