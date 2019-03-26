@@ -120,13 +120,13 @@ class PAJobBoard extends Component {
   }
 
   renderTable(JSONArrJobs = [], ArrPaidJobs = []) {
-    const { sortByJob, sortByLocation, sortByDate, doInitialSort, filterPhilly, filterPgh } = this.state;
+    const { doInitialSort, filterPhilly, filterPgh, filterText, sortByDate, sortByJob, sortByLocation, } = this.state;
     const { phillyJobs, pghJobs } = this.props;
 
-    //filter using text input
+    //by region
     if (filterPhilly) { JSONArrJobs = phillyJobs }
     if (filterPgh) { JSONArrJobs = pghJobs }
-    // JSONArrJobs = this.putPaedJobsLast(this.sortByjobName(JSONArrJobs));
+
     if (doInitialSort && JSONArrJobs.length > 0) {
       JSONArrJobs = this.sortByjobName(JSONArrJobs);
       this.setState({ doInitialSort: false })
@@ -140,53 +140,28 @@ class PAJobBoard extends Component {
     // JSONArrJobs = ArrPaidJobs.reverse().concat(JSONArrJobs);
     JSONArrJobs = JSONArrJobs.filter(
       ({ jobTitle = '', city = '', county = '', state = '', sd = '' }) => {
-        if (
-          jobTitle
-            .toLowerCase()
-            .indexOf(this.state.filterText.toLowerCase()) !== -1
-        ) {
-          return true;
-        }
-        if (
-          city.toLowerCase().indexOf(this.state.filterText.toLowerCase()) !== -1
-        ) {
-          return true;
-        }
-        if (
-          county.toLowerCase().indexOf(this.state.filterText.toLowerCase()) !==
-          -1
-        ) {
-          return true;
-        }
-        if (
-          sd.toLowerCase().indexOf(this.state.filterText.toLowerCase()) !== -1
-        ) {
-          return true;
-        }
-        if (
-          state.toLowerCase().indexOf(this.state.filterText.toLowerCase()) !==
-          -1
-        ) {
-          return true;
-        }
+        if (jobTitle.toLowerCase().indexOf(filterText.toLowerCase()) !== -1) { return true }
+        if (city.toLowerCase().indexOf(filterText.toLowerCase()) !== -1) { return true }
+        if (county.toLowerCase().indexOf(filterText.toLowerCase()) !== -1) { return true }
+        if (sd.toLowerCase().indexOf(filterText.toLowerCase()) !== -1) { return true }
+        if (state.toLowerCase().indexOf(filterText.toLowerCase()) !== -1) { return true }
         return false;
       }
     );
-    return JSONArrJobs.map((job, i) => {
+    return JSONArrJobs.map((job) => {
       return (
-        <tr key={job._id + i}>
+        <tr key={job.jobId}>
           <td>
             <div className="row">
               <div className="col-sm-6">
-                <strong>
-                  <a
-                    href={job.jobUrl}
-                    target="_blank"
-                    rel="noopener noreferrer nofollow"
-                  >
-                    {job.jobTitle}
-                  </a>
-                </strong>
+                <a
+                  className="job-name"
+                  href={job.jobUrl}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                >
+                  {job.jobTitle}
+                </a>
                 <br />
                 {job.sd}
                 <br />
@@ -204,7 +179,7 @@ class PAJobBoard extends Component {
   }
 
   render() {
-    const { filterText, filterPhilly, filterPgh, dropdownClass, dropdownText } = this.state;
+    const { dropdownClass, dropdownText, filterText } = this.state;
     return (
       <div className="container">
 
@@ -235,11 +210,6 @@ class PAJobBoard extends Component {
                 </h2>
                 <h3>Hundreds of Jobs for Pennsylvania Teachers!</h3>
               </center>
-              {/* <p>
-                Use the <strong>Text Filter</strong> box to narrow down the table. Try typing a
-                keyword like "social studies", "allegheny county", "elementary", ,
-                or "bucks county" to find exactly what you are looking for.
-              </p> */}
               <div className="search-inputs">
                 <input
                   type="text"
@@ -265,12 +235,11 @@ class PAJobBoard extends Component {
                   <tr>
                     <td>
                       <div className='row'>
-                        <div className="table-header col-sm-6" onClick={() => this.setState({ sortByJob: true })}>Job Information</div>
-                        <div className="table-header vanishing-header col-sm-4" onClick={() => this.setState({ sortByLocation: true })}>Location</div>
-                        <div className="table-header vanishing-header col-sm-2" onClick={() => this.setState({ sortByDate: true })}>Date</div>
+                        <div className="table-header col-sm-6" onClick={() => this.setState({ sortByJob: true })}>Job Information <i class="fas fa-caret-down"></i></div>
+                        <div className="table-header vanishing-header col-sm-4" onClick={() => this.setState({ sortByLocation: true })}>Location <i class="fas fa-caret-down"></i></div>
+                        <div className="table-header vanishing-header col-sm-2" onClick={() => this.setState({ sortByDate: true })}>Date <i class="fas fa-caret-down"></i></div>
                       </div>
                     </td>
-
                   </tr>
 
                 </thead>

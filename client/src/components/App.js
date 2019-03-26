@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
+import CannotFind from '../components/404/CannotFind';
 import Header from './Header';
 import Landing from './landing/Landing';
 import Dashboard from './Dashboard';
@@ -63,6 +64,7 @@ class App extends Component {
             component={RecruiterApplication}
           /> */}
           <Route path="/terms-conditions" component={TermsConditions} />
+          <Route component={CannotFind} />
           <Footer />
         </div>
       </BrowserRouter>

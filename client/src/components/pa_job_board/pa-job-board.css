@@ -23,7 +23,9 @@ body{
   color: #337ab7;
   cursor: pointer;
 }
-
+.job-name{
+  font-weight: bold;
+}
 .searchAreaRadio {
   margin-bottom: 8px;
   display: flex;
