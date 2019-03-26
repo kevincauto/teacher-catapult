@@ -2,6 +2,14 @@ import { createSelector } from 'reselect';
 
 const getJobs = (state) => state.jobs;
 
+export const getJobsSortedById = createSelector(
+  [getJobs],
+  (jobs) => jobs.sort((a, b) => {
+    const textA = a.jobId;
+    const textB = b.jobId;
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  }).reverse()
+)
 
 export const getPhillyJobs = createSelector(
   [getJobs],
@@ -33,6 +41,26 @@ export const getPghJobs = createSelector(
     job.county === 'Greene County' ||
     job.county === 'Somerset County' ||
     job.county === 'Fayette County'
+  ).sort((a, b) => {
+    const textA = a.jobTitle.trim().toUpperCase();
+    const textB = b.jobTitle.trim().toUpperCase();
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  }
+  )
+)
+
+export const getLehighJobs = createSelector(
+  [getJobs],
+  (jobs) => jobs.filter(job =>
+    job.county === 'Lehigh County' ||
+    job.county === 'Northampton County' ||
+    job.county === 'Berks County' ||
+    job.county === 'Carbon County' ||
+    job.county === 'Schuylkill County' ||
+    job.county === 'Monroe County' ||
+    job.city === 'Allentown' ||
+    job.city === 'Bethlehem' ||
+    job.city === 'Easton'
   ).sort((a, b) => {
     const textA = a.jobTitle.trim().toUpperCase();
     const textB = b.jobTitle.trim().toUpperCase();

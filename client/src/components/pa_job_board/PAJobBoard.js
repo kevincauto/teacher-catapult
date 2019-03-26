@@ -4,7 +4,7 @@ import RightSidebar from '../RightSidebar';
 import EmailTextbox from '../EmailTextbox';
 import SmallBanner from '../advertisements/SmallBanner';
 import { Helmet } from "react-helmet";
-import { getPhillyJobs, getPghJobs } from '../../selectors/jobSelector';
+import { getPhillyJobs, getPghJobs, getLehighJobs } from '../../selectors/jobSelector';
 import './pa-job-board.css';
 
 class PAJobBoard extends Component {
@@ -24,6 +24,7 @@ class PAJobBoard extends Component {
 
     filterPhilly: false,
     filterPgh: false,
+    filterLehigh: false,
 
     doInitialSort: true,
     numberOfJobsDisplayed: null,
@@ -120,12 +121,13 @@ class PAJobBoard extends Component {
   }
 
   renderTable(JSONArrJobs = [], ArrPaidJobs = []) {
-    const { doInitialSort, filterPhilly, filterPgh, filterText, sortByDate, sortByJob, sortByLocation, } = this.state;
-    const { phillyJobs, pghJobs } = this.props;
+    const { doInitialSort, filterLehigh, filterPhilly, filterPgh, filterText, sortByDate, sortByJob, sortByLocation, } = this.state;
+    const { lehighJobs, phillyJobs, pghJobs } = this.props;
 
     //by region
     if (filterPhilly) { JSONArrJobs = phillyJobs }
     if (filterPgh) { JSONArrJobs = pghJobs }
+    if (filterLehigh) { JSONArrJobs = lehighJobs }
 
     if (doInitialSort && JSONArrJobs.length > 0) {
       JSONArrJobs = this.sortByjobName(JSONArrJobs);
@@ -222,9 +224,10 @@ class PAJobBoard extends Component {
                 <div className="dropdown">
                   <button onClick={() => this.dropDownClicked()} className="dropbtn">{dropdownText} <i class="fas fa-caret-down"></i></button>
                   <div className={dropdownClass}>
-                    <a onClick={() => this.setState({ dropdownText: 'All of Pennsylvania', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false })}>All Pennsylvania</a>
-                    <a onClick={() => this.setState({ dropdownText: 'Philadelphia Area', dropdownClass: 'dropdown-content', filterPhilly: true, filterPgh: false })}>Philadelphia Area</a>
-                    <a onClick={() => this.setState({ dropdownText: 'Pittsburgh/S.Western', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: true })}>Pittsburgh/S.Western PA</a>
+                    <a onClick={() => this.setState({ dropdownText: 'All of Pennsylvania', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: false })}>All Pennsylvania</a>
+                    <a onClick={() => this.setState({ dropdownText: 'Philadelphia Area', dropdownClass: 'dropdown-content', filterPhilly: true, filterPgh: false, filterLehigh: false })}>Philadelphia Area</a>
+                    <a onClick={() => this.setState({ dropdownText: 'Pittsburgh/S.Western', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: true, filterLehigh: false })}>Pittsburgh/S.Western PA</a>
+                    <a onClick={() => this.setState({ dropdownText: 'Lehigh Valley', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: true })}>Lehigh Valley</a>
                   </div>
                 </div>
               </div>
@@ -281,6 +284,7 @@ function mapStateToProps(state) {
       paidjobs,
       phillyJobs: getPhillyJobs(state),
       pghJobs: getPghJobs(state),
+      lehighJobs: getLehighJobs(state),
     };
   } else {
     return {};

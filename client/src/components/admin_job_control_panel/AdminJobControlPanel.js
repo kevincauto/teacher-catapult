@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import { generateEmail } from './generateEmail';
+import { getJobsSortedById } from '../../selectors/jobSelector';
 import './admin-job-control-panel.css';
 
 class AdminJobControlPanel extends Component {
@@ -226,7 +227,11 @@ class AdminJobControlPanel extends Component {
 function mapStateToProps(state) {
   const { jobs, schools, auth } = state;
   if (jobs && schools && auth) {
-    return { jobs, schools, auth };
+    return {
+      jobs: getJobsSortedById(state),
+      schools,
+      auth
+    };
   } else {
     return {};
   }
