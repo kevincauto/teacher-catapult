@@ -10,6 +10,7 @@ export const getPhillyJobs = createSelector(
     job.county === 'Bucks County' ||
     job.county === 'Montgomery County' ||
     job.county === 'Delaware County' ||
+    job.county === 'Chester County' ||
     job.city === 'Philadelphia'
   ).sort((a, b) => {
     const textA = a.jobTitle.trim().toUpperCase();
