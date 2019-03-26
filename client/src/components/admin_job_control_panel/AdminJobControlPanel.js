@@ -152,7 +152,6 @@ class AdminJobControlPanel extends Component {
     return (
       auth.admin &&
       <div className='job-control-panel'>
-        <img src="../../img/white.jpg" alt="bg" className="bg" />
         {schools.map((schoolDistrict) => (
           <div className='job-control-panel_school-district' key={schoolDistrict.sd}>
             <h3>#{schoolDistrict.id} {schoolDistrict.sd}</h3>
