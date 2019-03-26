@@ -110,7 +110,13 @@ class PAJobBoard extends Component {
   }
 
   dropDownClicked = () => {
-    this.setState({ dropdownClass: 'dropdown-content show' })
+    const { dropdownClass } = this.state;
+    if (dropdownClass === 'dropdown-content') {
+      this.setState({ dropdownClass: 'dropdown-content show' })
+    }
+    if (dropdownClass === 'dropdown-content show') {
+      this.setState({ dropdownClass: 'dropdown-content' })
+    }
   }
 
   renderTable(JSONArrJobs = [], ArrPaidJobs = []) {
@@ -244,7 +250,7 @@ class PAJobBoard extends Component {
                 />
                 <br />
                 <div className="dropdown">
-                  <button onClick={() => this.dropDownClicked()} className="dropbtn">{dropdownText} ⋁</button>
+                  <button onClick={() => this.dropDownClicked()} className="dropbtn">{dropdownText} <i class="fas fa-caret-down"></i></button>
                   <div className={dropdownClass}>
                     <a onClick={() => this.setState({ dropdownText: 'All of Pennsylvania', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false })}>All Pennsylvania</a>
                     <a onClick={() => this.setState({ dropdownText: 'Philadelphia Area', dropdownClass: 'dropdown-content', filterPhilly: true, filterPgh: false })}>Philadelphia Area</a>
