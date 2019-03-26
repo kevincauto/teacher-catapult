@@ -64,7 +64,7 @@ class App extends Component {
             component={RecruiterApplication}
           /> */}
           <Route path="/terms-conditions" component={TermsConditions} />
-          <Route component={CannotFind} />
+          {/* <Route component={CannotFind} /> */}
           <Footer />
         </div>
       </BrowserRouter>
