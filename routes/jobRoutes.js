@@ -116,12 +116,52 @@ module.exports = app => {
         paid: false,
       });
 
-      // console.log(job);
-
       try {
         await job.save();
         const jobs = await Job.find({});
-        jobs.sort((a, b) => b.jobTitle - a.jobTitle)
+        res.json(jobs);
+      } catch (err) {
+        res.status(422).send(err);
+      }
+    }
+  );
+
+
+
+  app.post(
+    '/api/jobs/pa-update-dates',
+    requireLogin,
+    //requireAdmin,
+    async (req, res) => {
+      const { schoolId } = req.body;
+      const today = getDate();
+
+      const id = schoolId.toString();
+      try {
+        const jobsWithinSD = await Job.find({ schoolId: id });
+        const replacementJobsWithinSD = jobsWithinSD.map(job => job)
+        if (jobsWithinSD && jobsWithinSD.length > 0) {
+          jobsWithinSD.forEach(async job => await job.remove());
+          replacementJobsWithinSD.forEach(async (job) => {
+            const { jobId, schoolId, jobTitle, jobUrl, date, sd, city, county, state, paid } = job;
+            const newJob = new Job({
+              jobId,
+              schoolId,
+              jobTitle,
+              jobUrl,
+              date: today,
+              sd,
+              city,
+              county,
+              state,
+              paid,
+            });
+            await newJob.save();
+          }
+          )
+        }
+
+        const jobs = await Job.find({});
         res.json(jobs);
       } catch (err) {
         res.status(422).send(err);

@@ -28,7 +28,7 @@ module.exports = {
     if (mm < 10) {
       mm = '0' + mm;
     }
-    today = mm + '-' + dd + '-' + yyyy;
+    today = mm + '/' + dd + '/' + yyyy;
     return today;
   },
 

@@ -69,6 +69,13 @@ export const saveJobPost = jobInfo => async dispatch => {
   dispatch({ type: FETCH_JOBS, payload: res.data });
 };
 
+//update the date of all jobs within a school district
+export const updateJobDates = id => async dispatch => {
+  const res = await axios.post('./api/jobs/pa-update-dates', { schoolId: id })
+  if (res === 'error') { return }
+  dispatch({ type: FETCH_JOBS, payload: res.data });
+}
+
 //delete jobs
 export const deleteJobPost = id => async dispatch => {
   const res = await axios.delete('/api/jobs/pa', { data: { id } });

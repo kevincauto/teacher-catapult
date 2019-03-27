@@ -146,6 +146,10 @@ class AdminJobControlPanel extends Component {
     })
   }
 
+  handleUpdateDates = id => {
+    this.props.updateJobDates(id);
+  }
+
   render() {
     const jobs = this.props.jobs || [];
     const schools = this.props.schools || [];
@@ -169,7 +173,9 @@ class AdminJobControlPanel extends Component {
               </div>
             }
 
-            <h4>Jobs <button className='myButton' onClick={() => this.handleAddNewJob(schoolDistrict.id, schoolDistrict.link)} >Add New Job</button></h4>
+            <h4>Jobs
+              <button className='myButton' onClick={() => this.handleAddNewJob(schoolDistrict.id, schoolDistrict.link)} >Add New Job</button>
+              <button className='myButton' onClick={() => this.handleUpdateDates(schoolDistrict.id)} >Update All Dates</button></h4>
             {schoolDistrict.id === this.state.addingNewJobSDId && (
               <div className='job-control-panel_single-job'>
                 <div>Job:
