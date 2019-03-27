@@ -11,6 +11,35 @@ export const getJobsSortedById = createSelector(
   }).reverse()
 )
 
+export const getPaDutchJobs = createSelector(
+  [getJobs],
+  (jobs) => jobs.filter(job =>
+    job.county === 'Lancaster County' ||
+    job.county === 'York County' ||
+    job.county === 'Adams County' ||
+    job.county === 'Franklin County' ||
+    job.county === 'Dauphin County' ||
+    job.county === 'Cumberland County' ||
+    job.county === 'Perry County' ||
+    job.county === 'Lebanon County' ||
+    job.county === 'Berks County' ||
+    job.county === 'Chester County' ||
+    job.county === 'Schuylkill County' ||
+    job.county === 'Snyder County' ||
+    job.county === 'Union County' ||
+    job.county === 'Juniata County' ||
+    job.county === 'Mifflin County' ||
+    job.county === 'Huntingdon County' ||
+    job.county === 'Northumberland County' ||
+    job.county === 'Centre County'
+  ).sort((a, b) => {
+    const textA = a.jobTitle.trim().toUpperCase();
+    const textB = b.jobTitle.trim().toUpperCase();
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  }
+  )
+)
+
 export const getPhillyJobs = createSelector(
   [getJobs],
   (jobs) => jobs.filter(job =>
