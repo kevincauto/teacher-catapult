@@ -27,6 +27,98 @@ export const getJobsSortedById = createSelector(
   }).reverse()
 )
 
+export const getCentralJobs = createSelector(
+  [getJobs],
+  (jobs) => jobs.filter(job =>
+    job.county === 'Centre County' ||
+    job.county === 'Potter County' ||
+    job.county === 'Cameron County' ||
+    job.county === 'Elk County' ||
+    job.county === 'Jefferson County' ||
+    job.county === 'Clearfield County' ||
+    job.county === 'Cambria County' ||
+    job.county === 'Indiana County' ||
+    job.county === 'Blair County' ||
+    job.county === 'Huntingdon County' ||
+    job.county === 'Perry County' ||
+    job.county === 'Dauphin County' ||
+    job.county === 'Mifflin County' ||
+    job.county === 'Juniata County' ||
+    job.county === 'Snyder County' ||
+    job.county === 'Union County' ||
+    job.county === 'Northumberland County' ||
+    job.county === 'Montour County' ||
+    job.county === 'Lycoming County' ||
+    job.county === 'Clinton County' ||
+    job.county === 'Tioga County' ||
+    job.county === 'McKean County' ||
+    job.county === 'Columbia County' ||
+    job.county === 'Bedford County' ||
+    job.county === 'Fulton County' ||
+    job.city === 'State College'
+  ).sort((a, b) => {
+    const textA = a.jobTitle.trim().toUpperCase();
+    const textB = b.jobTitle.trim().toUpperCase();
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  }
+  )
+)
+
+export const getScrantonJobs = createSelector(
+  [getJobs],
+  (jobs) => jobs.filter(job =>
+    job.county === 'Wayne County' ||
+    job.county === 'Susquehanna County' ||
+    job.county === 'Bradford County' ||
+    job.county === 'Tioga County' ||
+    job.county === 'Lycoming County' ||
+    job.county === 'Northumberland County' ||
+    job.county === 'Montour County' ||
+    job.county === 'Sullivan County' ||
+    job.county === 'Columbia County' ||
+    job.county === 'Schuylkill County' ||
+    job.county === 'Carbon County' ||
+    job.county === 'Northampton County' ||
+    job.county === 'Monroe County' ||
+    job.county === 'Pike County' ||
+    job.county === 'Luzerne County' ||
+    job.county === 'Wyoming County' ||
+    job.county === 'Lackawanna County' ||
+    job.city == 'Wilkes-Barre' ||
+    job.city === 'Scranton'
+  ).sort((a, b) => {
+    const textA = a.jobTitle.trim().toUpperCase();
+    const textB = b.jobTitle.trim().toUpperCase();
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  }
+  )
+)
+
+export const getErieJobs = createSelector(
+  [getJobs],
+  (jobs) => jobs.filter(job =>
+    job.county === 'Erie County' ||
+    job.county === 'Crawford County' ||
+    job.county === 'Warren County' ||
+    job.county === 'McKean County' ||
+    job.county === 'Elk County' ||
+    job.county === 'Jefferson County' ||
+    job.county === 'Clarion County' ||
+    job.county === 'Venango County' ||
+    job.county === 'Mercer County' ||
+    job.county === 'Lawrence County' ||
+    job.county === 'Butler County' ||
+    job.county === 'Forest County' ||
+    job.county === 'Armstrong County' ||
+    job.city === 'Erie'
+  ).sort((a, b) => {
+    const textA = a.jobTitle.trim().toUpperCase();
+    const textB = b.jobTitle.trim().toUpperCase();
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  }
+  )
+)
+
 export const getPaDutchJobs = createSelector(
   [getJobs],
   (jobs) => jobs.filter(job =>

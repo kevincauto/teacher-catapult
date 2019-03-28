@@ -9,7 +9,10 @@ import {
   getPhillyJobs,
   getPghJobs,
   getLehighJobs,
-  getPaDutchJobs
+  getPaDutchJobs,
+  getErieJobs,
+  getCentralJobs,
+  getScrantonJobs,
 } from '../../selectors/jobSelector';
 import './pa-job-board.css';
 
@@ -32,8 +35,10 @@ class PAJobBoard extends Component {
     filterPgh: false,
     filterLehigh: false,
     filterPaDutch: false,
+    filterErie: false,
+    filterScranton: false,
+    filterCentral: false,
 
-    doInitialSort: true,
     numberOfJobsDisplayed: null,
   };
 
@@ -126,19 +131,29 @@ class PAJobBoard extends Component {
   }
 
   renderTable(JSONArrJobs = [], ArrPaidJobs = []) {
-    const { doInitialSort, filterPaDutch, filterLehigh, filterPhilly, filterPgh, filterText, sortByDate, sortByJob, sortByLocation, } = this.state;
-    const { lehighJobs, phillyJobs, pghJobs, paDutchJobs } = this.props;
+    const {
+      filterPaDutch,
+      filterLehigh,
+      filterPhilly,
+      filterPgh,
+      filterCentral,
+      filterErie,
+      filterScranton,
+      filterText,
+      sortByDate,
+      sortByJob,
+      sortByLocation, } = this.state;
+    const { lehighJobs, phillyJobs, pghJobs, paDutchJobs, erieJobs, scrantonJobs, centralJobs } = this.props;
 
     //by region
     if (filterPhilly) { JSONArrJobs = phillyJobs }
     if (filterPgh) { JSONArrJobs = pghJobs }
     if (filterLehigh) { JSONArrJobs = lehighJobs }
     if (filterPaDutch) { JSONArrJobs = paDutchJobs }
+    if (filterErie) { JSONArrJobs = erieJobs }
+    if (filterCentral) { JSONArrJobs = centralJobs }
+    if (filterScranton) { JSONArrJobs = scrantonJobs }
 
-    if (doInitialSort && JSONArrJobs.length > 0) {
-      JSONArrJobs = this.sortByjobName(JSONArrJobs);
-      this.setState({ doInitialSort: false })
-    }
     if (sortByJob) { JSONArrJobs = this.tableHeaderJobInfoClicked(JSONArrJobs) }
     if (sortByLocation) { JSONArrJobs = this.tableHeaderLocationClicked(JSONArrJobs) }
     if (sortByDate) { JSONArrJobs = this.tableHeaderDateClicked(JSONArrJobs) }
@@ -230,11 +245,14 @@ class PAJobBoard extends Component {
                 <div className="dropdown">
                   <button onClick={() => this.dropDownClicked()} className="dropbtn">{dropdownText} <i className="fas fa-caret-down"></i></button>
                   <div className={dropdownClass}>
-                    <a onClick={() => this.setState({ dropdownText: 'All of Pennsylvania', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: false, filterPaDutch: false })}>All Pennsylvania</a>
-                    <a onClick={() => this.setState({ dropdownText: 'Philadelphia Area', dropdownClass: 'dropdown-content', filterPhilly: true, filterPgh: false, filterLehigh: false, filterPaDutch: false })}>Philadelphia Area</a>
-                    <a onClick={() => this.setState({ dropdownText: 'Pittsburgh/S.Western', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: true, filterLehigh: false, filterPaDutch: false })}>Pittsburgh/S.Western PA</a>
-                    <a onClick={() => this.setState({ dropdownText: 'Lehigh Valley', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: true, filterPaDutch: false })}>Lehigh Valley</a>
-                    <a onClick={() => this.setState({ dropdownText: 'PA Dutch Country', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: false, filterPaDutch: true })}>Pennsylvania Dutch Country</a>
+                    <a onClick={() => this.setState({ dropdownText: 'All of Pennsylvania', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: false, filterPaDutch: false, filterErie: false, filterScranton: false, filterCentral: false })}>All Pennsylvania</a>
+                    <a onClick={() => this.setState({ dropdownText: 'Philadelphia Area', dropdownClass: 'dropdown-content', filterPhilly: true, filterPgh: false, filterLehigh: false, filterPaDutch: false, filterErie: false, filterScranton: false, filterCentral: false })}>Philadelphia Area</a>
+                    <a onClick={() => this.setState({ dropdownText: 'Pittsburgh/S.Western', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: true, filterLehigh: false, filterPaDutch: false, filterErie: false, filterScranton: false, filterCentral: false })}>Pittsburgh/S.Western PA</a>
+                    <a onClick={() => this.setState({ dropdownText: 'PA Dutch Country', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: false, filterPaDutch: true, filterErie: false, filterScranton: false, filterCentral: false })}>Pennsylvania Dutch Country</a>
+                    <a onClick={() => this.setState({ dropdownText: 'Lehigh Valley', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: true, filterPaDutch: false, filterErie: false, filterScranton: false, filterCentral: false })}>Lehigh Valley</a>
+                    <a onClick={() => this.setState({ dropdownText: 'Scranton/N.Eastern', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: false, filterPaDutch: false, filterErie: false, filterScranton: true, filterCentral: false })}>Scranton/N.Eastern</a>
+                    <a onClick={() => this.setState({ dropdownText: 'Erie/N.Western', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: false, filterPaDutch: false, filterErie: true, filterScranton: false, filterCentral: false })}>Erie/N.Western</a>
+                    <a onClick={() => this.setState({ dropdownText: 'State College/Central', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: false, filterPaDutch: false, filterErie: false, filterScranton: false, filterCentral: true })}>State College/Central</a>
                   </div>
                 </div>
               </div>
@@ -293,6 +311,9 @@ function mapStateToProps(state) {
       pghJobs: getPghJobs(state),
       lehighJobs: getLehighJobs(state),
       paDutchJobs: getPaDutchJobs(state),
+      scrantonJobs: getScrantonJobs(state),
+      erieJobs: getErieJobs(state),
+      centralJobs: getCentralJobs(state),
     };
   } else {
     return {};
