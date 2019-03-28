@@ -121,23 +121,23 @@ const searchForJobs = async district => {
 // every hour on this minute: '20 * * * *'
 module.exports = {
   startScrapingScripts: async () => {
-    console.log('startScrapingScript is firing')
-    try {
-      const paEdJobs = await paEducatorSearch();
-      console.log('paEdJobs')
-      console.log(paEdJobs)
-      //assure that a reasonable number of jobs returned.
-      if (paEdJobs.length > 20) {
-        await Job.find({ schoolId: 'paed' }).remove(() => { console.log('paed jobs removed.') });
-        await paEdJobs.forEach(job => {
-          new Job(job).save(
-            (err) => { if (err) { console.error(error) } })
-        })
-      }
-    }
-    catch (err) {
-      console.log(err);
-    }
+
+    // try {
+    //   const paEdJobs = await paEducatorSearch();
+    //   console.log('paEdJobs')
+    //   console.log(paEdJobs)
+    //   //assure that a reasonable number of jobs returned.
+    //   if (paEdJobs.length > 20) {
+    //     await Job.find({ schoolId: 'paed' }).remove(() => { console.log('paed jobs removed.') });
+    //     await paEdJobs.forEach(job => {
+    //       new Job(job).save(
+    //         (err) => { if (err) { console.error(error) } })
+    //     })
+    //   }
+    // }
+    // catch (err) {
+    //   console.log(err);
+    // }
 
     try {
       const paReapJobs = await pareapSearch();
@@ -153,7 +153,7 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
-    console.log('finishing up.')
+
     return true;
   }
 }
