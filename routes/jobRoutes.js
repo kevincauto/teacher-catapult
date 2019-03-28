@@ -5,6 +5,7 @@ const requireCredits = require('../middlewares/requireCredits');
 const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 const { getDate } = require('../utils/helper');
+const { startScrapingScripts } = require('../cron_jobs/crawlJobs');
 
 // const school_district_data = require('../cron_jobs/data/school_districts.json');
 
@@ -37,6 +38,27 @@ module.exports = app => {
       }
     });
   });
+
+
+  //returns all jobs
+  app.get('/api/jobs/pa-search-script',
+    requireLogin,
+    requireAdmin,
+    async (req, res) => {
+      try {
+        await startScrapingScripts();
+      } catch (err) {
+        res.send(err);
+      }
+
+      Job.find({}).exec(function (err, jobs) {
+        if (err) {
+          res.send('error has occured');
+        } else {
+          res.json(jobs);
+        }
+      });
+    });
 
   //save a paid job to database
   app.post(
@@ -88,7 +110,7 @@ module.exports = app => {
   app.post(
     '/api/jobs/pa',
     requireLogin,
-    //requireAdmin,
+    requireAdmin,
     async (req, res) => {
       // console.log('jobROutes here.')
       const { jobId, jobTitle, schoolId, jobUrl, date } = req.body.jobInfo;
@@ -131,7 +153,7 @@ module.exports = app => {
   app.post(
     '/api/jobs/pa-update-dates',
     requireLogin,
-    //requireAdmin,
+    requireAdmin,
     async (req, res) => {
       const { schoolId } = req.body;
       const today = getDate();
@@ -172,7 +194,7 @@ module.exports = app => {
   app.delete(
     '/api/jobs/pa',
     requireLogin,
-    //requireAdmin,
+    requireAdmin,
     async (req, res) => {
 
       const { id } = req.body;

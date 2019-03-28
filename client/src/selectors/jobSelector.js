@@ -1,6 +1,22 @@
 import { createSelector } from 'reselect';
 
-const getJobs = (state) => state.jobs;
+export const getJobs = (state) => state.jobs
+  .filter(job => (
+    job.jobId &&
+    job.schoolId &&
+    job.jobTitle &&
+    job.jobUrl &&
+    job.sd &&
+    job.city &&
+    job.state &&
+    job.date &&
+    (job.paid || job.paid === false)
+  ))
+  .sort((a, b) => {
+    const textA = a.jobTitle;
+    const textB = b.jobTitle;
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  })
 
 export const getJobsSortedById = createSelector(
   [getJobs],

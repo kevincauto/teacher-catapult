@@ -4,7 +4,13 @@ import RightSidebar from '../RightSidebar';
 import EmailTextbox from '../EmailTextbox';
 import SmallBanner from '../advertisements/SmallBanner';
 import { Helmet } from "react-helmet";
-import { getPhillyJobs, getPghJobs, getLehighJobs, getPaDutchJobs } from '../../selectors/jobSelector';
+import {
+  getJobs,
+  getPhillyJobs,
+  getPghJobs,
+  getLehighJobs,
+  getPaDutchJobs
+} from '../../selectors/jobSelector';
 import './pa-job-board.css';
 
 class PAJobBoard extends Component {
@@ -67,8 +73,6 @@ class PAJobBoard extends Component {
   tableHeaderJobInfoClicked = (arrOfJobs) => {
     const { jobReverseAlphabetical } = this.state;
     this.sortByjobName(arrOfJobs)
-    console.log('jobReverseAlphabetical');
-    console.log(jobReverseAlphabetical);
     const result = jobReverseAlphabetical ? arrOfJobs.reverse() : arrOfJobs;
     this.setState({
       sortByJob: false,
@@ -224,7 +228,7 @@ class PAJobBoard extends Component {
                 />
                 <br />
                 <div className="dropdown">
-                  <button onClick={() => this.dropDownClicked()} className="dropbtn">{dropdownText} <i class="fas fa-caret-down"></i></button>
+                  <button onClick={() => this.dropDownClicked()} className="dropbtn">{dropdownText} <i className="fas fa-caret-down"></i></button>
                   <div className={dropdownClass}>
                     <a onClick={() => this.setState({ dropdownText: 'All of Pennsylvania', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: false, filterPaDutch: false })}>All Pennsylvania</a>
                     <a onClick={() => this.setState({ dropdownText: 'Philadelphia Area', dropdownClass: 'dropdown-content', filterPhilly: true, filterPgh: false, filterLehigh: false, filterPaDutch: false })}>Philadelphia Area</a>
@@ -241,9 +245,9 @@ class PAJobBoard extends Component {
                   <tr>
                     <td>
                       <div className='row'>
-                        <div className="table-header col-sm-6" onClick={() => this.setState({ sortByJob: true })}>Job Information <i class="fas fa-caret-down"></i></div>
-                        <div className="table-header vanishing-header col-sm-4" onClick={() => this.setState({ sortByLocation: true })}>Location <i class="fas fa-caret-down"></i></div>
-                        <div className="table-header vanishing-header col-sm-2" onClick={() => this.setState({ sortByDate: true })}>Date <i class="fas fa-caret-down"></i></div>
+                        <div className="table-header col-sm-6" onClick={() => this.setState({ sortByJob: true })}>Job Information <i className="fas fa-caret-down"></i></div>
+                        <div className="table-header vanishing-header col-sm-4" onClick={() => this.setState({ sortByLocation: true })}>Location <i className="fas fa-caret-down"></i></div>
+                        <div className="table-header vanishing-header col-sm-2" onClick={() => this.setState({ sortByDate: true })}>Date <i className="fas fa-caret-down"></i></div>
                       </div>
                     </td>
                   </tr>
@@ -280,10 +284,10 @@ class PAJobBoard extends Component {
 }
 
 function mapStateToProps(state) {
-  const { jobs, paidjobs } = state
+  const { jobs, paidjobs } = state;
   if (jobs) {
     return {
-      jobs,
+      jobs: getJobs(state),
       paidjobs,
       phillyJobs: getPhillyJobs(state),
       pghJobs: getPghJobs(state),
