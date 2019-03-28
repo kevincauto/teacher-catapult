@@ -47,6 +47,7 @@
     "request": "^2.88.0",
     "reselect": "^4.0.0",
     "sendgrid": "^5.2.3",
+    "stringquery": "^1.0.8",
     "stripe": "^4.23.1",
     "superagent": "^3.8.2",
     "wait-until": "0.0.2",

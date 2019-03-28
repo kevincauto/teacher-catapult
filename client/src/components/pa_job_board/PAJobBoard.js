@@ -4,6 +4,7 @@ import RightSidebar from '../RightSidebar';
 import EmailTextbox from '../EmailTextbox';
 import SmallBanner from '../advertisements/SmallBanner';
 import { Helmet } from "react-helmet";
+import querySearch from 'stringquery';
 import {
   getJobs,
   getPhillyJobs,
@@ -20,7 +21,6 @@ class PAJobBoard extends Component {
   state = {
     filterText: '',
     dropdownClass: 'dropdown-content',
-    dropdownText: 'Select PA Region',
 
     sortByJob: false,
     jobReverseAlphabetical: false,
@@ -31,16 +31,26 @@ class PAJobBoard extends Component {
     sortByDate: false,
     dateReverse: false,
 
-    filterPhilly: false,
-    filterPgh: false,
-    filterLehigh: false,
-    filterPaDutch: false,
-    filterErie: false,
-    filterScranton: false,
-    filterCentral: false,
+    region: 'All of Pennsylvania',
 
     numberOfJobsDisplayed: null,
   };
+
+  componentDidMount = () => {
+    const { text, region } = querySearch(this.props.location.search);
+    if (text) {
+      this.setState({ filterText: text })
+    }
+    if (region) {
+      if (region === 'philly') { this.setState({ region: 'Philadelphia Area' }) }
+      if (region === 'pgh') { this.setState({ region: 'Pittsburgh/S.Western' }) }
+      if (region === 'paDutch') { this.setState({ region: 'PA Dutch Country' }) }
+      if (region === 'lehigh') { this.setState({ region: 'Lehigh Valley' }) }
+      if (region === 'scranton') { this.setState({ region: 'Scranton/N.Eastern' }) }
+      if (region === 'erie') { this.setState({ region: 'Erie/N.Western' }) }
+      if (region === 'central') { this.setState({ region: 'State College/Central' }) }
+    }
+  }
 
   handleFilterText = (e) => {
     this.setState({ filterText: e.target.value });
@@ -69,7 +79,7 @@ class PAJobBoard extends Component {
       return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
     })
   }
-  putPaedJobsLast = (arrOfJobs) => {
+  putPaedJobsLast = (arrOfJobs = []) => {
     const paedJobs = arrOfJobs.filter(job => job.schoolId === 'paed');
     const otherJobs = arrOfJobs.filter(job => job.schoolId !== 'paed')
     return otherJobs.concat(paedJobs);
@@ -132,13 +142,7 @@ class PAJobBoard extends Component {
 
   renderTable(JSONArrJobs = [], ArrPaidJobs = []) {
     const {
-      filterPaDutch,
-      filterLehigh,
-      filterPhilly,
-      filterPgh,
-      filterCentral,
-      filterErie,
-      filterScranton,
+      region,
       filterText,
       sortByDate,
       sortByJob,
@@ -146,13 +150,13 @@ class PAJobBoard extends Component {
     const { lehighJobs, phillyJobs, pghJobs, paDutchJobs, erieJobs, scrantonJobs, centralJobs } = this.props;
 
     //by region
-    if (filterPhilly) { JSONArrJobs = phillyJobs }
-    if (filterPgh) { JSONArrJobs = pghJobs }
-    if (filterLehigh) { JSONArrJobs = lehighJobs }
-    if (filterPaDutch) { JSONArrJobs = paDutchJobs }
-    if (filterErie) { JSONArrJobs = erieJobs }
-    if (filterCentral) { JSONArrJobs = centralJobs }
-    if (filterScranton) { JSONArrJobs = scrantonJobs }
+    if (region === 'Philadelphia Area') { JSONArrJobs = phillyJobs }
+    if (region === 'Pittsburgh/S.Western') { JSONArrJobs = pghJobs }
+    if (region === 'PA Dutch Country') { JSONArrJobs = paDutchJobs }
+    if (region === 'Lehigh Valley') { JSONArrJobs = lehighJobs }
+    if (region === 'Erie/N.Western') { JSONArrJobs = erieJobs }
+    if (region === 'Scranton/N.Eastern') { JSONArrJobs = scrantonJobs }
+    if (region === 'State College/Central') { JSONArrJobs = centralJobs }
 
     if (sortByJob) { JSONArrJobs = this.tableHeaderJobInfoClicked(JSONArrJobs) }
     if (sortByLocation) { JSONArrJobs = this.tableHeaderLocationClicked(JSONArrJobs) }
@@ -202,7 +206,7 @@ class PAJobBoard extends Component {
   }
 
   render() {
-    const { dropdownClass, dropdownText, filterText } = this.state;
+    const { dropdownClass, dropdownText, region, filterText } = this.state;
     return (
       <div className="container">
 
@@ -243,16 +247,16 @@ class PAJobBoard extends Component {
                 />
                 <br />
                 <div className="dropdown">
-                  <button onClick={() => this.dropDownClicked()} className="dropbtn">{dropdownText} <i className="fas fa-caret-down"></i></button>
+                  <button onClick={() => this.dropDownClicked()} className="dropbtn">{region} <i className="fas fa-caret-down"></i></button>
                   <div className={dropdownClass}>
-                    <a onClick={() => this.setState({ dropdownText: 'All of Pennsylvania', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: false, filterPaDutch: false, filterErie: false, filterScranton: false, filterCentral: false })}>All Pennsylvania</a>
-                    <a onClick={() => this.setState({ dropdownText: 'Philadelphia Area', dropdownClass: 'dropdown-content', filterPhilly: true, filterPgh: false, filterLehigh: false, filterPaDutch: false, filterErie: false, filterScranton: false, filterCentral: false })}>Philadelphia Area</a>
-                    <a onClick={() => this.setState({ dropdownText: 'Pittsburgh/S.Western', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: true, filterLehigh: false, filterPaDutch: false, filterErie: false, filterScranton: false, filterCentral: false })}>Pittsburgh/S.Western PA</a>
-                    <a onClick={() => this.setState({ dropdownText: 'PA Dutch Country', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: false, filterPaDutch: true, filterErie: false, filterScranton: false, filterCentral: false })}>Pennsylvania Dutch Country</a>
-                    <a onClick={() => this.setState({ dropdownText: 'Lehigh Valley', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: true, filterPaDutch: false, filterErie: false, filterScranton: false, filterCentral: false })}>Lehigh Valley</a>
-                    <a onClick={() => this.setState({ dropdownText: 'Scranton/N.Eastern', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: false, filterPaDutch: false, filterErie: false, filterScranton: true, filterCentral: false })}>Scranton/N.Eastern</a>
-                    <a onClick={() => this.setState({ dropdownText: 'Erie/N.Western', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: false, filterPaDutch: false, filterErie: true, filterScranton: false, filterCentral: false })}>Erie/N.Western</a>
-                    <a onClick={() => this.setState({ dropdownText: 'State College/Central', dropdownClass: 'dropdown-content', filterPhilly: false, filterPgh: false, filterLehigh: false, filterPaDutch: false, filterErie: false, filterScranton: false, filterCentral: true })}>State College/Central</a>
+                    <a onClick={() => this.setState({ dropdownText: 'All of Pennsylvania', dropdownClass: 'dropdown-content', region: 'All of Pennsylvania' })}>All Pennsylvania</a>
+                    <a onClick={() => this.setState({ dropdownText: 'Philadelphia Area', dropdownClass: 'dropdown-content', region: 'Philadelphia Area' })}>Philadelphia Area</a>
+                    <a onClick={() => this.setState({ dropdownText: 'Pittsburgh/S.Western', dropdownClass: 'dropdown-content', region: 'Pittsburgh/S.Western' })}>Pittsburgh/S.Western</a>
+                    <a onClick={() => this.setState({ dropdownText: 'PA Dutch Country', dropdownClass: 'dropdown-content', region: 'PA Dutch Country' })}>Pennsylvania Dutch Country</a>
+                    <a onClick={() => this.setState({ dropdownText: 'Lehigh Valley', dropdownClass: 'dropdown-content', region: 'Lehigh Valley' })}>Lehigh Valley</a>
+                    <a onClick={() => this.setState({ dropdownText: 'Scranton/N.Eastern', dropdownClass: 'dropdown-content', region: 'Scranton/N.Eastern' })}>Scranton/N.Eastern</a>
+                    <a onClick={() => this.setState({ dropdownText: 'Erie/N.Western', dropdownClass: 'dropdown-content', region: 'Erie/N.Western' })}>Erie/N.Western</a>
+                    <a onClick={() => this.setState({ dropdownText: 'State College/Central', dropdownClass: 'dropdown-content', region: 'State College/Central' })}>State College/Central</a>
                   </div>
                 </div>
               </div>
