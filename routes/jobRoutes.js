@@ -5,7 +5,7 @@ const requireCredits = require('../middlewares/requireCredits');
 const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 const { getDate } = require('../utils/helper');
-const { startScrapingScripts } = require('../cron_jobs/crawlJobs');
+const { startScrapingScripts, startScrapingTalentEd } = require('../cron_jobs/crawlJobs');
 
 // const school_district_data = require('../cron_jobs/data/school_districts.json');
 
@@ -59,6 +59,26 @@ module.exports = app => {
         }
       });
     });
+
+  app.get('/api/jobs/pa-talent-ed',
+    requireLogin,
+    requireAdmin,
+    async (req, res) => {
+      try {
+        await startScrapingTalentEd();
+      } catch (err) {
+        res.send(err);
+      }
+
+      Job.find({}).exec(function (err, jobs) {
+        if (err) {
+          res.send('error has occured');
+        } else {
+          res.json(jobs);
+        }
+      });
+    });
+
 
   //save a paid job to database
   app.post(
@@ -149,7 +169,7 @@ module.exports = app => {
   );
 
 
-
+  //Update all dates within a sd.
   app.post(
     '/api/jobs/pa-update-dates',
     requireLogin,

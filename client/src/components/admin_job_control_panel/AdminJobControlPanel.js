@@ -157,7 +157,8 @@ class AdminJobControlPanel extends Component {
     return (
       auth.admin &&
       <div className='job-control-panel'>
-        <button onClick={() => this.props.runJobSearchScript()}>Update</button>
+        <button onClick={() => this.props.runJobSearchScript()}>Update PAReap Jobs</button>
+        <button onClick={() => this.props.runTalentEdScript()}>TalentEd</button>
         {schools.map((schoolDistrict) => (
           <div className='job-control-panel_school-district' key={schoolDistrict.sd}>
             <h3>#{schoolDistrict.id} {schoolDistrict.sd}</h3>

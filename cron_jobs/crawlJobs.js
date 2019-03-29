@@ -15,7 +15,7 @@ const Job = require('../models/Job');
 
 require('events').EventEmitter.defaultMaxListeners = 200;
 
-const { pareapSearch } = require('./customSearches');
+const { pareapSearch, talentEdSearch } = require('./customSearches');
 const { standardSearch } = require('./standardSearch');
 // const { paEducatorSearch } = require('./paEducatorSearch');
 
@@ -116,9 +116,10 @@ const searchForJobs = async district => {
   return;
 };
 
-// schedule.scheduleJob('0 */4 * * *', async function () {
+// schedule.scheduleJob('12 * * * *', async function () {
 // every 4 hours: '0 */4 * * *'
 // every hour on this minute: '20 * * * *'
+
 module.exports = {
   startScrapingScripts: async () => {
 
@@ -153,9 +154,34 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
+  },
+
+  startScrapingTalentEd: async () => {
+
+
+    try {
+      const talentEdJobs = await talentEdSearch();
+      console.log('talentEdJobs')
+      console.log(talentEdJobs)
+      if (talentEdJobs.length > 0) {
+        //schoolId 367 is upper darby
+        await Job.find({ schoolId: '367' }).remove(() => { console.log('talentEd jobs removed.') });
+        await talentEdJobs.forEach(job => {
+          new Job(job).save(
+            (err) => { if (err) { console.error(error) } })
+        })
+      }
+    } catch (err) {
+      console.log(err);
+    }
 
     return true;
   }
 }
+// ,
+//   startTalentEdScript: async () => {
+//     await talentEdSearch();
+//   }
+// }
 
 // module.exports = app => { };

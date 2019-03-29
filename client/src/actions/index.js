@@ -125,6 +125,12 @@ export const runJobSearchScript = () => async dispatch => {
   dispatch({ type: FETCH_JOBS, payload: res.data });
 };
 
+export const runTalentEdScript = () => async dispatch => {
+  const res = await axios.get('/api/jobs/pa-talent-ed');
+
+  dispatch({ type: FETCH_JOBS, payload: res.data });
+};
+
 export const fetchLeads = () => async dispatch => {
   const res = await axios.get('/api/leads');
 
