@@ -6,6 +6,8 @@ const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 const { getDate } = require('../utils/helper');
 const { startScrapingScripts, startScrapingTalentEd } = require('../cron_jobs/crawlJobs');
+const { pareapSearch } = require('../scripts/pareapSearch');
+const { talentEdSearch } = require('../scripts/talentEdSearch');
 
 // const school_district_data = require('../cron_jobs/data/school_districts.json');
 
@@ -40,13 +42,13 @@ module.exports = app => {
   });
 
 
-  //returns all jobs
-  app.get('/api/jobs/pa-search-script',
+  //pareap jobs
+  app.get('/api/jobs/pareap-script',
     requireLogin,
     requireAdmin,
     async (req, res) => {
       try {
-        await startScrapingScripts();
+        await pareapSearch();
       } catch (err) {
         res.send(err);
       }
@@ -60,12 +62,13 @@ module.exports = app => {
       });
     });
 
-  app.get('/api/jobs/pa-talent-ed',
+  app.post('/api/jobs/pa-talent-ed',
     requireLogin,
     requireAdmin,
     async (req, res) => {
       try {
-        await startScrapingTalentEd();
+        const { id } = req.body;
+        await talentEdSearch(id);
       } catch (err) {
         res.send(err);
       }

@@ -105,9 +105,9 @@ module.exports = {
 
       $('strong > a').each(function (i, elem) {
         jobs[i] = $(this).text();
-        console.log('jobs');
-        console.log(jobs);
       });
+      console.log('jobs');
+      console.log(jobs);
 
       const keywords = [
         'agriculture',

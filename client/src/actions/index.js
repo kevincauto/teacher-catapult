@@ -118,15 +118,15 @@ export const fetchPaidJobs = () => async dispatch => {
   dispatch({ type: FETCH_PAID_JOBS, payload: res.data });
 };
 
-//search Reap and Educator
-export const runJobSearchScript = () => async dispatch => {
-  const res = await axios.get('/api/jobs/pa-search-script');
+//search Reap
+export const runPAReapScript = () => async dispatch => {
+  const res = await axios.get('/api/jobs/pareap-script');
 
   dispatch({ type: FETCH_JOBS, payload: res.data });
 };
 
-export const runTalentEdScript = () => async dispatch => {
-  const res = await axios.get('/api/jobs/pa-talent-ed');
+export const runTalentEdScript = id => async dispatch => {
+  const res = await axios.post('/api/jobs/pa-talent-ed', { id });
 
   dispatch({ type: FETCH_JOBS, payload: res.data });
 };
