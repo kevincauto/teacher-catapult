@@ -286,7 +286,6 @@ class RecruiterDashboard extends Component {
         <br />
         <br />
         <div className="content-container container">
-          {/* <img src="http://teachercatapult.com/wp-content/themes/jobroller/images/background.jpg" alt="bg" className="bg" />  */}
 
           <div className="row">
             <div className="col-md-8 col-lg-9">

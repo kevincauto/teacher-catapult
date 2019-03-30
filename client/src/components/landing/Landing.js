@@ -17,11 +17,6 @@ const Landing = () => {
         <meta name="og:image:url" content="https://www.teachercatapult.com/img/tc-new-jobs.png" />
         <meta name="og:image:secure_url" content="https://www.teachercatapult.com/img/tc-new-jobs.png" />
       </Helmet>
-      {/* <img
-        src="http://teachercatapult.com/wp-content/themes/jobroller/images/background.jpg"
-        alt="bg"
-        className="bg"
-      /> */}
 
       <div className="landing-page-text">
         <h1 className="primary-header">
