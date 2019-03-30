@@ -63,7 +63,7 @@ module.exports = {
 
       for (let i = 0; i < jobs.length; i++) {
         allReapJobs.push({
-          jobId: 'pareap' + timeStamp + i,
+          jobId: 'pareap' + timeStamp + '-' + i,
           schoolId: 'pareap',
           jobTitle: jobs[i],
           jobUrl: jobLinks[i],

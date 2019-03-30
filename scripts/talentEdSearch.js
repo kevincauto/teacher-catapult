@@ -95,7 +95,7 @@ module.exports = {
       let jobsArray = filterOutNonTeachingJobs(jobs, keywords);
 
       jobsArray = jobsArray.map((job, i) => ({
-        jobId: timeStamp + i,
+        jobId: timeStamp + '-' + i + '-' + schoolId,
         schoolId,
         jobTitle: job,
         jobUrl: link,
