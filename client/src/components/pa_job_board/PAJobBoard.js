@@ -5,6 +5,7 @@ import EmailTextbox from '../EmailTextbox';
 import SmallBanner from '../advertisements/SmallBanner';
 import { Helmet } from "react-helmet";
 import querySearch from 'stringquery';
+import { JSONLD, Product, AggregateRating } from 'react-structured-data';
 import {
   getJobs,
   getPhillyJobs,
@@ -302,6 +303,11 @@ class PAJobBoard extends Component {
                 that we can. We target all areas of Pennsylvania as well as all
                 teaching specialities and grade levels.
               </p>
+              <JSONLD>
+                <Product name="Teacher Catapult Job Board">
+                  <AggregateRating ratingValue={4.8} reviewCount={179} />
+                </Product>
+              </JSONLD>
             </div>
 
             <RightSidebar />

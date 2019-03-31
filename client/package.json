@@ -22,6 +22,7 @@
     "react-router-dom": "^4.1.1",
     "react-scripts": "^1.1.4",
     "react-stripe-checkout": "^2.4.0",
+    "react-structured-data": "0.0.12",
     "redux": "^3.7.1",
     "redux-form": "^7.2.0",
     "redux-thunk": "^2.2.0",

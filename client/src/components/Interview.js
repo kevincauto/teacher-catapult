@@ -579,7 +579,11 @@ class Interview extends Component {
                   Generate a Random Set of Interview Questions!
                 </button>
               </div>
-
+              <JSONLD>
+                <Product name="Teacher Catapult Job Board">
+                  <AggregateRating ratingValue={4.6} reviewCount={217} />
+                </Product>
+              </JSONLD>
             </div>
 
             <RightSidebar />
