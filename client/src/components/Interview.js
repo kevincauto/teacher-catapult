@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RightSidebar from './RightSidebar';
 import Collapsible from 'react-collapsible';
+import { JSONLD, Product, AggregateRating } from 'react-structured-data';
 import { Helmet } from "react-helmet";
 // import ad
 
