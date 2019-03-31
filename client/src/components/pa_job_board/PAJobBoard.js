@@ -206,7 +206,14 @@ class PAJobBoard extends Component {
   }
 
   render() {
-    const { dropdownClass, dropdownText, region, filterText } = this.state;
+    const {
+      dropdownClass,
+      region,
+      filterText,
+      jobReverseAlphabetical,
+      dateReverse,
+      locationReverseAlphabetical
+    } = this.state;
     return (
       <div className="container">
 
@@ -247,7 +254,7 @@ class PAJobBoard extends Component {
                 />
                 <br />
                 <div className="dropdown">
-                  <button onClick={() => this.dropDownClicked()} className="dropbtn">{region} <i className="fas fa-caret-down"></i></button>
+                  <button onClick={() => this.dropDownClicked()} className="dropbtn">{region} {dropdownClass.includes('show') ? <i className="fas fa-caret-up"></i> : <i className="fas fa-caret-down"></i>} </button>
                   <div className={dropdownClass}>
                     <a onClick={() => this.setState({ dropdownText: 'All of Pennsylvania', dropdownClass: 'dropdown-content', region: 'All of Pennsylvania' })}>All Pennsylvania</a>
                     <a onClick={() => this.setState({ dropdownText: 'Philadelphia Area', dropdownClass: 'dropdown-content', region: 'Philadelphia Area' })}>Philadelphia Area</a>
@@ -267,9 +274,9 @@ class PAJobBoard extends Component {
                   <tr>
                     <td>
                       <div className='row'>
-                        <div className="table-header col-sm-6" onClick={() => this.setState({ sortByJob: true })}>Job Information <i className="fas fa-caret-down"></i></div>
-                        <div className="table-header vanishing-header col-sm-4" onClick={() => this.setState({ sortByLocation: true })}>Location <i className="fas fa-caret-down"></i></div>
-                        <div className="table-header vanishing-header col-sm-2" onClick={() => this.setState({ sortByDate: true })}>Date <i className="fas fa-caret-down"></i></div>
+                        <div className="table-header col-sm-6" onClick={() => this.setState({ sortByJob: true })}>Job Information {jobReverseAlphabetical ? <i className="fas fa-caret-down"></i> : <i className="fas fa-caret-up"></i>}</div>
+                        <div className="table-header vanishing-header col-sm-4" onClick={() => this.setState({ sortByLocation: true })}>Location {locationReverseAlphabetical ? <i className="fas fa-caret-down"></i> : <i className="fas fa-caret-up"></i>}</div>
+                        <div className="table-header vanishing-header col-sm-2" onClick={() => this.setState({ sortByDate: true })}>Date {dateReverse ? <i className="fas fa-caret-down"></i> : <i className="fas fa-caret-up"></i>}</div>
                       </div>
                     </td>
                   </tr>
