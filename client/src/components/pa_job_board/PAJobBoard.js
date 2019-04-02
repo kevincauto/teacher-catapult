@@ -38,9 +38,10 @@ class PAJobBoard extends Component {
   };
 
   componentDidMount = () => {
-    const { text, region } = querySearch(this.props.location.search);
+    const { text = '', region } = querySearch(this.props.location.search);
+    const textWithSpaces = text.replace(/%20/g, ' ');
     if (text) {
-      this.setState({ filterText: text })
+      this.setState({ filterText: textWithSpaces })
     }
     if (region) {
       if (region === 'philly') { this.setState({ region: 'Philadelphia Area' }) }
