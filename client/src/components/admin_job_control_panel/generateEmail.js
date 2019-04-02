@@ -14,7 +14,9 @@ export const generateEmail = (jobs) => {
     const artJobs = findJobs(jobs, ['art teacher']);
     const autisticJobs = findJobs(jobs, ['autistic']);
     const behaviorSpecJobs = findJobs(jobs, ['behavior']);
+    const bioJobs = findJobs(jobs, ['biology']);
     const businessJobs = findJobs(jobs, ['business']);
+    const chemJobs = findJobs(jobs, ['chemistry']);
     const chineseJobs = findJobs(jobs, ['chinese']);
     const compSciJobs = findJobs(jobs, ['computer science']);
     const earlyChildJobs = findJobs(jobs, ['early childhood']);
@@ -38,9 +40,11 @@ export const generateEmail = (jobs) => {
     const musicJobs = findJobs(jobs, ['music', 'choral teach', 'band teach', 'chorus teach', 'vocal']);
     const occTheraJobs = findJobs(jobs, ['occupational therapy']);
     const physEdJobs = findJobs(jobs, ['physical education', 'phys ed']);
+    const physicsJobs = findJobs(jobs, ['physics']);
+    const principalJobs = findJobs(jobs, ['principal']);
     const psychJobs = findJobs(jobs, ['psychologist']);
     const readingJobs = findJobs(jobs, ['reading specialist']);
-    const scienceJobs = findJobs(jobs, ['science teach', 'biology', 'physics teach', 'chemistry']);
+    const scienceJobs = findJobs(jobs, ['science teach']);
     const socialStudiesJobs = findJobs(jobs, ['social studies', 'history']);
     const spanishJobs = findJobs(jobs, ['spanish']);
     const specEdJobs = findJobs(jobs, ['special ed']);
@@ -674,6 +678,15 @@ export const generateEmail = (jobs) => {
             :
             ``
         }
+        ${bioJobs ?
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+                                                    style="color: #FF8A2B;"><strong><a href="http://www.teachercatapult.com/teaching-jobs-in-pa?text=biology"
+                                                        target="_blank">Biology Teacher Job(s):</a></strong></span></span></p>
+                                                    <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
+                                                    style="font-family:arial,helvetica,sans-serif; line-height:18px">${bioJobs}</span></span></p>`
+            :
+            ``
+        }
                         ${behaviorSpecJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="http://www.teachercatapult.com/teaching-jobs-in-pa?text=behavior"
@@ -689,6 +702,15 @@ export const generateEmail = (jobs) => {
                                                         target="_blank">Business Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${businessJobs}</span></span></p>`
+            :
+            ``
+        }
+        ${chemJobs ?
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+                                                    style="color: #FF8A2B;"><strong><a href="http://www.teachercatapult.com/teaching-jobs-in-pa?text=chemistry"
+                                                        target="_blank">Chemistry Teacher Job(s):</a></strong></span></span></p>
+                                                    <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
+                                                    style="font-family:arial,helvetica,sans-serif; line-height:18px">${chemJobs}</span></span></p>`
             :
             ``
         }
@@ -896,6 +918,24 @@ export const generateEmail = (jobs) => {
                                                         target="_blank">Physical Education Teacher Job(s):</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${physEdJobs}</span></span></p>`
+            :
+            ``
+        }
+        ${physicsJobs ?
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+                                                    style="color: #FF8A2B;"><strong><a href="http://www.teachercatapult.com/teaching-jobs-in-pa?text=physics"
+                                                        target="_blank">Physics Teacher Job(s):</a></strong></span></span></p>
+                                                    <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
+                                                    style="font-family:arial,helvetica,sans-serif; line-height:18px">${physicsJobs}</span></span></p>`
+            :
+            ``
+        }
+        ${principalJobs ?
+            `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
+                                                    style="color: #FF8A2B;"><strong><a href="http://www.teachercatapult.com/teaching-jobs-in-pa?text=principal"
+                                                        target="_blank">Principal Teacher Job(s):</a></strong></span></span></p>
+                                                    <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
+                                                    style="font-family:arial,helvetica,sans-serif; line-height:18px">${principalJobs}</span></span></p>`
             :
             ``
         }
