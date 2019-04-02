@@ -583,9 +583,10 @@ export const generateEmail = (jobs) => {
 						<tr>
 						<td align="center" valign="top" width="600" style="width:600px;">
 						<![endif]-->
-                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="templateContainer">
-                            <tr>
-                                <td valign="top" id="templatePreheader"><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="templateContainer" style="background-color:#fff;">
+                            <tr style="background-color:#fff;">
+                                <td valign="top" id="templatePreheader" style="background-color:#201B1B;">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
     <tbody class="mcnTextBlockOuter">
         <tr>
             <td valign="top" class="mcnTextBlockInner">
@@ -605,7 +606,7 @@ export const generateEmail = (jobs) => {
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right:18px; padding-bottom:9px; padding-left:18px;">
                         
-                            <a href="*|ARCHIVE|*" target="_blank">View this email in your browser</a>
+                            <a href="*|ARCHIVE|*" target="_blank" style="color:#fff;text-decoration:none;">View this email in your browser</a>
                         </td>
                     </tr>
                 </tbody></table>
@@ -637,7 +638,7 @@ export const generateEmail = (jobs) => {
 </table></td>
                             </tr>
                             <tr>
-                                <td valign="top" id="templateBody"><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+                                <td valign="top" id="templateBody" style="background-color:#FFFFFF;"><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
     <tbody class="mcnTextBlockOuter">
         <tr>
             <td valign="top" class="mcnTextBlockInner">
