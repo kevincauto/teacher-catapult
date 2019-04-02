@@ -93,6 +93,7 @@ module.exports = {
       const schoolId = id.toString()
 
       let jobsArray = filterOutNonTeachingJobs(jobs, keywords);
+      jobsArray = jobsArray.filter(job => !job.includes('(NJ)'))
 
       jobsArray = jobsArray.map((job, i) => ({
         jobId: timeStamp + '-' + i + '-' + schoolId,

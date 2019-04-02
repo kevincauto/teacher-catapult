@@ -19,6 +19,7 @@ module.exports = {
         return `${typeAndSubject[1]} ${typeAndSubject[0]}`.trim();
       });
       jobs = jobs.map(job => job.replace('Classroom Teacher', 'Teacher'))
+      jobs = jobs.map(job => job.includes('Berks County Intermediate Unit #14') ? 'Berks County Intermediate Unit #14' : job)
       jobs.shift();
 
       let sdAndCity = $('.school')
