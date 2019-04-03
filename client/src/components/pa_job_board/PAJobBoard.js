@@ -216,6 +216,7 @@ class PAJobBoard extends Component {
       dateReverse,
       locationReverseAlphabetical
     } = this.state;
+    const { location } = this.props;
     return (
       <div className="container">
 
@@ -311,7 +312,7 @@ class PAJobBoard extends Component {
               </JSONLD>
             </div>
 
-            <RightSidebar />
+            <RightSidebar location={location} />
           </div>
         </div>
       </div>

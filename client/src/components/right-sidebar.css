@@ -1,4 +1,13 @@
-.square-ad{
-  width: 250px;
-  height: 250px;
+.social-link{
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.social-sharing-header{
+  font-size: 32px;
+}
+
+.social-sharing{
+  position: sticky;
+  top: 0px;
 }
