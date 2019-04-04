@@ -144,7 +144,6 @@ class Interview extends Component {
   render() {
     return (
       <div className="container">
-
         <Helmet>
           <title>Interview Simulator, 88 Teacher Interview Questions - Teacher Catapult</title>
           <meta name="description" content="" />
@@ -184,7 +183,7 @@ class Interview extends Component {
               </div>
               <h2 className="text-center">88 Teacher Interview Questions</h2>
               <p>
-                <a name="88">&nbsp;</a>
+                <a name="88"></a>
                 <br />
                 Below you will find the complete list of 88 sample teacher
                 interview questions. These questions are quite common for high
