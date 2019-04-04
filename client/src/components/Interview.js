@@ -536,7 +536,7 @@ class Interview extends Component {
                   <strong>Hint:</strong> Let your interviewers know that
                   differentiating instruction is important and that you implement
                   strategies on a regular basis. All students
-                  don".$single_quote."t learn in the same way, so it is important
+                  don't learn in the same way, so it is important
                   to present ideas in more than one way. It is also important to
                   engage both gifted and struggling students. Think up a list of
                   ways you differentiate instruction and be prepared to share
