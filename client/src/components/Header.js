@@ -47,7 +47,6 @@ class Header extends Component {
   render() {
     return (
       <Navbar inverse collapseOnSelect staticTop>
-        <a name="top"></a>
         <Navbar.Header>
           <Navbar.Brand>
             <Link to={'/'}>

@@ -26,10 +26,10 @@ class Footer extends Component {
               <h4>Menu</h4>
               <ul>
                 <li>
-                  <a href="/teaching-jobs-in-pa/#top">PA Teaching Jobs</a>
+                  <a href="/teaching-jobs-in-pa/">PA Teaching Jobs</a>
                 </li>
                 <li>
-                  <a href="/teaching-articles/teacher-interview-questions/#top">
+                  <a href="/teaching-articles/teacher-interview-questions/">
                     Interview Guide
                   </a>
                 </li>

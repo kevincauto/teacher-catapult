@@ -3,7 +3,7 @@ import RightSidebar from './RightSidebar';
 import Collapsible from 'react-collapsible';
 import { JSONLD, Product, AggregateRating } from 'react-structured-data';
 import { Helmet } from "react-helmet";
-// import ad
+import './interview.css';
 
 class Interview extends Component {
   constructor() {
@@ -172,9 +172,11 @@ class Interview extends Component {
                   Teacher Interview Question Guide: Questions and How to Answer
                 </h1>
               </center>
+              <img className="book-image" alt="teacher books apple" src="../../img/books-apple.jpg" />
               <div className="well well-lg">
                 <strong>Table of Contents</strong>
                 <br />
+
                 <a href="#88">88 Common Teacher Interview Questions</a>
                 <br />
                 <a href="#generator">
