@@ -237,7 +237,7 @@ class PAJobBoard extends Component {
 
         <img src="../../img/background.jpg" alt="bg" className="bg" />
         <div className='masthead'>
-          {/* <SmallBanner /> */}
+          <SmallBanner />
         </div>
 
         <div className="content-container container">

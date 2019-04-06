@@ -10,7 +10,7 @@ export default class SalaryTable extends Component {
           <tr>
             <td>
               <div className='row'>
-                <div className="table-header-salary col-xs-6"
+                <div className="table-header-salary col-xs-5"
                 // onClick={() => this.setState({ sortByJob: true })}
                 >School District
                 {/* <i className="fas fa-caret-down"></i> */}
@@ -20,7 +20,7 @@ export default class SalaryTable extends Component {
                 >Min Salary
                 {/* <i className="fas fa-caret-down"></i> */}
                 </div>
-                <div className="table-header-salary col-xs-3"
+                <div className="table-header-salary col-xs-4"
                 // onClick={() => this.setState({ sortByDate: true })}
                 >Max Salary
                 {/* <i className="fas fa-caret-down"></i> */}
@@ -36,14 +36,14 @@ export default class SalaryTable extends Component {
               <tr key={school.DISTRICT}>
                 <td>
                   <div className="row">
-                    <div className="col-xs-6">
+                    <div className="col-xs-5">
                       {school.DISTRICT}
                       <br />
                     </div>
                     <div className="col-xs-3">
                       {school['MIN SALARY']} <br />
                     </div>
-                    <div className="col-xs-3">{school['MAX SALARY']}</div>
+                    <div className="col-xs-4">{school['MAX SALARY']}</div>
                   </div>
                 </td>
               </tr>
