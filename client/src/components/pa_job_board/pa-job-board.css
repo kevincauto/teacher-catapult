@@ -23,6 +23,11 @@ body{
   color: #337ab7;
   cursor: pointer;
 }
+
+.table-header-salary{
+  font-weight: bold;
+}
+
 .job-name{
   font-weight: bold;
 }

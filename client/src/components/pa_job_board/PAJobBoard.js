@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RightSidebar from '../RightSidebar';
 import EmailTextbox from '../EmailTextbox';
+import SalaryTable from './SalaryTable';
 import SmallBanner from '../advertisements/SmallBanner';
 import { Helmet } from "react-helmet";
 import querySearch from 'stringquery';
@@ -16,6 +17,7 @@ import {
   getCentralJobs,
   getScrantonJobs,
 } from '../../selectors/jobSelector';
+import { salaries } from './salary-data';
 import './pa-job-board.css';
 
 class PAJobBoard extends Component {
@@ -235,7 +237,7 @@ class PAJobBoard extends Component {
 
         <img src="../../img/background.jpg" alt="bg" className="bg" />
         <div className='masthead'>
-          <SmallBanner />
+          {/* <SmallBanner /> */}
         </div>
 
         <div className="content-container container">
@@ -243,9 +245,9 @@ class PAJobBoard extends Component {
             <div className="col-md-8 col-lg-9">
               <center>
                 <h2>
-                  Teaching Jobs in PA<br />
+                  Teaching Jobs in Pennsylvania<br />
                 </h2>
-                <h3>Hundreds of Jobs for Pennsylvania Teachers!</h3>
+                <h3>Hundreds of Jobs for PA Teachers!</h3>
               </center>
               <div className="search-inputs">
                 <input
@@ -296,6 +298,11 @@ class PAJobBoard extends Component {
                 <br />
                 <br />
               </div>
+              <br />
+              <h2>Salary Data*: Full-Time Classroom Teachers in Pennsylvania</h2>
+              <br />
+              <SalaryTable salaries={salaries} />
+              <p>*Up-to-date as of May 2018, source: commonwealthfoundation.org</p>
               <p className="description-paragraph">
                 Teaching jobs in PA are scattered across hundreds of school
                 district websites across the internet. Teacher Catapult's small
@@ -315,7 +322,7 @@ class PAJobBoard extends Component {
             <RightSidebar location={location} />
             <a href={`https://www.facebook.com/sharer/sharer.php?u=https://www.teachercatapult.com/teaching-jobs-in-pa`} target="_blank" >
               <div className="social-footer">
-                Please Share Us on Facebook.
+                Please Share Us on Facebook
               </div>
             </a>
 
