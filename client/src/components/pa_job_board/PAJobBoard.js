@@ -313,6 +313,12 @@ class PAJobBoard extends Component {
             </div>
 
             <RightSidebar location={location} />
+            <a href={`https://www.facebook.com/sharer/sharer.php?u=https://www.teachercatapult.com/teaching-jobs-in-pa`} target="_blank" >
+              <div className="social-footer">
+                Please Share Us on Facebook.
+              </div>
+            </a>
+
           </div>
         </div>
       </div>

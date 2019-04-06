@@ -3,6 +3,12 @@
   font-weight: bold;
 }
 
+.square-ad{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+}
+
 .social-sharing-header{
   font-size: 32px;
 }

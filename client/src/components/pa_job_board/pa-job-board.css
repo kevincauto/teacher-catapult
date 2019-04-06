@@ -33,6 +33,40 @@ body{
 
 }
 
+
+
+/* 1199 */
+.social-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  /* #3b5998; */
+  background-color: #1e67a7;
+  color: white;
+  font-size: 18px;
+  padding: 15px 0px;
+  text-align: center;
+  cursor: pointer;
+  /* display: none; */
+  z-index: 3;
+}
+
+.social-footer:hover{
+  background-color: #3b5998;
+}
+
+.facebook-logo{
+  width: 20px;
+}
+
+@media only screen and (max-width: 1199px) {
+  .social-footer {
+    display: block;
+    font-size: 18px
+  }
+} 
+
 @media only screen and (max-width: 767px) {
   .vanishing-header {
     display: none;

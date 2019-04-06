@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import EmailTextbox from './EmailTextbox';
+import './footer.css'
 
 class Footer extends Component {
   render() {

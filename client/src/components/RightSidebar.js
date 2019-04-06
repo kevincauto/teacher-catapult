@@ -33,7 +33,7 @@ class RightSidebar extends Component {
           </div>
         </div>
         <div>
-          <div className="social-sharing">
+          {/* <div className="social-sharing">
             <h4 className="social-sharing-header">Please Share Our Website</h4>
             <div>
               <a
@@ -52,7 +52,7 @@ class RightSidebar extends Component {
                 Share on LinkedIn
           </a>
             </div>
-          </div>
+          </div> */}
         </div>
 
       </div>
