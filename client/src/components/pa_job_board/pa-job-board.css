@@ -38,7 +38,25 @@ body{
 
 }
 
+.up-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 10%;
+  right: 10%;
+  background-color: rgba(255, 255, 255, 0.534);
+  color: #1e67a779;
+  font-size: 36px;
+}
 
+.up-button:hover{
+  background-color: #1e67a7;
+  color: #fff;
+}
 
 /* 1199 */
 .social-footer {

@@ -237,6 +237,7 @@ class PAJobBoard extends Component {
 
 
         <img src="../../img/background.jpg" alt="bg" className="bg" />
+        <a name="top"></a>
         <div className='masthead'>
           <SmallBanner />
         </div>
@@ -322,6 +323,12 @@ class PAJobBoard extends Component {
             </div>
 
             <RightSidebar location={location} />
+            <a href="#top">
+              <div className="up-button">
+                <i className="fas fa-caret-up"></i>
+              </div>
+            </a>
+
             <a href={`https://www.facebook.com/sharer/sharer.php?u=https://www.teachercatapult.com/teaching-jobs-in-pa`} target="_blank" >
               <div className="social-footer">
                 Please Share Us on Facebook
