@@ -28,7 +28,7 @@ body{
   font-weight: bold;
 }
 
-.job-name{
+.job-name, .salary-link{
   font-weight: bold;
 }
 .searchAreaRadio {

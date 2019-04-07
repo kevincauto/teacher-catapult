@@ -200,6 +200,7 @@ class PAJobBoard extends Component {
               <div className="col-sm-4">
                 {`${job.city}, ${job.state}`} <br />
                 {job.county} <br />
+                {parseInt(job.schoolId) > 0 && parseInt(job.schoolId) < 411 ? <a className='salary-link' href="#salary">View Salary Data</a> : null}
               </div>
               <div className="col-sm-2 ">{job.date}</div>
             </div>
@@ -299,6 +300,7 @@ class PAJobBoard extends Component {
                 <br />
               </div>
               <br />
+              <a name="salary"></a>
               <h2>Salary Data*: Full-Time Classroom Teachers in Pennsylvania</h2>
               <br />
               <SalaryTable salaries={salaries} />
