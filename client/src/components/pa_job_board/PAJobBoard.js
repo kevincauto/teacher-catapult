@@ -166,9 +166,9 @@ class PAJobBoard extends Component {
     if (sortByLocation) { JSONArrJobs = this.tableHeaderLocationClicked(JSONArrJobs) }
     if (sortByDate) { JSONArrJobs = this.tableHeaderDateClicked(JSONArrJobs) }
 
-    JSONArrJobs = this.putPaedJobsLast(JSONArrJobs);
-
+    // JSONArrJobs = this.putPaedJobsLast(JSONArrJobs);
     // JSONArrJobs = ArrPaidJobs.reverse().concat(JSONArrJobs);
+
     JSONArrJobs = JSONArrJobs.filter(
       ({ jobTitle = '', city = '', county = '', state = '', sd = '' }) => {
         if (jobTitle.toLowerCase().indexOf(filterText.toLowerCase()) !== -1) { return true }
