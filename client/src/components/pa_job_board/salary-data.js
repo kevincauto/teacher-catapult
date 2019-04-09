@@ -430,11 +430,11 @@ export const salaries =
       "MIN SALARY": "$46,221",
       "MAX SALARY": "$69,579"
     },
-    {
-      "DISTRICT": "Claysburg-Kimmel",
-      "MIN SALARY": "$41,000",
-      "MAX SALARY": "?"
-    },
+    // {
+    //   "DISTRICT": "Claysburg-Kimmel",
+    //   "MIN SALARY": "$41,000",
+    //   "MAX SALARY": "?"
+    // },
     {
       "DISTRICT": "Clearfield Area",
       "MIN SALARY": "$44,125",
@@ -735,11 +735,11 @@ export const salaries =
       "MIN SALARY": "$44,868",
       "MAX SALARY": "$86,384"
     },
-    {
-      "DISTRICT": "Forbes Road",
-      "MIN SALARY": "?",
-      "MAX SALARY": "?"
-    },
+    // {
+    //   "DISTRICT": "Forbes Road",
+    //   "MIN SALARY": "?",
+    //   "MAX SALARY": "?"
+    // },
     {
       "DISTRICT": "Forest Area",
       "MIN SALARY": "$52,441",
@@ -910,11 +910,11 @@ export const salaries =
       "MIN SALARY": "$44,898",
       "MAX SALARY": "$70,723"
     },
-    {
-      "DISTRICT": "Harmony Area",
-      "MIN SALARY": "?",
-      "MAX SALARY": "?"
-    },
+    // {
+    //   "DISTRICT": "Harmony Area",
+    //   "MIN SALARY": "?",
+    //   "MAX SALARY": "?"
+    // },
     {
       "DISTRICT": "Harrisburg",
       "MIN SALARY": "$46,475",
@@ -1225,11 +1225,11 @@ export const salaries =
       "MIN SALARY": "$45,726",
       "MAX SALARY": "$99,999"
     },
-    {
-      "DISTRICT": "Meyersdale Area",
-      "MIN SALARY": "?",
-      "MAX SALARY": "?"
-    },
+    // {
+    //   "DISTRICT": "Meyersdale Area",
+    //   "MIN SALARY": "?",
+    //   "MAX SALARY": "?"
+    // },
     {
       "DISTRICT": "Mid Valley",
       "MIN SALARY": "$40,906",
@@ -1835,11 +1835,11 @@ export const salaries =
       "MIN SALARY": "$48,334",
       "MAX SALARY": "$104,540"
     },
-    {
-      "DISTRICT": "Saint Clair Area",
-      "MIN SALARY": "$32,000",
-      "MAX SALARY": "?"
-    },
+    // {
+    //   "DISTRICT": "Saint Clair Area",
+    //   "MIN SALARY": "$32,000",
+    //   "MAX SALARY": "?"
+    // },
     {
       "DISTRICT": "Saint Mary's Area",
       "MIN SALARY": "$46,013",
@@ -2050,11 +2050,11 @@ export const salaries =
       "MIN SALARY": "$51,550",
       "MAX SALARY": "$91,666"
     },
-    {
-      "DISTRICT": "Southmoreland",
-      "MIN SALARY": "?",
-      "MAX SALARY": "?"
-    },
+    // {
+    //   "DISTRICT": "Southmoreland",
+    //   "MIN SALARY": "?",
+    //   "MAX SALARY": "?"
+    // },
     {
       "DISTRICT": "Spring Cove",
       "MIN SALARY": "$42,514",
@@ -2415,11 +2415,11 @@ export const salaries =
       "MIN SALARY": "$45,891",
       "MAX SALARY": "$96,551"
     },
-    {
-      "DISTRICT": "Williams Valley",
-      "MIN SALARY": "?",
-      "MAX SALARY": "?"
-    },
+    // {
+    //   "DISTRICT": "Williams Valley",
+    //   "MIN SALARY": "?",
+    //   "MAX SALARY": "?"
+    // },
     {
       "DISTRICT": "Williamsburg Community",
       "MIN SALARY": "$37,774",
