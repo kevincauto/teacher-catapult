@@ -8,6 +8,12 @@ export default class SalaryTable extends Component {
     byMaxSalaryRev: [],
     byMinSalary: [],
     byMinSalaryRev: [],
+    isDistrictSelected: false,
+    isDistrictRevSelected: false,
+    isMaxSelected: false,
+    isMaxRevSelected: false,
+    isMinSelected: false,
+    isMinRevSelected: false,
   }
 
   componentDidMount = () => {
@@ -44,6 +50,72 @@ export default class SalaryTable extends Component {
     })
   }
 
+  districtClicked = () => {
+    const { isDistrictSelected } = this.state;
+
+    isDistrictSelected ?
+      this.setState({
+        isDistrictSelected: false,
+        isDistrictRevSelected: true,
+        isMaxSelected: false,
+        isMaxRevSelected: false,
+        isMinSelected: false,
+        isMinRevSelected: false
+      }) :
+      this.setState({
+        isDistrictSelected: true,
+        isDistrictRevSelected: false,
+        isMaxSelected: false,
+        isMaxRevSelected: false,
+        isMinSelected: false,
+        isMinRevSelected: false
+      })
+  }
+
+  maxClicked = () => {
+    const { isMaxSelected } = this.state;
+
+    isMaxSelected ?
+      this.setState({
+        isDistrictSelected: false,
+        isDistrictRevSelected: false,
+        isMaxSelected: false,
+        isMaxRevSelected: true,
+        isMinSelected: false,
+        isMinRevSelected: false
+      }) :
+      this.setState({
+        isDistrictSelected: false,
+        isDistrictRevSelected: false,
+        isMaxSelected: true,
+        isMaxRevSelected: false,
+        isMinSelected: false,
+        isMinRevSelected: false
+      })
+  }
+
+  minClicked = () => {
+    const { isMinSelected } = this.state;
+
+    isMinSelected ?
+      this.setState({
+        isDistrictSelected: false,
+        isDistrictRevSelected: false,
+        isMaxSelected: false,
+        isMaxRevSelected: false,
+        isMinSelected: false,
+        isMinRevSelected: true,
+      }) :
+      this.setState({
+        isDistrictSelected: false,
+        isDistrictRevSelected: false,
+        isMaxSelected: false,
+        isMaxRevSelected: false,
+        isMinSelected: true,
+        isMinRevSelected: false
+      })
+  }
+
   render() {
     const {
       byDistrict,
@@ -51,10 +123,24 @@ export default class SalaryTable extends Component {
       byMaxSalary,
       byMaxSalaryRev,
       byMinSalary,
-      byMinSalaryRev
+      byMinSalaryRev,
+      isDistrictSelected,
+      isDistrictRevSelected,
+      isMaxSelected,
+      isMaxRevSelected,
+      isMinSelected,
+      isMinRevSelected,
     } = this.state;
 
-    const salaries = byDistrict;
+    let salaries = byDistrict;
+
+    if (isDistrictSelected) { salaries = byDistrict }
+    if (isDistrictRevSelected) { salaries = byDistrictReverse }
+    if (isMaxSelected) { salaries = byMaxSalary }
+    if (isMaxRevSelected) { salaries = byMaxSalaryRev }
+    if (isMinSelected) { salaries = byMinSalary }
+    if (isMinRevSelected) { salaries = byMinSalaryRev }
+
     return (
       <table className="table table-bordered table-striped table-hover">
         <thead>
@@ -63,19 +149,19 @@ export default class SalaryTable extends Component {
             <td>
               <div className='row'>
                 <div className="table-header col-xs-5"
-                // onClick={() => this.setState({ sortByJob: true })}
+                  onClick={() => this.districtClicked()}
                 >School District
-                {/* <i className="fas fa-caret-down"></i> */}
+                {isDistrictSelected ? <i className="fas fa-caret-up"></i> : <i className="fas fa-caret-down"></i>}
                 </div>
                 <div className="table-header col-xs-3"
-                // onClick={() => this.setState({ sortByLocation: true })}
+                  onClick={() => this.minClicked()}
                 >Min Salary
-                {/* <i className="fas fa-caret-down"></i> */}
+                {isMinSelected ? <i className="fas fa-caret-up"></i> : <i className="fas fa-caret-down"></i>}
                 </div>
                 <div className="table-header col-xs-4"
-                // onClick={() => this.setState({ sortByDate: true })}
+                  onClick={() => this.maxClicked()}
                 >Max Salary
-                {/* <i className="fas fa-caret-down"></i> */}
+                {isMaxSelected ? <i className="fas fa-caret-up"></i> : <i className="fas fa-caret-down"></i>}
                 </div>
               </div>
             </td>
