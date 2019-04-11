@@ -12,8 +12,8 @@ class RightSidebar extends Component {
     return (
       <div className="col-md-4 col-lg-3">
         <div className="sidebar-border">
-          <h4>Sign-Up To Get Emails</h4>
-          <p>New job postings are sent right to your inbox weekly.</p>
+          <h4>Get Jobs Sent Right To You!</h4>
+          <p>New job postings are sent right to your inbox.</p>
           <EmailTextbox />
           <br />
         </div>

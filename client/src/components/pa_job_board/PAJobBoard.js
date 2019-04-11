@@ -294,8 +294,8 @@ class PAJobBoard extends Component {
                 </tbody>
               </table>
               <div className="sidebar-border full-screen-only">
-                <h4>Sign-Up To Get Emails</h4>
-                <p>New job postings are sent right to your inbox weekly.</p>
+                <h4>Get Jobs Sent Right To You!</h4>
+                <p>New job postings are sent right to your inbox.</p>
                 <EmailTextbox />
                 <br />
                 <br />
