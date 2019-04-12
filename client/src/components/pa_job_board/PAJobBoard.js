@@ -309,7 +309,7 @@ class PAJobBoard extends Component {
               <p className="description-paragraph">
                 Teaching jobs in PA are scattered across hundreds of school
                 district websites across the internet. Teacher Catapult's small
-                army of teachers and volunteers are proud to bring you hundreds
+                army of workers are proud to bring you hundreds
                 of Pennsylvania teaching jobs. We love
                 teachers and we do our best to find as many teaching jobs in PA
                 that we can. We target all areas of Pennsylvania as well as all
