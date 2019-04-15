@@ -183,7 +183,7 @@ class Interview extends Component {
               <p>
                 <a name="88"></a>
                 <br />
-                Below you will find the complete list of 88 sample teacher
+                Below you will find our full list of 88 sample teacher
                 interview questions. These questions are quite common for high
                 school, middle school, and elementary teacher interviews. The
                 difficulty level of these questions vary from easy to more
