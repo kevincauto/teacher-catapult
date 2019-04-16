@@ -6,27 +6,22 @@ import { Helmet } from "react-helmet";
 import './interview.css';
 
 class Interview extends Component {
-  constructor() {
-    super();
-    this.state = {
-      q1: '',
-      q2: '',
-      q3: '',
-      q4: '',
-      q5: '',
-      q6: '',
-      q7: '',
-      q8: ''
-    };
-
-    this.generateQuestions = this.generateQuestions.bind(this);
-  }
+  state = {
+    q1: '',
+    q2: '',
+    q3: '',
+    q4: '',
+    q5: '',
+    q6: '',
+    q7: '',
+    q8: ''
+  };
 
   componentDidMount() {
     this.generateQuestions();
   }
 
-  generateQuestions() {
+  generateQuestions = () => {
     const firstQuestions = [
       'Why are you a good fit for this job and our school district?',
       'What makes you qualified for this teaching position?',
