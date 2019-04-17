@@ -672,7 +672,7 @@ export const generateEmail = (jobs) => {
                         ${autisticJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=autistic"
-                                                        target="_blank">Autistic Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Autistic Teacher Job${autisticJobs.includes(',') ? 's' : ''}:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${autisticJobs}</span></span></p>`
             :
@@ -681,7 +681,7 @@ export const generateEmail = (jobs) => {
         ${bioJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=biology"
-                                                        target="_blank">Biology Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Biology Teacher Job${bioJobs.includes(',') ? 's' : ''}:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${bioJobs}</span></span></p>`
             :
@@ -690,7 +690,7 @@ export const generateEmail = (jobs) => {
                         ${behaviorSpecJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=behavior"
-                                                        target="_blank">Behavior Specialist Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Behavior Specialist Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${behaviorSpecJobs}</span></span></p>`
             :
@@ -699,7 +699,7 @@ export const generateEmail = (jobs) => {
                         ${businessJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=business"
-                                                        target="_blank">Business Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Business Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${businessJobs}</span></span></p>`
             :
@@ -708,7 +708,7 @@ export const generateEmail = (jobs) => {
         ${chemJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=chemistry"
-                                                        target="_blank">Chemistry Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Chemistry Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${chemJobs}</span></span></p>`
             :
@@ -717,7 +717,7 @@ export const generateEmail = (jobs) => {
                         ${chineseJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=chinese"
-                                                        target="_blank">Chinese Language Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Chinese Language Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${chineseJobs}</span></span></p>`
             :
@@ -726,7 +726,7 @@ export const generateEmail = (jobs) => {
                         ${compSciJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=computer%20science"
-                                                        target="_blank">Computer Science Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Computer Science Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${compSciJobs}</span></span></p>`
             :
@@ -735,7 +735,7 @@ export const generateEmail = (jobs) => {
                         ${earlyChildJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=early%20childhood"
-                                                        target="_blank">Early Childhood Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Early Childhood Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${earlyChildJobs}</span></span></p>`
             :
@@ -744,7 +744,7 @@ export const generateEmail = (jobs) => {
                         ${elemJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa"
-                                                        target="_blank">Elementary Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Elementary Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${elemJobs}</span></span></p>`
             :
@@ -753,7 +753,7 @@ export const generateEmail = (jobs) => {
                         ${emoSupJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=emotional%20support"
-                                                        target="_blank">Emotional Support Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Emotional Support Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${emoSupJobs}</span></span></p>`
             :
@@ -762,7 +762,7 @@ export const generateEmail = (jobs) => {
                         ${engJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=english%20teacher"
-                                                        target="_blank">English Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">English Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${engJobs}</span></span></p>`
             :
@@ -771,7 +771,7 @@ export const generateEmail = (jobs) => {
                         ${eslJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=esl"
-                                                        target="_blank">ESL Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">ESL Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${eslJobs}</span></span></p>`
             :
@@ -780,7 +780,7 @@ export const generateEmail = (jobs) => {
                         ${famConJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=consumer%20science"
-                                                        target="_blank">Family and Consumer Science Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Family and Consumer Science Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${famConJobs}</span></span></p>`
             :
@@ -789,7 +789,7 @@ export const generateEmail = (jobs) => {
                         ${foreignLangJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=foreign%20language"
-                                                        target="_blank">Foreign Language Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Foreign Language Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${foreignLangJobs}</span></span></p>`
             :
@@ -798,7 +798,7 @@ export const generateEmail = (jobs) => {
                         ${frenchJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=french"
-                                                        target="_blank">French Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">French Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${frenchJobs}</span></span></p>`
             :
@@ -807,7 +807,7 @@ export const generateEmail = (jobs) => {
                         ${germanJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=german"
-                                                        target="_blank">German Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">German Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${germanJobs}</span></span></p>`
             :
@@ -816,7 +816,7 @@ export const generateEmail = (jobs) => {
                         ${giftedJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=gifted"
-                                                        target="_blank">Gifted Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Gifted Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${giftedJobs}</span></span></p>`
             :
@@ -825,7 +825,7 @@ export const generateEmail = (jobs) => {
                         ${guidanceJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=guidance"
-                                                        target="_blank">Guidance Counselor Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Guidance Counselor Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${guidanceJobs}</span></span></p>`
             :
@@ -834,7 +834,7 @@ export const generateEmail = (jobs) => {
                         ${healthJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=health"
-                                                        target="_blank">Health Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Health Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${healthJobs}</span></span></p>`
             :
@@ -843,7 +843,7 @@ export const generateEmail = (jobs) => {
                         ${latinJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=latin"
-                                                        target="_blank">Latin Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Latin Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${latinJobs}</span></span></p>`
             :
@@ -852,7 +852,7 @@ export const generateEmail = (jobs) => {
                         ${langArtsJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=language%20arts"
-                                                        target="_blank">Language Arts Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Language Arts Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${langArtsJobs}</span></span></p>`
             :
@@ -861,7 +861,7 @@ export const generateEmail = (jobs) => {
                         ${learnSupJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=learning%20support"
-                                                        target="_blank">Learning Support Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Learning Support Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${learnSupJobs}</span></span></p>`
             :
@@ -870,7 +870,7 @@ export const generateEmail = (jobs) => {
                         ${librarianJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=librarian"
-                                                        target="_blank">Librarian Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Librarian Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${librarianJobs}</span></span></p>`
             :
@@ -879,7 +879,7 @@ export const generateEmail = (jobs) => {
                         ${lifeSkillsJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=life%20skills"
-                                                        target="_blank">Life Skills Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Life Skills Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${lifeSkillsJobs}</span></span></p>`
             :
@@ -888,7 +888,7 @@ export const generateEmail = (jobs) => {
                         ${mathJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=math"
-                                                        target="_blank">Math Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Math Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${mathJobs}</span></span></p>`
             :
@@ -897,7 +897,7 @@ export const generateEmail = (jobs) => {
                         ${musicJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=music"
-                                                        target="_blank">Music Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Music Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${musicJobs}</span></span></p>`
             :
@@ -906,7 +906,7 @@ export const generateEmail = (jobs) => {
                         ${occTheraJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=occupational%20therapy"
-                                                        target="_blank">Occupational Therapist Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Occupational Therapist Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${occTheraJobs}</span></span></p>`
             :
@@ -915,7 +915,7 @@ export const generateEmail = (jobs) => {
                         ${physEdJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=physical%20education"
-                                                        target="_blank">Physical Education Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Physical Education Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${physEdJobs}</span></span></p>`
             :
@@ -924,7 +924,7 @@ export const generateEmail = (jobs) => {
         ${physicsJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=physics"
-                                                        target="_blank">Physics Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Physics Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${physicsJobs}</span></span></p>`
             :
@@ -933,7 +933,7 @@ export const generateEmail = (jobs) => {
         ${principalJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=principal"
-                                                        target="_blank">Principal Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Principal Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${principalJobs}</span></span></p>`
             :
@@ -942,7 +942,7 @@ export const generateEmail = (jobs) => {
                         ${psychJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=psychologist"
-                                                        target="_blank">Psychologist Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Psychologist Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${psychJobs}</span></span></p>`
             :
@@ -951,7 +951,7 @@ export const generateEmail = (jobs) => {
                         ${readingJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=reading%20specialist"
-                                                        target="_blank">Reading Specialist Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Reading Specialist Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${readingJobs}</span></span></p>`
             :
@@ -960,7 +960,7 @@ export const generateEmail = (jobs) => {
                         ${scienceJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=science%20teacher"
-                                                        target="_blank">Science Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Science Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${scienceJobs}</span></span></p>`
             :
@@ -969,7 +969,7 @@ export const generateEmail = (jobs) => {
                         ${socialStudiesJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=social%20studies"
-                                                        target="_blank">Social Studies Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Social Studies Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${socialStudiesJobs}</span></span></p>`
             :
@@ -978,7 +978,7 @@ export const generateEmail = (jobs) => {
                         ${spanishJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=spanish"
-                                                        target="_blank">Spanish Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Spanish Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${spanishJobs}</span></span></p>`
             :
@@ -987,7 +987,7 @@ export const generateEmail = (jobs) => {
                         ${specEdJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=special%20ed"
-                                                        target="_blank">Special Ed Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Special Ed Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${specEdJobs}</span></span></p>`
             :
@@ -996,7 +996,7 @@ export const generateEmail = (jobs) => {
                         ${speechJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?speech%20and%20language"
-                                                        target="_blank">Speech and Language Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Speech and Language Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${speechJobs}</span></span></p>`
             :
@@ -1005,7 +1005,7 @@ export const generateEmail = (jobs) => {
                         ${techJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                     style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?technology%20teacher"
-                                                        target="_blank">Technology Teacher Job(s):</a></strong></span></span></p>
+                                                        target="_blank">Technology Teacher Jobs:</a></strong></span></span></p>
                                                     <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                     style="font-family:arial,helvetica,sans-serif; line-height:18px">${techJobs}</span></span></p>`
             :
