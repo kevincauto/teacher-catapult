@@ -654,7 +654,7 @@ export const generateEmail = (jobs) => {
                         ${agricultureJobs ?
             `<p style="line-height: 20.8px; text-align: center;"><span style="font-size:18px"><span
                                                                                                 style="color: #FF8A2B;"><strong><a href="https://www.teachercatapult.com/teaching-jobs-in-pa?text=agriculture"
-                                                                                                    target="_blank">Agriculture Teacher Job${agricultureJobs.includes(',') ? 's' : ''}(s):</a></strong></span></span></p>
+                                                                                                    target="_blank">Agriculture Teacher Job${agricultureJobs.includes(',') ? 's' : ''}:</a></strong></span></span></p>
                                                                                                 <p style="line-height: 20.8px;text-align: center;"><span style="font-size:14px"><span
                                                                                                 style="font-family:arial,helvetica,sans-serif; line-height:18px">${agricultureJobs}</span></span></p>`
             :
