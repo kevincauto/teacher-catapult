@@ -202,6 +202,8 @@ class PAJobBoard extends Component {
               <div className="col-sm-4">
                 {`${job.city}, ${job.state}`} <br />
                 {job.county} <br />
+                <a className="email-job" href={`mailto:?subject=${job.jobTitle}&body=Check%20out%20this%20job%20post%20on%20Teacher%20Catapult:%20[https://www.teachercatapult.com/teaching-jobs-in-pa?text=${job.jobTitle.replace(/ /g, '%20')}]`}>
+                  <i class="fas fa-envelope"></i> Email This Job</a>
               </div>
               <div className="col-sm-2 ">{job.date}</div>
             </div>

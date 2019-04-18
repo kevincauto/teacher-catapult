@@ -31,6 +31,11 @@ body{
 .job-name, .salary-link{
   font-weight: bold;
 }
+
+.email-job{
+  font-weight: bold;
+  text-decoration: none;
+}
 .searchAreaRadio {
   margin-bottom: 8px;
   display: flex;
@@ -57,6 +62,8 @@ body{
   background-color: #1e67a7;
   color: #fff;
 }
+
+
 
 /* 1199 */
 .social-footer {
