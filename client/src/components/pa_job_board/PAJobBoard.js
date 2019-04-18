@@ -17,7 +17,8 @@ import {
   getCentralJobs,
   getScrantonJobs,
 } from '../../selectors/jobSelector';
-import { salaries } from './salary-data';
+import { getSchools } from '../../selectors/schoolSelector';
+import { salaries } from '../../data//salary-data';
 import './pa-job-board.css';
 
 class PAJobBoard extends Component {
@@ -196,11 +197,11 @@ class PAJobBoard extends Component {
                 <br />
                 {job.sd}
                 <br />
+                {job.salary ? <span><strong>Salary Range: </strong>{job.salary}*</span> : ''}
               </div>
               <div className="col-sm-4">
                 {`${job.city}, ${job.state}`} <br />
                 {job.county} <br />
-                {parseInt(job.schoolId) > 0 && parseInt(job.schoolId) < 411 ? <a className='salary-link' href="#salary">View Salary Data</a> : null}
               </div>
               <div className="col-sm-2 ">{job.date}</div>
             </div>
@@ -211,6 +212,7 @@ class PAJobBoard extends Component {
   }
 
   render() {
+    const { schools = [] } = this.props;
     const {
       dropdownClass,
       region,
@@ -305,7 +307,10 @@ class PAJobBoard extends Component {
               <h2>Salary Data*: Full-Time Classroom Teachers in Pennsylvania</h2>
               <br />
               <SalaryTable salaries={salaries} />
-              <p>*Up-to-date as of May 2018, source: commonwealthfoundation.org</p>
+              <p>*Up-to-date as of May 2018, source: commonwealthfoundation.org.
+                All salary ranges reflect full-time employment for a classroom teacher.
+                While the data is meant to be accurate and helpful, accuracy can't be guaranteed.
+                </p>
               <p className="description-paragraph">
                 Teaching jobs in PA are scattered across hundreds of school
                 district websites across the internet. Teacher Catapult's small
@@ -343,7 +348,7 @@ class PAJobBoard extends Component {
 }
 
 function mapStateToProps(state) {
-  const { jobs, paidjobs } = state;
+  const { jobs, paidjobs, schools } = state;
   if (jobs) {
     return {
       jobs: getJobs(state),
@@ -355,6 +360,7 @@ function mapStateToProps(state) {
       scrantonJobs: getScrantonJobs(state),
       erieJobs: getErieJobs(state),
       centralJobs: getCentralJobs(state),
+      schools: getSchools(state),
     };
   } else {
     return {};

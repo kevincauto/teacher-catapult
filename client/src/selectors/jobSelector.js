@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { salaries } from '../data/salary-data';
 
 export const getJobs = (state) => state.jobs
   .filter(job => (
@@ -12,9 +13,14 @@ export const getJobs = (state) => state.jobs
     job.date &&
     (job.paid || job.paid === false)
   ))
+  .map(job => {
+    const matchingSalary = salaries.find(salary => salary.id == job.schoolId)
+    if (matchingSalary) { job.salary = `${matchingSalary['MIN SALARY']} - ${matchingSalary['MAX SALARY']}` }
+    return job;
+  })
   .sort((a, b) => {
-    const textA = a.jobTitle;
-    const textB = b.jobTitle;
+    const textA = a.jobTitle.toUpperCase().replace(/[^A-Za-z]+/g, '');
+    const textB = b.jobTitle.toUpperCase().replace(/[^A-Za-z]+/g, '');
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
   })
 
@@ -57,11 +63,10 @@ export const getCentralJobs = createSelector(
     job.county === 'Fulton County' ||
     job.city === 'State College'
   ).sort((a, b) => {
-    const textA = a.jobTitle.trim().toUpperCase();
-    const textB = b.jobTitle.trim().toUpperCase();
+    const textA = a.jobTitle.toUpperCase().replace(/[^A-Za-z]+/g, '');
+    const textB = b.jobTitle.toUpperCase().replace(/[^A-Za-z]+/g, '');
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-  }
-  )
+  })
 )
 
 export const getScrantonJobs = createSelector(
@@ -87,11 +92,10 @@ export const getScrantonJobs = createSelector(
     job.city == 'Wilkes-Barre' ||
     job.city === 'Scranton'
   ).sort((a, b) => {
-    const textA = a.jobTitle.trim().toUpperCase();
-    const textB = b.jobTitle.trim().toUpperCase();
+    const textA = a.jobTitle.toUpperCase().replace(/[^A-Za-z]+/g, '');
+    const textB = b.jobTitle.toUpperCase().replace(/[^A-Za-z]+/g, '');
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-  }
-  )
+  })
 )
 
 export const getErieJobs = createSelector(
@@ -112,11 +116,10 @@ export const getErieJobs = createSelector(
     job.county === 'Armstrong County' ||
     job.city === 'Erie'
   ).sort((a, b) => {
-    const textA = a.jobTitle.trim().toUpperCase();
-    const textB = b.jobTitle.trim().toUpperCase();
+    const textA = a.jobTitle.toUpperCase().replace(/[^A-Za-z]+/g, '');
+    const textB = b.jobTitle.toUpperCase().replace(/[^A-Za-z]+/g, '');
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-  }
-  )
+  })
 )
 
 export const getPaDutchJobs = createSelector(
@@ -141,11 +144,10 @@ export const getPaDutchJobs = createSelector(
     job.county === 'Northumberland County' ||
     job.county === 'Centre County'
   ).sort((a, b) => {
-    const textA = a.jobTitle.trim().toUpperCase();
-    const textB = b.jobTitle.trim().toUpperCase();
+    const textA = a.jobTitle.toUpperCase().replace(/[^A-Za-z]+/g, '');
+    const textB = b.jobTitle.toUpperCase().replace(/[^A-Za-z]+/g, '');
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-  }
-  )
+  })
 )
 
 export const getPhillyJobs = createSelector(
@@ -158,11 +160,10 @@ export const getPhillyJobs = createSelector(
     job.county === 'Chester County' ||
     job.city === 'Philadelphia'
   ).sort((a, b) => {
-    const textA = a.jobTitle.trim().toUpperCase();
-    const textB = b.jobTitle.trim().toUpperCase();
+    const textA = a.jobTitle.toUpperCase().replace(/[^A-Za-z]+/g, '');
+    const textB = b.jobTitle.toUpperCase().replace(/[^A-Za-z]+/g, '');
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-  }
-  )
+  })
 )
 
 export const getPghJobs = createSelector(
@@ -179,11 +180,10 @@ export const getPghJobs = createSelector(
     job.county === 'Somerset County' ||
     job.county === 'Fayette County'
   ).sort((a, b) => {
-    const textA = a.jobTitle.trim().toUpperCase();
-    const textB = b.jobTitle.trim().toUpperCase();
+    const textA = a.jobTitle.toUpperCase().replace(/[^A-Za-z]+/g, '');
+    const textB = b.jobTitle.toUpperCase().replace(/[^A-Za-z]+/g, '');
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-  }
-  )
+  })
 )
 
 export const getLehighJobs = createSelector(
@@ -199,11 +199,10 @@ export const getLehighJobs = createSelector(
     job.city === 'Bethlehem' ||
     job.city === 'Easton'
   ).sort((a, b) => {
-    const textA = a.jobTitle.trim().toUpperCase();
-    const textB = b.jobTitle.trim().toUpperCase();
+    const textA = a.jobTitle.toUpperCase().replace(/[^A-Za-z]+/g, '');
+    const textB = b.jobTitle.toUpperCase().replace(/[^A-Za-z]+/g, '');
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-  }
-  )
+  })
 )
 
 const bucksCountyTowns = [
