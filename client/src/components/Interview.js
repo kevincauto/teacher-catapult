@@ -160,7 +160,7 @@ class Interview extends Component {
             <div className="col-md-8 col-lg-9">
               <center>
                 <h1>
-                  Teacher Interview Questions Guide: Questions and How to Answer
+                  Teacher Interview Questions Guide: 88 Questions and How to Answer
                 </h1>
               </center>
               <img className="book-image" alt="teacher books apple" src="../../img/teacher-apple.jpg" />
