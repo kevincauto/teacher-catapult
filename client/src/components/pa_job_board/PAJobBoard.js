@@ -250,10 +250,10 @@ class PAJobBoard extends Component {
           <div className="row">
             <div className="col-md-8 col-lg-9">
               <center>
-                <h2>
+                <h1>
                   Teaching Jobs in Pennsylvania<br />
-                </h2>
-                <h3>Hundreds of Jobs for PA Teachers!</h3>
+                </h1>
+                <h2>Hundreds of Jobs for PA Teachers!</h2>
               </center>
               <div className="search-inputs">
                 <input
@@ -298,7 +298,7 @@ class PAJobBoard extends Component {
                 </tbody>
               </table>
               <div className="sidebar-border full-screen-only">
-                <h4>Get Jobs Sent Right To You!</h4>
+                <h3>Get Jobs Sent Right To You!</h3>
                 <p>New job postings are sent right to your inbox.</p>
                 <EmailTextbox />
                 <br />
