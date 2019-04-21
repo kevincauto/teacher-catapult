@@ -42,7 +42,8 @@ class PAJobBoard extends Component {
 
   componentDidMount = () => {
     const { text = '', region } = querySearch(this.props.location.search);
-    const textWithSpaces = text.replace(/%20/g, ' ');
+    let textWithSpaces = text.replace(/%20/g, ' ');
+    textWithSpaces = text.replace(/_/g, ' ');
     if (text) {
       this.setState({ filterText: textWithSpaces })
     }
@@ -202,7 +203,7 @@ class PAJobBoard extends Component {
               <div className="col-sm-4">
                 {`${job.city}, ${job.state}`} <br />
                 {job.county} <br />
-                <a className="email-job" href={`mailto:?subject=${job.jobTitle}&body=Check%20out%20this%20job%20post%20on%20Teacher%20Catapult:%20[https://www.teachercatapult.com/teaching-jobs-in-pa?text=${job.jobTitle.replace(/ /g, '%20')}]`}>
+                <a className="email-job" href={`mailto:?subject=${job.jobTitle}&body=Check%20out%20this%20job%20post%20on%20Teacher%20Catapult:%20https://www.teachercatapult.com/teaching-jobs-in-pa?text=${job.jobTitle.replace(/ /g, '_')}`}>
                   <i class="fas fa-envelope"></i> Email This Job</a>
               </div>
               <div className="col-sm-2 ">{job.date}</div>
