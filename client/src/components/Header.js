@@ -62,6 +62,9 @@ class Header extends Component {
             <NavItem eventKey={2} href="/teaching-jobs-in-pa">
               Teaching Jobs in PA
             </NavItem>
+            <NavItem eventKey={3} href="/teaching-articles/teacher-interview-questions">
+              88 Teacher Interview Questions
+            </NavItem>
             {/* <NavDropdown eventKey={3} title="Resources" id="basic-nav-dropdown">
               <Navbar.Text>
                 <Link to="/teaching-jobs-in-pa">Teaching Jobs in PA</Link>
