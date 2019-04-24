@@ -15,7 +15,12 @@ export const getJobs = (state) => state.jobs
   ))
   .map(job => {
     const matchingSalary = salaries.find(salary => salary.id == job.schoolId)
-    if (matchingSalary) { job.salary = `${matchingSalary['MIN SALARY']} - ${matchingSalary['MAX SALARY']}` }
+    if (
+      matchingSalary &&
+      !job.jobTitle.toLowerCase().includes('aide') &&
+      !job.jobTitle.toLowerCase().includes('assistant') &&
+      !job.jobTitle.toLowerCase().includes('principal')
+    ) { job.salary = `${matchingSalary['MIN SALARY']} - ${matchingSalary['MAX SALARY']}` }
     return job;
   })
   .sort((a, b) => {
