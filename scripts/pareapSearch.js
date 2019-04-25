@@ -63,13 +63,18 @@ module.exports = {
       const timeStamp = today.getTime();
 
       for (let i = 0; i < jobs.length; i++) {
+        let county = '';
+        if (bucksCountyTowns.includes(cities[i])) { county = 'Bucks County' }
+        if (montgomeryCountyTowns.includes(cities[i])) { county = 'Montgomery County' }
+        if (cities[i] === 'Philadelphia') { county = 'Philadelphia County' }
+
         allReapJobs.push({
           jobId: 'pareap' + timeStamp + '-' + i,
           schoolId: 'pareap',
           jobTitle: jobs[i],
           jobUrl: jobLinks[i],
           sd: sds[i],
-          county: '',
+          county,
           city: cities[i],
           state: states[i],
           date,
@@ -78,7 +83,7 @@ module.exports = {
       }
       //remove jobs that city is left blank
       allReapJobs = allReapJobs.filter(job => job.city);
-      //Multiple jobs showing up as "Activities Teacher" when proper subject is not selected.
+      //Multiple jobs showing up as 'Activities Teacher' when proper subject is not selected.
       allReapJobs = allReapJobs.filter(job => job.jobTitle !== 'Activities Teacher')
       console.log(allReapJobs)
       if (allReapJobs.length > 20) {
@@ -100,3 +105,67 @@ module.exports = {
     }
   }
 };
+
+const bucksCountyTowns = [
+  'Bedminster',
+  'Bensalem',
+  'Blooming Glen',
+  'Bristol',
+  'Buckingham',
+  'Carversville',
+  'Chalfont',
+  'Croydon',
+  'Danboro',
+  'Doylestown',
+  'Dublin',
+  'Durham',
+  'Erwinna',
+  'Fairless Hills',
+  'Feasterville Trevose',
+  'Ferndale',
+  'Forest Grove',
+  'Fountainville',
+  'Furlong',
+  'Hilltown',
+  'Holicong',
+  'Jamison',
+  'Kintnersville',
+  'Lahaska',
+  'Langhorne',
+  'Levittown',
+  'Line Lexington',
+  'Lumberville',
+  'Mechanicsville',
+  'Milford Square',
+  'Morrisville',
+  'New Hope',
+  'Newtown',
+  'Ottsville',
+  'Penns Park',
+  'Perkasie',
+  'Pineville',
+  'Pipersville',
+  'Plumsteadville',
+  'Point Pleasant',
+  'Quakertown',
+  'Revere',
+  'Richboro',
+  'Richlandtown',
+  'Riegelsville',
+  'Rushland',
+  'Sellersville',
+  'Silverdale',
+  'Solebury',
+  'Southampton',
+  'Spinnerstown',
+  'Springtown',
+  'Trumbauersville',
+  'Upper Black Eddy',
+  'Warminster',
+  'Warrington',
+  'Washington Crossing',
+  'Wycombe',
+  'Zionhill',
+]
+
+montgomeryCountyTowns = ['Abington', 'Ambler', 'Ardmore', 'Audubon', 'Bala Cynwyd', 'Blue Bell', 'Bridgeport', 'Bryn Athyn', 'Cedars', 'Cheltenham', 'Collegeville', 'Colmar', 'Conshohocken', 'Creamery', 'Dresher', 'Eagleville', 'East Greenville', 'Elkins Park', 'Fairview Village', 'Flourtown', 'Fort Washington', 'Franconia', 'Frederick', 'Gilbertsville', 'Gladwyne', 'Glenside', 'Green Lane', 'Gwynedd', 'Gwynedd Valley', 'Harleysville', 'Hatboro', 'Hatfield', 'Haverford', 'Horsham', 'Huntingdon Valley', 'Jenkintown', 'King of Prussia', 'Kulpsville', 'Lafayette Hill', 'Lansdale', 'Lederach', 'Mainland', 'Merion Station', 'Mont Clare', 'Montgomeryville', 'Narberth', 'Norristown', 'North Wales', 'Oaks', 'Oreland', 'Palm', 'Pennsburg', 'Perkiomenville', 'Plymouth Meeting', 'Pottstown', 'Red Hill', 'Royersford', 'Salford', 'Salfordville', 'Sassamansville', 'Schwenksville', 'Skippack', 'Souderton', 'Spring House', 'Spring Mount', 'Sumneytown', 'Telford', 'Tylersport', 'West Conshohocken', 'West Point', 'Willow Grove', 'Worcester', 'Woxall', 'Wyncote', 'Wynnewood', 'Zieglerville'];
