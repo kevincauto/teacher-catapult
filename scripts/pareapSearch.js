@@ -66,6 +66,8 @@ module.exports = {
         let county = '';
         if (bucksCountyTowns.includes(cities[i])) { county = 'Bucks County' }
         if (montgomeryCountyTowns.includes(cities[i])) { county = 'Montgomery County' }
+        if (chesterCountyTowns.includes(cities[i])) { county = 'Chester County' }
+        if (delawareCountyTowns.includes(cities[i])) { county = 'Delaware County' }
         if (cities[i] === 'Philadelphia') { county = 'Philadelphia County' }
 
         allReapJobs.push({
@@ -169,3 +171,5 @@ const bucksCountyTowns = [
 ]
 
 montgomeryCountyTowns = ['Abington', 'Ambler', 'Ardmore', 'Audubon', 'Bala Cynwyd', 'Blue Bell', 'Bridgeport', 'Bryn Athyn', 'Cedars', 'Cheltenham', 'Collegeville', 'Colmar', 'Conshohocken', 'Creamery', 'Dresher', 'Eagleville', 'East Greenville', 'Elkins Park', 'Fairview Village', 'Flourtown', 'Fort Washington', 'Franconia', 'Frederick', 'Gilbertsville', 'Gladwyne', 'Glenside', 'Green Lane', 'Gwynedd', 'Gwynedd Valley', 'Harleysville', 'Hatboro', 'Hatfield', 'Haverford', 'Horsham', 'Huntingdon Valley', 'Jenkintown', 'King of Prussia', 'Kulpsville', 'Lafayette Hill', 'Lansdale', 'Lederach', 'Mainland', 'Merion Station', 'Mont Clare', 'Montgomeryville', 'Narberth', 'Norristown', 'North Wales', 'Oaks', 'Oreland', 'Palm', 'Pennsburg', 'Perkiomenville', 'Plymouth Meeting', 'Pottstown', 'Red Hill', 'Royersford', 'Salford', 'Salfordville', 'Sassamansville', 'Schwenksville', 'Skippack', 'Souderton', 'Spring House', 'Spring Mount', 'Sumneytown', 'Telford', 'Tylersport', 'West Conshohocken', 'West Point', 'Willow Grove', 'Worcester', 'Woxall', 'Wyncote', 'Wynnewood', 'Zieglerville'];
+chesterCountyTowns = ['Atglen', 'Avondale', 'Berwyn', 'Birchrunville', 'Brandamore', 'Chatham', 'Chester Springs', 'Coatesville', 'Cochranville', 'Devault', 'Devon', 'Downingtown', 'Elverson', 'Exton', 'Glenmoore', 'Honey Brook', 'Immaculata', 'Kemblesville', 'Kennett Square', 'Kimberton', 'Landenberg', 'Lewisville', 'Lincoln University', 'Lionville', 'Lyndell', 'Malvern', 'Modena', 'New London', 'Nottingham', 'Oxford', 'Paoli', 'Parker Ford', 'Parkesburg', 'Phoenixville', 'Pomeroy', 'Pottstown', 'Sadsburyville', 'Saint Peters', 'Spring City', 'Thorndale', 'Toughkenamon', 'Unionville', 'Uwchland', 'Valley Forge', 'West Chester', 'West Grove', 'Westtown'];
+delawareCountyTowns = ["Aston", "Brookhaven", "Broomall", "Bryn Mawr", "Chadds Ford", "Chester", "Chester Heights", "Cheyney", "Clifton Heights", "Concordville", "Crum Lynne", "Darby", "Drexel Hill", "Edgemont", "Essington", "Folcroft", "Folsom", "Garnet Valley", "Glen Mills", "Glen Riddle Lima", "Glenolden", "Havertown", "Holmes", "Lansdowne", "Lenni", "Marcus Hook", "Media", "Morton", "Newtown Square", "Norwood", "Philadelphia", "Prospect Park", "Ridley Park", "Sharon Hill", "Springfield", "Swarthmore", "Thornton", "Upper Darby", "Villanova", "Wallingford", "Wayne", "Woodlyn"];
