@@ -19,7 +19,8 @@ export const getJobs = (state) => state.jobs
       matchingSalary &&
       !job.jobTitle.toLowerCase().includes('aide') &&
       !job.jobTitle.toLowerCase().includes('assistant') &&
-      !job.jobTitle.toLowerCase().includes('principal')
+      !job.jobTitle.toLowerCase().includes('principal') &&
+      !job.jobTitle.toLowerCase().includes('camp counselor')
     ) { job.salary = `${matchingSalary['MIN SALARY']} - ${matchingSalary['MAX SALARY']}` }
     return job;
   })
