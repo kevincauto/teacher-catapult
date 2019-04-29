@@ -71,6 +71,7 @@ module.exports = {
         if (lancasterCountyTowns.includes(cities[i])) { county = 'Lancaster County' }
         if (berksCountyTowns.includes(cities[i])) { county = 'Berks County' }
         if (yorkCountyTowns.includes(cities[i])) { county = 'York County' }
+        if (northamptonCountyTowns.includes(cities[i])) { county = 'Northampton County' }
         if (cities[i] === 'Philadelphia') { county = 'Philadelphia County' }
 
         allReapJobs.push({
@@ -180,3 +181,4 @@ lancasterCountyTowns = ["Adamstown", "Akron", "Bainbridge", "Bart", "Bausman", "
 lehighCountyTowns = ["Alburtis", "Allentown", "Breinigsville", "Catasauqua", "Center Valley", "Coopersburg", "Coplay", "East Texas", "Emmaus", "Fogelsville", "Germansville", "Laurys Station", "Limeport", "Macungie", "Neffs", "New Tripoli", "Old Zionsville", "Orefield", "Schnecksville", "Slatedale", "Slatington", "Trexlertown", "Whitehall", "Zionsville"];
 berksCountyTowns = ["Bally", "Barto", "Bechtelsville", "Bernville", "Bethel", "Birdsboro", "Blandon", "Bowers", "Boyertown", "Centerport", "Douglassville", "Earlville", "Fleetwood", "Geigertown", "Hamburg", "Hereford", "Kempton", "Kutztown", "Leesport", "Lenhartsville", "Limekiln", "Lyon Station", "Maxatawny", "Mertztown", "Mohnton", "Mohrsville", "Morgantown", "Mount Aetna", "New Berlinville", "Oley", "Pine Forge", "Reading", "Rehrersburg", "Robesonia", "Shartlesville", "Shoemakersville", "Strausstown", "Temple", "Topton", "Virginville", "Wernersville", "Womelsdorf"];
 yorkCountyTowns = ["Airville", "Brogue", "Codorus", "Craley", "Dallastown", "Delta", "Dillsburg", "Dover", "East Prospect", "Emigsville", "Etters", "Fawn Grove", "Felton", "Franklintown", "Glen Rock", "Glenville", "Hanover", "Lewisberry", "Loganville", "Manchester", "Mount Wolf", "New Freedom", "New Park", "Porters Sideling", "Railroad", "Red Lion", "Seven Valleys", "Shrewsbury", "Spring Grove", "Stewartstown", "Thomasville", "Wellsville", "Windsor", "Wrightsville", "York", "York Haven", "York New Salem"];
+northamptonCountyTowns = ["Bangor", "Bath", "Bethlehem", "Cherryville", "Danielsville", "Easton", "Hellertown", "Martins Creek", "Mount Bethel", "Nazareth", "Northampton", "Pen Argyl", "Portland", "Stockertown", "Tatamy", "Treichlers", "Walnutport", "Wind Gap"];
