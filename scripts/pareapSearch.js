@@ -73,6 +73,7 @@ module.exports = {
         if (berksCountyTowns.includes(cities[i])) { county = 'Berks County' }
         if (yorkCountyTowns.includes(cities[i])) { county = 'York County' }
         if (northamptonCountyTowns.includes(cities[i])) { county = 'Northampton County' }
+        if (lebanonCountyTowns.includes(cities[i])) { county = 'Lebanon County' }
         if (cities[i] === 'Philadelphia') { county = 'Philadelphia County' }
 
         allReapJobs.push({
@@ -184,3 +185,4 @@ berksCountyTowns = ["Bally", "Barto", "Bechtelsville", "Bernville", "Bethel", "B
 yorkCountyTowns = ["Airville", "Brogue", "Codorus", "Craley", "Dallastown", "Delta", "Dillsburg", "Dover", "East Prospect", "Emigsville", "Etters", "Fawn Grove", "Felton", "Franklintown", "Glen Rock", "Glenville", "Hanover", "Lewisberry", "Loganville", "Manchester", "Mount Wolf", "New Freedom", "New Park", "Porters Sideling", "Railroad", "Red Lion", "Seven Valleys", "Shrewsbury", "Spring Grove", "Stewartstown", "Thomasville", "Wellsville", "Windsor", "Wrightsville", "York", "York Haven", "York New Salem"];
 northamptonCountyTowns = ["Bangor", "Bath", "Bethlehem", "Cherryville", "Danielsville", "Easton", "Hellertown", "Martins Creek", "Mount Bethel", "Nazareth", "Northampton", "Pen Argyl", "Portland", "Stockertown", "Tatamy", "Treichlers", "Walnutport", "Wind Gap"];
 alleghenyCountyTowns = ["Allison Park", "Bairdford", "Bakerstown", "Bethel Park", "Brackenridge", "Braddock", "Bradfordwoods", "Bridgeville", "Buena Vista", "Bunola", "Carnegie", "Cheswick", "Clairton", "Coraopolis", "Coulters", "Creighton", "Crescent", "Cuddy", "Curtisville", "Dravosburg", "Duquesne", "East Mc Keesport", "East Pittsburgh", "Elizabeth", "Gibsonia", "Glassport", "Glenshaw", "Greenock", "Harwick", "Homestead", "Imperial", "Indianola", "Ingomar", "Leetsdale", "Mc Kees Rocks", "Mckeesport", "Monroeville", "Morgan", "Natrona Heights", "North Versailles", "Oakdale", "Oakmont", "Pitcairn", "Pittsburgh", "Presto", "Rural Ridge", "Russellton", "Sewickley", "South Park", "Springdale", "Sturgeon", "Tarentum", "Turtle Creek", "Verona", "Warrendale", "West Elizabeth", "West Mifflin", "Wexford", "Wildwood", "Wilmerding"];
+lebanonCountyTowns = ["Annville", "Campbelltown", "Cornwall", "Fredericksburg", "Jonestown", "Kleinfeltersville", "Lawn", "Lebanon", "Mount Gretna", "Myerstown", "Newmanstown", "Ono", "Palmyra", "Quentin", "Rexmont", "Richland", "Schaefferstown"];
