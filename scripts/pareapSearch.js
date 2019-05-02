@@ -74,6 +74,7 @@ module.exports = {
         if (yorkCountyTowns.includes(cities[i])) { county = 'York County' }
         if (northamptonCountyTowns.includes(cities[i])) { county = 'Northampton County' }
         if (lebanonCountyTowns.includes(cities[i])) { county = 'Lebanon County' }
+        if (dauphinCountyTowns.includes(cities[i])) { county = 'Dauphin County' }
         if (cities[i] === 'Philadelphia') { county = 'Philadelphia County' }
 
         allReapJobs.push({
