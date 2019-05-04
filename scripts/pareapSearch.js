@@ -64,6 +64,7 @@ module.exports = {
 
       for (let i = 0; i < jobs.length; i++) {
         let county = '';
+        if (adamsCountyTowns.includes(cities[i])) { county = 'Adams County' }
         if (alleghenyCountyTowns.includes(cities[i])) { county = 'Allegheny County' }
         if (bucksCountyTowns.includes(cities[i])) { county = 'Bucks County' }
         if (montgomeryCountyTowns.includes(cities[i])) { county = 'Montgomery County' }
@@ -187,3 +188,4 @@ yorkCountyTowns = ["Airville", "Brogue", "Codorus", "Craley", "Dallastown", "Del
 northamptonCountyTowns = ["Bangor", "Bath", "Bethlehem", "Cherryville", "Danielsville", "Easton", "Hellertown", "Martins Creek", "Mount Bethel", "Nazareth", "Northampton", "Pen Argyl", "Portland", "Stockertown", "Tatamy", "Treichlers", "Walnutport", "Wind Gap"];
 alleghenyCountyTowns = ["Allison Park", "Bairdford", "Bakerstown", "Bethel Park", "Brackenridge", "Braddock", "Bradfordwoods", "Bridgeville", "Buena Vista", "Bunola", "Carnegie", "Cheswick", "Clairton", "Coraopolis", "Coulters", "Creighton", "Crescent", "Cuddy", "Curtisville", "Dravosburg", "Duquesne", "East Mc Keesport", "East Pittsburgh", "Elizabeth", "Gibsonia", "Glassport", "Glenshaw", "Greenock", "Harwick", "Homestead", "Imperial", "Indianola", "Ingomar", "Leetsdale", "Mc Kees Rocks", "Mckeesport", "Monroeville", "Morgan", "Natrona Heights", "North Versailles", "Oakdale", "Oakmont", "Pitcairn", "Pittsburgh", "Presto", "Rural Ridge", "Russellton", "Sewickley", "South Park", "Springdale", "Sturgeon", "Tarentum", "Turtle Creek", "Verona", "Warrendale", "West Elizabeth", "West Mifflin", "Wexford", "Wildwood", "Wilmerding"];
 lebanonCountyTowns = ["Annville", "Campbelltown", "Cornwall", "Fredericksburg", "Jonestown", "Kleinfeltersville", "Lawn", "Lebanon", "Mount Gretna", "Myerstown", "Newmanstown", "Ono", "Palmyra", "Quentin", "Rexmont", "Richland", "Schaefferstown"];
+adamsCountyTowns = ["Aurora", "Bennett", "Brighton", "Commerce City", "Denver", "Dupont", "Eastlake", "Henderson", "Strasburg", "Thornton", "Watkins", "Westminster"];
