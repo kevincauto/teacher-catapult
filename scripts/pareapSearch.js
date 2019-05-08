@@ -79,6 +79,7 @@ module.exports = {
         if (lebanonCountyTowns.includes(cities[i])) { county = 'Lebanon County' }
         if (dauphinCountyTowns.includes(cities[i])) { county = 'Dauphin County' }
         if (beaverCountyTowns.includes(cities[i])) { county = 'Beaver County' }
+        if (blairCountyTowns.includes(cities[i])) { county = 'Blair County' }
         if (cities[i] === 'Philadelphia') { county = 'Philadelphia County' }
 
         allReapJobs.push({
@@ -195,3 +196,4 @@ adamsCountyTowns = ["Aurora", "Bennett", "Brighton", "Commerce City", "Denver", 
 armstrongCountyTowns = ["Adrian", "Cadogan", "Cowansville", "Dayton", "Distant", "Elderton", "Ford City", "Ford Cliff", "Freeport", "Kittanning", "Leechburg", "Manorville", "Mc Grann", "North Apollo", "Nu Mine", "Oak Ridge", "Parker", "Rural Valley", "Sagamore", "Schenley", "Seminole", "Spring Church", "Templeton", "Worthington", "Yatesboro"];
 beaverCountyTowns = ["Aliquippa", "Ambridge", "Baden", "Beaver", "Beaver Falls", "Clinton", "Conway", "Darlington", "Fombell", "Freedom", "Georgetown", "Hookstown", "Industry", "Koppel", "Midland", "Monaca", "New Brighton", "New Galilee", "Rochester", "Shippingport", "South Heights"];
 bedfordCountyTowns = ["Alum Bank", "Artemas", "Bedford", "Breezewood", "Buffalo Mills", "Clearville", "Defiance", "Everett", "Fishertown", "Hopewell", "Hyndman", "Imler", "Loysburg", "Manns Choice", "New Enterprise", "New Paris", "Osterburg", "Queen", "Riddlesburg", "Saxton", "Schellsburg", "Six Mile Run", "Wood", "Woodbury"];
+blairCountyTowns = ["Altoona", "Bellwood", "Claysburg", "Curryville", "Duncansville", "East Freedom", "Hollidaysburg", "Martinsburg", "Newry", "Roaring Spring", "Sproul", "Tipton", "Tyrone", "Williamsburg"]
