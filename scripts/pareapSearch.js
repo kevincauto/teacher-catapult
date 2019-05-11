@@ -82,6 +82,7 @@ module.exports = {
         if (blairCountyTowns.includes(cities[i])) { county = 'Blair County' }
         if (bradfordCountyTowns.includes(cities[i])) { county = 'Bradford County' }
         if (butlerCountyTowns.includes(cities[i])) { county = 'Butler County' }
+        if (cambriaCountyTowns.includes(cities[i])) { county = 'Cambria County' }
         if (cities[i] === 'Philadelphia') { county = 'Philadelphia County' }
 
         allReapJobs.push({
@@ -201,3 +202,4 @@ bedfordCountyTowns = ["Alum Bank", "Artemas", "Bedford", "Breezewood", "Buffalo 
 blairCountyTowns = ["Altoona", "Bellwood", "Claysburg", "Curryville", "Duncansville", "East Freedom", "Hollidaysburg", "Martinsburg", "Newry", "Roaring Spring", "Sproul", "Tipton", "Tyrone", "Williamsburg"]
 bradfordCountyTowns = ["Alba", "Athens", "Burlington", "Camptown", "Canton", "Columbia Cross Roads", "East Smithfield", "Gillett", "Granville Summit", "Grover", "Le Raysville", "Milan", "Monroeton", "New Albany", "Rome", "Sayre", "Stevensville", "Sugar Run", "Sylvania", "Towanda", "Troy", "Ulster", "Warren Center", "Wyalusing", "Wysox"];
 butlerCountyTowns = ["Boyers", "Branchton", "Bruin", "Butler", "Cabot", "Callery", "Chicora", "Connoquenessing", "Cranberry Township", "East Butler", "Eau Claire", "Evans City", "Fenelton", "Forestville", "Harmony", "Harrisville", "Herman", "Hilliards", "Karns City", "Lyndora", "Mars", "North Washington", "Petrolia", "Portersville", "Prospect", "Renfrew", "Sarver", "Saxonburg", "Slippery Rock", "Valencia", "West Sunbury", "Zelienople"];
+cambriaCountyTowns = ["Boyers", "Branchton", "Bruin", "Butler", "Cabot", "Callery", "Chicora", "Connoquenessing", "Cranberry Township", "East Butler", "Eau Claire", "Evans City", "Fenelton", "Forestville", "Harmony", "Harrisville", "Herman", "Hilliards", "Karns City", "Lyndora", "Mars", "North Washington", "Petrolia", "Portersville", "Prospect", "Renfrew", "Sarver", "Saxonburg", "Slippery Rock", "Valencia", "West Sunbury", "Zelienople"];
