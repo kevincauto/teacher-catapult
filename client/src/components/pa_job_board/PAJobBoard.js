@@ -181,6 +181,10 @@ class PAJobBoard extends Component {
         return false;
       }
     );
+
+    const paidJobs = JSONArrJobs.filter(job => job.paid === true)
+    JSONArrJobs = paidJobs.concat(JSONArrJobs.filter(job => job.paid === false));
+
     return JSONArrJobs.map((job) => {
       return (
         <tr key={job.jobId}>
@@ -314,6 +318,7 @@ class PAJobBoard extends Component {
                 All salary ranges reflect full-time employment for a classroom teacher.
                 While the data is meant to be accurate and helpful, accuracy can't be guaranteed.
                 </p>
+              <p>**Paid post.</p>
               <p className="description-paragraph">
                 Teaching jobs in PA are scattered across hundreds of school
                 district websites across the internet. Teacher Catapult's small
