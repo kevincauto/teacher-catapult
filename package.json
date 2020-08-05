@@ -27,7 +27,7 @@
     "cookie-session": "^2.0.0-beta.2",
     "emitter": "0.0.5",
     "express": "^4.15.3",
-    "express-fileupload": "^0.4.0",
+    "express-fileupload": "^1.1.9",
     "express-messages": "^1.0.1",
     "express-session": "^1.15.6",
     "express-validator": "^5.0.1",
