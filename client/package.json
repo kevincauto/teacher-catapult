@@ -20,7 +20,7 @@
     "react-dom": "^16.0.0-alpha.13",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
-    "react-scripts": "^1.1.4",
+    "react-scripts": "^5.0.1",
     "react-stripe-checkout": "^2.4.0",
     "react-structured-data": "0.0.12",
     "redux": "^3.7.1",
