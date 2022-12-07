@@ -26,7 +26,7 @@
     "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-beta.2",
     "emitter": "0.0.5",
-    "express": "^4.15.3",
+    "express": "^4.17.3",
     "express-fileupload": "^0.4.0",
     "express-messages": "^1.0.1",
     "express-session": "^1.15.6",
